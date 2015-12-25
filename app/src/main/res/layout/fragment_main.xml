@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Main page -->
+<!---->
+<!-- Resources and Ids for this page must start with "main__" -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -6,12 +12,27 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.nbossard.packlist.MainActivityFragment"
+                tools:context=".dui.MainActivityFragment"
                 tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/main__welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="@string/main__welcome"/>
+
+    <android.support.v4.widget.Space
+        android:id="@+id/main__space"
+        android:layout_below="@id/main__welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="10dip"/>
+
+    <ListView
+        android:id="@+id/main__trip_list"
+        android:layout_below="@id/main__space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </RelativeLayout>

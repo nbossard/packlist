@@ -19,6 +19,12 @@ public class Trip {
     private String mStartDate;
     private String mEndDate;
 
+    public Trip(String parName, String parStartDate, String parEndDate) {
+        setName(parName);
+        setStartDate(parStartDate);
+        setEndDate(parEndDate);
+    }
+
     public String getName() {
         return mName;
     }

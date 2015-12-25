@@ -2,7 +2,7 @@
 
 <!-- About page -->
 <!---->
-<!-- Ressources and Ids for this page must start with "about__" -->
+<!-- Resources and Ids for this page must start with "about__" -->
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.nbossard.packlist.AboutActivity"
+    tools:context=".dui.AboutActivity"
     tools:showIn="@layout/activity_about">
     <TextView
         android:layout_width="match_parent"
