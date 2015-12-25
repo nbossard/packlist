@@ -1,2 +1,2 @@
 # packlist
-An open-source packing list
+An open-source packing list for Android
