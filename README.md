@@ -6,7 +6,6 @@
  * multi-language
  * activities based
  
-
 ### Objectives in term of coding:
  - multi-developper
  - very strict formatting rules
@@ -18,3 +17,8 @@
 - material design
 - android studio IDE 2 preview
 
+-------------------
+
+### Coding conventions
+- fields should start ith "m" (enforced in codeStyleSettings.xml)
+- parameters should start with "par" (enforced in codeStyleSettings.xml)
