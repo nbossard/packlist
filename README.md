@@ -1,6 +1,9 @@
 # packlist
 ##An open-source packing list for Android
 
+Why another packing-list... because existing are incomplete, out-of-date or expensives and any way not open-source.
+Which is very disappointing when you wish to save your lists.
+
 ### Objectives in term of functionnalities : 
  * free
  * multi-language
@@ -16,6 +19,7 @@
 - groovy instead of Java
 - material design
 - android studio IDE 2 preview
+- vector drawables
 
 -------------------
 
