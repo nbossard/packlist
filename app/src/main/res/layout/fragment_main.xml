@@ -31,7 +31,8 @@
         android:id="@+id/main__trip_list"
         android:layout_below="@id/main__space"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:listitem="@layout/trip_adapter">
 
     </ListView>
 
