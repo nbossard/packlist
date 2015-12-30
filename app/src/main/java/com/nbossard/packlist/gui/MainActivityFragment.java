@@ -19,7 +19,9 @@ import java.util.List;
  */
 public class MainActivityFragment extends Fragment {
 
-    private ListView mTripListView;
+    // *********************** FIELDS ***********************************************************************
+
+    // *********************** METHODS **********************************************************************
 
     public MainActivityFragment() {
     }
@@ -35,7 +37,7 @@ public class MainActivityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // populating list
-        mTripListView= (ListView) getView().findViewById(R.id.main__trip_list);
+        ListView tripListView = (ListView) getView().findViewById(R.id.main__trip_list);
         List<Trip> testList= new ArrayList<>();
 
         // TODO remove this stub
@@ -43,7 +45,7 @@ public class MainActivityFragment extends Fragment {
         testList.add(new Trip("Guadeloupe", "1er mars 2016", "15 mars 2016"));
 
         final TripAdapter customAdapter = new TripAdapter(testList, this.getActivity());
-        mTripListView.setAdapter(customAdapter);
+        tripListView.setAdapter(customAdapter);
 
     }
 }

@@ -39,6 +39,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
 // *********************** PRIVATE METHODS ******************************************************************
+
     private void openBrowser() {
         String url = "https://github.com/nbossard/packlist";
         Intent i = new Intent(Intent.ACTION_VIEW);
