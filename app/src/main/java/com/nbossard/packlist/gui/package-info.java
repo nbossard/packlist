@@ -17,6 +17,10 @@ package com.nbossard.packlist.gui;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.gui {
+    class AboutActivity
+    class MainActivity
+    class MainActivityFragment
+    class NewTripFragment
     }
 @enduml
 

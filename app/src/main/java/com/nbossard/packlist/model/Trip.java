@@ -9,16 +9,22 @@ package com.nbossard.packlist.model;
     }
 @enduml
  */
+
 /**
  * A trip
+ *
  * @author Created by nbossard on 25/12/15.
  */
 public class Trip {
+
+// *********************** FIELDS *************************************************************************
 
     private String mName;
     private String mStartDate;
     private String mEndDate;
 
+    //
+// *********************** METHODS **************************************************************************
     public Trip(String parName, String parStartDate, String parEndDate) {
         setName(parName);
         setStartDate(parStartDate);
