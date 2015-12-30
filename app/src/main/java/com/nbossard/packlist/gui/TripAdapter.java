@@ -1,4 +1,4 @@
-package com.nbossard.packlist.dui;
+package com.nbossard.packlist.gui;
 
 import android.content.Context;
 import android.view.LayoutInflater;

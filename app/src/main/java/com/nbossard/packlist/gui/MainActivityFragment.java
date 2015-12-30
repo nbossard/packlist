@@ -1,4 +1,4 @@
-package com.nbossard.packlist.dui;
+package com.nbossard.packlist.gui;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

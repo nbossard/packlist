@@ -1,4 +1,4 @@
-package com.nbossard.packlist.dui;
+package com.nbossard.packlist.gui;
 
 import android.content.Intent;
 import android.os.Bundle;

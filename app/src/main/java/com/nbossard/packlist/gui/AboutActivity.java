@@ -1,5 +1,7 @@
-package com.nbossard.packlist.dui;
+package com.nbossard.packlist.gui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +11,10 @@ import android.view.View;
 
 import com.nbossard.packlist.R;
 
+/**
+ * About activity.
+ * @author nicolas Bossard
+ */
 public class AboutActivity extends AppCompatActivity {
 
     @Override
@@ -22,13 +28,21 @@ public class AboutActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                openBrowser();
             }
         });
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
+
+// *********************** PRIVATE METHODS ******************************************************************
+    private void openBrowser() {
+        String url = "https://github.com/nbossard/packlist";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+//
 
 }
