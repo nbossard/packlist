@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- About page, containing activity -->
+<!---->
+<!-- Resources and Ids for this page must start with "about_act__" -->
+
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,11 +30,11 @@
     <include layout="@layout/content_about"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/about_act__fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"/>
+        android:src="@android:drawable/ic_dialog_info"/>
 
 </android.support.design.widget.CoordinatorLayout>
