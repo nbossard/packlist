@@ -8,22 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.ISavingModule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-
     // *********************** FIELDS ***********************************************************************
+
+    private ISavingModule mSavingModule;
 
     // *********************** METHODS **********************************************************************
 
     public MainActivityFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
     @Override
@@ -38,11 +46,9 @@ public class MainActivityFragment extends Fragment {
 
         // populating list
         ListView tripListView = (ListView) getView().findViewById(R.id.main__trip_list);
-        List<Trip> testList= new ArrayList<>();
+        List<Trip> testList;
 
-        // TODO remove this stub
-        testList.add(new Trip("Verdun", "23 décembre 2015", "28 décembre 2015"));
-        testList.add(new Trip("Guadeloupe", "1er mars 2016", "15 mars 2016"));
+        testList = mSavingModule.loadSavedTrips();
 
         final TripAdapter customAdapter = new TripAdapter(testList, this.getActivity());
         tripListView.setAdapter(customAdapter);
