@@ -12,5 +12,6 @@
     <string name="main__welcome">Here is the list of your trips, please clisk on one for details</string>
 
     <string name="new_trip__name">trip name</string>
-    <string name="new_trip__start_date">Date de début</string>
+    <string name="new_trip__start_date">start date</string>
+    <string name="new_trip__end_date">end date</string>
 </resources>

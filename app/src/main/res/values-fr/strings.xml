@@ -13,4 +13,5 @@
 
     <string name="new_trip__name">nom du voyage</string>
     <string name="new_trip__start_date">Date de début</string>
+    <string name="new_trip__end_date">Date de fin</string>
 </resources>

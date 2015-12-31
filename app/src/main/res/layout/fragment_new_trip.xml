@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Main page -->
+<!-- New trip main characteristics input page -->
 <!---->
 <!-- Resources and Ids for this page must start with "new_trip__" -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:paddingTop="@dimen/margin_top"
+              android:paddingStart="@dimen/margin_start"
+              android:paddingEnd="@dimen/margin_end">
 
     <TextView
         android:id="@+id/new_trip__name__label"
@@ -15,10 +19,34 @@
         android:layout_height="wrap_content"
         android:text="@string/new_trip__name"/>
 
+    <EditText
+        android:id="@+id/new_trip__name__edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
+
     <TextView
         android:id="@+id/new_trip__start_date__label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_trip__start_date"/>
+
+    <EditText
+        android:id="@+id/new_trip__start_date__edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"/>
+
+    <TextView
+        android:id="@+id/new_trip__end_date__label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_trip__end_date"/>
+
+    <EditText
+        android:id="@+id/new_trip__end_date__edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"/>
 
 </LinearLayout>
