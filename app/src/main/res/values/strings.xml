@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- English strings used in application -->
 <resources>
     <string name="app_name">packlist</string>
 
@@ -14,4 +15,5 @@
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>
     <string name="new_trip__end_date">end date</string>
+    <string name="new_trip__submit">let\'s go…</string>
 </resources>

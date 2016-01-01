@@ -17,4 +17,9 @@ public class PrefsSavingModule implements ISavingModule {
         testList.add(new Trip("Guadeloupe", "1er mars 2016", "15 mars 2016"));
         return testList;
     }
+
+    @Override
+    public void addNewTrip(Trip parTmpTrip) {
+        // TODO implement this
+    }
 }

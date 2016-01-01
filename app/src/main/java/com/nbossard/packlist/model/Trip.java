@@ -19,39 +19,39 @@ public class Trip {
 
 // *********************** FIELDS *************************************************************************
 
-    private String mName;
-    private String mStartDate;
-    private String mEndDate;
+    private CharSequence mName;
+    private CharSequence mStartDate;
+    private CharSequence mEndDate;
 
     //
 // *********************** METHODS **************************************************************************
-    public Trip(String parName, String parStartDate, String parEndDate) {
+    public Trip(CharSequence parName, CharSequence parStartDate, CharSequence parEndDate) {
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
     }
 
-    public String getName() {
+    public CharSequence getName() {
         return mName;
     }
 
-    public void setName(String parName) {
+    public void setName(CharSequence parName) {
         mName = parName;
     }
 
-    public String getStartDate() {
+    public CharSequence getStartDate() {
         return mStartDate;
     }
 
-    public void setStartDate(String parStartDate) {
+    public void setStartDate(CharSequence parStartDate) {
         mStartDate = parStartDate;
     }
 
-    public String getEndDate() {
+    public CharSequence getEndDate() {
         return mEndDate;
     }
 
-    public void setEndDate(String parEndDate) {
+    public void setEndDate(CharSequence parEndDate) {
         mEndDate = parEndDate;
     }
 }

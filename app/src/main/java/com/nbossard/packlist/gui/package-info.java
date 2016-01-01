@@ -21,6 +21,8 @@ package com.nbossard.packlist.gui;
     class MainActivity
     class MainActivityFragment
     class NewTripFragment
+
+    IMainActivity <-- MainActivity
     }
 @enduml
 

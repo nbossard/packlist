@@ -11,7 +11,9 @@
               android:background="@color/background"
               android:paddingTop="@dimen/margin_top"
               android:paddingStart="@dimen/margin_start"
-              android:paddingEnd="@dimen/margin_end">
+              android:paddingEnd="@dimen/margin_end"
+              android:paddingLeft="@dimen/margin_start"
+              android:paddingRight="@dimen/margin_end">
 
     <TextView
         android:id="@+id/new_trip__name__label"
@@ -51,5 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"/>
+
+    <Button
+        android:id="@+id/new_trip__submit__button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_trip__submit"/>
 
 </LinearLayout>

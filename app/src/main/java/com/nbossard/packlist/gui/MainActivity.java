@@ -2,6 +2,7 @@ package com.nbossard.packlist.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -11,11 +12,24 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.ISavingModule;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  IMainActivity{
+
+    ISavingModule mSavingModule;
 
 // *********************** METHODS **************************************************************************
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -41,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void createNewTrip(CharSequence parName, CharSequence parStartDate, CharSequence parEndDate) {
+        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate);
+        mSavingModule.addNewTrip(tmpTrip);
     }
 
     @Override
