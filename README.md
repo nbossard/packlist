@@ -21,6 +21,9 @@ Which is very disappointing when you wish to save your lists.
 - android studio IDE 2 preview
 - vector drawables
 
+### Licence : Apache 2
+
+
 -------------------
 
 ### Coding conventions
