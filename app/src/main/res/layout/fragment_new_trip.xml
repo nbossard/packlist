@@ -17,10 +17,11 @@
         android:id="@+id/new_trip__name__label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@+id/new_trip__name__edit"
         android:text="@string/new_trip__name"/>
 
     <EditText
-        android:id="@+id/new_trip__name__edit"
+        android:id="@id/new_trip__name__edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"/>
@@ -29,10 +30,11 @@
         android:id="@+id/new_trip__start_date__label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@+id/new_trip__start_date__edit"
         android:text="@string/new_trip__start_date"/>
 
     <EditText
-        android:id="@+id/new_trip__start_date__edit"
+        android:id="@id/new_trip__start_date__edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"/>
@@ -41,10 +43,11 @@
         android:id="@+id/new_trip__end_date__label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@+id/new_trip__end_date__edit"
         android:text="@string/new_trip__end_date"/>
 
     <EditText
-        android:id="@+id/new_trip__end_date__edit"
+        android:id="@id/new_trip__end_date__edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"/>
