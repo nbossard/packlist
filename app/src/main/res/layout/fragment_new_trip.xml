@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@+id/new_trip__name__edit"
+        android:focusable="false"
         android:text="@string/new_trip__name"/>
 
     <EditText
@@ -52,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@+id/new_trip__start_date__edit"
+        android:focusable="false"
         android:text="@string/new_trip__start_date"/>
 
     <EditText
@@ -65,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@+id/new_trip__end_date__edit"
+        android:focusable="false"
         android:text="@string/new_trip__end_date"/>
 
     <EditText

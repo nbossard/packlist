@@ -21,9 +21,7 @@ package com.nbossard.packlist.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,19 +32,36 @@ import android.view.MenuItem;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.ISavingModule;
+import com.nbossard.packlist.process.saving.ISavingModule;
 
-public class MainActivity extends AppCompatActivity implements  IMainActivity{
+public class MainActivity extends AppCompatActivity implements IMainActivity{
 
-    ISavingModule mSavingModule;
+    private ISavingModule mSavingModule;
 
 // *********************** METHODS **************************************************************************
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.mainact__fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNewTripFragment();            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+
+        openMainActivityFragment();
     }
 
     @Override
@@ -63,11 +78,7 @@ public class MainActivity extends AppCompatActivity implements  IMainActivity{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.action_about) {
+        if (id == R.id.action_about) {
             Intent view = new Intent(this, AboutActivity.class);
             view.setAction(Intent.ACTION_VIEW);
             startActivity(view);
@@ -77,25 +88,26 @@ public class MainActivity extends AppCompatActivity implements  IMainActivity{
     }
 
     @Override
-    public void createNewTrip(CharSequence parName, CharSequence parStartDate, CharSequence parEndDate) {
+    public void createNewTrip(String parName, String parStartDate, String parEndDate) {
         Trip tmpTrip = new Trip(parName, parStartDate, parEndDate);
         mSavingModule.addNewTrip(tmpTrip);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.mainact__fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNewTripFragment();            }
-//
-        });
+// *********************** PRIVATE METHODS ******************************************************************
+    private void openMainActivityFragment() {
+
+        // Create fragment and give it an argument specifying the article it should show
+        MainActivityFragment newFragment = new MainActivityFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
     }
 
     /**
@@ -110,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements  IMainActivity{
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.fragment, newFragment);
+        transaction.replace(R.id.mainactcont__fragment, newFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction

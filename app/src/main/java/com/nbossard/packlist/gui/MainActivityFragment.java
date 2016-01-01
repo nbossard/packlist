@@ -30,7 +30,7 @@ import android.widget.ListView;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.ISavingModule;
+import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
 
@@ -64,13 +64,23 @@ public class MainActivityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // populating list
+        populatingList();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populatingList();
+    }
+
+    private void populatingList() {
         ListView tripListView = (ListView) getView().findViewById(R.id.main__trip_list);
-        List<Trip> testList;
+        List<Trip> tripList;
 
-        testList = mSavingModule.loadSavedTrips();
+        tripList = mSavingModule.loadSavedTrips();
 
-        final TripAdapter customAdapter = new TripAdapter(testList, this.getActivity());
+        final TripAdapter customAdapter = new TripAdapter(tripList, this.getActivity());
         tripListView.setAdapter(customAdapter);
-
+        tripListView.invalidate();
     }
 }

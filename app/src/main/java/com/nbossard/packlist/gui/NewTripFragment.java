@@ -66,9 +66,12 @@ public class NewTripFragment extends Fragment {
                       TextView nameTV = (TextView) mainView.findViewById(R.id.new_trip__name__edit);
                       TextView startDateTV = (TextView) mainView.findViewById(R.id.new_trip__start_date__edit);;
                       TextView endDateTV =  (TextView) mainView.findViewById(R.id.new_trip__end_date__edit);;
-                      mHostingActivity.createNewTrip(nameTV.getText(), startDateTV.getText(), endDateTV.getText());
+                      mHostingActivity.createNewTrip(nameTV.getText().toString(),
+                              startDateTV.getText().toString(),
+                              endDateTV.getText().toString());
 
                       getActivity().getSupportFragmentManager().beginTransaction().remove(NewTripFragment.this).commit();
+                      getActivity().getSupportFragmentManager().popBackStack();
                   }
               }
         );

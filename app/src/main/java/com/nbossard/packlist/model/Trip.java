@@ -38,39 +38,71 @@ public class Trip {
 
 // *********************** FIELDS *************************************************************************
 
-    private CharSequence mName;
-    private CharSequence mStartDate;
-    private CharSequence mEndDate;
+    private String mName;
+    private String mStartDate;
+    private String mEndDate;
 
     //
 // *********************** METHODS **************************************************************************
-    public Trip(CharSequence parName, CharSequence parStartDate, CharSequence parEndDate) {
+    public Trip(String parName, String parStartDate, String parEndDate) {
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
     }
 
-    public CharSequence getName() {
+    public String getName() {
         return mName;
     }
 
-    public void setName(CharSequence parName) {
+    public void setName(String parName) {
         mName = parName;
     }
 
-    public CharSequence getStartDate() {
+
+    public String getStartDate() {
         return mStartDate;
     }
 
-    public void setStartDate(CharSequence parStartDate) {
+    public void setStartDate(String parStartDate) {
         mStartDate = parStartDate;
     }
 
-    public CharSequence getEndDate() {
+    public String getEndDate() {
         return mEndDate;
     }
 
-    public void setEndDate(CharSequence parEndDate) {
+    public void setEndDate(String parEndDate) {
         mEndDate = parEndDate;
+    }
+
+    @Override
+    public boolean equals(Object parO) {
+        if (this == parO) return true;
+        if (parO == null || getClass() != parO.getClass()) return false;
+
+        Trip trip = (Trip) parO;
+
+        if (mName != null ? !mName.equals(trip.mName) : trip.mName != null) return false;
+        if (mStartDate != null ? !mStartDate.equals(trip.mStartDate) : trip.mStartDate != null) return false;
+        return mEndDate != null ? mEndDate.equals(trip.mEndDate) : trip.mEndDate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mName != null ? mName.hashCode() : 0;
+        result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
+        result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Trip{");
+        sb.append("mName=").append(mName);
+        sb.append(", mStartDate=").append(mStartDate);
+        sb.append(", mEndDate=").append(mEndDate);
+        sb.append('}');
+        return sb.toString();
     }
 }

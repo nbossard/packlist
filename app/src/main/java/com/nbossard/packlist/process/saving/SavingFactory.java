@@ -17,22 +17,16 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process;
+package com.nbossard.packlist.process.saving;
 
-import com.nbossard.packlist.model.Trip;
-
-import java.util.List;
+import android.content.Context;
 
 /**
- * Interface for all possible implementations of  saving modules.
- *
- * @author Created by nbossard on 31/12/15.
+ * Factory for generating a new best {@link ISavingModule}.
+ * @author Created by nbossard on 01/01/16.
  */
-public interface ISavingModule {
-
-    /** Retrieve the list of saved trips. */
-    List<Trip> loadSavedTrips();
-
-    /** Add a new trip to the list of saved Trips. */
-    void addNewTrip(Trip parTmpTrip);
+public class SavingFactory {
+    public static ISavingModule getNewSavingModule(Context parContext) {
+        return new PrefsSavingModule(parContext);
+    }
 }

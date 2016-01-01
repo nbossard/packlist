@@ -21,8 +21,9 @@ package com.nbossard.packlist;
 
 import android.app.Application;
 
-import com.nbossard.packlist.process.ISavingModule;
-import com.nbossard.packlist.process.PrefsSavingModule;
+import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.PrefsSavingModule;
+import com.nbossard.packlist.process.saving.SavingFactory;
 
 /**
  * Application level initialisations.
@@ -32,13 +33,13 @@ import com.nbossard.packlist.process.PrefsSavingModule;
 public class PackListApp extends Application {
 
 // *********************** FIELDS *************************************************************************
-    private PrefsSavingModule mSavingModule;
+    private ISavingModule mSavingModule;
 //
 
 // *********************** METHODS **************************************************************************
     public ISavingModule getSavingModule() {
         if (mSavingModule ==null) {
-            mSavingModule = new PrefsSavingModule();
+            mSavingModule = SavingFactory.getNewSavingModule(this);
         }
         return mSavingModule;
     }

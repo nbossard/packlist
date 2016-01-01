@@ -17,28 +17,26 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process;
+package com.nbossard.packlist.process.saving;
 
 import com.nbossard.packlist.model.Trip;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Interface for all possible implementations of  saving modules.
+ *
  * @author Created by nbossard on 31/12/15.
  */
-public class PrefsSavingModule implements ISavingModule {
+public interface ISavingModule {
 
-    @Override
-    public List<Trip> loadSavedTrips() {
-        List<Trip> testList= new ArrayList<>();
-        testList.add(new Trip("Verdun", "23 décembre 2015", "28 décembre 2015"));
-        testList.add(new Trip("Guadeloupe", "1er mars 2016", "15 mars 2016"));
-        return testList;
-    }
+    /** Retrieve the list of saved trips.
+     * @return a list filled with the current trips or an empty list if was never saved. */
+    List<Trip> loadSavedTrips();
 
-    @Override
-    public void addNewTrip(Trip parTmpTrip) {
-        // TODO implement this
-    }
+    /** Add a new trip to the list of saved Trips. */
+    void addNewTrip(Trip parTmpTrip);
+
+    /** Delete all previously saved trips, mainly for testing. */
+    void deleteAllTrips();
 }
