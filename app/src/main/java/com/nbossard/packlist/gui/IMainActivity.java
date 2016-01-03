@@ -22,7 +22,7 @@ package com.nbossard.packlist.gui;
 /**
  * @author Created by nbossard on 01/01/16.
  */
-public interface IMainActivity {
+interface IMainActivity {
 
     /** Creation and saving of a new trip.
      * @param parName name of new trip

@@ -21,7 +21,6 @@
 <resources>
     <string name="app_name">packlist</string>
 
-    <string name="action_settings">Settings</string>
     <string name="action_about">A propos</string>
 
     <string name="title_activity_about">AboutActivity</string>

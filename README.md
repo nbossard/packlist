@@ -1,16 +1,16 @@
 # packlist
 ##An open-source packing list for Android
 
-Why another packing-list... because existing are incomplete, out-of-date or expensives and any way not open-source.
+Why another packing-list... because existing are incomplete, out-of-date or expensive and any way not open-source.
 Which is very disappointing when you wish to save your lists.
 
-### Objectives in term of functionnalities : 
+### Objectives in term of functionality : 
  * free
  * multi-language
  * activities based
  
 ### Objectives in term of coding:
- - multi-developper
+ - multi-developer
  - very strict formatting rules
  - exhaustive javadoc
  - large usage of plantuml
@@ -20,6 +20,7 @@ Which is very disappointing when you wish to save your lists.
 - material design
 - android studio IDE 2 preview
 - vector drawables
+- in-app indexing
 
 ### Licence : Apache 2
 
@@ -27,5 +28,5 @@ Which is very disappointing when you wish to save your lists.
 -------------------
 
 ### Coding conventions
-- fields should start ith "m" (enforced in codeStyleSettings.xml)
+- fields should start with "m" (enforced in codeStyleSettings.xml)
 - parameters should start with "par" (enforced in codeStyleSettings.xml)

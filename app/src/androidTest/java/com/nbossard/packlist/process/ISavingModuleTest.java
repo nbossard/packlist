@@ -25,19 +25,22 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
-import junit.framework.TestCase;
-
 import java.util.List;
 
 /**
+ * Test class for ISavingModule.
+ *
  * @author Created by nbossard on 01/01/16.
  */
 public class ISavingModuleTest extends InstrumentationTestCase {
 
-    ISavingModule mTestedSavingModule;
+// *********************** FIELDS *************************************************************************
+    private ISavingModule mTestedSavingModule;
     private Trip mTestTrip1;
     private Trip mTestTrip2;
+//
 
+// *********************** METHODS **************************************************************************
     public void setUp() throws Exception {
         super.setUp();
         mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015");
@@ -55,7 +58,5 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertTrue(loadedTrips.contains(mTestTrip2));
     }
 
-    public void testAddNewTrip() throws Exception {
-
-    }
+//
 }

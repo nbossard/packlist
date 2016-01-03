@@ -27,7 +27,6 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background"
               android:paddingTop="@dimen/margin_top"
               android:paddingStart="@dimen/margin_start"
               android:paddingEnd="@dimen/margin_end"

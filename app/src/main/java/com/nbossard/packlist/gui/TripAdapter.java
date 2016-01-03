@@ -36,7 +36,7 @@ import java.util.List;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class TripAdapter extends BaseAdapter {
+class TripAdapter extends BaseAdapter {
 
     // *********************** INNER CLASS *****************************************************************
 

@@ -54,6 +54,7 @@ public class Trip {
         return mName;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void setName(String parName) {
         mName = parName;
     }
@@ -63,6 +64,7 @@ public class Trip {
         return mStartDate;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void setStartDate(String parStartDate) {
         mStartDate = parStartDate;
     }
@@ -71,6 +73,7 @@ public class Trip {
         return mEndDate;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void setEndDate(String parEndDate) {
         mEndDate = parEndDate;
     }
@@ -83,6 +86,7 @@ public class Trip {
         Trip trip = (Trip) parO;
 
         if (mName != null ? !mName.equals(trip.mName) : trip.mName != null) return false;
+        //noinspection SimplifiableIfStatement
         if (mStartDate != null ? !mStartDate.equals(trip.mStartDate) : trip.mStartDate != null) return false;
         return mEndDate != null ? mEndDate.equals(trip.mEndDate) : trip.mEndDate == null;
 
@@ -98,11 +102,9 @@ public class Trip {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Trip{");
-        sb.append("mName=").append(mName);
-        sb.append(", mStartDate=").append(mStartDate);
-        sb.append(", mEndDate=").append(mEndDate);
-        sb.append('}');
-        return sb.toString();
+        return "Trip{" + "mName=" + mName +
+                ", mStartDate=" + mStartDate +
+                ", mEndDate=" + mEndDate +
+                '}';
     }
 }

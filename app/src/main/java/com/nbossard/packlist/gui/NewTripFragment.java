@@ -38,6 +38,8 @@ import com.nbossard.packlist.R;
 public class NewTripFragment extends Fragment {
 
     private IMainActivity mHostingActivity;
+    private View mRootView;
+
 
     public NewTripFragment() {
     }
@@ -45,7 +47,8 @@ public class NewTripFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_new_trip, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_new_trip, container, false);
+        return mRootView;
     }
 
     @Override
@@ -57,15 +60,14 @@ public class NewTripFragment extends Fragment {
     }
 
     private void addListenerOnSubmitButton() {
-        final View mainView = getView();
-        Button button = (Button) getView().findViewById(R.id.new_trip__submit__button);
+        Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
         button.setOnClickListener(
             new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
-                      TextView nameTV = (TextView) mainView.findViewById(R.id.new_trip__name__edit);
-                      TextView startDateTV = (TextView) mainView.findViewById(R.id.new_trip__start_date__edit);;
-                      TextView endDateTV =  (TextView) mainView.findViewById(R.id.new_trip__end_date__edit);;
+                      TextView nameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
+                      TextView startDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+                      TextView endDateTV =  (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
                       mHostingActivity.createNewTrip(nameTV.getText().toString(),
                               startDateTV.getText().toString(),
                               endDateTV.getText().toString());

@@ -22,7 +22,6 @@ package com.nbossard.packlist;
 import android.app.Application;
 
 import com.nbossard.packlist.process.saving.ISavingModule;
-import com.nbossard.packlist.process.saving.PrefsSavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
 /**

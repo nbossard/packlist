@@ -41,6 +41,7 @@ public class MainActivityFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
     private ISavingModule mSavingModule;
+    private View mRootView;
 
     // *********************** METHODS **********************************************************************
 
@@ -56,7 +57,8 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_main, container, false);
+        return mRootView;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void populatingList() {
-        ListView tripListView = (ListView) getView().findViewById(R.id.main__trip_list);
+        ListView tripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 
         tripList = mSavingModule.loadSavedTrips();
