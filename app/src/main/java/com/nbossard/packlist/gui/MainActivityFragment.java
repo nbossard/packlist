@@ -82,6 +82,7 @@ public class MainActivityFragment extends Fragment {
         tripList = mSavingModule.loadSavedTrips();
 
         final TripAdapter customAdapter = new TripAdapter(tripList, this.getActivity());
+        tripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
         tripListView.setAdapter(customAdapter);
         tripListView.invalidate();
     }
