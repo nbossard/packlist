@@ -21,7 +21,8 @@
 <!---->
 <!-- Resources and Ids for this page must start with "mainactcont__" -->
 
-<merge android:id="@+id/mainactcont__fragment"
+<!-- do not use "merge" tag here, as this id is searched in code -->
+<RelativeLayout android:id="@+id/mainactcont__fragment"
           xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:app="http://schemas.android.com/apk/res-auto"
           xmlns:tools="http://schemas.android.com/tools"
