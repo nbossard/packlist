@@ -25,7 +25,8 @@ android {
 
     defaultConfig {
         applicationId "com.nbossard.packlist"
-        minSdkVersion 10
+        // 11 because of use of startActionMode in list selection
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "0.1 alpha"

@@ -19,12 +19,18 @@
 
 package com.nbossard.packlist.gui;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.nbossard.packlist.PackListApp;
@@ -35,13 +41,19 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder fragment containing a simple list view.
  */
 public class MainActivityFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
+    /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
+    /** The root view, will be used to findViewById. */
     private View mRootView;
+    /** The trip list view. */
+    private ListView mTtripListView;
+    /** The object to support Contextual Action Bar (CAB). */
+    private ActionMode mActionMode;
 
     // *********************** METHODS **********************************************************************
 
@@ -64,26 +76,85 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // populating list
-        populatingList();
+        populateList();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        populatingList();
+        populateList();
     }
+    // *********************** PRIVATE METHODS **************************************************************
 
-    private void populatingList() {
-        ListView tripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
+    /**
+     * Populate list with data in {@link ISavingModule}.
+     */
+    private void populateList() {
+        mTtripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 
         tripList = mSavingModule.loadSavedTrips();
 
-        final TripAdapter customAdapter = new TripAdapter(tripList, this.getActivity());
-        tripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
-        tripListView.setAdapter(customAdapter);
-        tripListView.invalidate();
+        TripAdapter tripAdapter = new TripAdapter(tripList, this.getActivity());
+        mTtripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
+        mTtripListView.setAdapter(tripAdapter);
+        mTtripListView.setOnItemLongClickListener(tripListLongClickListener());
+        mTtripListView.invalidate();
+    }
+
+    @NonNull
+    private AdapterView.OnItemLongClickListener tripListLongClickListener() {
+        return new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+
+                mActionMode = getActivity().startActionMode(new ActionMode.Callback() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                        mode.setTitle("Selected");
+
+                        MenuInflater inflater = mode.getMenuInflater();
+                        inflater.inflate(R.menu.menu_main_cab, menu);
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_delete:
+                                deleteTripClicked();
+                                return true;
+                            default:
+                                doneClicked();
+                                return false;
+                        }
+                    }
+
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
+                        doneClicked();
+                    }
+                });
+                return true;
+            }
+        };
+    }
+
+    /** Effectively delete selected trip then refresh the list. */
+    private void deleteTripClicked() {
+        Trip selectedTrip = (Trip) mTtripListView.getSelectedItem();
+        // TODO improve this and not delete all
+        mSavingModule.deleteAllTrips();
+        mActionMode.finish();
+        populateList();
+    }
+
+    private void doneClicked() {
     }
 }

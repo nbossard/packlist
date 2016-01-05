@@ -19,13 +19,12 @@
   ~ under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".gui.MainActivity">
-    <item
-        android:id="@+id/action_about"
-        android:orderInCategory="200"
-        android:title="@string/action_about"
-        app:showAsAction="never"/>
+<!-- menu_main_cab.xml -->
+<!-- -->
+<!-- menu displayed as a contextual action bar when user long clicks on a list item. -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_delete"
+          android:title="@string/action_main_cab__delete"
+          android:icon="@android:drawable/ic_menu_delete"/>
 </menu>
