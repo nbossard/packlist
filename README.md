@@ -12,6 +12,7 @@ Which is very disappointing when you wish to save your lists.
 ### Objectives in term of coding:
  - multi-developer
  - very strict formatting rules
+ - mandatory usage of quality plugins : checkstyle, findbugs
  - exhaustive javadoc
  - large usage of plantuml
 
@@ -27,6 +28,6 @@ Which is very disappointing when you wish to save your lists.
 
 -------------------
 
-### Coding conventions
+### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
 - parameters should start with "par" (enforced in codeStyleSettings.xml)
