@@ -1,5 +1,6 @@
 # packlist
-##An open-source packing list for Android
+
+## An open-source packing list for Android
 
 Why another packing-list... because existing are incomplete, out-of-date or expensive and any way not open-source.
 Which is very disappointing when you wish to save your lists.
