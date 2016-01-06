@@ -22,7 +22,7 @@ Which is very disappointing when you wish to save your lists.
 - groovy instead of Java
 - material design
 - android studio IDE 2 preview
-- vector drawables
+- vector drawables, using asset studio
 - in-app indexing
 
 ### Licence : Apache 2
