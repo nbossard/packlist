@@ -71,6 +71,24 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     public final void testAlwaysThereStrings() throws Exception
     {
         Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.about__main)));
+        // let human see the screen
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+    }
+
+    /**
+     * Test that the string that should always appear are displayed.
+     *
+     * @throws Exception
+     *             if a test has failed.
+     */
+    public final void testClickOnActionButton() throws Exception
+    {
+        mSolo.clickOnImageButton(0);
+        // Default timeout is 20 seconds.
+        // "HomeActivity" is github app
+        mSolo.waitForActivity("HomeActivity");
+        // let human see the screen
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
     }
 
     @Override
