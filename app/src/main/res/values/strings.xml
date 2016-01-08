@@ -18,6 +18,8 @@
   ~ under the License.
   -->
 
+<!-- strings.xml -->
+<!-- -->
 <!-- English strings used in application -->
 <!-- Strings should be grouped by activity / fragment -->
 <resources>
@@ -36,4 +38,5 @@
     <string name="new_trip__start_date">start date</string>
     <string name="new_trip__end_date">end date</string>
     <string name="new_trip__submit">let\'s go…</string>
+    <string name="action_main_cab__delete">Delete</string>
 </resources>

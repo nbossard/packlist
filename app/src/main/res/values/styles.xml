@@ -17,6 +17,8 @@
   ~ under the License.
   -->
 
+<!-- styles.xml -->
+<!-- -->
 <resources>
 
     <!-- Base application theme. -->
@@ -25,6 +27,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--Added to merge contextual action bar with action bar -->
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
