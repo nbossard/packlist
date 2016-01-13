@@ -22,6 +22,13 @@ package com.nbossard.packlist.process.saving;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
+import java.util.UUID;
+/*
+@startuml
+    class com.nbossard.packlist.process.saving.ISavingModule {
+    }
+@enduml
+ */
 
 /**
  * Interface for all possible implementations of  saving modules.
@@ -39,4 +46,7 @@ public interface ISavingModule {
 
     /** Delete all previously saved trips, mainly for testing. */
     void deleteAllTrips();
+
+    /** Delete provided trip in saving module. */
+    void deleteTrip(UUID parUUID);
 }
