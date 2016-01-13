@@ -36,6 +36,7 @@ import com.nbossard.packlist.R;
  * @author Created by nbossard on 30/12/15.
  */
 public class NewTripFragment extends Fragment {
+    // *********************** FIELDS ***********************************************************************
 
     private IMainActivity mHostingActivity;
     private View mRootView;
