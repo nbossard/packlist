@@ -29,6 +29,8 @@ package com.nbossard.packlist.model;
 @enduml
  */
 
+import java.util.UUID;
+
 /**
  * A trip
  *
@@ -38,6 +40,7 @@ public class Trip {
 
 // *********************** FIELDS *************************************************************************
 
+    private UUID mUUID;
     private String mName;
     private String mStartDate;
     private String mEndDate;
@@ -45,6 +48,7 @@ public class Trip {
     //
 // *********************** METHODS **************************************************************************
     public Trip(String parName, String parStartDate, String parEndDate) {
+        mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
@@ -78,6 +82,10 @@ public class Trip {
         mEndDate = parEndDate;
     }
 
+    public UUID getUUID() {
+        return mUUID;
+    }
+
     @Override
     public boolean equals(Object parO) {
         if (this == parO) return true;
@@ -102,9 +110,10 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip{" + "mName=" + mName +
-                ", mStartDate=" + mStartDate +
-                ", mEndDate=" + mEndDate +
+        return "Trip{" + "mUUID=" + mUUID
+                + "mName=" + mName
+                + ", mStartDate=" + mStartDate
+                + ", mEndDate=" + mEndDate +
                 '}';
     }
 }

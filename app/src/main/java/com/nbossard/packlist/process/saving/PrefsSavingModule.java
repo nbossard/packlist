@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -29,6 +30,15 @@ import com.nbossard.packlist.model.Trip;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+
+/*
+@startuml
+    class com.nbossard.packlist.process.saving.PrefsSavingModule {
+    }
+    com.nbossard.packlist.process.saving.ISavingModule <|-- com.nbossard.packlist.process.saving.PrefsSavingModule
+@enduml
+ */
 
 /**
  * An implementation of {@link ISavingModule} based on shared preferences
@@ -40,6 +50,10 @@ public class PrefsSavingModule implements ISavingModule {
 
 
 // *********************** CONSTANTS**********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = PrefsSavingModule.class.getName();
+
     private static final String LIST_TRIPS_KEY = "LIST_TRIPS";
     private static final String PREFS_FILENAME = "PREFS";
 //
@@ -73,18 +87,51 @@ public class PrefsSavingModule implements ISavingModule {
 
     @Override
     public void addNewTrip(Trip parTmpTrip) {
+        // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();
+
+        // Adding new trip
         prevSavedTrips.add(parTmpTrip);
-        String jsonListTrips = mGson.toJson(prevSavedTrips);
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(LIST_TRIPS_KEY, jsonListTrips);
-        editor.apply();
+
+        // save updated list
+        save(prevSavedTrips);
     }
 
     @Override
     public void deleteAllTrips() {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(LIST_TRIPS_KEY, "");
+        editor.apply();
+    }
+
+    @Override
+    public void deleteTrip(UUID parUUID) {
+        // retrieve current list
+        List<Trip> prevSavedTrips = loadSavedTrips();
+
+        // remove one Trip
+        Trip tripToRemove = null;
+        for (Trip oneTrip:prevSavedTrips) {
+            if (oneTrip.getUUID() == parUUID) {
+                tripToRemove = oneTrip;
+                break;
+            }
+        }
+        if (tripToRemove != null) {
+            prevSavedTrips.remove(tripToRemove);
+        } else {
+            Log.w(TAG, "deleteTrip: failed finding trip to remove of UUID" + parUUID);
+        }
+
+        // save
+        save(prevSavedTrips);
+    }
+
+    /** Save provide list of trips, overwrite current. */
+    private void save(List<Trip> parPrevSavedTrips) {
+        String jsonListTrips = mGson.toJson(parPrevSavedTrips);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(LIST_TRIPS_KEY, jsonListTrips);
         editor.apply();
     }
 }
