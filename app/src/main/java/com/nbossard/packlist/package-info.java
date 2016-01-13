@@ -23,7 +23,7 @@
  *
  * @author Nicolas BOSSARD
  */
-package com.nbossard.packlist.model;
+package com.nbossard.packlist;
 
 /*
 
@@ -35,8 +35,12 @@ package com.nbossard.packlist.model;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.model #LightBlue{
-        !include Trip.java
+    package com.nbossard.packlist {
+        !include gui/package-info.java
+        !include model/package-info.java
+        !include process/saving/package-info.java
+
+        com.nbossard.packlist.process.saving.ISavingModule <-- com.nbossard.packlist.gui.MainActivity
     }
 @enduml
 
