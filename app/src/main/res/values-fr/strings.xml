@@ -37,7 +37,9 @@
     <string name="new_trip__name">nom du voyage</string>
     <string name="new_trip__start_date">Date de début</string>
     <string name="new_trip__end_date">Date de fin</string>
+	<string name="new_trip__note">Noted</string>
     <string name="new_trip__submit">En voyage…</string>
+	
     <string name="action_main_cab__delete">Delete</string>
 
     <string name="trip_detail__end_date__label">au</string>
