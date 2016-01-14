@@ -25,10 +25,14 @@ Which is very disappointing when you wish to save your lists.
 - vector drawables, using asset studio
 - in-app indexing
 
-### Licence : Apache 2
+### Licence
+Apache 2
 
+### Devpt status
+Basic functionality are still under development
 
--------------------
+### History of release
+- 0.1 alpha 6th january 2015
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
