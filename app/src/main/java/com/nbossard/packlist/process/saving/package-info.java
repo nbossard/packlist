@@ -19,11 +19,11 @@
  */
 
 /**
- * Model related classes for PackList.
+ * Saving data related classes for PackList.
  *
- * @author Nicolas BOSSARD
+ * @author Nicolas BOSSARD january 2016
  */
-package com.nbossard.packlist.model;
+package com.nbossard.packlist.process.saving;
 
 /*
 
@@ -35,9 +35,11 @@ package com.nbossard.packlist.model;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.model #LightBlue{
-        !include Trip.java
+    package com.nbossard.packlist.process.saving #LightPink{
+        !include ISavingModule.java
+        !include PrefsSavingModule.java
     }
+
 @enduml
 
 */

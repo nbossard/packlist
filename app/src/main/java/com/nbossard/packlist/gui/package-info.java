@@ -35,13 +35,13 @@ package com.nbossard.packlist.gui;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.gui {
-    class AboutActivity
-    class MainActivity
-    class MainActivityFragment
-    class NewTripFragment
+    package com.nbossard.packlist.gui #LightGreen {
+        !include MainActivity.java
 
-    IMainActivity <-- MainActivity
+        class com.nbossard.packlist.gui.AboutActivity
+        class com.nbossard.packlist.gui.MainActivityFragment
+        class com.nbossard.packlist.gui.NewTripFragment
+
     }
 @enduml
 

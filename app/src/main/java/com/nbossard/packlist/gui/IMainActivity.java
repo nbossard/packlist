@@ -29,5 +29,5 @@ interface IMainActivity {
      * @param  parStartDate start date of new trip
      * @param parEndDate  end date of new trip.
      */
-    void createNewTrip(String parName, String parStartDate, String parEndDate);
+    void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote);
 }

@@ -38,6 +38,8 @@ public class ISavingModuleTest extends InstrumentationTestCase {
     private ISavingModule mTestedSavingModule;
     private Trip mTestTrip1;
     private Trip mTestTrip2;
+    private Trip mTestTrip3;
+
 //
 
 // *********************** METHODS **************************************************************************
@@ -45,6 +47,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         super.setUp();
         mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015");
         mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015");
+        mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015");
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
     }
 
@@ -53,9 +56,25 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         mTestedSavingModule.addNewTrip(mTestTrip1);
         mTestedSavingModule.addNewTrip(mTestTrip2);
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
+
+        //Checking result
         assertEquals(2,loadedTrips.size());
         assertTrue(loadedTrips.contains(mTestTrip1));
         assertTrue(loadedTrips.contains(mTestTrip2));
+    }
+
+    public void testDeleteTrip() {
+        mTestedSavingModule.addNewTrip(mTestTrip1);
+        mTestedSavingModule.addNewTrip(mTestTrip2);
+        mTestedSavingModule.addNewTrip(mTestTrip3);
+
+        mTestedSavingModule.deleteTrip(mTestTrip2);
+        List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
+
+        // checking result
+        assertEquals(2,loadedTrips.size());
+        assertTrue(loadedTrips.contains(mTestTrip1));
+        assertTrue(loadedTrips.contains(mTestTrip3));
     }
 
 //

@@ -44,6 +44,12 @@ import java.util.List;
  * A placeholder fragment containing a simple list view.
  */
 public class MainActivityFragment extends Fragment {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = MainActivityFragment.class.getName();
+
     // *********************** FIELDS ***********************************************************************
 
     /** The saving module to retrieve and update data (trips).*/
@@ -128,7 +134,8 @@ public class MainActivityFragment extends Fragment {
                     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_delete:
-                                deleteTripClicked();
+                                int position = (int) mActionMode.getTag();
+                                deleteTripClicked(position);
                                 return true;
                             default:
                                 doneClicked();
@@ -141,16 +148,18 @@ public class MainActivityFragment extends Fragment {
                         doneClicked();
                     }
                 });
+                mActionMode.setTag(pos);
+                arg1.setSelected(true);
                 return true;
             }
         };
     }
 
-    /** Effectively delete selected trip then refresh the list. */
-    private void deleteTripClicked() {
-        Trip selectedTrip = (Trip) mTtripListView.getSelectedItem();
-        // TODO improve this and not delete all
-        mSavingModule.deleteAllTrips();
+    /** Effectively delete selected trip then refresh the list.
+     * @param parPosition*/
+    private void deleteTripClicked(int parPosition) {
+        Trip selectedTrip = (Trip) mTtripListView.getItemAtPosition(parPosition);
+        mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();
         populateList();
     }

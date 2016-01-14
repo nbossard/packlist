@@ -34,8 +34,26 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.MainActivity {
+    }
+
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.MainActivityFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
+
+    ' Moved to main file
+    ' com.nbossard.packlist.process.saving.ISavingModule <-- com.nbossard.packlist.gui.MainActivity
+@enduml
+ */
+
 public class MainActivity extends AppCompatActivity implements IMainActivity{
 
+// *********************** FIELDS ***************************************************************************
+
+    /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
 
 // *********************** METHODS **************************************************************************
@@ -45,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -54,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
             public void onClick(View view) {
                 openNewTripFragment();            }
         });
+
+        // Handle deep-app indexing
+        onNewIntent(getIntent());
+
     }
 
     @Override
@@ -79,22 +102,60 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            Intent view = new Intent(this, AboutActivity.class);
-            view.setAction(Intent.ACTION_VIEW);
-            startActivity(view);
+            openAboutActivity();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /** Open {@link AboutActivity} on top of this activity. */
+    private void openAboutActivity() {
+        Intent view = new Intent(this, AboutActivity.class);
+        view.setAction(Intent.ACTION_VIEW);
+        startActivity(view);
+    }
+
+    /**
+     * For deep-app indexing.
+     * @param intent sic
+     */
+    protected void onNewIntent(Intent intent) {
+        String action = intent.getAction();
+        String data = intent.getDataString();
+        if (Intent.ACTION_VIEW.equals(action) && data != null) {
+            String tripId = data.substring(data.lastIndexOf("/") + 1);
+            openTripDetailFragment(tripId);
+        }
+    }
+
+// ----------- implementing interface IMainActivity -------------------
+
     @Override
-    public void createNewTrip(String parName, String parStartDate, String parEndDate) {
-        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate);
+    public void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote) {
+        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
         mSavingModule.addNewTrip(tmpTrip);
     }
 
+// ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
+
+
+    private void openTripDetailFragment(String parTripId) {
+
+        // Create fragment and give it an argument specifying the article it should show
+        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
