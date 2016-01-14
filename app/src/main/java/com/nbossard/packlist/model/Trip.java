@@ -40,10 +40,19 @@ public class Trip {
 
 // *********************** FIELDS *************************************************************************
 
+	/** A unique identifier for this trip. */
     private UUID mUUID;
+	
+	/** The trip name usually destination */
     private String mName;
+	
+	/** Trip start date. */
     private String mStartDate;
+	
+	/** Trip return date. */
     private String mEndDate;
+	
+	/** Additional notes, free text. */
 	private String mNote;
 
     //
