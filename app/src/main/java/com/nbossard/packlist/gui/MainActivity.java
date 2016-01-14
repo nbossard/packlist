@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 // ----------- implementing interface IMainActivity -------------------
 
     @Override
-    public void createNewTrip(String parName, String parStartDate, String parEndDate) {
-        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate);
+    public void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote) {
+        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
         mSavingModule.addNewTrip(tmpTrip);
     }
 

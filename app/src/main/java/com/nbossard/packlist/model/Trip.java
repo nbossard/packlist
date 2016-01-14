@@ -44,15 +44,27 @@ public class Trip {
     private String mName;
     private String mStartDate;
     private String mEndDate;
+	private String mNote;
 
     //
 // *********************** METHODS **************************************************************************
-    public Trip(String parName, String parStartDate, String parEndDate) {
+    public Trip(String parName, String parStartDate, String parEndDate, String parNote) {
         mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
+		setNote(parNote);
     }
+
+	public void setNote(String mNote)
+	{
+		this.mNote = mNote;
+	}
+
+	public String getNote()
+	{
+		return mNote;
+	}
 
     public String getName() {
         return mName;
@@ -85,6 +97,8 @@ public class Trip {
     public UUID getUUID() {
         return mUUID;
     }
+	
+	
 
     @Override
     public boolean equals(Object parO) {
