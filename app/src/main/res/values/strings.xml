@@ -37,7 +37,9 @@
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>
     <string name="new_trip__end_date">end date</string>
+	<string name="new_trip__note">note</string>
     <string name="new_trip__submit">let\'s go…</string>
+	
     <string name="action_main_cab__delete">Delete</string>
     <string name="trip_detail__end_date__label">to</string>
     <string name="trip_detail__start_date__label">from</string>
