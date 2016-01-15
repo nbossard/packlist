@@ -51,7 +51,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
 
     @Override
     @DebugLog
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
@@ -61,7 +61,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 openBrowser();
             }
         });
@@ -93,6 +93,9 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
 
 // *********************** PRIVATE METHODS ******************************************************************
 
+    /**
+     * Open the browser with project sources on Github.
+     */
     @DebugLog
     private void openBrowser() {
         String url = "https://github.com/nbossard/packlist";
