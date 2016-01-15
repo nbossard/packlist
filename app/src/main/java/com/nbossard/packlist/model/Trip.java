@@ -31,6 +31,8 @@ package com.nbossard.packlist.model;
 
 import java.util.UUID;
 
+import hugo.weaving.DebugLog;
+
 /**
  * A trip
  *
@@ -48,6 +50,7 @@ public class Trip {
 
     //
 // *********************** METHODS **************************************************************************
+    @DebugLog
     public Trip(String parName, String parStartDate, String parEndDate, String parNote) {
         mUUID = UUID.randomUUID();
         setName(parName);

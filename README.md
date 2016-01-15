@@ -15,6 +15,7 @@ Which is very disappointing when you wish to save your lists.
  - very strict formatting rules
  - mandatory usage of quality plugins : checkstyle, findbugs
  - exhaustive javadoc
+ - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml
  - unit testing and Robotium testing
 

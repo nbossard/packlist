@@ -30,6 +30,8 @@ import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 
+import hugo.weaving.DebugLog;
+
 /**
  * Allow user  to input trip characteristics.
  *
@@ -41,10 +43,38 @@ public class NewTripFragment extends Fragment {
     private IMainActivity mHostingActivity;
     private View mRootView;
 
+    // *********************** LISTENERS ********************************************************************
 
+    View.OnClickListener mSubmitListener = new View.OnClickListener() {
+        @DebugLog
+        @Override
+        public void onClick(View v) {
+            // Getting data
+            TextView nameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
+            TextView startDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+            TextView endDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
+            TextView noteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
+
+            // asking supporting activity to launch creation of new trip
+            mHostingActivity.createNewTrip(nameTV.getText().toString(),
+                    startDateTV.getText().toString(),
+                    endDateTV.getText().toString(),
+                    noteTV.getText().toString());
+
+            // navigating back
+            getActivity().getSupportFragmentManager().beginTransaction().remove(NewTripFragment.this).commit();
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
+    };
+    // *********************** METHODS **********************************************************************
+
+    /**
+     * Empty constructor.
+     */
     public NewTripFragment() {
     }
 
+    @DebugLog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +82,7 @@ public class NewTripFragment extends Fragment {
         return mRootView;
     }
 
+    @DebugLog
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -62,24 +93,7 @@ public class NewTripFragment extends Fragment {
 
     private void addListenerOnSubmitButton() {
         Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
-        button.setOnClickListener(
-            new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      TextView nameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
-                      TextView startDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
-                      TextView endDateTV =  (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
-					  TextView noteTV =  (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
-                      mHostingActivity.createNewTrip(nameTV.getText().toString(),
-                              startDateTV.getText().toString(),
-                              endDateTV.getText().toString(),
-							  noteTV.getText().toString());
-
-                      getActivity().getSupportFragmentManager().beginTransaction().remove(NewTripFragment.this).commit();
-                      getActivity().getSupportFragmentManager().popBackStack();
-                  }
-              }
-        );
+        button.setOnClickListener(mSubmitListener);
     }
 
 }

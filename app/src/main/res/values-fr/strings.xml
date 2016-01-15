@@ -40,8 +40,13 @@
 	<string name="new_trip__note">Noted</string>
     <string name="new_trip__submit">En voyage…</string>
 	
-    <string name="action_main_cab__delete">Delete</string>
+    <string name="action_main_cab__delete">Supprimer</string>
 
     <string name="trip_detail__end_date__label">au</string>
     <string name="trip_detail__start_date__label">du</string>
+    <string name="help_legal__third_party__title">Librairies tierces</string>
+    <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson est distribué sous la License Apache , Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nCopyright © 2013 Jake Wharton,\n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party__label"><u>librairies tierces</u></string>
+    <string name="about__third_party__button">Librairies tierces</string>
 </resources>
