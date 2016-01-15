@@ -45,9 +45,9 @@ public class ISavingModuleTest extends InstrumentationTestCase {
 // *********************** METHODS **************************************************************************
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015");
-        mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015");
-        mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015");
+        mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015", "pas trop loin");
+        mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015", "Bèèèèè");
+        mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015", "beurk");
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
     }
 
@@ -68,7 +68,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         mTestedSavingModule.addNewTrip(mTestTrip2);
         mTestedSavingModule.addNewTrip(mTestTrip3);
 
-        mTestedSavingModule.deleteTrip(mTestTrip2);
+        mTestedSavingModule.deleteTrip(mTestTrip2.getUUID());
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
 
         // checking result
