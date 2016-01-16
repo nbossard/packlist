@@ -28,18 +28,30 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.util.Log;
+import android.widget.Button;
 
 import com.nbossard.packlist.R;
+
+import hugo.weaving.DebugLog;
 
 /**
  * About activity.
  *
  * @author nicolas Bossard
  */
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity  implements View.OnClickListener {
+
+    // *********************** CONSTANTS**********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = AboutActivity.class.getName();
+
+    // *********************** METHODS **********************************************************************
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @DebugLog
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
@@ -49,7 +61,7 @@ public class AboutActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 openBrowser();
             }
         });
@@ -57,15 +69,50 @@ public class AboutActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        // setting button listener
+        final Button mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
+        mButtonThirdParty.setOnClickListener(this);
+    }
+
+
+    @Override
+    @DebugLog
+    public final void onClick(final View parClickedView)
+    {
+
+        if (parClickedView.getId() == R.id.help__third_party__button)
+        {
+            openThirdPartyActivity();
+        } else
+        {
+            // what the fuck
+            Log.e(TAG, "onClick(...) unexpected clicked view");
+        }
     }
 
 // *********************** PRIVATE METHODS ******************************************************************
 
+    /**
+     * Open the browser with project sources on Github.
+     */
+    @DebugLog
     private void openBrowser() {
         String url = "https://github.com/nbossard/packlist";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
+    }
+
+
+    /**
+     * Open the activity to display third party softwares licences.
+     */
+    @DebugLog
+    private void openThirdPartyActivity()
+    {
+        final Intent intent = new Intent(this, HelpThirdPartyActivity.class);
+        startActivity(intent);
     }
 //
 

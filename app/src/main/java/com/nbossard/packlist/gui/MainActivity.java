@@ -34,6 +34,8 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+import hugo.weaving.DebugLog;
+
 /*
 @startuml
     class com.nbossard.packlist.gui.MainActivity {
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
 // *********************** METHODS **************************************************************************
 
-
+    @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     }
 
+    @DebugLog
     @Override
     protected void onStart() {
         super.onStart();
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         openMainActivityFragment();
     }
 
+    @DebugLog
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         return true;
     }
 
+    @DebugLog
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     /** Open {@link AboutActivity} on top of this activity. */
+    @DebugLog
     private void openAboutActivity() {
         Intent view = new Intent(this, AboutActivity.class);
         view.setAction(Intent.ACTION_VIEW);
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
      * For deep-app indexing.
      * @param intent sic
      */
+    @DebugLog
     protected void onNewIntent(Intent intent) {
         String action = intent.getAction();
         String data = intent.getDataString();
@@ -131,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 // ----------- implementing interface IMainActivity -------------------
 
     @Override
+    @DebugLog
     public void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote) {
         Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
         mSavingModule.addNewTrip(tmpTrip);
@@ -141,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 // *********************** PRIVATE METHODS ******************************************************************
 
 
+    @DebugLog
     private void openTripDetailFragment(String parTripId) {
 
         // Create fragment and give it an argument specifying the article it should show
@@ -156,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         transaction.commit();
     }
 
+    @DebugLog
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
@@ -175,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
      * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
      */
+    @DebugLog
     private void openNewTripFragment() {
 
         // Create fragment and give it an argument specifying the article it should show

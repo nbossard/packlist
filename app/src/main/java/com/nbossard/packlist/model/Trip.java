@@ -31,6 +31,8 @@ package com.nbossard.packlist.model;
 
 import java.util.UUID;
 
+import hugo.weaving.DebugLog;
+
 /**
  * A trip
  *
@@ -40,31 +42,39 @@ public class Trip {
 
 // *********************** FIELDS *************************************************************************
 
+    /** A unique identifier for this trip. */
     private UUID mUUID;
+
+    /** The trip name usually destination */
     private String mName;
+
+    /** Trip start date. */
     private String mStartDate;
+
+    /** Trip return date. */
     private String mEndDate;
-	private String mNote;
+
+    /** Additional notes, free text. */
+    private String mNote;
 
     //
 // *********************** METHODS **************************************************************************
+    @DebugLog
     public Trip(String parName, String parStartDate, String parEndDate, String parNote) {
         mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
-		setNote(parNote);
+        setNote(parNote);
     }
 
-	public void setNote(String mNote)
-	{
-		this.mNote = mNote;
-	}
+    public void setNote(String mNote) {
+        this.mNote = mNote;
+    }
 
-	public String getNote()
-	{
-		return mNote;
-	}
+    public String getNote() {
+        return mNote;
+    }
 
     public String getName() {
         return mName;
@@ -97,8 +107,7 @@ public class Trip {
     public UUID getUUID() {
         return mUUID;
     }
-	
-	
+
 
     @Override
     public boolean equals(Object parO) {

@@ -18,6 +18,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 23
@@ -26,10 +27,11 @@ android {
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
-        minSdkVersion 11
+        // 14 because of use of setTag in list
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "0.1 alpha"
+        versionName "0.2 alpha"
     }
     buildTypes {
         release {

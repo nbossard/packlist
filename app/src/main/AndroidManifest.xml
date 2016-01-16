@@ -68,6 +68,17 @@
                 android:value=".gui.MainActivity"/>
         </activity>
 
+        <activity
+            android:name=".gui.HelpThirdPartyActivity"
+            android:parentActivityName=".gui.AboutActivity"
+            android:label="@string/help_legal__third_party__title"
+            android:theme="@style/AppTheme"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.AboutActivity"
+                android:value=".gui.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

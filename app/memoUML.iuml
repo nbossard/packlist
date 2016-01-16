@@ -1,0 +1,35 @@
+@startuml
+
+    title Aide mémoire for (Plant)UML
+
+    interface IHSSServiceListener
+
+    Content <|-- ContentSerie : "java extends"
+    IHSSServiceListener <|.. ContentDownloaderLabgency : "java implements"
+    g <.. H : implémentation temporaire\n (pas un attribut)
+
+    ' commentaire, nom des couleurs http://www.w3schools.com/HTML/html_colornames.asp
+    Package equivalent #LightCoral {
+        Class Person {
+            String name;
+        }
+        Person2 "*" *-- "1" String2 : name
+    }
+
+    C o-- D : aggregation
+
+    E <-- F : navigabilité \nunidirectionelle
+    note on link #red: typically an "inject"
+    note right of F #RED : note on class
+
+    K +-- L : innerclass
+
+    I<.J : ligne horizontale
+
+    ' ---- Hide a class : ----
+    class Z
+    hide Z
+
+@enduml
+
+http://stackoverflow.com/questions/31975109/android-class-diagram-uml
