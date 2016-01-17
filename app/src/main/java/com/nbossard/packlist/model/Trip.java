@@ -34,7 +34,7 @@ import java.util.UUID;
 import hugo.weaving.DebugLog;
 
 /**
- * A trip
+ * A trip data model.
  *
  * @author Created by nbossard on 25/12/15.
  */
@@ -60,7 +60,11 @@ public class Trip {
     //
 // *********************** METHODS **************************************************************************
     @DebugLog
-    public Trip(String parName, String parStartDate, String parEndDate, String parNote) {
+    public Trip(final String parName,
+                final String parStartDate,
+                final String parEndDate,
+                final String parNote) {
+
         mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
@@ -68,15 +72,27 @@ public class Trip {
         setNote(parNote);
     }
 
-    public void setNote(String mNote) {
-        this.mNote = mNote;
+    /**
+     * setter for note.
+     * @param parNote new value for note. i.e. : "un chouette coin"
+     */
+    public final void setNote(final String parNote) {
+        this.mNote = parNote;
     }
 
-    public String getNote() {
+    /**
+     * Getter for note.
+     * @return i.e. : "un chouette coin"
+     */
+    public final String getNote() {
         return mNote;
     }
 
-    public String getName() {
+    /**
+     * Getter for name.
+     * @return i.e. : "Dublin"
+     */
+    public final String getName() {
         return mName;
     }
 
@@ -91,7 +107,7 @@ public class Trip {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public void setStartDate(String parStartDate) {
+    public void setStartDate(final String parStartDate) {
         mStartDate = parStartDate;
     }
 
@@ -100,7 +116,7 @@ public class Trip {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public void setEndDate(String parEndDate) {
+    public void setEndDate(final String parEndDate) {
         mEndDate = parEndDate;
     }
 
@@ -134,9 +150,9 @@ public class Trip {
     @Override
     public String toString() {
         return "Trip{" + "mUUID=" + mUUID
-                + "mName=" + mName
+                + ", mName=" + mName
                 + ", mStartDate=" + mStartDate
-                + ", mEndDate=" + mEndDate +
-                '}';
+                + ", mEndDate=" + mEndDate
+                + '}';
     }
 }

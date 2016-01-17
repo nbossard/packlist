@@ -39,6 +39,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // see :
+    // http://developer.android.com/tools/data-binding/guide.html
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

@@ -69,7 +69,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public List<Trip> loadSavedTrips() {
+    public final List<Trip> loadSavedTrips() {
         List<Trip> savedTripsList;
         String listTrips = mSharedPreferences.getString(LIST_TRIPS_KEY, "");
         if (listTrips.length() == 0) {
@@ -86,7 +86,19 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public void addNewTrip(Trip parTmpTrip) {
+    public final Trip loadSavedTrip(final UUID parUUID) {
+        List<Trip> tmpList = loadSavedTrips();
+        Trip res = null;
+        for (Trip oneTrip:tmpList) {
+            if (oneTrip.getUUID().compareTo(parUUID) == 0) {
+                res = oneTrip;
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public final void addNewTrip(final Trip parTmpTrip) {
         // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();
 
@@ -98,14 +110,14 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public void deleteAllTrips() {
+    public final void deleteAllTrips() {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(LIST_TRIPS_KEY, "");
         editor.apply();
     }
 
     @Override
-    public void deleteTrip(UUID parUUID) {
+    public final void deleteTrip(final UUID parUUID) {
         // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();
 
@@ -128,7 +140,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     /** Save provide list of trips, overwrite current. */
-    private void save(List<Trip> parPrevSavedTrips) {
+    private void save(final List<Trip> parPrevSavedTrips) {
         String jsonListTrips = mGson.toJson(parPrevSavedTrips);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(LIST_TRIPS_KEY, jsonListTrips);

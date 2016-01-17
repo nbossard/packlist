@@ -57,7 +57,7 @@ public class MainActivityFragment extends Fragment {
     /** The root view, will be used to findViewById. */
     private View mRootView;
     /** The trip list view. */
-    private ListView mTtripListView;
+    private ListView mTripListView;
     /** The object to support Contextual Action Bar (CAB). */
     private ActionMode mActionMode;
 
@@ -67,26 +67,26 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
         return mRootView;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         populateList();
     }
 
     @Override
-    public void onResume() {
+    public final void onResume() {
         super.onResume();
         populateList();
     }
@@ -96,16 +96,24 @@ public class MainActivityFragment extends Fragment {
      * Populate list with data in {@link ISavingModule}.
      */
     private void populateList() {
-        mTtripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
+        mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 
         tripList = mSavingModule.loadSavedTrips();
 
         TripAdapter tripAdapter = new TripAdapter(tripList, this.getActivity());
-        mTtripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
-        mTtripListView.setAdapter(tripAdapter);
-        mTtripListView.setOnItemLongClickListener(tripListLongClickListener());
-        mTtripListView.invalidate();
+        mTripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
+        mTripListView.setAdapter(tripAdapter);
+        mTripListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Trip clickedTrip = (Trip) mTripListView.getItemAtPosition(position);
+                ((IMainActivity) getActivity()).openTripDetailFragment(clickedTrip.getUUID().toString());
+            }
+
+        });
+        mTripListView.setOnItemLongClickListener(tripListLongClickListener());
+        mTripListView.invalidate();
     }
 
     @NonNull
@@ -117,7 +125,7 @@ public class MainActivityFragment extends Fragment {
 
                 mActionMode = getActivity().startActionMode(new ActionMode.Callback() {
                     @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                    public boolean onCreateActionMode(final ActionMode mode, final Menu menu) {
                         mode.setTitle("Selected");
 
                         MenuInflater inflater = mode.getMenuInflater();
@@ -126,12 +134,12 @@ public class MainActivityFragment extends Fragment {
                     }
 
                     @Override
-                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                    public boolean onPrepareActionMode(final ActionMode mode, final Menu menu) {
                         return false;
                     }
 
                     @Override
-                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                    public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_delete:
                                 int position = (int) mActionMode.getTag();
@@ -144,7 +152,7 @@ public class MainActivityFragment extends Fragment {
                     }
 
                     @Override
-                    public void onDestroyActionMode(ActionMode mode) {
+                    public void onDestroyActionMode(final ActionMode mode) {
                         doneClicked();
                     }
                 });
@@ -156,9 +164,10 @@ public class MainActivityFragment extends Fragment {
     }
 
     /** Effectively delete selected trip then refresh the list.
-     * @param parPosition*/
+     * @param parPosition position in list of trip to be deleted
+     */
     private void deleteTripClicked(int parPosition) {
-        Trip selectedTrip = (Trip) mTtripListView.getItemAtPosition(parPosition);
+        Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();
         populateList();
