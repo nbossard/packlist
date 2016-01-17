@@ -37,6 +37,9 @@ package com.nbossard.packlist.model;
 @startuml
     package com.nbossard.packlist.model #LightBlue{
         !include Trip.java
+        !include Item.java
+
+        com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
     }
 @enduml
 

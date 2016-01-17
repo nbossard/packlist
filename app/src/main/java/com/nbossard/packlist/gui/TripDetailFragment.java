@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
@@ -55,6 +56,7 @@ public class TripDetailFragment extends Fragment {
     private FragmentTripDetailBinding mBinding;
     /** Value provided when instantiating this fragment, unique identifier of trp. */
     private UUID mTripId;
+    private Trip mRetrievedTrip;
 
     // *********************** METHODS **********************************************************************
 
@@ -90,20 +92,37 @@ public class TripDetailFragment extends Fragment {
     /**
     * Create the view for this fragment, using the arguments given to it.
     */
-    @Override public View onCreateView(final LayoutInflater inflater,
+    @Override public final View onCreateView(final LayoutInflater inflater,
                                        final ViewGroup container,
                                        final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
-
 
         // Magic of binding
         // Do not use this syntax, it will overwrite actvity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         mBinding = DataBindingUtil.bind(mRootView);
-        Trip retrievedTrip = mSavingModule.loadSavedTrip(mTripId);
-        mBinding.setTrip(retrievedTrip);
+        mRetrievedTrip = mSavingModule.loadSavedTrip(mTripId);
+        mBinding.setTrip(mRetrievedTrip);
         mBinding.executePendingBindings();
 
         return mRootView;
     }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        populateList();
+    }
+
+    /**
+     * Populate list with data in {@link ISavingModule}.
+     */
+    private void populateList() {
+        ListView mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
+        ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
+        mItemListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
+        mItemListView.setAdapter(itemAdapter);
+        mItemListView.invalidate();
+    }
+
 }
