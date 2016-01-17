@@ -166,7 +166,7 @@ public class MainActivityFragment extends Fragment {
     /** Effectively delete selected trip then refresh the list.
      * @param parPosition position in list of trip to be deleted
      */
-    private void deleteTripClicked(int parPosition) {
+    private void deleteTripClicked(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();
