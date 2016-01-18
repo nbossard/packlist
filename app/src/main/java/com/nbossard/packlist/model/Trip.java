@@ -25,16 +25,21 @@ package com.nbossard.packlist.model;
         String mName
         String mStartDate
         String mEndDate
+        String mNote
+
+        addItem()
     }
 @enduml
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
 /**
- * A trip
+ * A trip data model.
  *
  * @author Created by nbossard on 25/12/15.
  */
@@ -45,7 +50,7 @@ public class Trip {
     /** A unique identifier for this trip. */
     private UUID mUUID;
 
-    /** The trip name usually destination */
+    /** The trip name usually destination. */
     private String mName;
 
     /** Trip start date. */
@@ -57,55 +62,136 @@ public class Trip {
     /** Additional notes, free text. */
     private String mNote;
 
+
+    /** List of items to bring in this trip. */
+    private List<Item> mListItem;
+
     //
 // *********************** METHODS **************************************************************************
+
+    /**
+     * Full parameters constructor.
+     * @param parName trip name, usually destination. i.e. : "Dublin"
+     * @param parStartDate trip start date
+     * @param parEndDate trip return date
+     * @param parNote additional notes, free text
+     */
     @DebugLog
-    public Trip(String parName, String parStartDate, String parEndDate, String parNote) {
+    public Trip(final String parName,
+                final String parStartDate,
+                final String parEndDate,
+                final String parNote) {
+
         mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
+
+        mListItem = new ArrayList<>();
+        mListItem.add(new Item("Café"));
+        mListItem.add(new Item("Thé"));
+        mListItem.add(new Item("Pantalons"));
     }
 
-    public void setNote(String mNote) {
-        this.mNote = mNote;
+    /**
+     * setter for note.
+     * @param parNote new value for note. i.e. : "un chouette coin"
+     */
+    public final void setNote(final String parNote) {
+        this.mNote = parNote;
     }
 
-    public String getNote() {
+    /**
+     * Getter for note.
+     * @return i.e. : "un chouette coin"
+     */
+    public final String getNote() {
         return mNote;
     }
 
-    public String getName() {
+    /**
+     * Getter for name.
+     * @return i.e. : "Dublin"
+     */
+    public final String getName() {
         return mName;
     }
 
+    /**
+     * Setter for name/ destination of trip.
+     * @param parName trip name, usually destination. i.e. : "Dublin"
+     */
     @SuppressWarnings("WeakerAccess")
-    public void setName(String parName) {
+    public final void setName(final String parName) {
         mName = parName;
     }
 
-
-    public String getStartDate() {
+    /**
+     * Getter for trip start date.
+     * @return trip start date
+     */
+    public final String getStartDate() {
         return mStartDate;
     }
 
+    /**
+     * Setter for start date of trip.
+     * @param parStartDate trip start date
+     */
     @SuppressWarnings("WeakerAccess")
-    public void setStartDate(String parStartDate) {
+    public final void setStartDate(final String parStartDate) {
         mStartDate = parStartDate;
     }
 
-    public String getEndDate() {
+    /**
+     * Getter for trip return date.
+     * @return trip return date
+     */
+    public final String getEndDate() {
         return mEndDate;
     }
 
+    /**
+     * Setter for trip return date.
+     * @param parEndDate trip return date
+     */
     @SuppressWarnings("WeakerAccess")
-    public void setEndDate(String parEndDate) {
+    public final void setEndDate(final String parEndDate) {
         mEndDate = parEndDate;
     }
 
-    public UUID getUUID() {
+    /**
+     *
+     * @return automatically set UUID
+     */
+    public final UUID getUUID() {
         return mUUID;
+    }
+
+    /**
+     * Add a new item in the list of items to bring with this trip.
+     * @param parName name of new item
+     */
+    public final void addItem(final String parName) {
+        Item newItem = new Item(parName);
+        mListItem.add(newItem);
+    }
+
+    /**
+     * Set the full list of items to bring for this trip.
+     * @param parListItem a list of items.
+     */
+    public final void setListItem(final List<Item> parListItem) {
+        mListItem = parListItem;
+    }
+
+    /**
+     * Get the full list of items to bring for this trip.
+     * @return a list of items.
+     */
+    public final List<Item> getListItem() {
+        return mListItem;
     }
 
 
@@ -134,9 +220,11 @@ public class Trip {
     @Override
     public String toString() {
         return "Trip{" + "mUUID=" + mUUID
-                + "mName=" + mName
+                + ", mName=" + mName
                 + ", mStartDate=" + mStartDate
-                + ", mEndDate=" + mEndDate +
-                '}';
+                + ", mEndDate=" + mEndDate
+                + ", mNote=" + mNote
+                + ", mListItem=" + mListItem
+                + '}';
     }
 }

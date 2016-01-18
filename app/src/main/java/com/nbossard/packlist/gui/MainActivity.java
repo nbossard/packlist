@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.mainact__fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 openNewTripFragment();            }
         });
 
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      * @param intent sic
      */
     @DebugLog
-    protected void onNewIntent(Intent intent) {
+    protected final void onNewIntent(final Intent intent) {
         String action = intent.getAction();
         String data = intent.getDataString();
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
@@ -156,10 +156,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
 
     /**
-     * Open a fragment displaying trips list.
+     * Handle user click on one line and open a new fragment allowing him to see trip
+     * Characteristics.
+     * @param parTripId unique
      */
     @DebugLog
-    private void openTripDetailFragment(final String parTripId) {
+    @Override
+    public void openTripDetailFragment(final String parTripId) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
@@ -174,8 +177,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         transaction.commit();
     }
 
+// ----------- end of implementing interface IMainActivity ------------
+
+// *********************** PRIVATE METHODS ******************************************************************
+
     /**
-     * Open a fragment displaying trips list.
+     * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
     private void openMainActivityFragment() {
@@ -194,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     }
 
     /**
-     * Handle user click on "add a trip" button, will open a new fragment allowing him to input trip
+     * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
      */
     @DebugLog

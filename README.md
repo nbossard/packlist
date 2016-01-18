@@ -25,6 +25,7 @@ Which is very disappointing when you wish to save your lists.
 - android studio IDE 2 preview
 - vector drawables, using asset studio
 - in-app indexing
+- android data-binding (http://developer.android.com/tools/data-binding/guide.html)
 
 ### Licence
 Apache 2

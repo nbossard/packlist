@@ -26,8 +26,16 @@ interface IMainActivity {
 
     /** Creation and saving of a new trip.
      * @param parName name of new trip
-     * @param  parStartDate start date of new trip
+     * @param parStartDate start date of new trip
      * @param parEndDate  end date of new trip.
+     * @param parNote free note, so that user can freely add comments on his trip
      */
     void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote);
-}
+
+    /**
+     * Ask Main activity to open detail fragment to display Trip of provided UUID.
+     * @param parTripId
+     */
+    void openTripDetailFragment(final String parTripId);
+
+    }

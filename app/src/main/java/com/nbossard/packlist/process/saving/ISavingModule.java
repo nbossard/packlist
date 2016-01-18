@@ -19,6 +19,8 @@
 
 package com.nbossard.packlist.process.saving;
 
+import android.support.annotation.Nullable;
+
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
@@ -41,12 +43,21 @@ public interface ISavingModule {
      * @return a list filled with the current trips or an empty list if was never saved. */
     List<Trip> loadSavedTrips();
 
-    /** Add a new trip to the list of saved Trips. */
+    /** Retrieve the list of saved trips.
+     * @param parUUID Unique trip identifier
+     * @return a trip of provided UUID or null if not found. */
+    @Nullable
+    Trip loadSavedTrip(UUID parUUID);
+
+
+    /** Add a new trip to the list of saved Trips.
+     * @param parTmpTrip new trip to be added to saved trips. */
     void addNewTrip(Trip parTmpTrip);
 
     /** Delete all previously saved trips, mainly for testing. */
     void deleteAllTrips();
 
-    /** Delete provided trip in saving module. */
+    /** Delete provided trip in saving module.
+     * @param parUUID Unique trip identifier */
     void deleteTrip(UUID parUUID);
 }

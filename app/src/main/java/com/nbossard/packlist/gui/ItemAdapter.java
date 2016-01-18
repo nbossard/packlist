@@ -27,16 +27,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.Item;
 
 import java.util.List;
 
 /**
- * An adapter for displaying a {@link Trip} in a ListView.
+ * An adapter for displaying a trip {@link Item} in a ListView.
  *
- * @author Created by nbossard on 25/12/15.
+ * @author Created by nbossard on 17/01/16.
  */
-class TripAdapter extends BaseAdapter {
+class ItemAdapter extends BaseAdapter {
 
     // *********************** INNER CLASS *****************************************************************
 
@@ -51,27 +51,18 @@ class TripAdapter extends BaseAdapter {
 
         // getting views
         /**
-         * Reference (result of findviewbyid) to the trip name.
+         * Reference (result of findviewbyid) to the item name.
          */
         private TextView tvName;
 
-        /**
-         * Reference (result of findviewbyid) to the trip start date.
-         */
-        private TextView tvStartDate;
-
-        /**
-         * Reference (result of findviewbyid) to the trip end date.
-         */
-        private TextView tvEndDate;
     }
 
     // ********************** FIELDS ************************************************************************
 
     /**
-     * Devices to be displayed in the list.
+     * Items to be displayed in the list.
      */
-    private final List<Trip> mTripsList;
+    private final List<Item> mItemList;
 
     /**
      * Provided context.
@@ -88,22 +79,21 @@ class TripAdapter extends BaseAdapter {
      * @param parContext
      *            context sic
      */
-    TripAdapter(final List<Trip> parResList, final Context parContext)
+    ItemAdapter(final List<Item> parResList, final Context parContext)
     {
         super();
-        mTripsList = parResList;
+        mItemList = parResList;
         mContext = parContext;
     }
 
-
     @Override
     public int getCount() {
-        return mTripsList.size();
+        return mItemList.size();
     }
 
     @Override
     public Object getItem(final int parPosition) {
-        return mTripsList.get(parPosition);
+        return mItemList.get(parPosition);
     }
 
     @Override
@@ -117,24 +107,20 @@ class TripAdapter extends BaseAdapter {
         if (parConvertView == null)
         {
             vHolderRecycle = new InnerMyViewHolder();
-            final LayoutInflater inflater = (LayoutInflater) TripAdapter.this.
+            final LayoutInflater inflater = (LayoutInflater) ItemAdapter.this.
                     mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            parConvertView = inflater.inflate(R.layout.trip_adapter, parParentView, false);
+            parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
         // getting views
-        vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
-        vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
-        vHolderRecycle.tvEndDate = (TextView) parConvertView.findViewById(R.id.ta__end_date);
+        vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
 
-        final Trip oneDev = mTripsList.get(parPosition);
+        final Item oneDev = mItemList.get(parPosition);
 
         // updating views
         vHolderRecycle.tvName.setText(oneDev.getName());
-        vHolderRecycle.tvStartDate.setText(oneDev.getStartDate());
-        vHolderRecycle.tvEndDate.setText(oneDev.getEndDate());
 
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
