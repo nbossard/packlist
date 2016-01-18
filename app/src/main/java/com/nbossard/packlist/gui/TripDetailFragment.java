@@ -26,13 +26,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
-import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
@@ -112,13 +112,26 @@ public class TripDetailFragment extends Fragment {
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // TODO old style, improve this
+        Button mButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickAddItem();
+            }
+        });
         populateList();
     }
 
-    public void onClickFriend(final View view) {
+    public void onClickAddItem() {
         EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
         String tmpStr = newItem.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
+        // TODO clean this ugly block
+        mSavingModule.deleteTrip(mRetrievedTrip.getUUID());
+        mSavingModule.addNewTrip(mRetrievedTrip);
+        newItem.setText("");
         populateList();
     }
 
