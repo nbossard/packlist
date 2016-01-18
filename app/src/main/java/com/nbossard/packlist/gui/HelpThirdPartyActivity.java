@@ -37,11 +37,7 @@ public class HelpThirdPartyActivity extends AppCompatActivity
 
     // ********************** CONSTANTS *********************************************************************
 
-    /** Log tag. */
-    private static final String LOG = HelpThirdPartyActivity.class.getName();
-
     // ********************** INJECTED FIELDS **************************************************************
-
 
     // ********************** FIELDS ************************************************************************
 
