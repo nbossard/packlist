@@ -124,7 +124,7 @@ public class PrefsSavingModule implements ISavingModule {
         // remove one Trip
         Trip tripToRemove = null;
         for (Trip oneTrip:prevSavedTrips) {
-            if (oneTrip.getUUID() == parUUID) {
+            if (oneTrip.getUUID().compareTo(parUUID) == 0) {
                 tripToRemove = oneTrip;
                 break;
             }
