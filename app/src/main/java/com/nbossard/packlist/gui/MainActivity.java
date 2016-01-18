@@ -51,7 +51,10 @@ import hugo.weaving.DebugLog;
 @enduml
  */
 
-public class MainActivity extends AppCompatActivity implements IMainActivity{
+/**
+ * Main activity, supports most fragments.
+ */
+public class MainActivity extends AppCompatActivity implements IMainActivity {
 
 // *********************** FIELDS ***************************************************************************
 
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @DebugLog
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @DebugLog
     @Override
-    protected void onStart() {
+    protected final void onStart() {
         super.onStart();
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
 
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @DebugLog
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @DebugLog
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public final boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -139,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 
     @Override
     @DebugLog
-    public void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote) {
+    public final void createNewTrip(final String parName,
+                              final String parStartDate,
+                              final String parEndDate,
+                              final String parNote) {
         Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
         mSavingModule.addNewTrip(tmpTrip);
     }
@@ -149,8 +155,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
 // *********************** PRIVATE METHODS ******************************************************************
 
 
+    /**
+     * Open a fragment displaying trips list.
+     */
     @DebugLog
-    private void openTripDetailFragment(String parTripId) {
+    private void openTripDetailFragment(final String parTripId) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
@@ -165,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         transaction.commit();
     }
 
+    /**
+     * Open a fragment displaying trips list.
+     */
     @DebugLog
     private void openMainActivityFragment() {
 
@@ -182,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
 
     /**
-     * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
+     * Handle user click on "add a trip" button, will open a new fragment allowing him to input trip
      * Characteristics.
      */
     @DebugLog
