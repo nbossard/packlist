@@ -24,31 +24,39 @@
 <!-- Resources and Ids for this page must start with "trip_detail__" -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable name="trip" type="com.nbossard.packlist.model.Trip"/>
+
+        <variable
+            name="trip"
+            type="com.nbossard.packlist.model.Trip"/>
     </data>
-    <LinearLayout
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingTop="@dimen/margin_top"
-              android:paddingStart="@dimen/margin_start"
-              android:paddingEnd="@dimen/margin_end"
-              android:paddingLeft="@dimen/margin_start"
-              android:paddingRight="@dimen/margin_end">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/margin_end"
+        android:paddingLeft="@dimen/margin_start"
+        android:paddingRight="@dimen/margin_end"
+        android:paddingStart="@dimen/margin_start"
+        android:paddingTop="@dimen/margin_top">
 
         <TextView
             android:id="@+id/trip_detail__name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/trip_detail__name__edit"
             android:focusable="false"
+            android:labelFor="@+id/trip_detail__name__edit"
             android:text="@{trip.name}"
             tools:text="Verdun"/>
 
+        <!-- for display of dates -->
         <LinearLayout
+            android:id="@+id/trip_detail__date__layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/trip_detail__name"
             android:orientation="horizontal">
 
             <TextView
@@ -93,20 +101,36 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/trip_detail__note__label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/trip_detail__date__layout"
             android:text="@{trip.note}"
             tools:text="Un très beau voyage"/>
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/trip_detail__new_item__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trip_detail__add_item___button"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
 
-        <android.support.v4.widget.Space
-            android:layout_width="1dip"
-            android:layout_height="10dip"/>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/trip_detail__new_item__edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/trip_detail__new_item__button"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/trip_detail__new_item__button"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
+            android:layout_below="@id/trip_detail__note__label"
+            android:layout_above="@id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
