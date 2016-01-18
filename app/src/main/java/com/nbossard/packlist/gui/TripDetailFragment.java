@@ -26,11 +26,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
@@ -113,6 +115,15 @@ public class TripDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         populateList();
     }
+
+    public void onClickFriend(final View view) {
+        EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        String tmpStr = newItem.getText().toString();
+        mRetrievedTrip.addItem(tmpStr);
+        populateList();
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
 
     /**
      * Populate list with data in {@link ISavingModule}.
