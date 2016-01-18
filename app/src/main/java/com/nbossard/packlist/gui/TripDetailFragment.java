@@ -52,7 +52,6 @@ public class TripDetailFragment extends Fragment {
 
     /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
-    private DataBindingUtil binding;
     private FragmentTripDetailBinding mBinding;
     /** Value provided when instantiating this fragment, unique identifier of trp. */
     private UUID mTripId;

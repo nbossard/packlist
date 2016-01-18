@@ -19,23 +19,41 @@
 
 package com.nbossard.packlist.gui;
 
+/*
+@startuml
+    interface com.nbossard.packlist.gui.IMainActivity {
+        + createNewTrip(...)
+        + openTripDetailFragment(...)
+        + showFAB(boolean)
+    }
+@enduml
+ */
+
 /**
  * @author Created by nbossard on 01/01/16.
  */
 interface IMainActivity {
 
-    /** Creation and saving of a new trip.
-     * @param parName name of new trip
+    /**
+     * Creation and saving of a new trip.
+     *
+     * @param parName      name of new trip
      * @param parStartDate start date of new trip
-     * @param parEndDate  end date of new trip.
-     * @param parNote free note, so that user can freely add comments on his trip
+     * @param parEndDate   end date of new trip.
+     * @param parNote      free note, so that user can freely add comments on his trip
      */
     void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote);
 
     /**
      * Ask Main activity to open detail fragment to display Trip of provided UUID.
-     * @param parTripId
+     *
+     * @param parTripId a trip unique identifier (UUID)
      */
     void openTripDetailFragment(final String parTripId);
 
-    }
+    /**
+     * Hide or show FAB, depending on fragment.
+     * @param parShow true to show, false to hide
+     */
+    void showFAB(boolean parShow);
+}

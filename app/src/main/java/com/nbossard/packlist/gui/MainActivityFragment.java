@@ -40,6 +40,16 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.MainActivityFragment {
+    }
+
+    com.nbossard.packlist.gui.MainActivityFragment ..> com.nbossard.packlist.gui.IMainActivity
+
+@enduml
+ */
+
 /**
  * A placeholder fragment containing a simple list view.
  */
@@ -60,15 +70,19 @@ public class MainActivityFragment extends Fragment {
     private ListView mTripListView;
     /** The object to support Contextual Action Bar (CAB). */
     private ActionMode mActionMode;
+    /** Hosting activity interface. */
+    private IMainActivity mIMainActivity;
 
     // *********************** METHODS **********************************************************************
 
+    /** Empty constructor. */
     public MainActivityFragment() {
     }
 
     @Override
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
+    public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mIMainActivity = (IMainActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
@@ -80,7 +94,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
-    public final void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         populateList();
     }
@@ -89,6 +103,7 @@ public class MainActivityFragment extends Fragment {
     public final void onResume() {
         super.onResume();
         populateList();
+        mIMainActivity.showFAB(true);
     }
     // *********************** PRIVATE METHODS **************************************************************
 
@@ -108,7 +123,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Trip clickedTrip = (Trip) mTripListView.getItemAtPosition(position);
-                ((IMainActivity) getActivity()).openTripDetailFragment(clickedTrip.getUUID().toString());
+                mIMainActivity.openTripDetailFragment(clickedTrip.getUUID().toString());
             }
 
         });
@@ -166,7 +181,7 @@ public class MainActivityFragment extends Fragment {
     /** Effectively delete selected trip then refresh the list.
      * @param parPosition position in list of trip to be deleted
      */
-    private void deleteTripClicked(int parPosition) {
+    private void deleteTripClicked(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();

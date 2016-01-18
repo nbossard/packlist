@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
 
+    /** The Floating Action Button. */
+    private FloatingActionButton mFab;
+
 // *********************** METHODS **************************************************************************
 
     @DebugLog
@@ -72,12 +75,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.mainact__fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                openNewTripFragment();            }
-        });
+        mFab = (FloatingActionButton) findViewById(R.id.mainact__fab);
 
         // Handle deep-app indexing
         onNewIntent(getIntent());
@@ -92,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         openMainActivityFragment();
     }
+
+
 
     @DebugLog
     @Override
@@ -150,11 +150,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         mSavingModule.addNewTrip(tmpTrip);
     }
 
-// ----------- end of implementing interface IMainActivity ------------
-
-// *********************** PRIVATE METHODS ******************************************************************
-
-
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
@@ -162,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      */
     @DebugLog
     @Override
-    public void openTripDetailFragment(final String parTripId) {
+    public final void openTripDetailFragment(final String parTripId) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
@@ -175,9 +170,20 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // Commit the transaction
         transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
     }
 
-// ----------- end of implementing interface IMainActivity ------------
+    @Override
+    public final void showFAB(final boolean parShow) {
+        if (parShow) {
+            mFab.show();
+        } else {
+            mFab.hide();
+        }
+    }
+    // ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
 
@@ -194,10 +200,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.mainactcont__fragment, newFragment);
-        transaction.addToBackStack(null);
+        // NO add to backstack, this is lowest level fragment
 
         // Commit the transaction
         transaction.commit();
+
+        // updating FAB action
+        mFab.show();
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                openNewTripFragment();
+            }
+        });
     }
 
     /**
@@ -218,6 +233,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // Commit the transaction
         transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
+
     }
 //
 }
