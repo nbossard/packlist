@@ -32,6 +32,15 @@ import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.NewTripFragment {
+    }
+
+    com.nbossard.packlist.gui.NewTripFragment --> com.nbossard.packlist.gui.IMainActivity
+@enduml
+ */
+
 /**
  * Allow user  to input trip characteristics.
  *
@@ -40,11 +49,15 @@ import hugo.weaving.DebugLog;
 public class NewTripFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
+    /** For communicating with hosting activity. */
     private IMainActivity mHostingActivity;
+
     private View mRootView;
 
-    // *********************** LISTENERS ********************************************************************
+    /** Hosting activity interface. */
+    private IMainActivity mIMainActivity;
 
+    // *********************** LISTENERS ********************************************************************
     View.OnClickListener mSubmitListener = new View.OnClickListener() {
         @DebugLog
         @Override
@@ -74,6 +87,12 @@ public class NewTripFragment extends Fragment {
     public NewTripFragment() {
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mIMainActivity = (IMainActivity) getActivity();
+    }
+
     @DebugLog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +108,12 @@ public class NewTripFragment extends Fragment {
 
         mHostingActivity = (IMainActivity) getActivity();
         addListenerOnSubmitButton();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mIMainActivity.showFAB(false);
     }
 
     private void addListenerOnSubmitButton() {
