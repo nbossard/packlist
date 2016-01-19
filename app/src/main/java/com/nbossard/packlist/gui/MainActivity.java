@@ -22,6 +22,9 @@ package com.nbossard.packlist.gui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -79,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // Handle deep-app indexing
         onNewIntent(getIntent());
-
     }
 
     @DebugLog
@@ -91,7 +93,23 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         openMainActivityFragment();
     }
 
-
+    /**
+     * Opens the provided fragment in a dialog.
+     *
+     * @param parDialogStandardFragment
+     */
+    @DebugLog
+    private void openDialogFragment(final DialogFragment parDialogStandardFragment) {
+        if (parDialogStandardFragment != null) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Fragment prev = fm.findFragmentByTag("changelogdemo_dialog");
+            if (prev != null) {
+                ft.remove(prev);
+            }
+            parDialogStandardFragment.show(ft, "changelogdemo_dialog");
+        }
+    }
 
     @DebugLog
     @Override

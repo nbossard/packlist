@@ -52,4 +52,6 @@
     <string name="about__third_party__button">Librairies tierces</string>
 
     <string name="trip_detail__add_item___button">Ajouter</string>
+    <string name="demo_changelog_title_standarddialog"/>
+    <string name="about_ok"/>
 </resources>

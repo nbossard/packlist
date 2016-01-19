@@ -30,9 +30,6 @@
         <variable
             name="trip"
             type="com.nbossard.packlist.model.Trip"/>
-        <variable
-            name="handlers"
-            type="com.nbossard.packlist.gui.TripDetailFragment"/>
 
     </data>
 
@@ -119,8 +116,7 @@
             android:text="@string/trip_detail__add_item___button"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:onClick="@{handlers.onClickFriend}"/>
+            android:layout_alignParentBottom="true"/>
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/trip_detail__new_item__edit"
