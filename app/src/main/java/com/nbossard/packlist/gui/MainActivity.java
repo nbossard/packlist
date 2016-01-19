@@ -127,7 +127,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_about) {
+
+        if (id == R.id.action_whatsnew) {
+            openDialogFragment(new DialogStandardFrag());
+        } else  if (id == R.id.action_about) {
             openAboutActivity();
         }
 

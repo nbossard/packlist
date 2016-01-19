@@ -25,6 +25,7 @@
 <resources>
     <string name="app_name">packlist</string>
 
+    <string name="action_whatsnew">Quoi de neuf</string>
     <string name="action_about">A propos</string>
 
     <string name="title_activity_about">A propod</string>
