@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
@@ -19,18 +18,10 @@
   ~ under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".gui.MainActivity">
-    <item
-        android:id="@+id/action_whatsnew"
-        android:orderInCategory="100"
-        android:title="@string/action_whatsnew"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_about"
-        android:orderInCategory="200"
-        android:title="@string/action_about"
-        app:showAsAction="never"/>
-</menu>
+<it.gmariotti.changelibs.library.view.ChangeLogRecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/white"/>

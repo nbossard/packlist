@@ -45,10 +45,10 @@ public class DialogStandardFrag extends DialogFragment {
     @Override
     public final Dialog onCreateDialog(final Bundle savedInstanceState) {
 
-        LayoutInflater layoutInflater = getLayoutInflater(savedInstanceState);
+        LayoutInflater layoutInflater =  getActivity().getLayoutInflater();
         ChangeLogRecyclerView chgList =
                 (ChangeLogRecyclerView) layoutInflater.inflate(
-                        R.layout.demo_changelog_fragment_dialogstandard, null);
+                        R.layout.demo_changelog_fragment_dialogstandard, null, false);
 
         return new AlertDialog.Builder(getActivity(), R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)

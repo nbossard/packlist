@@ -25,6 +25,7 @@
 <resources>
     <string name="app_name">packlist</string>
 
+    <string name="action_whatsnew">What\'s new</string>
     <string name="action_about">About</string>
 
     <string name="title_activity_about">AboutActivity</string>
