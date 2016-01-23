@@ -76,7 +76,6 @@ public class Trip {
      * @param parEndDate trip return date
      * @param parNote additional notes, free text
      */
-    @DebugLog
     public Trip(final String parName,
                 final String parStartDate,
                 final String parEndDate,
@@ -196,7 +195,7 @@ public class Trip {
 
 
     @Override
-    public boolean equals(Object parO) {
+    public final boolean equals(Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
@@ -210,7 +209,7 @@ public class Trip {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
         result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
@@ -218,7 +217,7 @@ public class Trip {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Trip{" + "mUUID=" + mUUID
                 + ", mName=" + mName
                 + ", mStartDate=" + mStartDate
