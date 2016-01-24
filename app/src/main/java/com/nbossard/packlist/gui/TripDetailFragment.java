@@ -32,6 +32,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
@@ -52,6 +54,12 @@ import java.util.UUID;
  * @author Created by nbossard on 09/01/16.
  */
 public class TripDetailFragment extends Fragment {
+
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = TripDetailFragment.class.getName();
 
     // *********************** FIELDS ***********************************************************************
 
@@ -90,6 +98,8 @@ public class TripDetailFragment extends Fragment {
      */
     @Override public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sendReportToTracker();
 
         Bundle args = getArguments();
         mTripId = null;
@@ -189,5 +199,17 @@ public class TripDetailFragment extends Fragment {
         mItemListView.setAdapter(itemAdapter);
         mItemListView.invalidate();
     }
+
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendReportToTracker() {
+        PackListApp application = (PackListApp) getActivity().getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(TAG);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
 
 }

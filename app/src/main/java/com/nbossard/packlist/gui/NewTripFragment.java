@@ -28,6 +28,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
@@ -47,6 +50,13 @@ import hugo.weaving.DebugLog;
  * @author Created by nbossard on 30/12/15.
  */
 public class NewTripFragment extends Fragment {
+
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = NewTripFragment.class.getName();
+
     // *********************** FIELDS ***********************************************************************
 
     /** For communicating with hosting activity. */
@@ -90,6 +100,9 @@ public class NewTripFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sendReportToTracker();
+
         mIMainActivity = (IMainActivity) getActivity();
     }
 
@@ -119,6 +132,16 @@ public class NewTripFragment extends Fragment {
     private void addListenerOnSubmitButton() {
         Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
         button.setOnClickListener(mSubmitListener);
+    }
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendReportToTracker() {
+        PackListApp application = (PackListApp) getActivity().getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(TAG);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
 }

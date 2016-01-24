@@ -24,6 +24,9 @@ import android.app.Application;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 /**
  * Application level initialisations.
  *
@@ -33,14 +36,30 @@ public class PackListApp extends Application {
 
 // *********************** FIELDS *************************************************************************
     private ISavingModule mSavingModule;
+    private Tracker mTracker;
+
 //
 
 // *********************** METHODS **************************************************************************
     public ISavingModule getSavingModule() {
-        if (mSavingModule ==null) {
+        if (mSavingModule == null) {
             mSavingModule = SavingFactory.getNewSavingModule(this);
         }
         return mSavingModule;
+    }
+
+
+    /**
+     * Gets the default {@link Tracker} for this {@link Application}.
+     * @return tracker
+     */
+    synchronized public Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker("UA-47815384-2");
+        }
+        return mTracker;
     }
 //
 

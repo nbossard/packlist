@@ -22,6 +22,9 @@ package com.nbossard.packlist.gui;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
@@ -37,6 +40,9 @@ public class HelpThirdPartyActivity extends AppCompatActivity
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Log tag. */
+    private static final String TAG = HelpThirdPartyActivity.class.getName();
+
     // ********************** INJECTED FIELDS **************************************************************
 
     // ********************** FIELDS ************************************************************************
@@ -48,6 +54,22 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     protected final void onCreate(final Bundle savedInstState)
     {
         super.onCreate(savedInstState);
+
+        sendReportToTracker();
+
         setContentView(R.layout.activity_help_thirdparty);
     }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendReportToTracker() {
+        PackListApp application = (PackListApp) getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(TAG);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
 }

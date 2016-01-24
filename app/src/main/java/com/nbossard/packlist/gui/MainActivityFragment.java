@@ -33,6 +33,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
@@ -82,6 +84,9 @@ public class MainActivityFragment extends Fragment {
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sendReportToTracker();
+
         mIMainActivity = (IMainActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
@@ -105,7 +110,18 @@ public class MainActivityFragment extends Fragment {
         populateList();
         mIMainActivity.showFAB(true);
     }
+
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendReportToTracker() {
+        PackListApp application = (PackListApp) getActivity().getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(TAG);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
     /**
      * Populate list with data in {@link ISavingModule}.

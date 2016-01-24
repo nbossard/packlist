@@ -31,6 +31,9 @@ import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
@@ -53,6 +56,9 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
     @DebugLog
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sendReportToTracker();
+
         setContentView(R.layout.activity_about);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -115,5 +121,15 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         startActivity(intent);
     }
 //
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendReportToTracker() {
+        PackListApp application = (PackListApp) getApplication();
+        Tracker tracker = application.getDefaultTracker();
+        tracker.setScreenName(TAG);
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
 
 }
