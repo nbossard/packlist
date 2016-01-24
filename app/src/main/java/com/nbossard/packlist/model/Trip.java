@@ -32,6 +32,8 @@ package com.nbossard.packlist.model;
 @enduml
  */
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -88,9 +90,6 @@ public class Trip {
         setNote(parNote);
 
         mListItem = new ArrayList<>();
-        mListItem.add(new Item("Café"));
-        mListItem.add(new Item("Thé"));
-        mListItem.add(new Item("Pantalons"));
     }
 
     /**
@@ -177,18 +176,12 @@ public class Trip {
         mListItem.add(newItem);
     }
 
-    /**
-     * Set the full list of items to bring for this trip.
-     * @param parListItem a list of items.
-     */
-    public final void setListItem(final List<Item> parListItem) {
-        mListItem = parListItem;
-    }
 
     /**
      * Get the full list of items to bring for this trip.
      * @return a list of items.
      */
+    @NonNull
     public final List<Item> getListItem() {
         return mListItem;
     }
