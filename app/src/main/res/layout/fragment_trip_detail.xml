@@ -122,9 +122,9 @@
             android:id="@+id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/trip_detail__new_item__button"
+            android:layout_toStartOf="@id/trip_detail__new_item__button"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/trip_detail__new_item__button"/>
+            android:layout_toLeftOf="@id/trip_detail__new_item__button"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
