@@ -39,6 +39,7 @@ package com.nbossard.packlist.gui;
         !include IMainActivity.java
         !include MainActivity.java
         !include NewTripFragment.java
+        !include TripDetailragment.java
         !include MainActivityFragment.java
 
         class com.nbossard.packlist.gui.AboutActivity
