@@ -55,4 +55,5 @@
     <string name="trip_detail__add_item___button">Ajouter</string>
     <string name="demo_changelog_title_standarddialog"/>
     <string name="about_ok">OK</string>
+    <string name="help_legal__third_party_lib_changelog__label">   <b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib est distribuée selon la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
 </resources>

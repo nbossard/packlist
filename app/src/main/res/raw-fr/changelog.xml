@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-    
+
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
@@ -22,14 +22,17 @@
 <!-- This file is used to generate change log dialog for Homelan version in Default language(french) -->
 <!-- Each change entry should be prefixed with "NEW", "BUG FIX" or "MINOR" -->
 <!-- Each new entry should be added at end of release block. -->
-<!-- Each change entry should start by a reference -->
-<!-- In exemple : taiga story (STO12) or task (STO9TSK229) or issue reference (ISS54) -->
 
-<changelog>
-    <release
-        date="xx december 2015"
-        version="0.1.0 alpha"
-        versioncode="1">
-        <change>NEW : Première version</change>
-    </release>
+<changelog bulletedList="true">
+    <changelogversion
+        changeDate="24 janvier 2015"
+        versionName="0.2.0 alpha">
+        <changelogtext>NEW : ajout de ce changelog</changelogtext>
+        <changelogtext>NEW : possibilité d'ajouter des items à un voyage</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="06 janvier 2015"
+        versionName="0.1.0 alpha">
+        <changelogtext>NEW : version initiale, un peu vide :-)</changelogtext>
+    </changelogversion>
 </changelog>

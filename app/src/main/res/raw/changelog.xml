@@ -3,14 +3,17 @@
 <!-- This file is used to generate change log dialog for Homelan version in Default language(french) -->
 <!-- Each change entry should be prefixed with "NEW", "BUG FIX" or "MINOR" -->
 <!-- Each new entry should be added at end of release block. -->
-<!-- Each change entry should start by a reference -->
-<!-- In exemple : taiga story (STO12) or task (STO9TSK229) or issue reference (ISS54) -->
 
-<changelog>
-    <release
-        date="xx december 2015"
-        version="0.1.0 alpha"
-        versioncode="1">
-        <change>NEW : initial version</change>
-    </release>
+<changelog bulletedList="true">
+    <changelogversion
+        changeDate="24 january 2015"
+        versionName="0.2.0 alpha">
+        <changelogtext>NEW : adding changelog</changelogtext>
+        <changelogtext>NEW : adding possibility to add item to a trip</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="06 january 2015"
+        versionName="0.1.0 alpha">
+        <changelogtext>NEW : initial version</changelogtext>
+    </changelogversion>
 </changelog>
