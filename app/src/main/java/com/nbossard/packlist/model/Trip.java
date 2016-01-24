@@ -32,6 +32,8 @@ package com.nbossard.packlist.model;
 @enduml
  */
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -76,7 +78,6 @@ public class Trip {
      * @param parEndDate trip return date
      * @param parNote additional notes, free text
      */
-    @DebugLog
     public Trip(final String parName,
                 final String parStartDate,
                 final String parEndDate,
@@ -89,9 +90,6 @@ public class Trip {
         setNote(parNote);
 
         mListItem = new ArrayList<>();
-        mListItem.add(new Item("Café"));
-        mListItem.add(new Item("Thé"));
-        mListItem.add(new Item("Pantalons"));
     }
 
     /**
@@ -178,25 +176,19 @@ public class Trip {
         mListItem.add(newItem);
     }
 
-    /**
-     * Set the full list of items to bring for this trip.
-     * @param parListItem a list of items.
-     */
-    public final void setListItem(final List<Item> parListItem) {
-        mListItem = parListItem;
-    }
 
     /**
      * Get the full list of items to bring for this trip.
      * @return a list of items.
      */
+    @NonNull
     public final List<Item> getListItem() {
         return mListItem;
     }
 
 
     @Override
-    public boolean equals(Object parO) {
+    public final boolean equals(Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
@@ -210,7 +202,7 @@ public class Trip {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
         result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
@@ -218,7 +210,7 @@ public class Trip {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Trip{" + "mUUID=" + mUUID
                 + ", mName=" + mName
                 + ", mStartDate=" + mStartDate

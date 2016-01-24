@@ -23,6 +23,8 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,13 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.UUID;
+/*
+@startuml
+    class com.nbossard.packlist.gui.TripDetailFragment {
+    }
+
+@enduml
+ */
 
 /**
  * Open a Trip for viewing / editing.
@@ -55,7 +64,8 @@ public class TripDetailFragment extends Fragment {
     /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
     private FragmentTripDetailBinding mBinding;
-    /** Value provided when instantiating this fragment, unique identifier of trp. */
+
+    /** Value provided when instantiating this fragment, unique identifier of trip. */
     private UUID mTripId;
     private Trip mRetrievedTrip;
 
@@ -110,21 +120,29 @@ public class TripDetailFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // TODO old style, improve this
-        Button mButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        final Button mButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAddItem();
             }
         });
+        mButton.setEnabled(false);
+
+        disableButtonIfEmptyText(mButton);
+
         populateList();
     }
 
-    public void onClickAddItem() {
+    /**
+     * Handle click on "Add item" button.
+     * Will add a new item.
+     */
+    public final void onClickAddItem() {
         EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
         String tmpStr = newItem.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
@@ -136,6 +154,30 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Disable the "Add item" button if item text is empty.
+     * @param parMButton button to be disabled
+     */
+    private void disableButtonIfEmptyText(final Button parMButton) {
+        EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        newItem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                parMButton.setEnabled(s.length()>0);
+            }
+        });
+    }
 
     /**
      * Populate list with data in {@link ISavingModule}.

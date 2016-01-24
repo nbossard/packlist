@@ -11,13 +11,17 @@ Which is very disappointing when you wish to save your lists.
  * activities based
  
 ### Objectives in term of coding :
- - multi-developer
- - very strict formatting rules
- - mandatory usage of quality plugins : checkstyle, findbugs
- - exhaustive javadoc
+ - multi-developer (yes you are welcome to help)
+ - high quality code
+   - very strict formatting rules
+   - mandatory usage of quality plugins : checkstyle, findbugs
+   - exhaustive javadoc
+   - unit testing and android testing and Robotium testing
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
- - large usage of plantuml
- - unit testing and Robotium testing
+ - large usage of plantuml for documentation
+ - re-use of external libraries on github
+   - changelog : https://github.com/gabrielemariotti/changeloglib
+
 
 ### BUT a place for experimentation of up-to-date technology
 - groovy instead of Java
