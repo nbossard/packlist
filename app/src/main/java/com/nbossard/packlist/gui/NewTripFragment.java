@@ -53,25 +53,30 @@ import hugo.weaving.DebugLog;
  */
 public class NewTripFragment extends Fragment {
 
-    private static final boolean VIBRATE = true;
+    // ********************** CONSTANTS *********************************************************************
+
+    /** constant for "do not vibrate" in calendar. */
+    private static final boolean DO_NOT_VIBRATE = false;
+
+    /** Frag to identify fragment for date. */
+    public static final String DATEPICKER_TAG = "datepicker";
 
 
     // *********************** LISTENERS ********************************************************************
-    View.OnClickListener mSubmitListener = new View.OnClickListener() {
+
+    /**
+     * Listener for when user clicks on "submit" button.
+     */
+    private View.OnClickListener mSubmitListener = new View.OnClickListener() {
         @DebugLog
         @Override
         public void onClick(View v) {
-            // Getting data
-            TextView nameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
-            TextView startDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
-            TextView endDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
-            TextView noteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
 
             // asking supporting activity to launch creation of new trip
-            mHostingActivity.createNewTrip(nameTV.getText().toString(),
-                    startDateTV.getText().toString(),
-                    endDateTV.getText().toString(),
-                    noteTV.getText().toString());
+            mHostingActivity.createNewTrip(mNameTV.getText().toString(),
+                    mStartDateTV.getText().toString(),
+                    mEndDateTV.getText().toString(),
+                    mNoteTV.getText().toString());
 
             // navigating back
             getActivity().getSupportFragmentManager().beginTransaction().remove(NewTripFragment.this).commit();
@@ -79,10 +84,13 @@ public class NewTripFragment extends Fragment {
         }
     };
 
-    private DatePickerDialog.OnDateSetListener dateSelectedListener = new DatePickerDialog.OnDateSetListener() {
+    private DatePickerDialog.OnDateSetListener dateSelectedListener =
+            new DatePickerDialog.OnDateSetListener() {
         @Override
-        public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
-            //TODO DO SOMETHING WITH THIS DATE
+        public void onDateSet(final DatePickerDialog parDatePickerDialog,
+                              final int year, final int month, final int day) {
+            mStartDateTV.setText(year + "-" + (month + 1) + "-" + day);
+
         }
     };
 
@@ -102,7 +110,19 @@ public class NewTripFragment extends Fragment {
             DatePickerDialog.newInstance(dateSelectedListener,
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH), VIBRATE);
+                    calendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
+
+    /** Text view for input of "trip start date". */
+    private TextView mStartDateTV;
+
+    /** Text view for input of "trip end date". */
+    private TextView mEndDateTV;
+
+    /** Text view for input of "free notes on trip". */
+    private TextView mNoteTV;
+
+    /** Text view for input of "trip name". */
+    private TextView mNameTV;
 
     // *********************** METHODS **********************************************************************
 
@@ -113,45 +133,59 @@ public class NewTripFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIMainActivity = (IMainActivity) getActivity();
     }
 
     @DebugLog
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_new_trip, container, false);
         return mRootView;
     }
 
     @DebugLog
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mHostingActivity = (IMainActivity) getActivity();
+
+        // Getting views
+        mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
+        mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+        mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
+        mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
+
+        // Adding listeners
         addListenerOnSubmitButton();
+        addListenerOnStartDate();
     }
 
     @Override
-    public void onResume() {
+    public final void onResume() {
         super.onResume();
         mIMainActivity.showFAB(false);
     }
 
+    /**
+     * Add a listener on "submit" button.
+     */
     private void addListenerOnSubmitButton() {
         Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
         button.setOnClickListener(mSubmitListener);
     }
 
+    /**
+     * Add a listener on "trip start date" text field.
+     */
     private void addListenerOnStartDate() {
-        TextView tvStartDate = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
-        tvStartDate.setOnClickListener(new View.OnClickListener() {
+        mStartDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(final View v) {
+                datePickerDialog.show(getFragmentManager(), DATEPICKER_TAG);
             }
         });
     }
