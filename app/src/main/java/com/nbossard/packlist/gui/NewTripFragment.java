@@ -28,7 +28,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.nbossard.packlist.R;
+
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
 
 import hugo.weaving.DebugLog;
 
@@ -47,15 +52,9 @@ import hugo.weaving.DebugLog;
  * @author Created by nbossard on 30/12/15.
  */
 public class NewTripFragment extends Fragment {
-    // *********************** FIELDS ***********************************************************************
 
-    /** For communicating with hosting activity. */
-    private IMainActivity mHostingActivity;
+    private static final boolean VIBRATE = true;
 
-    private View mRootView;
-
-    /** Hosting activity interface. */
-    private IMainActivity mIMainActivity;
 
     // *********************** LISTENERS ********************************************************************
     View.OnClickListener mSubmitListener = new View.OnClickListener() {
@@ -79,6 +78,32 @@ public class NewTripFragment extends Fragment {
             getActivity().getSupportFragmentManager().popBackStack();
         }
     };
+
+    private DatePickerDialog.OnDateSetListener dateSelectedListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
+            //TODO DO SOMETHING WITH THIS DATE
+        }
+    };
+
+    // *********************** FIELDS ***********************************************************************
+
+    /** For communicating with hosting activity. */
+    private IMainActivity mHostingActivity;
+
+    /** Root view for easy findviewById use.*/
+    private View mRootView;
+
+    /** Hosting activity interface. */
+    private IMainActivity mIMainActivity;
+
+    final Calendar calendar = Calendar.getInstance();
+    final DatePickerDialog datePickerDialog =
+            DatePickerDialog.newInstance(dateSelectedListener,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH), VIBRATE);
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -120,5 +145,16 @@ public class NewTripFragment extends Fragment {
         Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
         button.setOnClickListener(mSubmitListener);
     }
+
+    private void addListenerOnStartDate() {
+        TextView tvStartDate = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+        tvStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
 
 }
