@@ -22,6 +22,7 @@ package com.nbossard.packlist.gui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,6 @@ import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.nbossard.packlist.R;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -58,8 +57,11 @@ public class NewTripFragment extends Fragment {
     /** constant for "do not vibrate" in calendar. */
     private static final boolean DO_NOT_VIBRATE = false;
 
-    /** Frag to identify fragment for date. */
-    public static final String DATEPICKER_TAG = "datepicker";
+    /** Frag to identify fragment for start date picker. */
+    public static final String DATEPICKER_START_TAG = "datepickerstart";
+
+    /** Frag to identify fragment for end date picker. */
+    public static final String DATEPICKER_END_TAG = "datepickerstart";
 
 
     // *********************** LISTENERS ********************************************************************
@@ -70,7 +72,7 @@ public class NewTripFragment extends Fragment {
     private View.OnClickListener mSubmitListener = new View.OnClickListener() {
         @DebugLog
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
 
             // asking supporting activity to launch creation of new trip
             mHostingActivity.createNewTrip(mNameTV.getText().toString(),
@@ -84,15 +86,33 @@ public class NewTripFragment extends Fragment {
         }
     };
 
-    private DatePickerDialog.OnDateSetListener dateSelectedListener =
+    /**
+     * Listener for when user has selected a start date.
+     */
+    private DatePickerDialog.OnDateSetListener dateStartSelectedListener =
             new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(final DatePickerDialog parDatePickerDialog,
                               final int year, final int month, final int day) {
-            mStartDateTV.setText(year + "-" + (month + 1) + "-" + day);
-
+            mStartDateTV.setText(
+                    String.format(getActivity().getString(R.string.dateFormat), year, month + 1, day));
         }
     };
+
+
+    /**
+     * Listener for when user has selected a end date.
+     */
+    private DatePickerDialog.OnDateSetListener dateEndSelectedListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(final DatePickerDialog parDatePickerDialog,
+                                      final int year, final int month, final int day) {
+                    mEndDateTV.setText(
+                            String.format(
+                                    getActivity().getString(R.string.dateFormat), year, month + 1, day));
+                }
+            };
 
     // *********************** FIELDS ***********************************************************************
 
@@ -105,12 +125,22 @@ public class NewTripFragment extends Fragment {
     /** Hosting activity interface. */
     private IMainActivity mIMainActivity;
 
-    final Calendar calendar = Calendar.getInstance();
-    final DatePickerDialog datePickerDialog =
-            DatePickerDialog.newInstance(dateSelectedListener,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
+    /** Calendar to retrieve current date. */
+    private final Calendar mCalendar = Calendar.getInstance();
+
+    /** start date dialog picker. */
+    private final DatePickerDialog dateStartPickerDialog =
+            DatePickerDialog.newInstance(dateStartSelectedListener,
+                    mCalendar.get(Calendar.YEAR),
+                    mCalendar.get(Calendar.MONTH),
+                    mCalendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
+
+    /** end date dialog picker. */
+    private final DatePickerDialog dateEndPickerDialog =
+            DatePickerDialog.newInstance(dateEndSelectedListener,
+                    mCalendar.get(Calendar.YEAR),
+                    mCalendar.get(Calendar.MONTH),
+                    mCalendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
 
     /** Text view for input of "trip start date". */
     private TextView mStartDateTV;
@@ -123,6 +153,12 @@ public class NewTripFragment extends Fragment {
 
     /** Text view for input of "trip name". */
     private TextView mNameTV;
+
+    /** Button to open dialog to pick a start date. */
+    private AppCompatImageButton mStartDateButton;
+
+    /** Button to open dialog to pick a end date. */
+    private AppCompatImageButton mEndDateButton;
 
     // *********************** METHODS **********************************************************************
 
@@ -156,12 +192,15 @@ public class NewTripFragment extends Fragment {
         // Getting views
         mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
         mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+        mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
+        mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
         mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
         mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
 
         // Adding listeners
         addListenerOnSubmitButton();
         addListenerOnStartDate();
+        addListenerOnEndDate();
     }
 
     @Override
@@ -182,10 +221,22 @@ public class NewTripFragment extends Fragment {
      * Add a listener on "trip start date" text field.
      */
     private void addListenerOnStartDate() {
-        mStartDateTV.setOnClickListener(new View.OnClickListener() {
+        mStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                datePickerDialog.show(getFragmentManager(), DATEPICKER_TAG);
+                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+            }
+        });
+    }
+
+    /**
+     * Add a listener on "trip end date" text field.
+     */
+    private void addListenerOnEndDate() {
+        mEndDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
             }
         });
     }

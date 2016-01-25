@@ -34,7 +34,7 @@
     <string name="about__third_party__button">third party libraries</string>
 
     <string name="main__welcome">Here is the list of your trips, please click on one for details</string>
-    <string name="main__no_trip_yet__label">No trip planed yet, click + button below to add a new trip</string>
+    <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
 
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>
@@ -54,5 +54,6 @@
     <string name="trip_detail__add_item___button">Add item</string>
     <string name="demo_changelog_title_standarddialog">Change log</string>
     <string name="about_ok">OK</string>
+    <string name="dateFormat" >%1$d-%2$d-%3$d</string>
 
 </resources>
