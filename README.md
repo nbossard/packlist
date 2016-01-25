@@ -12,6 +12,7 @@ Which is very disappointing when you wish to save your lists.
  
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
+ - GitFlow organisation
  - high quality code
    - very strict formatting rules
    - mandatory usage of quality plugins : checkstyle, findbugs
@@ -19,7 +20,7 @@ Which is very disappointing when you wish to save your lists.
    - unit testing and android testing and Robotium testing
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation
- - re-use of external libraries on github
+ - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
    - datetimepicker (https://github.com/flavienlaurent/datetimepicker)
 
@@ -39,6 +40,7 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
+- 0.2 alpha 24th january 2015
 - 0.1 alpha 6th january 2015
 
 ### Coding conventions (WIP)
