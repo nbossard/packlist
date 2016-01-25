@@ -12,7 +12,7 @@ Which is very disappointing when you wish to save your lists.
  
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
- - gitflow organisation
+ - GitFlow organisation
  - high quality code
    - very strict formatting rules
    - mandatory usage of quality plugins : checkstyle, findbugs
@@ -20,7 +20,7 @@ Which is very disappointing when you wish to save your lists.
    - unit testing and android testing and Robotium testing
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation
- - re-use of external libraries on github
+ - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
 
 
