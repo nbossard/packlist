@@ -12,6 +12,7 @@ Which is very disappointing when you wish to save your lists.
  
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
+ - gitflow organisation
  - high quality code
    - very strict formatting rules
    - mandatory usage of quality plugins : checkstyle, findbugs
@@ -38,6 +39,7 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
+- 0.2 alpha 24th january 2015
 - 0.1 alpha 6th january 2015
 
 ### Coding conventions (WIP)
