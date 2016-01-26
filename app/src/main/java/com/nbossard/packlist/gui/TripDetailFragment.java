@@ -163,18 +163,24 @@ public class TripDetailFragment extends Fragment {
         EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
         newItem.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(final CharSequence s,
+                                          final int start,
+                                          final int count,
+                                          final int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(final CharSequence s,
+                                      final int start,
+                                      final int before,
+                                      final int count) {
 
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                parMButton.setEnabled(s.length()>0);
+            public void afterTextChanged(final Editable s) {
+                parMButton.setEnabled(s.length() > 0);
             }
         });
     }

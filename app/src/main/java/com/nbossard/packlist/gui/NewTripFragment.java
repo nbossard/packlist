@@ -24,6 +24,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatImageButton;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,6 +164,9 @@ public class NewTripFragment extends Fragment {
     /** Button to open dialog to pick a end date. */
     private AppCompatImageButton mEndDateButton;
 
+    /** Button to save and close. */
+    private Button mSubmitButton;
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -198,11 +203,15 @@ public class NewTripFragment extends Fragment {
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
         mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
         mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
+        mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
+
 
         // Adding listeners
-        addListenerOnSubmitButton();
         addListenerOnStartDate();
         addListenerOnEndDate();
+        addListenerOnSubmitButton();
+
+        disableSubmitButtonIfEmptyText();
     }
 
     @DebugLog
@@ -216,8 +225,7 @@ public class NewTripFragment extends Fragment {
      * Add a listener on "submit" button.
      */
     private void addListenerOnSubmitButton() {
-        Button button = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
-        button.setOnClickListener(mSubmitListener);
+        mSubmitButton.setOnClickListener(mSubmitListener);
     }
 
     /**
@@ -240,6 +248,37 @@ public class NewTripFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+            }
+        });
+    }
+
+    /**
+     * Disable the "Add item" button if item text is empty.
+     */
+    private void disableSubmitButtonIfEmptyText() {
+
+        mSubmitButton.setEnabled(mNameTV.length() > 0);
+
+        mNameTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s,
+                                          final int start,
+                                          final int count,
+                                          final int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s,
+                                      final int start,
+                                      final int before,
+                                      final int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                mSubmitButton.setEnabled(s.length() > 0);
             }
         });
     }
