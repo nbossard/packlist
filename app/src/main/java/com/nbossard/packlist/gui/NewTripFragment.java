@@ -22,6 +22,7 @@ package com.nbossard.packlist.gui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,8 +82,9 @@ public class NewTripFragment extends Fragment {
                     mNoteTV.getText().toString());
 
             // navigating back
-            getActivity().getSupportFragmentManager().beginTransaction().remove(NewTripFragment.this).commit();
-            getActivity().getSupportFragmentManager().popBackStack();
+            FragmentManager fragMgr = getActivity().getSupportFragmentManager();
+            fragMgr.beginTransaction().remove(NewTripFragment.this).commit();
+            fragMgr.popBackStack();
         }
     };
 
