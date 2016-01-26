@@ -80,7 +80,7 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
     }
 
     /**
-     * Test that the string that should always appear are displayed.
+     * Test that start date picker opens and allows selection of date.
      *
      * @throws Exception
      *             if a test has failed.
@@ -89,9 +89,6 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        // 0 is homeAsUp
-        // 1 is overflow
-        // 2 is first button on layout : start date
         mSolo.clickOnImageButton(0);
 
         Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
@@ -101,6 +98,38 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
         Assert.assertTrue(mSolo.waitForText("2016-"));
+    }
+
+    /**
+     * Test that end date picker opens and allows selection of date.
+     *
+     * @throws Exception
+     *             if a test has failed.
+     */
+    public final void testClickOnEndDate() throws Exception
+    {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
+        mSolo.clickOnImageButton(1);
+
+        Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
+
+        mSolo.clickOnText("OK");
+
+        // let human see the screen
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+        Assert.assertTrue(mSolo.waitForText("2016-"));
+    }
+
+    /**
+     * Required however the second opening of fragment will send a "Test failed to run to completion.
+     * Reason: 'Instrumentation run failed due to 'java.lang.NullPointerException''"
+
+     * @throws Exception
+     */
+    @Override
+    public void tearDown() throws Exception {
+        mSolo.finishOpenedActivities();
     }
 
 }

@@ -205,6 +205,7 @@ public class NewTripFragment extends Fragment {
         addListenerOnEndDate();
     }
 
+    @DebugLog
     @Override
     public final void onResume() {
         super.onResume();
