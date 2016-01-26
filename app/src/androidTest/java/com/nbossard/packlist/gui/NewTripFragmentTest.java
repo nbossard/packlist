@@ -122,6 +122,33 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
     }
 
     /**
+     * Test that end date picker opens and allows selection of date.
+     *
+     * @throws Exception
+     *             if a test has failed.
+     */
+    public final void testMandatoryName() throws Exception
+    {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
+        // initially button is blocked
+        mSolo.clickOnButton(mSolo.getString(R.string.new_trip__submit));
+
+        // we are still on same fragment
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__name)));
+
+        mSolo.typeText(0,"Rome");
+
+        // button should be unblocked
+        mSolo.clickOnButton(mSolo.getString(R.string.new_trip__submit));
+
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.main__welcome)));
+
+        // let human see the screen
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+    }
+
+    /**
      * Required however the second opening of fragment will send a "Test failed to run to completion.
      * Reason: 'Instrumentation run failed due to 'java.lang.NullPointerException''"
 

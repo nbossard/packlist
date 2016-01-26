@@ -28,6 +28,7 @@
         changeDate="xx janvier 2015"
         versionName="0.3.0 alpha">
         <changelogtext>NEW : utilisation du composant datetimepicker</changelogtext>
+        <changelogtext>NEW : improving management of empty fields, especially in dates</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="24 janvier 2015"
