@@ -21,6 +21,7 @@ package com.nbossard.packlist.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -28,41 +29,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Trip;
+import android.util.Log;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
 
-/*
-@startuml
-    class com.nbossard.packlist.gui.MainActivity {
-    }
-
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.MainActivity
-    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.MainActivityFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
-
-    ' Moved to main file
-    ' com.nbossard.packlist.process.saving.ISavingModule <-- com.nbossard.packlist.gui.MainActivity
-@enduml
- */
 
 /**
- * Main activity, supports most fragments.
+ * Main activity for robotium tests.
  */
-public class MainActivity extends AppCompatActivity implements IMainActivity {
+public class MainActivityForTest extends AppCompatActivity implements IMainActivity {
 
 // *********************** CONSTANTS**********************************************************************
 
     /** Log tag. */
     private static final String TAG = MainActivity.class.getName();
+
 
 // *********************** FIELDS ***************************************************************************
 
@@ -142,6 +130,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /** Open {@link AboutActivity} on top of this activity. */
+    @DebugLog
+    private void openAboutActivity() {
+        Intent view = new Intent(this, AboutActivity.class);
+        view.setAction(Intent.ACTION_VIEW);
+        startActivity(view);
+    }
+
     /**
      * For deep-app indexing.
      * @param intent sic
@@ -164,8 +160,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
                               final String parStartDate,
                               final String parEndDate,
                               final String parNote) {
-        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
-        mSavingModule.addNewTrip(tmpTrip);
+       Log.d(TAG, "createNewTrip() faked");
     }
 
     /**
@@ -201,17 +196,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
             mFab.hide();
         }
     }
-
     // ----------- end of implementing interface IMainActivity ------------
-// *********************** PRIVATE METHODS ******************************************************************
 
-    /** Open {@link AboutActivity} on top of this activity. */
-    @DebugLog
-    private void openAboutActivity() {
-        Intent view = new Intent(this, AboutActivity.class);
-        view.setAction(Intent.ACTION_VIEW);
-        startActivity(view);
-    }
+// *********************** PRIVATE METHODS ******************************************************************
 
     /**
      * Open a new fragment allowing him to view trip list.
@@ -246,7 +233,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      * Characteristics.
      */
     @DebugLog
-    private void openNewTripFragment() {
+    @VisibleForTesting
+    protected void openNewTripFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         NewTripFragment newFragment = new NewTripFragment();
