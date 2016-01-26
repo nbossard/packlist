@@ -19,22 +19,19 @@
 
 package com.nbossard.packlist.gui;
 
-import junit.framework.Assert;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.TestValues;
 import com.robotium.solo.Solo;
 
+import junit.framework.Assert;
+
 /**
- * Robotium tests on {@link AboutActivity}
- *
- * @author Nicolas BOSSARD (naub7473)
- *
+ * Robotium tests on {@link NewTripFragment} using {@link MainActivityForTest}
+ * Created by naub7473 on 26/01/2016.
  */
-public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutActivity>
-{
+public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainActivityForTest> {
 
     // ********************** FIELDS ************************************************************************
 
@@ -45,12 +42,9 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
 
     // ********************** METHODS ***********************************************************************
 
-    /**
-     * Mandatory call.
-     */
-    public AboutActivityTest()
-    {
-        super(AboutActivity.class);
+
+    public NewTripFragmentTest() {
+        super(MainActivityForTest.class);
     }
 
     /**
@@ -62,6 +56,7 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     public final void setUp() throws Exception
     {
         mSolo = new Solo(getInstrumentation(), getActivity());
+        getActivity().openNewTripFragment();
     }
 
     /**
@@ -74,35 +69,67 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.about__main)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__name)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__start_date)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__end_date)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__note)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.new_trip__submit)));
 
-        // Assert.assertTrue(mSolo.waitForText(BuildConfig.VERSION_NAME));
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
     }
 
     /**
-     * Test that the string that should always appear are displayed.
+     * Test that start date picker opens and allows selection of date.
      *
      * @throws Exception
      *             if a test has failed.
      */
-    public final void testClickOnActionButton() throws Exception
+    public final void testClickOnStartDate() throws Exception
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
         mSolo.clickOnImageButton(0);
-        // Default timeout is 20 seconds.
-        // "HomeActivity" is github app
-        mSolo.waitForActivity("HomeActivity");
-        // let human see the screen
 
+        Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
+
+        mSolo.clickOnText("OK");
+
+        // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+        Assert.assertTrue(mSolo.waitForText("2016-"));
     }
 
-    @Override
-    public final void tearDown() throws Exception
+    /**
+     * Test that end date picker opens and allows selection of date.
+     *
+     * @throws Exception
+     *             if a test has failed.
+     */
+    public final void testClickOnEndDate() throws Exception
     {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
+        mSolo.clickOnImageButton(1);
+
+        Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
+
+        mSolo.clickOnText("OK");
+
+        // let human see the screen
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+        Assert.assertTrue(mSolo.waitForText("2016-"));
+    }
+
+    /**
+     * Required however the second opening of fragment will send a "Test failed to run to completion.
+     * Reason: 'Instrumentation run failed due to 'java.lang.NullPointerException''"
+
+     * @throws Exception
+     */
+    @Override
+    public void tearDown() throws Exception {
         mSolo.finishOpenedActivities();
     }
+
 }

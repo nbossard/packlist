@@ -22,6 +22,7 @@ Which is very disappointing when you wish to save your lists.
  - large usage of plantuml for documentation
  - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
+   - datetimepicker (https://github.com/flavienlaurent/datetimepicker)
 
 
 ### BUT a place for experimentation of up-to-date technology
