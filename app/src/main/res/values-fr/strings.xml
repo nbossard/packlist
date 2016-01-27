@@ -23,37 +23,44 @@
 <!-- French strings used in application -->
 <!-- Strings should be grouped by activity / fragment -->
 <resources>
-    <string name="app_name">packlist</string>
 
+    <!-- Common strings -->
+    <string name="app_name">packlist</string>
+    <string name="demo_changelog_title_standarddialog">Journal des changements</string>
+    <string name="about_ok">OK</string>
+    <string name="title_activity_about">A propos</string>
+
+    <!-- Menu items -->
     <string name="action_whatsnew">Quoi de neuf</string>
     <string name="action_about">A propos</string>
 
-    <string name="title_activity_about">A propos</string>
+    <!-- About page -->
+    <string name="about__main">Packing list %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
+    <string name="about__third_party__button">Librairies tierces</string>
 
-    <string name="about__main">Packing list. 2015.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
-
+    <!-- Main page -->
     <string name="main__welcome">Voici la liste de vos voyages prévus, cliquez sur un pour voir son détail</string>
     <string name="main__no_trip_yet__label">Pas de voyage prévu… encore, cliquez sur le bouton "+" pour ajouter un voyage.</string>
-
-    <string name="new_trip__name">nom du voyage</string>
-    <string name="new_trip__start_date">Date de début</string>
-    <string name="new_trip__end_date">Date de fin</string>
-	<string name="new_trip__note">Notes</string>
-    <string name="new_trip__submit">En voyage…</string>
-	
     <string name="action_main_cab__delete">Supprimer</string>
 
+    <!-- New trip fragment -->
+    <string name="new_trip__name">Votre destination</string>
+    <string name="new_trip__start_date">Date de début</string>
+    <string name="new_trip__end_date">Date de fin</string>
+    <string name="new_trip__note">Notes</string>
+    <string name="new_trip__submit">En voyage…</string>
+
+    <!-- Detail of trip -->
     <string name="trip_detail__end_date__label">au</string>
     <string name="trip_detail__start_date__label">du</string>
+    <string name="trip_detail__add_item___button">Ajouter</string>
+    <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
+
+    <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson est distribué sous la License Apache , Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nCopyright © 2013 Jake Wharton,\n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party__label"><u>librairies tierces</u></string>
-
-    <string name="about__third_party__button">Librairies tierces</string>
-
-    <string name="trip_detail__add_item___button">Ajouter</string>
-    <string name="demo_changelog_title_standarddialog"/>
-    <string name="about_ok">OK</string>
     <string name="help_legal__third_party_lib_changelog__label">   <b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib est distribuée selon la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+
 </resources>

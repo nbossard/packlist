@@ -30,7 +30,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
@@ -46,6 +48,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
 
     /** Log tag. */
     private static final String TAG = AboutActivity.class.getName();
+    private TextView mGeneralInfo;
 
     // *********************** METHODS **********************************************************************
 
@@ -73,7 +76,14 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         // setting button listener
         final Button mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
         mButtonThirdParty.setOnClickListener(this);
+
+        // updating version number
+        mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
+        mGeneralInfo.setText(String.format(getString(R.string.about__main),
+                BuildConfig.VERSION_NAME));
+
     }
+
 
 
     @Override

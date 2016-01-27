@@ -25,6 +25,13 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate="27 janvier 2015"
+        versionName="0.3.0 alpha">
+        <changelogtext>NEW : utilisation du composant datetimepicker</changelogtext>
+        <changelogtext>NEW : amélioration de la gestion des champs vide, surtout les dates</changelogtext>
+        <changelogtext>NEW : ajout du numéro de version dans la page à propos</changelogtext>
+    </changelogversion>
+    <changelogversion
         changeDate="24 janvier 2015"
         versionName="0.2.0 alpha">
         <changelogtext>NEW : ajout de ce changelog</changelogtext>

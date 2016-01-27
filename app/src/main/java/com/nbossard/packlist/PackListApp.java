@@ -32,12 +32,16 @@ import com.nbossard.packlist.process.saving.SavingFactory;
 public class PackListApp extends Application {
 
 // *********************** FIELDS *************************************************************************
+
+    /** Saving module singleton. */
     private ISavingModule mSavingModule;
 //
 
 // *********************** METHODS **************************************************************************
-    public ISavingModule getSavingModule() {
-        if (mSavingModule ==null) {
+
+    /** @return saving module singleton. */
+    public final ISavingModule getSavingModule() {
+        if (mSavingModule == null) {
             mSavingModule = SavingFactory.getNewSavingModule(this);
         }
         return mSavingModule;

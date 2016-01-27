@@ -30,6 +30,7 @@
         <variable
             name="trip"
             type="com.nbossard.packlist.model.Trip"/>
+        <import type="android.view.View" />
 
     </data>
 
@@ -65,7 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:focusable="false"
-                android:text="@string/trip_detail__start_date__label"/>
+                android:text="@string/trip_detail__start_date__label"
+                android:visibility="@{trip.startDate.length==0 ? View.GONE : View.VISIBLE}"/>
 
             <android.support.v4.widget.Space
                 android:layout_width="@dimen/space_label_value"
@@ -87,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:focusable="false"
-                android:text="@string/trip_detail__end_date__label"/>
+                android:text="@string/trip_detail__end_date__label"
+                android:visibility="@{trip.endDate.length==0 ? View.GONE : View.VISIBLE}"/>
 
             <android.support.v4.widget.Space
                 android:layout_width="@dimen/space_label_value"
@@ -133,5 +136,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <!-- View that will be displayed if list is empty only -->
+        <LinearLayout android:id="@+id/trip_detail__list_empty"
+                      android:layout_width="fill_parent" android:layout_height="fill_parent"
+                      android:gravity="center"
+                      android:visibility="gone">
+
+            <TextView android:text="@string/trip_detail__no_item_yet__label"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
     </RelativeLayout>
 </layout>

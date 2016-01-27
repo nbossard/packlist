@@ -24,14 +24,19 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+    // history of version code
+    // 1 --> 0.1
+    // 2 --> 0.2
+    // 3 --> 0.3
+    // 4 --> 0.3.4
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "0.2 alpha"
+        versionCode 4
+        versionName "0.3 alpha"
     }
     buildTypes {
         release {
@@ -54,6 +59,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
+    compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'

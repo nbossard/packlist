@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
@@ -59,6 +60,9 @@ class TripAdapter extends BaseAdapter {
          * Reference (result of findviewbyid) to the trip start date.
          */
         private TextView tvStartDate;
+
+        /** The arrow between start and end date. */
+        private ImageView arrowDate;
 
         /**
          * Reference (result of findviewbyid) to the trip end date.
@@ -127,6 +131,7 @@ class TripAdapter extends BaseAdapter {
         // getting views
         vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
         vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
+        vHolderRecycle.arrowDate = (ImageView) parConvertView.findViewById(R.id.ta__arrow_date);
         vHolderRecycle.tvEndDate = (TextView) parConvertView.findViewById(R.id.ta__end_date);
 
         final Trip oneDev = mTripsList.get(parPosition);
@@ -135,6 +140,11 @@ class TripAdapter extends BaseAdapter {
         vHolderRecycle.tvName.setText(oneDev.getName());
         vHolderRecycle.tvStartDate.setText(oneDev.getStartDate());
         vHolderRecycle.tvEndDate.setText(oneDev.getEndDate());
+        if ((oneDev.getStartDate().length() == 0) && (oneDev.getEndDate().length() == 0)) {
+            vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
+        } else {
+            vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);
+        }
 
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;

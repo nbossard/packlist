@@ -1,12 +1,5 @@
 # Built application files
 *.apk
-*.ap_
-
-# Files for the Dalvik VM
-*.dex
-
-# Java class files
-*.class
 
 # Generated files
 bin/
@@ -25,3 +18,9 @@ proguard/
 
 # Log Files
 *.log
+
+# NBO  addition
+app.iml
+.idea/
+packlist.iml
+gradle.properties

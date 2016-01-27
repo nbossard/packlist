@@ -22,7 +22,9 @@ package com.nbossard.packlist.gui;
 import junit.framework.Assert;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.TestValues;
 import com.robotium.solo.Solo;
 
 /**
@@ -70,7 +72,11 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
      */
     public final void testAlwaysThereStrings() throws Exception
     {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
         Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.about__main)));
+
+        // Assert.assertTrue(mSolo.waitForText(BuildConfig.VERSION_NAME));
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
     }
@@ -83,11 +89,14 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
      */
     public final void testClickOnActionButton() throws Exception
     {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
         mSolo.clickOnImageButton(0);
         // Default timeout is 20 seconds.
         // "HomeActivity" is github app
         mSolo.waitForActivity("HomeActivity");
         // let human see the screen
+
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
     }
 
