@@ -43,6 +43,11 @@ Basic functionality are still under development
 - 0.2 alpha 24th january 2015
 - 0.1 alpha 6th january 2015
 
+### Current IDE suggested configuration :
+- Android Studio 2 preview 7
+    - git ignore plugin
+    - markdown plugin (Markdown Support)
+
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
 - parameters should start with "par" (enforced in codeStyleSettings.xml)
