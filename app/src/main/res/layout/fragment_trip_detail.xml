@@ -136,5 +136,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <!-- View that will be displayed if list is empty only -->
+        <LinearLayout android:id="@+id/trip_detail__list_empty"
+                      android:layout_width="fill_parent" android:layout_height="fill_parent"
+                      android:gravity="center"
+                      android:visibility="gone">
+
+            <TextView android:text="@string/trip_detail__no_item_yet__label"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
     </RelativeLayout>
 </layout>
