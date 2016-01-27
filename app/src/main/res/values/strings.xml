@@ -24,7 +24,7 @@
 <!-- Strings should be grouped by activity / fragment -->
 <resources>
     <!-- Non-translatable strings -->
-    <string name="dateFormat" >%1$d-%2$d-%3$d</string>
+    <string name="dateFormat" translatable="false">%1$d-%2$d-%3$d</string>
 
     <!-- Common strings -->
     <string name="app_name">packlist</string>
