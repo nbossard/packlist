@@ -55,5 +55,6 @@
     <string name="demo_changelog_title_standarddialog">Change log</string>
     <string name="about_ok">OK</string>
     <string name="dateFormat" >%1$d-%2$d-%3$d</string>
+    <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
 
 </resources>
