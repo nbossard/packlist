@@ -22,7 +22,6 @@ package com.nbossard.packlist.gui;
 import junit.framework.Assert;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.TestValues;
 import com.robotium.solo.Solo;
