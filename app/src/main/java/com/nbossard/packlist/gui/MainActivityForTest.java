@@ -88,7 +88,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     /**
      * Opens the provided fragment in a dialog.
      *
-     * @param parDialogStandardFragment
+     * @param parDialogStandardFragment fragment to be opened
      */
     @DebugLog
     private void openDialogFragment(final DialogFragment parDialogStandardFragment) {
