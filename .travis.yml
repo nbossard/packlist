@@ -32,7 +32,9 @@ android:
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     # - sys-img-x86-android-23
-    - sys-img-armeabi-v7a-android-23
+    # 23 does not work
+    # - sys-img-armeabi-v7a-android-23
+    - sys-img-armeabi-v7a-android-21
 
   licenses:
     - 'android-sdk-license-.+'
@@ -53,4 +55,5 @@ script:
   - echo $ADB_INSTALL_TIMEOUT
   - android list target
   - ./gradlew connectedAndroidTest -PdisablePreDex
+  # see : http://stackoverflow.com/questions/32952413/gradle-commands-fail-on-api-23-google-api-emulator-image-armeabi-v7a
 
