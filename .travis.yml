@@ -54,6 +54,13 @@ before_script:
 script:
   - echo $ADB_INSTALL_TIMEOUT
   - android list target
-  - ./gradlew connectedAndroidTest -PdisablePreDex
+  # - ./gradlew connectedAndroidTest -PdisablePreDex
   # see : http://stackoverflow.com/questions/32952413/gradle-commands-fail-on-api-23-google-api-emulator-image-armeabi-v7a
+  - ./gradlew clean
+  - ./gradlew assembleDebug
+  - ./gradlew assembleDebugAndroidTest
+  - adb install app/build/outputs/apk/app-debug.apk
+  - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+  - adb shell am instrument -w com.nbossard.packlist.test/android.support.test.runner.AndroidJUnitRunner
 
+I
