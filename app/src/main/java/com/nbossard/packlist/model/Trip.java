@@ -38,8 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import hugo.weaving.DebugLog;
-
 /**
  * A trip data model.
  *

@@ -63,7 +63,6 @@ public class TripDetailFragment extends Fragment {
 
     /** The saving module to retrieve and update data (trips).*/
     private ISavingModule mSavingModule;
-    private FragmentTripDetailBinding mBinding;
 
     /** Value provided when instantiating this fragment, unique identifier of trip. */
     private UUID mTripId;
@@ -111,7 +110,7 @@ public class TripDetailFragment extends Fragment {
         // Magic of binding
         // Do not use this syntax, it will overwrite actvity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
-        mBinding = DataBindingUtil.bind(mRootView);
+        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
         mRetrievedTrip = mSavingModule.loadSavedTrip(mTripId);
         mBinding.setTrip(mRetrievedTrip);
         mBinding.executePendingBindings();
