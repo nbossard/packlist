@@ -54,9 +54,6 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
 // *********************** FIELDS ***************************************************************************
 
-    /** The saving module to retrieve and update data (trips).*/
-    private ISavingModule mSavingModule;
-
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
@@ -81,7 +78,9 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     @Override
     protected final void onStart() {
         super.onStart();
-        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+
+        /* The saving module to retrieve and update data (trips).*/
+        ISavingModule mSavingModule = ((PackListApp) getApplication()).getSavingModule();
 
         openMainActivityFragment();
     }

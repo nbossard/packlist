@@ -48,7 +48,6 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
 
     /** Log tag. */
     private static final String TAG = AboutActivity.class.getName();
-    private TextView mGeneralInfo;
 
     // *********************** METHODS **********************************************************************
 
@@ -78,7 +77,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         mButtonThirdParty.setOnClickListener(this);
 
         // updating version number
-        mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
+        TextView mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
         mGeneralInfo.setText(String.format(getString(R.string.about__main),
                 BuildConfig.VERSION_NAME));
 
