@@ -57,6 +57,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.name}"
                 tools:text="Verdun"/>
 
@@ -68,6 +69,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:layout_below="@id/trip_detail__name"
                 android:orientation="horizontal">
 
@@ -126,6 +128,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.note}"
                 tools:text="Un très beau voyage"/>
 
