@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     public void openNewTripFragment(@Nullable final UUID parUUID) {
 
         // Create fragment and give it an argument specifying the article it should show
-        NewTripFragment newFragment = new NewTripFragment();
+        NewTripFragment newFragment = NewTripFragment.newInstance(parUUID);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

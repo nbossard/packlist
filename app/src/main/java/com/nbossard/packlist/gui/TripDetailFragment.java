@@ -53,10 +53,12 @@ import java.util.UUID;
  */
 public class TripDetailFragment extends Fragment {
 
-    // *********************** FIELDS ***********************************************************************
+    // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
     public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+
+    // *********************** FIELDS ***********************************************************************
 
     /** The root view, will be used to findViewById. */
     private View mRootView;
@@ -66,6 +68,8 @@ public class TripDetailFragment extends Fragment {
 
     /** Value provided when instantiating this fragment, unique identifier of trip. */
     private UUID mTripId;
+
+    /** Trip object to be displayed and added item. */
     private Trip mRetrievedTrip;
 
     // *********************** METHODS **********************************************************************

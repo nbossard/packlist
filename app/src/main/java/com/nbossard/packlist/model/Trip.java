@@ -70,6 +70,13 @@ public class Trip {
 // *********************** METHODS **************************************************************************
 
     /**
+     * No parameter Constructor.
+     */
+    public Trip() {
+        mUUID = UUID.randomUUID();
+    }
+
+    /**
      * Full parameters constructor.
      * @param parName trip name, usually destination. i.e. : "Dublin"
      * @param parStartDate trip start date
@@ -80,7 +87,7 @@ public class Trip {
                 final String parStartDate,
                 final String parEndDate,
                 final String parNote) {
-
+        this();
         mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
