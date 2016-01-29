@@ -41,7 +41,7 @@ public class Item {
      * @param parName new item name. i.e. : "socks"
      */
     public Item(final String parName) {
-        mName = parName;
+        setName(parName);
     }
 
     /**
