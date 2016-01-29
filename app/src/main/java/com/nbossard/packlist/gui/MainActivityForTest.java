@@ -38,6 +38,8 @@ import com.nbossard.packlist.R;
 import android.util.Log;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+import java.util.UUID;
+
 import hugo.weaving.DebugLog;
 
 
@@ -185,6 +187,11 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
         // updating FAB action
         mFab.hide();
+    }
+
+    @Override
+    public void openNewTripFragment(UUID parTripId) {
+
     }
 
     @Override

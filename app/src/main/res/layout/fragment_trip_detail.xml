@@ -48,6 +48,16 @@
             android:id="@+id/trip_detail__top_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/trip_detail__edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/trip_detail__edit_trip"/>
+
             <TextView
                 android:id="@+id/trip_detail__name"
                 android:layout_width="wrap_content"
@@ -131,14 +141,6 @@
                 android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.note}"
                 tools:text="Un très beau voyage"/>
-
-            <Button
-                android:id="@+id/trip_detail__edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/trip_detail__edit_trip"/>
         </RelativeLayout>
 
         <android.support.v7.widget.AppCompatButton

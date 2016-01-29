@@ -29,6 +29,10 @@ package com.nbossard.packlist.gui;
 @enduml
  */
 
+import android.support.annotation.Nullable;
+
+import java.util.UUID;
+
 /**
  * @author Created by nbossard on 01/01/16.
  */
@@ -50,6 +54,13 @@ interface IMainActivity {
      * @param parTripId a trip unique identifier (UUID)
      */
     void openTripDetailFragment(final String parTripId);
+
+    /**
+     * Ask Main activity to open new trip fragment to display Trip of provided UUID.
+     *
+     * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
+     */
+    void openNewTripFragment(@Nullable final UUID parTripId);
 
     /**
      * Hide or show FAB, depending on fragment.

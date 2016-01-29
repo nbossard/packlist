@@ -123,18 +123,35 @@ public class TripDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // TODO old style, improve this
-        final Button mButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        final Button addItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAddItem();
             }
         });
-        mButton.setEnabled(false);
+        addItemButton.setEnabled(false);
+        disableButtonIfEmptyText(addItemButton);
 
-        disableButtonIfEmptyText(mButton);
+
+        final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickEditTrip();
+            }
+        });
+
 
         populateList();
+    }
+
+    /**
+     * Handle click on "Add item" button.
+     * Will add a new item.
+     */
+    public final void onClickEditTrip() {
+        ((IMainActivity) getActivity()).openNewTripFragment(mTripId);
     }
 
     /**
