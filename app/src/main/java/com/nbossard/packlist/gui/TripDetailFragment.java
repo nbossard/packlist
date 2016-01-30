@@ -168,7 +168,7 @@ public class TripDetailFragment extends Fragment {
         mRetrievedTrip.addItem(tmpStr);
         // TODO clean this ugly block
         mSavingModule.deleteTrip(mRetrievedTrip.getUUID());
-        mSavingModule.addNewTrip(mRetrievedTrip);
+        mSavingModule.addOrUpdateTrip(mRetrievedTrip);
         newItem.setText("");
         populateList();
     }

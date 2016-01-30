@@ -55,7 +55,7 @@ import hugo.weaving.DebugLog;
  */
 
 /**
- * Allow user  to input trip characteristics.
+ * Allow user to input new trip characteristics or edit.
  *
  * @author Created by nbossard on 30/12/15.
  */
@@ -86,11 +86,14 @@ public class NewTripFragment extends Fragment {
         @Override
         public void onClick(final View v) {
 
+            // update trip
+            mTrip.setName(mNameTV.getText().toString());
+            mTrip.setStartDate(mStartDateTV.getText().toString());
+            mTrip.setEndDate(mEndDateTV.getText().toString());
+            mTrip.setNote(mNoteTV.getText().toString());
+
             // asking supporting activity to launch creation of new trip
-            mHostingActivity.createNewTrip(mNameTV.getText().toString(),
-                    mStartDateTV.getText().toString(),
-                    mEndDateTV.getText().toString(),
-                    mNoteTV.getText().toString());
+            mHostingActivity.saveTrip(mTrip);
 
             // navigating back
             FragmentManager fragMgr = getActivity().getSupportFragmentManager();

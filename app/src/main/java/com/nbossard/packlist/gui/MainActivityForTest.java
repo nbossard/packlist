@@ -36,6 +36,8 @@ import android.view.View;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import android.util.Log;
+
+import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.UUID;
@@ -157,11 +159,8 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
     @Override
     @DebugLog
-    public final void createNewTrip(final String parName,
-                              final String parStartDate,
-                              final String parEndDate,
-                              final String parNote) {
-       Log.d(TAG, "createNewTrip() faked");
+    public final void saveTrip(final Trip parTrip) {
+       Log.d(TAG, "saveTrip() faked");
     }
 
     /**

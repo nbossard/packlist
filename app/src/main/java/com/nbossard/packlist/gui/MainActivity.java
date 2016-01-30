@@ -163,12 +163,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @Override
     @DebugLog
-    public final void createNewTrip(final String parName,
-                              final String parStartDate,
-                              final String parEndDate,
-                              final String parNote) {
-        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
-        mSavingModule.addNewTrip(tmpTrip);
+    public final void saveTrip(Trip parTrip) {
+        mSavingModule.addOrUpdateTrip(parTrip);
     }
 
     /**
