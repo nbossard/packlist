@@ -21,6 +21,7 @@ package com.nbossard.packlist.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,8 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
+
+import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
@@ -160,12 +163,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @Override
     @DebugLog
-    public final void createNewTrip(final String parName,
-                              final String parStartDate,
-                              final String parEndDate,
-                              final String parNote) {
-        Trip tmpTrip = new Trip(parName, parStartDate, parEndDate, parNote);
-        mSavingModule.addNewTrip(tmpTrip);
+    public final void saveTrip(Trip parTrip) {
+        mSavingModule.addOrUpdateTrip(parTrip);
     }
 
     /**
@@ -202,7 +201,32 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         }
     }
 
+    /**
+     * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
+     * Characteristics.
+     */
+    @DebugLog
+    @Override
+    public void openNewTripFragment(@Nullable final UUID parUUID) {
+
+        // Create fragment and give it an argument specifying the article it should show
+        NewTripFragment newFragment = NewTripFragment.newInstance(parUUID);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
+
+    }
     // ----------- end of implementing interface IMainActivity ------------
+
 // *********************** PRIVATE METHODS ******************************************************************
 
     /** Open {@link AboutActivity} on top of this activity. */
@@ -236,33 +260,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                openNewTripFragment();
+                openNewTripFragment(null);
             }
         });
-    }
-
-    /**
-     * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
-     * Characteristics.
-     */
-    @DebugLog
-    private void openNewTripFragment() {
-
-        // Create fragment and give it an argument specifying the article it should show
-        NewTripFragment newFragment = new NewTripFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.mainactcont__fragment, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
-
-        // updating FAB action
-        mFab.hide();
-
     }
 //
 }

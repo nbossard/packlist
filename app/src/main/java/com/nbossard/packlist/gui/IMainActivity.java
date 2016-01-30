@@ -22,12 +22,18 @@ package com.nbossard.packlist.gui;
 /*
 @startuml
     interface com.nbossard.packlist.gui.IMainActivity {
-        + createNewTrip(...)
+        + saveTrip(...)
         + openTripDetailFragment(...)
         + showFAB(boolean)
     }
 @enduml
  */
+
+import android.support.annotation.Nullable;
+
+import com.nbossard.packlist.model.Trip;
+
+import java.util.UUID;
 
 /**
  * @author Created by nbossard on 01/01/16.
@@ -37,12 +43,9 @@ interface IMainActivity {
     /**
      * Creation and saving of a new trip.
      *
-     * @param parName      name of new trip
-     * @param parStartDate start date of new trip
-     * @param parEndDate   end date of new trip.
-     * @param parNote      free note, so that user can freely add comments on his trip
+     * @param parTrip Trip to be saved
      */
-    void createNewTrip(String parName, String parStartDate, String parEndDate, String parNote);
+    void saveTrip(Trip parTrip);
 
     /**
      * Ask Main activity to open detail fragment to display Trip of provided UUID.
@@ -50,6 +53,13 @@ interface IMainActivity {
      * @param parTripId a trip unique identifier (UUID)
      */
     void openTripDetailFragment(final String parTripId);
+
+    /**
+     * Ask Main activity to open new trip fragment to display Trip of provided UUID.
+     *
+     * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
+     */
+    void openNewTripFragment(@Nullable final UUID parTripId);
 
     /**
      * Hide or show FAB, depending on fragment.

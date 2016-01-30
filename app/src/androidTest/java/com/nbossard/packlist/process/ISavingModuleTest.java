@@ -49,12 +49,13 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015", "Bèèèèè");
         mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015", "beurk");
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
+        mTestedSavingModule.deleteAllTrips();
     }
 
     public void testLoadSavedTrips() throws Exception {
         mTestedSavingModule.deleteAllTrips();
-        mTestedSavingModule.addNewTrip(mTestTrip1);
-        mTestedSavingModule.addNewTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
 
         //Checking result
@@ -64,9 +65,9 @@ public class ISavingModuleTest extends InstrumentationTestCase {
     }
 
     public void testDeleteTrip() {
-        mTestedSavingModule.addNewTrip(mTestTrip1);
-        mTestedSavingModule.addNewTrip(mTestTrip2);
-        mTestedSavingModule.addNewTrip(mTestTrip3);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip3);
 
         mTestedSavingModule.deleteTrip(mTestTrip2.getUUID());
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
@@ -75,6 +76,19 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertEquals(2,loadedTrips.size());
         assertTrue(loadedTrips.contains(mTestTrip1));
         assertTrue(loadedTrips.contains(mTestTrip3));
+    }
+
+    public void testAddOrUpdateTrip() {
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip3);
+
+        mTestTrip2.setNote("Bouh");
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+
+        Trip loadedTrip = mTestedSavingModule.loadSavedTrip(mTestTrip2.getUUID());
+
+        assertEquals("Bouh", loadedTrip.getNote());
     }
 
 //

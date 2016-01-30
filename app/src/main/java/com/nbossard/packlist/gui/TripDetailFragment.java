@@ -53,10 +53,12 @@ import java.util.UUID;
  */
 public class TripDetailFragment extends Fragment {
 
-    // *********************** FIELDS ***********************************************************************
+    // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
     public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+
+    // *********************** FIELDS ***********************************************************************
 
     /** The root view, will be used to findViewById. */
     private View mRootView;
@@ -66,6 +68,8 @@ public class TripDetailFragment extends Fragment {
 
     /** Value provided when instantiating this fragment, unique identifier of trip. */
     private UUID mTripId;
+
+    /** Trip object to be displayed and added item. */
     private Trip mRetrievedTrip;
 
     // *********************** METHODS **********************************************************************
@@ -123,18 +127,35 @@ public class TripDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // TODO old style, improve this
-        final Button mButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        final Button addItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAddItem();
             }
         });
-        mButton.setEnabled(false);
+        addItemButton.setEnabled(false);
+        disableButtonIfEmptyText(addItemButton);
 
-        disableButtonIfEmptyText(mButton);
+
+        final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickEditTrip();
+            }
+        });
+
 
         populateList();
+    }
+
+    /**
+     * Handle click on "Add item" button.
+     * Will add a new item.
+     */
+    public final void onClickEditTrip() {
+        ((IMainActivity) getActivity()).openNewTripFragment(mTripId);
     }
 
     /**
@@ -147,7 +168,7 @@ public class TripDetailFragment extends Fragment {
         mRetrievedTrip.addItem(tmpStr);
         // TODO clean this ugly block
         mSavingModule.deleteTrip(mRetrievedTrip.getUUID());
-        mSavingModule.addNewTrip(mRetrievedTrip);
+        mSavingModule.addOrUpdateTrip(mRetrievedTrip);
         newItem.setText("");
         populateList();
     }
