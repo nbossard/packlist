@@ -61,6 +61,3 @@ script:
   - ./gradlew assembleDebugAndroidTest
   - adb install app/build/outputs/apk/app-debug.apk
   - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
-  - adb shell am instrument -w com.nbossard.packlist.test/android.support.test.runner.AndroidJUnitRunner
-
-I
