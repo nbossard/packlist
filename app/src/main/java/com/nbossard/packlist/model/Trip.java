@@ -74,6 +74,7 @@ public class Trip {
      */
     public Trip() {
         mUUID = UUID.randomUUID();
+        mListItem = new ArrayList<>();
     }
 
     /**
@@ -88,13 +89,10 @@ public class Trip {
                 final String parEndDate,
                 final String parNote) {
         this();
-        mUUID = UUID.randomUUID();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
-
-        mListItem = new ArrayList<>();
     }
 
     /**
@@ -168,6 +166,7 @@ public class Trip {
      *
      * @return automatically set UUID
      */
+    @NonNull
     public final UUID getUUID() {
         return mUUID;
     }
@@ -193,7 +192,7 @@ public class Trip {
 
 
     @Override
-    public final boolean equals(Object parO) {
+    public final boolean equals(final Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
