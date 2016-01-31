@@ -210,8 +210,8 @@ public class TripDetailFragment extends Fragment {
      */
     private void populateList() {
         ListView mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
-        ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
+        ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
         mItemListView.setAdapter(itemAdapter);
         mItemListView.invalidate();
     }
