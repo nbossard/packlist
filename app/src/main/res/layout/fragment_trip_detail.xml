@@ -173,8 +173,11 @@
         <LinearLayout android:id="@+id/trip_detail__list_empty"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
+                      android:layout_below="@id/trip_detail__top_block"
+                      android:layout_above="@id/trip_detail__new_item__edit"
                       android:gravity="center"
                       android:visibility="gone"
+                      tools:visibility="visible"
                       android:background="@color/packlist__list_background">
 
             <TextView android:text="@string/trip_detail__no_item_yet__label"

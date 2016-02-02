@@ -32,13 +32,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
-
-import java.util.UUID;
 /*
 @startuml
     class com.nbossard.packlist.gui.TripDetailFragment {
@@ -66,7 +63,7 @@ public class TripDetailFragment extends Fragment {
     /** Trip object to be displayed and added item. */
     private Trip mRetrievedTrip;
 
-    private IMainActivity mHostingActivity;
+    private IMainActivity mIMainActivity;
 
     // *********************** METHODS **********************************************************************
 
@@ -89,6 +86,7 @@ public class TripDetailFragment extends Fragment {
      */
     @Override public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mIMainActivity = (IMainActivity) getActivity();
 
         Bundle args = getArguments();
         if (args != null) {
@@ -159,7 +157,7 @@ public class TripDetailFragment extends Fragment {
         EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
         String tmpStr = newItem.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
-        mHostingActivity.saveTrip(mRetrievedTrip);
+        mIMainActivity.saveTrip(mRetrievedTrip);
         newItem.setText("");
         populateList();
     }
