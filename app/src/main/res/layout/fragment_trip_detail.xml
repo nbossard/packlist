@@ -171,7 +171,8 @@
 
         <!-- View that will be displayed if list is empty only -->
         <LinearLayout android:id="@+id/trip_detail__list_empty"
-                      android:layout_width="fill_parent" android:layout_height="fill_parent"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
                       android:gravity="center"
                       android:visibility="gone"
                       android:background="@color/packlist__list_background">

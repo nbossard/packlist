@@ -50,9 +50,9 @@ interface IMainActivity {
     /**
      * Ask Main activity to open detail fragment to display Trip of provided UUID.
      *
-     * @param parTripId a trip unique identifier (UUID)
+     * @param parTrip a trip object to be displayed
      */
-    void openTripDetailFragment(final String parTripId);
+    void openTripDetailFragment(final Trip parTrip);
 
     /**
      * Ask Main activity to open new trip fragment to display Trip of provided UUID.

@@ -34,6 +34,7 @@ package com.nbossard.packlist.model;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,7 +44,7 @@ import java.util.UUID;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip {
+public class Trip implements Serializable {
 
 // *********************** FIELDS *************************************************************************
 

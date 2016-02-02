@@ -155,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         String data = intent.getDataString();
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
             String tripId = data.substring(data.lastIndexOf("/") + 1);
-            openTripDetailFragment(tripId);
+            Trip loadedTrip = mSavingModule.loadSavedTrip(UUID.fromString(tripId));
+            openTripDetailFragment(loadedTrip);
         }
     }
 
@@ -170,14 +171,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
-     * @param parTripId unique
+     * @param parTrip unique
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final String parTripId) {
+    public final void openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
-        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
+        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

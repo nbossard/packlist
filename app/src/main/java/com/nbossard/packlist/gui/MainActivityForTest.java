@@ -61,6 +61,9 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
+    /** Saving module to retrieve Trip. */
+    private ISavingModule mSavingModule;
+
 // *********************** METHODS **************************************************************************
 
     @DebugLog
@@ -84,7 +87,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
         super.onStart();
 
         /* The saving module to retrieve and update data (trips).*/
-        ISavingModule mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
 
         openMainActivityFragment();
     }
@@ -151,7 +154,8 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
         String data = intent.getDataString();
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
             String tripId = data.substring(data.lastIndexOf("/") + 1);
-            openTripDetailFragment(tripId);
+            Trip loadedTrip = mSavingModule.loadSavedTrip(UUID.fromString(tripId));
+            openTripDetailFragment(loadedTrip);
         }
     }
 
@@ -166,14 +170,14 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
-     * @param parTripId unique
+     * @param parTrip trip object to be displayed
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final String parTripId) {
+    public final void openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
-        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
+        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

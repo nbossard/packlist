@@ -63,26 +63,22 @@ public class TripDetailFragment extends Fragment {
     /** The root view, will be used to findViewById. */
     private View mRootView;
 
-    /** The saving module to retrieve and update data (trips).*/
-    private ISavingModule mSavingModule;
-
-    /** Value provided when instantiating this fragment, unique identifier of trip. */
-    private UUID mTripId;
-
     /** Trip object to be displayed and added item. */
     private Trip mRetrievedTrip;
+
+    private IMainActivity mHostingActivity;
 
     // *********************** METHODS **********************************************************************
 
     /**
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
-     * @param parTripId identifier of trip to be displayed
+     * @param parTrip ttrip to be displayed
      */
-    public static TripDetailFragment newInstance(final String parTripId) {
+    public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
         Bundle b = new Bundle();
-        b.putCharSequence(BUNDLE_PAR_TRIP_ID, parTripId);
+        b.putSerializable(BUNDLE_PAR_TRIP_ID, parTrip);
         f.setArguments(b);
         return f;
     }
@@ -95,12 +91,10 @@ public class TripDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle args = getArguments();
-        mTripId = null;
         if (args != null) {
-            mTripId = UUID.fromString(args.getString(BUNDLE_PAR_TRIP_ID, ""));
+            mRetrievedTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP_ID);
         }
 
-        mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
     /**
@@ -115,7 +109,6 @@ public class TripDetailFragment extends Fragment {
         // Do not use this syntax, it will overwrite actvity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mRetrievedTrip = mSavingModule.loadSavedTrip(mTripId);
         mBinding.setTrip(mRetrievedTrip);
         mBinding.executePendingBindings();
 
@@ -155,7 +148,7 @@ public class TripDetailFragment extends Fragment {
      * Will add a new item.
      */
     public final void onClickEditTrip() {
-        ((IMainActivity) getActivity()).openNewTripFragment(mTripId);
+        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
     }
 
     /**
@@ -166,9 +159,7 @@ public class TripDetailFragment extends Fragment {
         EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
         String tmpStr = newItem.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
-        // TODO clean this ugly block
-        mSavingModule.deleteTrip(mRetrievedTrip.getUUID());
-        mSavingModule.addOrUpdateTrip(mRetrievedTrip);
+        mHostingActivity.saveTrip(mRetrievedTrip);
         newItem.setText("");
         populateList();
     }

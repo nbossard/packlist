@@ -99,9 +99,8 @@ public class MainActivityFragment extends Fragment {
                                 final int position,
                                 final long id) {
             Trip clickedTrip = (Trip) mTripListView.getItemAtPosition(position);
-            mIMainActivity.openTripDetailFragment(clickedTrip.getUUID().toString());
+            mIMainActivity.openTripDetailFragment(clickedTrip);
         }
-
     };
 
     /**
