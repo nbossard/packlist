@@ -26,11 +26,14 @@ package com.nbossard.packlist.model;
     }
 @enduml
  */
+
+import java.io.Serializable;
+
 /**
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item {
+public class Item implements Serializable {
 
     /** The trip name usually destination. */
     private String mName;
