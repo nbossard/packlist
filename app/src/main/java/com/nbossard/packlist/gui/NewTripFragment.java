@@ -41,6 +41,7 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -75,9 +76,13 @@ public class NewTripFragment extends Fragment {
     /** Frag to identify fragment for end date picker. */
     public static final String DATEPICKER_END_TAG = "datepickerstart";
 
+    /** End of trip date as a GregorianCalendar. */
+    private GregorianCalendar mEndDate;
+
+    /** Start of trip date as a GregorianCalendar. */
+    private GregorianCalendar mStartDate;
 
     // *********************** LISTENERS ********************************************************************
-
     /**
      * Listener for when user clicks on "submit" button.
      */
@@ -88,8 +93,8 @@ public class NewTripFragment extends Fragment {
 
             // update trip
             mTrip.setName(mNameTV.getText().toString());
-            mTrip.setStartDate(mStartDateTV.getText().toString());
-            mTrip.setEndDate(mEndDateTV.getText().toString());
+            mTrip.setStartDate(mStartDate);
+            mTrip.setEndDate(mEndDate);
             mTrip.setNote(mNoteTV.getText().toString());
 
             // asking supporting activity to launch creation of new trip
@@ -110,6 +115,7 @@ public class NewTripFragment extends Fragment {
         @Override
         public void onDateSet(final DatePickerDialog parDatePickerDialog,
                               final int year, final int month, final int day) {
+            mStartDate = new GregorianCalendar(year, month, day);
             mStartDateTV.setText(
                     String.format(getActivity().getString(R.string.dateFormat), year, month + 1, day));
         }
@@ -124,6 +130,7 @@ public class NewTripFragment extends Fragment {
                 @Override
                 public void onDateSet(final DatePickerDialog parDatePickerDialog,
                                       final int year, final int month, final int day) {
+                    mEndDate = new GregorianCalendar(year, month, day);
                     mEndDateTV.setText(
                             String.format(
                                     getActivity().getString(R.string.dateFormat), year, month + 1, day));

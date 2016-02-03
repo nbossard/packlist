@@ -25,6 +25,7 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -45,9 +46,21 @@ public class ISavingModuleTest extends InstrumentationTestCase {
 // *********************** METHODS **************************************************************************
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015", "pas trop loin");
-        mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015", "Bèèèèè");
-        mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015", "beurk");
+        mTestTrip1 =
+                new Trip("Rennes",
+                        new GregorianCalendar(2015,12,12),
+                        new GregorianCalendar(2015,12,14),
+                        "pas trop loin");
+        mTestTrip2 =
+                new Trip("Dublin",
+                        new GregorianCalendar(2015,5,1),
+                        new GregorianCalendar(2015,5,8),
+                        "Bèèèèè");
+        mTestTrip3 =
+                new Trip("Londres",
+                        new GregorianCalendar(2015,6,4),
+                        new GregorianCalendar(2015,6,9),
+                        "beurk");
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
         mTestedSavingModule.deleteAllTrips();
     }

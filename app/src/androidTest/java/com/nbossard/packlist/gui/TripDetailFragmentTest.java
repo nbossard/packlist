@@ -29,6 +29,8 @@ import com.robotium.solo.Solo;
 
 import junit.framework.Assert;
 
+import java.util.GregorianCalendar;
+
 /**
  * Robotium tests on {@link TripDetailFragment} using {@link MainActivityForTest}
  * Created by naub7473 on 26/01/2016.
@@ -38,8 +40,8 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     // ********************** CONSTANTS *********************************************************************
 
     public static final String TEST_TRIP_NAME = "Rome";
-    public static final String TEST_START_DATE = "1-1-2011";
-    public static final String TEST_END_DATE = "2-2-2012";
+    public static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011,1,1);
+    public static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012,2,2);
     public static final String TEST_NOTE = "Have fun";
     public static final String TEST_ITEM_NAME = "Socks";
 

@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/new_trip__start_date__button"
                 android:layout_toStartOf="@id/new_trip__start_date__button"
-                android:text="@{trip.startDate}"
+                android:text="@{trip.formattedStartDate}"
                 android:inputType="date"/>
         </RelativeLayout>
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/new_trip__end_date__button"
                 android:layout_toStartOf="@id/new_trip__end_date__button"
-                android:text="@{trip.endDate}"
+                android:text="@{trip.formattedEndDate}"
                 android:inputType="date"/>
 
         </RelativeLayout>

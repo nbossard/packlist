@@ -138,9 +138,9 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.tvName.setText(oneDev.getName());
-        vHolderRecycle.tvStartDate.setText(oneDev.getStartDate());
-        vHolderRecycle.tvEndDate.setText(oneDev.getEndDate());
-        if ((oneDev.getStartDate().length() == 0) && (oneDev.getEndDate().length() == 0)) {
+        vHolderRecycle.tvStartDate.setText(oneDev.getFormattedStartDate());
+        vHolderRecycle.tvEndDate.setText(oneDev.getFormattedEndDate());
+        if ((oneDev.getStartDate() == null) && (oneDev.getEndDate() == null)) {
             vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
         } else {
             vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);

@@ -22,6 +22,8 @@ package com.nbossard.packlist.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.GregorianCalendar;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -34,10 +36,10 @@ public class TripTest  {
 
     private static final String TRIP_NAME = "London";
     private static final String UPDATED_TRIP_NAME = "Dublin";
-    private static final String TRIP_DATE = "25 february 2015";
-    private static final String UPDATED_TRIP_DATE = "28 february 2015";
-    private static final String TRIP_END = "30 march 2015";
-    private static final String UPDATED_TRIP_END = "30 april 2015";
+    private static final GregorianCalendar TRIP_DATE = new GregorianCalendar(2015,2,25);
+    private static final GregorianCalendar UPDATED_TRIP_DATE = new GregorianCalendar(2015,2,28);
+    private static final GregorianCalendar TRIP_END = new GregorianCalendar(2015,3,30);
+    private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
     public static final String NEW_ITEM_NAME = "newItemName";
@@ -131,7 +133,5 @@ public class TripTest  {
         assertNotNull(mTestTrip.toString());
         assertTrue(mTestTrip.toString().contains(TRIP_NAME));
         assertTrue(mTestTrip.toString().contains(TRIP_NOTE));
-        assertTrue(mTestTrip.toString().contains(TRIP_DATE));
-        assertTrue(mTestTrip.toString().contains(TRIP_END));
     }
 }

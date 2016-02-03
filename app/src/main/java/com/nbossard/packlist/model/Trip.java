@@ -35,7 +35,9 @@ package com.nbossard.packlist.model;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,10 +57,10 @@ public class Trip implements Serializable {
     private String mName;
 
     /** Trip start date. */
-    private String mStartDate;
+    private GregorianCalendar mStartDate;
 
     /** Trip return date. */
-    private String mEndDate;
+    private GregorianCalendar mEndDate;
 
     /** Additional notes, free text. */
     private String mNote;
@@ -86,8 +88,8 @@ public class Trip implements Serializable {
      * @param parNote additional notes, free text
      */
     public Trip(final String parName,
-                final String parStartDate,
-                final String parEndDate,
+                final GregorianCalendar parStartDate,
+                final GregorianCalendar parEndDate,
                 final String parNote) {
         this();
         setName(parName);
@@ -133,8 +135,20 @@ public class Trip implements Serializable {
      * Getter for trip start date.
      * @return trip start date
      */
-    public final String getStartDate() {
+    public final GregorianCalendar getStartDate() {
         return mStartDate;
+    }
+
+    /**
+     * The trip start date but as a locale formatted date.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedStartDate() {
+        String res = null;
+        if (mStartDate != null) {
+            return DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -142,7 +156,7 @@ public class Trip implements Serializable {
      * @param parStartDate trip start date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setStartDate(final String parStartDate) {
+    public final void setStartDate(final GregorianCalendar parStartDate) {
         mStartDate = parStartDate;
     }
 
@@ -150,8 +164,20 @@ public class Trip implements Serializable {
      * Getter for trip return date.
      * @return trip return date
      */
-    public final String getEndDate() {
+    public final GregorianCalendar getEndDate() {
         return mEndDate;
+    }
+
+    /**
+     * End date formatted according to device locale.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedEndDate() {
+        String res = null;
+        if (mEndDate != null) {
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -159,7 +185,7 @@ public class Trip implements Serializable {
      * @param parEndDate trip return date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setEndDate(final String parEndDate) {
+    public final void setEndDate(final GregorianCalendar parEndDate) {
         mEndDate = parEndDate;
     }
 

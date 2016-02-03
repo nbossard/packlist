@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:text="@string/trip_detail__start_date__label"
-                    android:visibility="@{trip.startDate.length==0 ? View.GONE : View.VISIBLE}"/>
+                    android:visibility="@{trip.startDate != null ? View.GONE : View.VISIBLE}"/>
 
                 <android.support.v4.widget.Space
                     android:layout_width="@dimen/space_label_value"
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="@{trip.startDate}"
+                    android:text="@{trip.formattedStartDate}"
                     tools:text="20 décembre 2015"/>
 
                 <android.support.v4.widget.Space
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:text="@string/trip_detail__end_date__label"
-                    android:visibility="@{trip.endDate.length==0 ? View.GONE : View.VISIBLE}"/>
+                    android:visibility="@{trip.endDate == null ? View.GONE : View.VISIBLE}"/>
 
                 <android.support.v4.widget.Space
                     android:layout_width="@dimen/space_label_value"
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="@{trip.endDate}"
+                    android:text="@{trip.formattedEndDate}"
                     tools:text="28 décembre 2015"/>
             </LinearLayout>
 
