@@ -33,6 +33,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,8 +79,11 @@ public class TripDetailFragment extends Fragment {
      */
     private ActionMode mActionMode;
 
-    // *********************** LISTENERS ********************************************************************
+    /** List of {@link Item} view. */
+    private ListView mItemListView;
 
+
+    // *********************** LISTENERS ********************************************************************
 
     /**
      * Listener for click on one item of the list.
@@ -145,8 +149,6 @@ public class TripDetailFragment extends Fragment {
         }
 
     };
-
-    private ListView mItemListView;
 
     // *********************** METHODS **********************************************************************
 
@@ -298,6 +300,7 @@ public class TripDetailFragment extends Fragment {
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
         ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
         mItemListView.setAdapter(itemAdapter);
+        mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mItemListView.setOnItemClickListener(mClickListener);
         mItemListView.setOnItemLongClickListener(mLongClickListener);
         mItemListView.invalidate();
