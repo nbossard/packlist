@@ -40,6 +40,7 @@ import com.nbossard.packlist.databinding.FragmentNewTripBinding;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
@@ -117,7 +118,7 @@ public class NewTripFragment extends Fragment {
                               final int year, final int month, final int day) {
             mStartDate = new GregorianCalendar(year, month, day);
             mStartDateTV.setText(
-                    String.format(getActivity().getString(R.string.dateFormat), year, month + 1, day));
+                    DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
         }
     };
 
@@ -132,8 +133,7 @@ public class NewTripFragment extends Fragment {
                                       final int year, final int month, final int day) {
                     mEndDate = new GregorianCalendar(year, month, day);
                     mEndDateTV.setText(
-                            String.format(
-                                    getActivity().getString(R.string.dateFormat), year, month + 1, day));
+                            DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
                 }
             };
 
