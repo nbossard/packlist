@@ -103,7 +103,8 @@ public class TripDetailFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
+    private AdapterView.OnItemLongClickListener mLongClickListener =
+            new AdapterView.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
@@ -206,7 +207,7 @@ public class TripDetailFragment extends Fragment {
         final Button addItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 onClickAddItem();
             }
         });
