@@ -6,8 +6,8 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xx january 2016"
-        versionName="0.4.0 alpha">
+        changeDate="05 february 2016"
+        versionName="0.4.0">
         <changelogtext>NEW : allow edition of trip details</changelogtext>
         <changelogtext>NEW : ISS4 allow deletion of item</changelogtext>
     </changelogversion>
