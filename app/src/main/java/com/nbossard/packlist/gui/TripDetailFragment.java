@@ -20,20 +20,27 @@
 package com.nbossard.packlist.gui;
 
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 /*
@@ -63,7 +70,83 @@ public class TripDetailFragment extends Fragment {
     /** Trip object to be displayed and added item. */
     private Trip mRetrievedTrip;
 
+    /** Supporting activity, to save trip.*/
     private IMainActivity mIMainActivity;
+
+    /**
+     * The object to support Contextual Action Bar (CAB).
+     */
+    private ActionMode mActionMode;
+
+    // *********************** LISTENERS ********************************************************************
+
+
+    /**
+     * Listener for click on one item of the list.
+     * Opens a new fragment displaying detail on trip.
+     */
+    private AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(final AdapterView<?> parent,
+                                final View view,
+                                final int position,
+                                final long id) {
+        }
+    };
+
+    /**
+     * Listener for long click on one item of the list.
+     * Opens the contextual action bar.
+     */
+    @NonNull
+    private AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
+                                       final int pos, final long id) {
+
+            // keep item selected
+            mItemListView.setItemChecked(pos, true);
+
+            // starting action mode
+            mActionMode = getActivity().startActionMode(new ActionMode.Callback() {
+                @Override
+                public boolean onCreateActionMode(final ActionMode mode, final Menu menu) {
+                    mode.setTitle("Selected");
+
+                    MenuInflater inflater = mode.getMenuInflater();
+                    inflater.inflate(R.menu.menu_main_cab, menu);
+                    return true;
+                }
+
+                @Override
+                public boolean onPrepareActionMode(final ActionMode mode, final Menu menu) {
+                    return false;
+                }
+
+                @Override
+                public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_delete:
+                            int position = (int) mActionMode.getTag();
+                            deleteItemClicked(position);
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+
+                @Override
+                public void onDestroyActionMode(final ActionMode mode) {
+                }
+            });
+            mActionMode.setTag(pos);
+            arg1.setSelected(true);
+            return true;
+        }
+
+    };
+
+    private ListView mItemListView;
 
     // *********************** METHODS **********************************************************************
 
@@ -165,6 +248,19 @@ public class TripDetailFragment extends Fragment {
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
+     * Effectively delete selected item then refresh the list.
+     *
+     * @param parPosition position in list of item to be deleted
+     */
+    private void deleteItemClicked(final int parPosition) {
+        Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        mRetrievedTrip.deleteItem(selectedItem.getUUID());
+        mIMainActivity.saveTrip(mRetrievedTrip);
+        mActionMode.finish();
+        populateList();
+    }
+
+    /**
      * Disable the "Add item" button if item text is empty.
      * @param parMButton button to be disabled
      */
@@ -198,10 +294,12 @@ public class TripDetailFragment extends Fragment {
      * Populate list with data in {@link ISavingModule}.
      */
     private void populateList() {
-        ListView mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
+        mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
         ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
         mItemListView.setAdapter(itemAdapter);
+        mItemListView.setOnItemClickListener(mClickListener);
+        mItemListView.setOnItemLongClickListener(mLongClickListener);
         mItemListView.invalidate();
     }
 

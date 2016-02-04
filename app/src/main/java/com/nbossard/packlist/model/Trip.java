@@ -218,6 +218,18 @@ public class Trip implements Serializable {
     }
 
 
+    public void deleteItem(final UUID parUUID) {
+        Item toDeleteItem = null;
+        for (Item oneItem:mListItem) {
+            if (oneItem.getUUID().compareTo(parUUID) == 0) {
+                toDeleteItem = oneItem;
+            }
+        }
+        if (toDeleteItem != null) {
+            mListItem.remove(toDeleteItem);
+        }
+    }
+
     @Override
     public final boolean equals(final Object parO) {
         if (this == parO) return true;
