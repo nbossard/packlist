@@ -24,26 +24,33 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
+
+import hugo.weaving.DebugLog;
 /*
 @startuml
     class com.nbossard.packlist.gui.TripDetailFragment {
@@ -82,6 +89,8 @@ public class TripDetailFragment extends Fragment {
     /** List of {@link Item} view. */
     private ListView mItemListView;
 
+    private EditText mNewItemEditText;
+    private Button mAddItemButton;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -151,6 +160,7 @@ public class TripDetailFragment extends Fragment {
 
     };
 
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -170,7 +180,8 @@ public class TripDetailFragment extends Fragment {
      * During creation, if arguments have been supplied to the fragment
      * then parse those out.
      */
-    @Override public final void onCreate(final Bundle savedInstanceState) {
+    @Override
+    public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIMainActivity = (IMainActivity) getActivity();
 
@@ -184,7 +195,8 @@ public class TripDetailFragment extends Fragment {
     /**
     * Create the view for this fragment, using the arguments given to it.
     */
-    @Override public final View onCreateView(final LayoutInflater inflater,
+    @Override
+    public final View onCreateView(final LayoutInflater inflater,
                                        final ViewGroup container,
                                        final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
@@ -199,21 +211,36 @@ public class TripDetailFragment extends Fragment {
         return mRootView;
     }
 
+    @DebugLog
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // TODO old style, improve this
-        final Button addItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
-        addItemButton.setOnClickListener(new View.OnClickListener() {
+        mNewItemEditText = (AppCompatEditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+
+        mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        mAddItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 onClickAddItem();
             }
         });
-        addItemButton.setEnabled(false);
-        disableButtonIfEmptyText(addItemButton);
+        mAddItemButton.setEnabled(false);
+        disableButtonIfEmptyText(mAddItemButton);
 
+        mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
+            @DebugLog
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    mAddItemButton.performClick();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
 
         final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +249,7 @@ public class TripDetailFragment extends Fragment {
                 onClickEditTrip();
             }
         });
+
 
 
         populateList();
@@ -240,11 +268,10 @@ public class TripDetailFragment extends Fragment {
      * Will add a new item.
      */
     public final void onClickAddItem() {
-        EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
-        String tmpStr = newItem.getText().toString();
+        String tmpStr = mNewItemEditText.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
         mIMainActivity.saveTrip(mRetrievedTrip);
-        newItem.setText("");
+        mNewItemEditText.setText("");
         populateList();
     }
 

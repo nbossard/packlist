@@ -253,6 +253,9 @@ public class NewTripFragment extends Fragment {
         mBinding.setTrip(mTrip);
         mBinding.executePendingBindings();
 
+        mStartDate = mTrip.getStartDate();
+        mEndDate = mTrip.getEndDate();
+
         return mRootView;
     }
 

@@ -158,7 +158,11 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/trip_detail__new_item__button"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/trip_detail__new_item__button"/>
+            android:layout_toLeftOf="@id/trip_detail__new_item__button"
+            android:inputType="text"
+            android:maxLines="1"
+            android:lines="1"
+            android:imeOptions="actionGo"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
