@@ -89,7 +89,10 @@ public class TripDetailFragment extends Fragment {
     /** List of {@link Item} view. */
     private ListView mItemListView;
 
+    /** Edit text. */
     private EditText mNewItemEditText;
+
+    /** Add item button. */
     private Button mAddItemButton;
 
     // *********************** LISTENERS ********************************************************************
