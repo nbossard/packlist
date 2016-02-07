@@ -25,21 +25,27 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="27 janvier 2015"
-        versionName="0.3.0 alpha">
+        changeDate="05 février 2016"
+        versionName="0.4.0">
+        <changelogtext>NEW : édition possible du descriptif du voyage</changelogtext>
+        <changelogtext>NEW : ISS4 possibilité de supprimer un item</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="27 janvier 2016"
+        versionName="0.3.0">
         <changelogtext>NEW : utilisation du composant datetimepicker</changelogtext>
         <changelogtext>NEW : amélioration de la gestion des champs vide, surtout les dates</changelogtext>
         <changelogtext>NEW : ajout du numéro de version dans la page à propos</changelogtext>
     </changelogversion>
     <changelogversion
-        changeDate="24 janvier 2015"
-        versionName="0.2.0 alpha">
+        changeDate="24 janvier 2016"
+        versionName="0.2.0">
         <changelogtext>NEW : ajout de ce changelog</changelogtext>
         <changelogtext>NEW : possibilité d'ajouter des items à un voyage</changelogtext>
     </changelogversion>
     <changelogversion
-        changeDate="06 janvier 2015"
-        versionName="0.1.0 alpha">
+        changeDate="06 janvier 2016"
+        versionName="0.1.0">
         <changelogtext>NEW : version initiale, un peu vide :-)</changelogtext>
     </changelogversion>
 </changelog>

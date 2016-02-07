@@ -18,13 +18,13 @@
   ~ under the License.
   -->
 
+<!-- strings.xml -->
+<!-- -->
+<!-- English strings used in application, when compiled in debug mode-->
+<!-- Strings should be grouped by activity / fragment -->
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
-    <!-- Color for lists -->
-    <!-- Color for background of lists -->
-    <color name="packlist__list_background">#CCCCCC</color>
-    <color name="packlist__list_selected">#AAAAAA</color>
+    <!-- Common strings -->
+    <string name="app_name">packlist(debug)</string>
+
 </resources>

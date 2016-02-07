@@ -22,18 +22,37 @@ package com.nbossard.packlist.model;
 /*
 @startuml
     class com.nbossard.packlist.model.Item {
+        UUID mUUID
         String mName
     }
 @enduml
  */
+
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item {
+public class Item implements Serializable {
 
-    /** The trip name usually destination. */
+// *********************** FIELDS *************************************************************************
+
+    /** A unique identifier for this item. */
+    private UUID mUUID;
+
+    /** The item name. */
     private String mName;
+
+// *********************** METHODS **************************************************************************
+
+    /**
+     * No params constructor.
+     */
+    private Item() {
+        mUUID = UUID.randomUUID();
+    }
 
     /**
      * Full params constructor.
@@ -41,19 +60,20 @@ public class Item {
      * @param parName new item name. i.e. : "socks"
      */
     public Item(final String parName) {
-        mName = parName;
+        this();
+        setName(parName);
     }
 
     /**
      * Getter for name.
-     * @return i.e. : "Dublin"
+     * @return i.e. : "Socks"
      */
     public final String getName() {
         return mName;
     }
 
     /**
-     * Setter for name/ destination of trip.
+     * Setter for name/ destination of item.
      * @param parName trip name, usually destination. i.e. : "Dublin"
      */
     @SuppressWarnings("WeakerAccess")
@@ -61,12 +81,18 @@ public class Item {
         mName = parName;
     }
 
+    public UUID getUUID() {
+        return mUUID;
+    }
+
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Item{");
-        sb.append("mName='").append(mName).append('\'');
+        sb.append("mUUID=").append(mUUID);
+        sb.append(", mName='").append(mName).append('\'');
         sb.append('}');
         return sb.toString();
     }
+
 }

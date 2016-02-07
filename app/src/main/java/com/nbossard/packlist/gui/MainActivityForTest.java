@@ -36,7 +36,11 @@ import android.view.View;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import android.util.Log;
+
+import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
+
+import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
@@ -54,11 +58,11 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
 // *********************** FIELDS ***************************************************************************
 
-    /** The saving module to retrieve and update data (trips).*/
-    private ISavingModule mSavingModule;
-
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
+
+    /** Saving module to retrieve Trip. */
+    private ISavingModule mSavingModule;
 
 // *********************** METHODS **************************************************************************
 
@@ -81,6 +85,8 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     @Override
     protected final void onStart() {
         super.onStart();
+
+        /* The saving module to retrieve and update data (trips).*/
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
 
         openMainActivityFragment();
@@ -89,7 +95,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     /**
      * Opens the provided fragment in a dialog.
      *
-     * @param parDialogStandardFragment
+     * @param parDialogStandardFragment fragment to be opened
      */
     @DebugLog
     private void openDialogFragment(final DialogFragment parDialogStandardFragment) {
@@ -148,7 +154,8 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
         String data = intent.getDataString();
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
             String tripId = data.substring(data.lastIndexOf("/") + 1);
-            openTripDetailFragment(tripId);
+            Trip loadedTrip = mSavingModule.loadSavedTrip(UUID.fromString(tripId));
+            openTripDetailFragment(loadedTrip);
         }
     }
 
@@ -156,24 +163,21 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
     @Override
     @DebugLog
-    public final void createNewTrip(final String parName,
-                              final String parStartDate,
-                              final String parEndDate,
-                              final String parNote) {
-       Log.d(TAG, "createNewTrip() faked");
+    public final void saveTrip(final Trip parTrip) {
+       Log.d(TAG, "saveTrip() faked");
     }
 
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
-     * @param parTripId unique
+     * @param parTrip trip object to be displayed
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final String parTripId) {
+    public final void openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
-        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTripId);
+        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -186,6 +190,11 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
         // updating FAB action
         mFab.hide();
+    }
+
+    @Override
+    public void openNewTripFragment(UUID parTripId) {
+
     }
 
     @Override

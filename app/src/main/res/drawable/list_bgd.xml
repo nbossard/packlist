@@ -18,13 +18,16 @@
   ~ under the License.
   -->
 
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
-    <!-- Color for lists -->
-    <!-- Color for background of lists -->
-    <color name="packlist__list_background">#CCCCCC</color>
-    <color name="packlist__list_selected">#AAAAAA</color>
-</resources>
+<!-- List background colors -->
+<!---->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_activated="true"
+          android:state_enabled="true"
+          android:drawable="@color/packlist__list_selected"/>
+    <item android:state_enabled="true"
+          android:drawable="@android:color/transparent" />
+
+</selector>

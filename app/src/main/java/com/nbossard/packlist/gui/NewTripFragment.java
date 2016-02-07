@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.gui;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -33,9 +34,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.databinding.FragmentNewTripBinding;
+import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.saving.ISavingModule;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
@@ -49,13 +57,16 @@ import hugo.weaving.DebugLog;
  */
 
 /**
- * Allow user  to input trip characteristics.
+ * Allow user to input new trip characteristics or edit.
  *
  * @author Created by nbossard on 30/12/15.
  */
 public class NewTripFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
+
+    /** Bundle mandatory parameter when instantiating this fragment. */
+    public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
 
     /** constant for "do not vibrate" in calendar. */
     private static final boolean DO_NOT_VIBRATE = false;
@@ -66,9 +77,13 @@ public class NewTripFragment extends Fragment {
     /** Frag to identify fragment for end date picker. */
     public static final String DATEPICKER_END_TAG = "datepickerstart";
 
+    /** End of trip date as a GregorianCalendar. */
+    private GregorianCalendar mEndDate;
+
+    /** Start of trip date as a GregorianCalendar. */
+    private GregorianCalendar mStartDate;
 
     // *********************** LISTENERS ********************************************************************
-
     /**
      * Listener for when user clicks on "submit" button.
      */
@@ -77,11 +92,14 @@ public class NewTripFragment extends Fragment {
         @Override
         public void onClick(final View v) {
 
+            // update trip
+            mTrip.setName(mNameTV.getText().toString());
+            mTrip.setStartDate(mStartDate);
+            mTrip.setEndDate(mEndDate);
+            mTrip.setNote(mNoteTV.getText().toString());
+
             // asking supporting activity to launch creation of new trip
-            mHostingActivity.createNewTrip(mNameTV.getText().toString(),
-                    mStartDateTV.getText().toString(),
-                    mEndDateTV.getText().toString(),
-                    mNoteTV.getText().toString());
+            mHostingActivity.saveTrip(mTrip);
 
             // navigating back
             FragmentManager fragMgr = getActivity().getSupportFragmentManager();
@@ -98,8 +116,9 @@ public class NewTripFragment extends Fragment {
         @Override
         public void onDateSet(final DatePickerDialog parDatePickerDialog,
                               final int year, final int month, final int day) {
+            mStartDate = new GregorianCalendar(year, month, day);
             mStartDateTV.setText(
-                    String.format(getActivity().getString(R.string.dateFormat), year, month + 1, day));
+                    DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
         }
     };
 
@@ -112,9 +131,9 @@ public class NewTripFragment extends Fragment {
                 @Override
                 public void onDateSet(final DatePickerDialog parDatePickerDialog,
                                       final int year, final int month, final int day) {
+                    mEndDate = new GregorianCalendar(year, month, day);
                     mEndDateTV.setText(
-                            String.format(
-                                    getActivity().getString(R.string.dateFormat), year, month + 1, day));
+                            DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
                 }
             };
 
@@ -167,7 +186,31 @@ public class NewTripFragment extends Fragment {
     /** Button to save and close. */
     private Button mSubmitButton;
 
+    /** Value provided when instantiating this fragment, unique identifier of trip. */
+    private UUID mTripId;
+
+    /** The saving module to retrieve and update data (trips).*/
+    private ISavingModule mSavingModule;
+
+    /** Trip object to be displayed and added item. */
+    private Trip mTrip;
+
     // *********************** METHODS **********************************************************************
+
+    /**
+     * Create a new instance of MyFragment that will be initialized
+     * with the given arguments.
+     * @param parTripId identifier of trip to be displayed
+     */
+    public static NewTripFragment newInstance(final UUID parTripId) {
+        NewTripFragment f = new NewTripFragment();
+        if (parTripId != null) {
+            Bundle b = new Bundle();
+            b.putCharSequence(BUNDLE_PAR_TRIP_ID, parTripId.toString());
+            f.setArguments(b);
+        }
+        return f;
+    }
 
     /**
      * Empty constructor.
@@ -175,10 +218,26 @@ public class NewTripFragment extends Fragment {
     public NewTripFragment() {
     }
 
+
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
         mIMainActivity = (IMainActivity) getActivity();
+
+        Bundle args = getArguments();
+        mTripId = null;
+        if (args != null) {
+            mTripId = UUID.fromString(args.getString(BUNDLE_PAR_TRIP_ID, ""));
+            if (mTripId != null) {
+                mTrip = mSavingModule.loadSavedTrip(mTripId);
+            } else {
+                mTrip = new Trip();
+            }
+        } else {
+            mTrip = new Trip();
+        }
     }
 
     @DebugLog
@@ -186,6 +245,17 @@ public class NewTripFragment extends Fragment {
     public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_new_trip, container, false);
+
+        // Magic of binding
+        // Do not use this syntax, it will overwrite actvity (we are in a fragment)
+        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
+        FragmentNewTripBinding mBinding = DataBindingUtil.bind(mRootView);
+        mBinding.setTrip(mTrip);
+        mBinding.executePendingBindings();
+
+        mStartDate = mTrip.getStartDate();
+        mEndDate = mTrip.getEndDate();
+
         return mRootView;
     }
 

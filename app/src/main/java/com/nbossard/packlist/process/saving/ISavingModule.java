@@ -43,16 +43,17 @@ public interface ISavingModule {
      * @return a list filled with the current trips or an empty list if was never saved. */
     List<Trip> loadSavedTrips();
 
-    /** Retrieve the list of saved trips.
+    /** Retrieve trip of provided UUID
      * @param parUUID Unique trip identifier
      * @return a trip of provided UUID or null if not found. */
     @Nullable
     Trip loadSavedTrip(UUID parUUID);
 
 
-    /** Add a new trip to the list of saved Trips.
+    /** Add a new trip to the list of saved Trips if not existing.
+     * Updates existing one if UUID is the same as one saved.
      * @param parTmpTrip new trip to be added to saved trips. */
-    void addNewTrip(Trip parTmpTrip);
+    void addOrUpdateTrip(Trip parTmpTrip);
 
     /** Delete all previously saved trips, mainly for testing. */
     void deleteAllTrips();

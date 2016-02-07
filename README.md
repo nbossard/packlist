@@ -18,6 +18,7 @@ Which is very disappointing when you wish to save your lists.
    - mandatory usage of quality plugins : checkstyle, findbugs
    - exhaustive javadoc
    - unit testing and android testing and Robotium testing
+   - contiuous integration using Travis (https://travis-ci.org/nbossard/packlist)
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation
  - re-use of external libraries on GitHub

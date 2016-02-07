@@ -34,18 +34,19 @@ package com.nbossard.packlist.model;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
-
-import hugo.weaving.DebugLog;
 
 /**
  * A trip data model.
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip {
+public class Trip implements Serializable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -56,10 +57,10 @@ public class Trip {
     private String mName;
 
     /** Trip start date. */
-    private String mStartDate;
+    private GregorianCalendar mStartDate;
 
     /** Trip return date. */
-    private String mEndDate;
+    private GregorianCalendar mEndDate;
 
     /** Additional notes, free text. */
     private String mNote;
@@ -72,6 +73,14 @@ public class Trip {
 // *********************** METHODS **************************************************************************
 
     /**
+     * No parameter Constructor.
+     */
+    public Trip() {
+        mUUID = UUID.randomUUID();
+        mListItem = new ArrayList<>();
+    }
+
+    /**
      * Full parameters constructor.
      * @param parName trip name, usually destination. i.e. : "Dublin"
      * @param parStartDate trip start date
@@ -79,17 +88,14 @@ public class Trip {
      * @param parNote additional notes, free text
      */
     public Trip(final String parName,
-                final String parStartDate,
-                final String parEndDate,
+                final GregorianCalendar parStartDate,
+                final GregorianCalendar parEndDate,
                 final String parNote) {
-
-        mUUID = UUID.randomUUID();
+        this();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
-
-        mListItem = new ArrayList<>();
     }
 
     /**
@@ -129,8 +135,20 @@ public class Trip {
      * Getter for trip start date.
      * @return trip start date
      */
-    public final String getStartDate() {
+    public final GregorianCalendar getStartDate() {
         return mStartDate;
+    }
+
+    /**
+     * The trip start date but as a locale formatted date.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedStartDate() {
+        String res = null;
+        if (mStartDate != null) {
+            return DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -138,7 +156,7 @@ public class Trip {
      * @param parStartDate trip start date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setStartDate(final String parStartDate) {
+    public final void setStartDate(final GregorianCalendar parStartDate) {
         mStartDate = parStartDate;
     }
 
@@ -146,8 +164,20 @@ public class Trip {
      * Getter for trip return date.
      * @return trip return date
      */
-    public final String getEndDate() {
+    public final GregorianCalendar getEndDate() {
         return mEndDate;
+    }
+
+    /**
+     * End date formatted according to device locale.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedEndDate() {
+        String res = null;
+        if (mEndDate != null) {
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -155,7 +185,7 @@ public class Trip {
      * @param parEndDate trip return date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setEndDate(final String parEndDate) {
+    public final void setEndDate(final GregorianCalendar parEndDate) {
         mEndDate = parEndDate;
     }
 
@@ -163,6 +193,7 @@ public class Trip {
      *
      * @return automatically set UUID
      */
+    @NonNull
     public final UUID getUUID() {
         return mUUID;
     }
@@ -187,8 +218,20 @@ public class Trip {
     }
 
 
+    public void deleteItem(final UUID parUUID) {
+        Item toDeleteItem = null;
+        for (Item oneItem:mListItem) {
+            if (oneItem.getUUID().compareTo(parUUID) == 0) {
+                toDeleteItem = oneItem;
+            }
+        }
+        if (toDeleteItem != null) {
+            mListItem.remove(toDeleteItem);
+        }
+    }
+
     @Override
-    public final boolean equals(Object parO) {
+    public final boolean equals(final Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
