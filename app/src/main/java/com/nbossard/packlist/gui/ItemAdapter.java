@@ -61,7 +61,7 @@ class ItemAdapter extends BaseAdapter {
         /**
          * Reference (result of findviewbyid) to the is packed checkbox.
          */
-        private CheckBox tvIsPacked;
+        private TextView tvIsPacked;
     }
 
     // ********************** FIELDS ************************************************************************
@@ -120,7 +120,7 @@ class ItemAdapter extends BaseAdapter {
 
             // getting views
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
-            vHolderRecycle.tvIsPacked = (CheckBox) parConvertView.findViewById(R.id.ia__checkbox);
+            vHolderRecycle.tvIsPacked = (TextView) parConvertView.findViewById(R.id.ia__packed);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
@@ -130,18 +130,11 @@ class ItemAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.tvName.setText(curItem.getName());
-        vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
-
-        //setting listeners
-        vHolderRecycle.tvIsPacked.setOnClickListener( new View.OnClickListener() {
-            @DebugLog
-            public void onClick(View v) {
-                CheckBox cb = (CheckBox) v;
-
-                curItem.setPacked(cb.isChecked());
-                parParentView.performClick();
-            }
-        });
+        if (curItem.isPacked()) {
+            vHolderRecycle.tvIsPacked.setVisibility(View.VISIBLE);
+        } else {
+            vHolderRecycle.tvIsPacked.setVisibility(View.GONE);
+        }
 
         // saving viewholder
         parConvertView.setTag(vHolderRecycle);

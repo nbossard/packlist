@@ -105,8 +105,12 @@ public class TripDetailFragment extends Fragment {
         @DebugLog
         public void onItemClick(final AdapterView<?> parent,
                                 final View view,
-                                final int position,
+                                final int parPosition,
                                 final long id) {
+            Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+            selectedItem.setPacked(!selectedItem.isPacked());
+            mIMainActivity.saveTrip(mRetrievedTrip);
+            populateList();
         }
     };
 

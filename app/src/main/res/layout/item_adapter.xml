@@ -30,12 +30,15 @@
               android:layout_height="match_parent"
               android:background="@drawable/list_bgd">
 
-    <CheckBox
-        android:id="@+id/ia__checkbox"
+    <TextView
+        android:id="@+id/ia__packed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
+        android:text="@string/ia__packed"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="10dip"
+        android:layout_height="1dip"/>
 
     <TextView
         android:id="@+id/ia__name"
