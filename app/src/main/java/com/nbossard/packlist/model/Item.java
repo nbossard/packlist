@@ -45,6 +45,9 @@ public class Item implements Serializable {
     /** The item name. */
     private String mName;
 
+    /** Has this item been packed already. true=yes, false=no. */
+    private boolean mIsPacked;
+
 // *********************** METHODS **************************************************************************
 
     /**
@@ -65,6 +68,13 @@ public class Item implements Serializable {
     }
 
     /**
+     * @return automatically set UUID (unique identifier)
+     */
+    public final UUID getUUID() {
+        return mUUID;
+    }
+
+    /**
      * Getter for name.
      * @return i.e. : "Socks"
      */
@@ -81,18 +91,29 @@ public class Item implements Serializable {
         mName = parName;
     }
 
-    public UUID getUUID() {
-        return mUUID;
+    /**
+     * Getter for boolean whether or not this item is packed.
+     * @return true=yes, false=no.
+     */
+    public final boolean isPacked() {
+        return mIsPacked;
     }
 
+    /**
+     * Setter for  whether or not this item is packed.
+     * @param parPacked true=yes, false=no.
+     */
+    public final void setPacked(final boolean parPacked) {
+        mIsPacked = parPacked;
+    }
 
     @Override
-    public String toString() {
+    public final String toString() {
         final StringBuffer sb = new StringBuffer("Item{");
         sb.append("mUUID=").append(mUUID);
         sb.append(", mName='").append(mName).append('\'');
+        sb.append(", mIsPacked='").append(mIsPacked).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 }

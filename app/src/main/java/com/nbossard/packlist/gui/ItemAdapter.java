@@ -24,12 +24,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
 import java.util.List;
+
+import hugo.weaving.DebugLog;
 
 /**
  * An adapter for displaying a trip {@link Item} in a ListView.
@@ -55,6 +58,10 @@ class ItemAdapter extends BaseAdapter {
          */
         private TextView tvName;
 
+        /**
+         * Reference (result of findviewbyid) to the is packed checkbox.
+         */
+        private CheckBox tvIsPacked;
     }
 
     // ********************** FIELDS ************************************************************************
@@ -110,18 +117,33 @@ class ItemAdapter extends BaseAdapter {
             final LayoutInflater inflater = (LayoutInflater) ItemAdapter.this.
                     mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
+
+            // getting views
+            vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
+            vHolderRecycle.tvIsPacked = (CheckBox) parConvertView.findViewById(R.id.ia__checkbox);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
-        // getting views
-        vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
 
-        final Item oneDev = mItemList.get(parPosition);
+        final Item curItem = mItemList.get(parPosition);
 
         // updating views
-        vHolderRecycle.tvName.setText(oneDev.getName());
+        vHolderRecycle.tvName.setText(curItem.getName());
+        vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
 
+        //setting listeners
+        vHolderRecycle.tvIsPacked.setOnClickListener( new View.OnClickListener() {
+            @DebugLog
+            public void onClick(View v) {
+                CheckBox cb = (CheckBox) v;
+
+                curItem.setPacked(cb.isChecked());
+                parParentView.performClick();
+            }
+        });
+
+        // saving viewholder
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
     }

@@ -25,15 +25,22 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/list_bgd">
+
+    <CheckBox
+        android:id="@+id/ia__checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Verdun"/>
+        tools:text="Socks"/>
 
 </LinearLayout>

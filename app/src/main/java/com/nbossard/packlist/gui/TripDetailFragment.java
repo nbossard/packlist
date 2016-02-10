@@ -25,7 +25,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
@@ -99,10 +98,11 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Listener for click on one item of the list.
-     * Opens a new fragment displaying detail on trip.
+     * Opens a new fragment displaying detail on item.
      */
-    private AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
+        @DebugLog
         public void onItemClick(final AdapterView<?> parent,
                                 final View view,
                                 final int position,
@@ -117,6 +117,7 @@ public class TripDetailFragment extends Fragment {
     @NonNull
     private AdapterView.OnItemLongClickListener mLongClickListener =
             new AdapterView.OnItemLongClickListener() {
+        @DebugLog
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
@@ -253,9 +254,31 @@ public class TripDetailFragment extends Fragment {
             }
         });
 
-
-
         populateList();
+    }
+
+    @DebugLog
+    @Override
+    public void setUserVisibleHint(final boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
+    @DebugLog
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @DebugLog
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @DebugLog
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     /**
@@ -332,7 +355,7 @@ public class TripDetailFragment extends Fragment {
         ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
         mItemListView.setAdapter(itemAdapter);
         mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        mItemListView.setOnItemClickListener(mClickListener);
+        mItemListView.setOnItemClickListener(mItemClickListener);
         mItemListView.setOnItemLongClickListener(mLongClickListener);
         mItemListView.invalidate();
     }
