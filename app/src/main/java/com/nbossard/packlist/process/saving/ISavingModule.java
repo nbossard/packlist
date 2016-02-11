@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.support.annotation.Nullable;
 
+import com.nbossard.packlist.model.Category;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
@@ -61,4 +62,7 @@ public interface ISavingModule {
     /** Delete provided trip in saving module.
      * @param parUUID Unique trip identifier */
     void deleteTrip(UUID parUUID);
+
+    /** Load categories. */
+    List<Category> loadCategories();
 }

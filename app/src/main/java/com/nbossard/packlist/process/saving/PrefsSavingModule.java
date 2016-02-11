@@ -25,6 +25,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.nbossard.packlist.model.CatItem;
+import com.nbossard.packlist.model.Category;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
@@ -161,7 +163,6 @@ public class PrefsSavingModule implements ISavingModule {
         editor.apply();
     }
 
-
     private final void addTrip(final Trip parTmpTrip) {
         // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();
@@ -171,5 +172,25 @@ public class PrefsSavingModule implements ISavingModule {
 
         // save updated list
         save(prevSavedTrips);
+    }
+
+
+    @Override
+    public List<Category> loadCategories() {
+        // TODO remove this fake
+        List<Category> resList = new ArrayList<>();
+
+        Category fakeCat1 = new Category("Linge de base", Category.ALWAYS);
+        fakeCat1.addItem(new CatItem("Culotte"));
+        fakeCat1.addItem(new CatItem("Chaussettes"));
+
+        Category fakeCat2 = new Category("Windsurf", Category.OPTIONAL);
+        fakeCat1.addItem(new CatItem("Planche"));
+        fakeCat1.addItem(new CatItem("Harnais"));
+
+        resList.add(fakeCat1);
+        resList.add(fakeCat2);
+
+        return resList;
     }
 }

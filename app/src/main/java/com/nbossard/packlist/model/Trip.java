@@ -65,7 +65,6 @@ public class Trip implements Serializable {
     /** Additional notes, free text. */
     private String mNote;
 
-
     /** List of items to bring in this trip. */
     private List<Item> mListItem;
 

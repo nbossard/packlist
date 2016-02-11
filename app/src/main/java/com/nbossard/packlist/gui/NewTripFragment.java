@@ -37,12 +37,15 @@ import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentNewTripBinding;
+import com.nbossard.packlist.model.CatItem;
+import com.nbossard.packlist.model.Category;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -97,6 +100,15 @@ public class NewTripFragment extends Fragment {
             mTrip.setStartDate(mStartDate);
             mTrip.setEndDate(mEndDate);
             mTrip.setNote(mNoteTV.getText().toString());
+
+            // automatically fill trip based on categories
+            List<Category> preFillCats = mSavingModule.loadCategories();
+            for (Category onePrefillCat : preFillCats) {
+                for (CatItem onePrefillIrm : onePrefillCat.getItemList()) {
+                    mTrip.addItem(onePrefillIrm.getName());
+                }
+            }
+
 
             // asking supporting activity to launch creation of new trip
             mHostingActivity.saveTrip(mTrip);
