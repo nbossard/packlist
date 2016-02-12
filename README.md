@@ -8,10 +8,13 @@ Which is very disappointing when you wish to save your lists and keep your phone
 Play Store link : https://play.google.com/store/apps/details?id=com.nbossard.packlist
 
 ### Objectives in term of functionality : 
- * free
- * multi-language
- * activities based
+ * multi-language (currently French and english but please help for others)
+ * pre-filling of list throught questions on what you are planning to do during your trip
  
+### Objectives : 
+ * free (in terms of free beer)
+ * open-source
+
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
  - GitFlow organisation
