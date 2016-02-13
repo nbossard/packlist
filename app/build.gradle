@@ -41,7 +41,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            // setting minifyEnabled to false will disable proguard
+            // and consequently allow easy crash report understanding
+            minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
