@@ -91,7 +91,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertTrue(loadedTrips.contains(mTestTrip3));
     }
 
-    public void testAddOrUpdateTrip() {
+    public void testAddOrUpdateTrip() throws Exception {
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip3);
