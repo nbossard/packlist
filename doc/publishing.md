@@ -23,3 +23,4 @@
  - update versionName in build.gradle
  - add new block in both changelog.xml
  - git add / commit /push
+ - checkout develop
