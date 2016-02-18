@@ -46,13 +46,14 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
+- 0.5 18th february 2016
 - 0.4 8th february 2016
 - 0.3 alpha 
 - 0.2 alpha 24th january 2016
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2 Beta 2
+- Android Studio 2 Beta 5
     - git ignore plugin
     - markdown plugin (Markdown Support)
 
