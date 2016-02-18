@@ -21,3 +21,5 @@
  - add apk and screenshots to git / commit / push
  - update versionCode in build.gradle
  - update versionName in build.gradle
+ - add new block in both changelog.xml
+ - git add / commit /push
