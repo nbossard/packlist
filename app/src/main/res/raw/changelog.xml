@@ -7,11 +7,18 @@
 <changelog bulletedList="true">
     <changelogversion
         changeDate="xx february 2016"
-        versionName="0.5.0">
-        <changelogtext>NEW : ISS5 possibility to mark items as packed</changelogtext>
+        versionName="0.6.0">
+        <changelogtext></changelogtext>
     </changelogversion>
     <changelogversion
-        changeDate="05 february 2016"
+        changeDate="18th february 2016"
+        versionName="0.5.0">
+        <changelogtext>NEW : ISS5 possibility to mark items as packed</changelogtext>
+        <changelogtext>Fixing crash when returning from background</changelogtext>
+        <changelogtext>ISS9 : removing obfuscation</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="05th february 2016"
         versionName="0.4.0">
         <changelogtext>NEW : allow edition of trip details</changelogtext>
         <changelogtext>NEW : ISS4 allow deletion of item</changelogtext>

@@ -2,14 +2,19 @@
 
 ## An open-source packing list for Android
 
-Why another packing-list... because existing are incomplete, out-of-date or expensive and any way not open-source.
-Which is very disappointing when you wish to save your lists.
+Why another packing-list... because existing are incomplete, out-of-date or expensive and anyway not open-source.
+Which is very disappointing when you wish to save your lists and keep your phone out of always running tracking apps.
+
+Play Store link : https://play.google.com/store/apps/details?id=com.nbossard.packlist
 
 ### Objectives in term of functionality : 
- * free
- * multi-language
- * activities based
+ * multi-language (currently French and english but please help for others)
+ * pre-filling of list throught questions on what you are planning to do during your trip
  
+### Objectives : 
+ * free (in terms of free beer)
+ * open-source
+
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
  - GitFlow organisation
@@ -41,11 +46,13 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
-- 0.2 alpha 24th january 2015
-- 0.1 alpha 6th january 2015
+- 0.4 8th february 2016
+- 0.3 alpha 
+- 0.2 alpha 24th january 2016
+- 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2 preview 7
+- Android Studio 2 Beta 2
     - git ignore plugin
     - markdown plugin (Markdown Support)
 
