@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -112,13 +113,13 @@ public class NewTripFragment extends Fragment {
      * Listener for when user has selected a start date.
      */
     private DatePickerDialog.OnDateSetListener dateStartSelectedListener =
-            new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(final DatePickerDialog parDatePickerDialog,
-                              final int year, final int month, final int day) {
-            mStartDate = new GregorianCalendar(year, month, day);
-            mStartDateTV.setText(
-                    DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
+        new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(final DatePickerDialog parDatePickerDialog,
+                                  final int year, final int month, final int day) {
+                mStartDate = new GregorianCalendar(year, month, day);
+                mStartDateTV.setText(
+                        DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
         }
     };
 
@@ -133,7 +134,7 @@ public class NewTripFragment extends Fragment {
                                       final int year, final int month, final int day) {
                     mEndDate = new GregorianCalendar(year, month, day);
                     mEndDateTV.setText(
-                            DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime()));
+                            DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime()));
                 }
             };
 
@@ -166,10 +167,10 @@ public class NewTripFragment extends Fragment {
                     mCalendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
 
     /** Text view for input of "trip start date". */
-    private TextView mStartDateTV;
+    private EditText mStartDateTV;
 
     /** Text view for input of "trip end date". */
-    private TextView mEndDateTV;
+    private EditText mEndDateTV;
 
     /** Text view for input of "free notes on trip". */
     private TextView mNoteTV;
@@ -268,10 +269,10 @@ public class NewTripFragment extends Fragment {
 
         // Getting views
         mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
-        mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
+        mStartDateTV = (EditText) mRootView.findViewById(R.id.new_trip__start_date__edit);
         mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
-        mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
+        mEndDateTV = (EditText) mRootView.findViewById(R.id.new_trip__end_date__edit);
         mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
         mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
 

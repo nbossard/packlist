@@ -190,7 +190,6 @@ public class Trip implements Serializable {
     }
 
     /**
-     *
      * @return automatically set UUID
      */
     @NonNull

@@ -30,18 +30,21 @@ android {
     // 3 --> 0.3
     // 4 --> 0.3.4
     // 5 --> 0.4
+    // 6 --> 0.5
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 5
-        versionName "0.4"
+        versionCode 6
+        versionName "0.5"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            // setting minifyEnabled to false will disable proguard
+            // and consequently allow easy crash report understanding
+            minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
