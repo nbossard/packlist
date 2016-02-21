@@ -43,6 +43,8 @@
     <string name="main__welcome">Here is the list of your trips, please click on one for details</string>
     <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
     <string name="action_main_cab__delete">Delete</string>
+    <string name="ta__in_x_days">In %d days.</string>
+    <string name="ta__x_days_ago">%d days ago.</string>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>
@@ -56,6 +58,7 @@
     <string name="trip_detail__start_date__label">from</string>
     <string name="trip_detail__add_item___button">Add item</string>
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
+    <string name="ia__packed">PACKED :</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>
@@ -65,6 +68,5 @@
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="trip_detail__edit_trip">edit trip</string>
-    <string name="ia__packed">PACKED :</string>
 
 </resources>

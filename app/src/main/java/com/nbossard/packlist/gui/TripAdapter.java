@@ -57,6 +57,11 @@ class TripAdapter extends BaseAdapter {
         private TextView tvName;
 
         /**
+         * Reference (result of findviewbyid) to the text description of remaining days.
+         */
+        private TextView tvInXDays;
+
+        /**
          * Reference (result of findviewbyid) to the trip start date.
          */
         private TextView tvStartDate;
@@ -130,17 +135,19 @@ class TripAdapter extends BaseAdapter {
         }
         // getting views
         vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
+        vHolderRecycle.tvInXDays = (TextView) parConvertView.findViewById(R.id.ta__in_x_days);
         vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
         vHolderRecycle.arrowDate = (ImageView) parConvertView.findViewById(R.id.ta__arrow_date);
         vHolderRecycle.tvEndDate = (TextView) parConvertView.findViewById(R.id.ta__end_date);
 
-        final Trip oneDev = mTripsList.get(parPosition);
+        final Trip oneTrip = mTripsList.get(parPosition);
 
         // updating views
-        vHolderRecycle.tvName.setText(oneDev.getName());
-        vHolderRecycle.tvStartDate.setText(oneDev.getFormattedStartDate());
-        vHolderRecycle.tvEndDate.setText(oneDev.getFormattedEndDate());
-        if ((oneDev.getStartDate() == null) && (oneDev.getEndDate() == null)) {
+        vHolderRecycle.tvName.setText(oneTrip.getName());
+        vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+        vHolderRecycle.tvStartDate.setText(oneTrip.getFormattedStartDate());
+        vHolderRecycle.tvEndDate.setText(oneTrip.getFormattedEndDate());
+        if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {
             vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
         } else {
             vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);
@@ -148,5 +155,14 @@ class TripAdapter extends BaseAdapter {
 
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
+    }
+
+    /** Get a human readable presentation of number of days before departure. */
+    private String getFormattedRemainingDays(final long parRemainingDays) {
+        if (parRemainingDays < 0) {
+            return String.format(mContext.getString(R.string.ta__x_days_ago), -parRemainingDays);
+        } else {
+            return String.format(mContext.getString(R.string.ta__in_x_days), parRemainingDays);
+        }
     }
 }

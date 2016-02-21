@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A trip data model.
@@ -146,7 +147,7 @@ public class Trip implements Serializable {
     public final String getFormattedStartDate() {
         String res = null;
         if (mStartDate != null) {
-            return DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
         }
         return res;
     }
@@ -216,8 +217,11 @@ public class Trip implements Serializable {
         return mListItem;
     }
 
-
-    public void deleteItem(final UUID parUUID) {
+    /**
+     * Delete the item of provided UUID.
+     * @param parUUID unique identifier of item to be deleted
+     */
+    public final void deleteItem(final UUID parUUID) {
         Item toDeleteItem = null;
         for (Item oneItem:mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
@@ -227,6 +231,15 @@ public class Trip implements Serializable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
+    }
+
+    /**
+     * @return Number of days before trip, can be a negative value if trip is in the past.
+     */
+    public final long getRemainingDays() {
+        long diffInMillisec = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillisec);
+        return diffInDays;
     }
 
     @Override

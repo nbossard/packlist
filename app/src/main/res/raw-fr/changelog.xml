@@ -27,7 +27,7 @@
     <changelogversion
         changeDate="xx février 2016"
         versionName="0.6.0">
-        <changelogtext></changelogtext>
+        <changelogtext>NEW : Ajout du nombre de jours restant avant départ dans la liste des voyages</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18 février 2016"
