@@ -39,7 +39,7 @@ import java.util.UUID;
  */
 public interface ISavingModule {
 
-    /** Retrieve the list of saved trips.
+    /** Retrieve an ordered list of saved trips, ordered by departure date.
      * @return a list filled with the current trips or an empty list if was never saved. */
     List<Trip> loadSavedTrips();
 

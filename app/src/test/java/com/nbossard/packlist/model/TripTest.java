@@ -43,11 +43,19 @@ public class TripTest  {
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
     public static final String NEW_ITEM_NAME = "newItemName";
+
+    private static final String TRIP2_NAME = "Paris";
+    private static final String TRIP2_NOTE = "City of LOVE";
+    private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
+    private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
+
     private Trip mTestTrip;
+    private Trip mTestTrip2;
 
     @Before
     public void setUp() throws Exception {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
+        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
     }
 
     @Test
@@ -126,6 +134,14 @@ public class TripTest  {
         assertTrue(mTestTrip.getListItem().size()==0);
         mTestTrip.addItem(NEW_ITEM_NAME);
         assertTrue(mTestTrip.getListItem().size()==1);
+    }
+
+
+    @Test
+    public void testCompareTo() throws Exception {
+        assertTrue(mTestTrip.compareTo(mTestTrip2) < 0);
+        assertTrue(mTestTrip2.compareTo(mTestTrip) > 0);
+        assertTrue(mTestTrip.compareTo(mTestTrip) == 0);
     }
 
     @Test

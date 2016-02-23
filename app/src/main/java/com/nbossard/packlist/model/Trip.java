@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable {
+public class Trip implements Serializable, Comparable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -262,6 +262,13 @@ public class Trip implements Serializable {
         result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(final Object parAnotherTrip) {
+        int curRemainingDays = ((Long) getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        return curRemainingDays - otherRemainingDays;
     }
 
     @Override

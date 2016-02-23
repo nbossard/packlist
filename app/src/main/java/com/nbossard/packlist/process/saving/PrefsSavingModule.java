@@ -29,6 +29,7 @@ import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -72,12 +73,14 @@ public class PrefsSavingModule implements ISavingModule {
     public final List<Trip> loadSavedTrips() {
         List<Trip> savedTripsList;
         String listTrips = mSharedPreferences.getString(LIST_TRIPS_KEY, "");
+
         if (listTrips.length() == 0) {
             savedTripsList = new ArrayList<>();
         } else {
             try {
                 Trip[] tmpArray = mGson.fromJson(listTrips, Trip[].class);
                 savedTripsList = new ArrayList<>(Arrays.asList(tmpArray));
+                Collections.sort(savedTripsList);
             } catch (JsonParseException jpe) {
                 savedTripsList = new ArrayList<>();
             }
