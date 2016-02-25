@@ -39,7 +39,7 @@ package com.nbossard.packlist.model;
         !include Trip.java
         !include Item.java
 
-        com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
+        Item "1" --* "*" Trip
     }
 @enduml
 

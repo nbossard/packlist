@@ -40,7 +40,7 @@ package com.nbossard.packlist;
         !include model/package-info.java
         !include process/saving/package-info.java
 
-        com.nbossard.packlist.process.saving.ISavingModule <-- com.nbossard.packlist.gui.MainActivity
+        ISavingModule <-- MainActivity
     }
 @enduml
 

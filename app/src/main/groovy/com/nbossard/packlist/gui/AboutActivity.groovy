@@ -73,11 +73,11 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         }
 
         // setting button listener
-        final Button mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
+        def mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
         mButtonThirdParty.setOnClickListener(this);
 
         // updating version number
-        TextView mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
+        def mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
         mGeneralInfo.setText(String.format(getString(R.string.about__main),
                 BuildConfig.VERSION_NAME));
 
@@ -107,8 +107,8 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
      */
     @DebugLog
     private void openBrowser() {
-        String url = "https://github.com/nbossard/packlist";
-        Intent i = new Intent(Intent.ACTION_VIEW);
+        def url = "https://github.com/nbossard/packlist";
+        def i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
     }
@@ -120,7 +120,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
     @DebugLog
     private void openThirdPartyActivity()
     {
-        final Intent intent = new Intent(this, HelpThirdPartyActivity.class);
+        def intent = new Intent(this, HelpThirdPartyActivity.class);
         startActivity(intent);
     }
 //

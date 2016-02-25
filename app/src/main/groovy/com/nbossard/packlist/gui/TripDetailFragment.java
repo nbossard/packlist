@@ -52,7 +52,7 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import hugo.weaving.DebugLog;
 /*
 @startuml
-    class com.nbossard.packlist.gui.TripDetailFragment {
+    class TripDetailFragment {
     }
 
 @enduml

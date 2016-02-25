@@ -21,7 +21,7 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class com.nbossard.packlist.model.Trip {
+    class Trip {
         String mName
         String mStartDate
         String mEndDate
@@ -44,6 +44,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A trip data model.
+ * Note that this class has to be left in Java folder for data binding.
  *
  * @author Created by nbossard on 25/12/15.
  */

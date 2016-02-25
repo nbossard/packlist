@@ -43,10 +43,10 @@ import java.util.List;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.MainActivityFragment {
+    class MainActivityFragment {
     }
 
-    com.nbossard.packlist.gui.MainActivityFragment ..> com.nbossard.packlist.gui.IMainActivity
+    MainActivityFragment ..> IMainActivity
 
 @enduml
  */

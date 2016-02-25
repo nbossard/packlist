@@ -44,16 +44,16 @@ import hugo.weaving.DebugLog;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.MainActivity {
+    class MainActivity {
     }
 
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.MainActivity
-    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.MainActivityFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
+    IMainActivity <|-- MainActivity
+    NewTripFragment <.. MainActivity : launch in\ncontainer
+    MainActivityFragment <.. MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.AboutActivity <..  MainActivity : start through intent
 
     ' Moved to main file
-    ' com.nbossard.packlist.process.saving.ISavingModule <-- com.nbossard.packlist.gui.MainActivity
+    ' ISavingModule <-- MainActivity
 @enduml
  */
 

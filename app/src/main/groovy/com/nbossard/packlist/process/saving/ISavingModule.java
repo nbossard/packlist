@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 /*
 @startuml
-    class com.nbossard.packlist.process.saving.ISavingModule {
+    class ISavingModule {
     }
 @enduml
  */

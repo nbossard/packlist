@@ -21,7 +21,7 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class com.nbossard.packlist.model.Item {
+    class Item {
         UUID mUUID
         String mName
     }

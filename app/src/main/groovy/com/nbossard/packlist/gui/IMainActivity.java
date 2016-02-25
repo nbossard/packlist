@@ -21,7 +21,7 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface com.nbossard.packlist.gui.IMainActivity {
+    interface IMainActivity {
         + saveTrip(...)
         + openTripDetailFragment(...)
         + showFAB(boolean)

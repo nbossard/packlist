@@ -50,10 +50,10 @@ import hugo.weaving.DebugLog;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.NewTripFragment {
+    class NewTripFragment {
     }
 
-    com.nbossard.packlist.gui.NewTripFragment --> com.nbossard.packlist.gui.IMainActivity
+    NewTripFragment --> IMainActivity
 @enduml
  */
 
