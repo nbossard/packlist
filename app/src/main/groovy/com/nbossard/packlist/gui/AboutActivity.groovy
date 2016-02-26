@@ -39,66 +39,44 @@ import hugo.weaving.DebugLog;
 
 /**
  * About activity.
+ * Groovy class.
  *
  * @author nicolas Bossard
  */
-public class AboutActivity extends AppCompatActivity  implements View.OnClickListener {
+class AboutActivity extends AppCompatActivity {
 
     // *********************** CONSTANTS**********************************************************************
 
     /** Log tag. */
-    private static final String TAG = AboutActivity.class.getName();
+    private static final def TAG = AboutActivity.class.getName()
 
     // *********************** METHODS **********************************************************************
 
     @Override
     @DebugLog
     protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_about)
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        def toolbar = (Toolbar) findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                openBrowser();
-            }
-        });
+        def fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
+        fab.onClickListener = {openBrowser()} as View.OnClickListener
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled true
 
         // setting button listener
         def mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
-        mButtonThirdParty.setOnClickListener(this);
+        mButtonThirdParty.onClickListener = {openThirdPartyActivity()} as View.OnClickListener
 
         // updating version number
         def mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
         mGeneralInfo.setText(String.format(getString(R.string.about__main),
-                BuildConfig.VERSION_NAME));
+                BuildConfig.VERSION_NAME))
 
     }
 
-
-
-    @Override
-    @DebugLog
-    public final void onClick(final View parClickedView)
-    {
-
-        if (parClickedView.getId() == R.id.help__third_party__button)
-        {
-            openThirdPartyActivity();
-        } else
-        {
-            // what the fuck
-            Log.e(TAG, "onClick(...) unexpected clicked view");
-        }
-    }
 
 // *********************** PRIVATE METHODS ******************************************************************
 
@@ -107,10 +85,10 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
      */
     @DebugLog
     private void openBrowser() {
-        def url = "https://github.com/nbossard/packlist";
-        def i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
+        def url = "https://github.com/nbossard/packlist"
+        def i = new Intent(Intent.ACTION_VIEW)
+        i.setData(Uri.parse(url))
+        startActivity i
     }
 
 
@@ -120,8 +98,8 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
     @DebugLog
     private void openThirdPartyActivity()
     {
-        def intent = new Intent(this, HelpThirdPartyActivity.class);
-        startActivity(intent);
+        def intent = new Intent(this, HelpThirdPartyActivity.class)
+        startActivity intent
     }
 //
 
