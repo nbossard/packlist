@@ -32,7 +32,7 @@ Play Store link : https://play.google.com/store/apps/details?id=com.nbossard.pac
 
 
 ### BUT a place for experimentation of up-to-date technology
-- groovy instead of Java
+- mix of Groovy and Java
 - material design
 - android studio IDE 2 preview
 - vector drawables, using asset studio
