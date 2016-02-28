@@ -24,15 +24,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
 import java.util.List;
-
-import hugo.weaving.DebugLog;
 
 /**
  * An adapter for displaying a trip {@link Item} in a ListView.

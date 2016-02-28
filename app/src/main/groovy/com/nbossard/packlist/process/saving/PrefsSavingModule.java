@@ -35,9 +35,9 @@ import java.util.UUID;
 
 /*
 @startuml
-    class com.nbossard.packlist.process.saving.PrefsSavingModule {
+    class PrefsSavingModule {
     }
-    com.nbossard.packlist.process.saving.ISavingModule <|-- com.nbossard.packlist.process.saving.PrefsSavingModule
+    ISavingModule <|-- PrefsSavingModule
 @enduml
  */
 
