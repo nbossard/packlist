@@ -61,4 +61,8 @@ public interface ISavingModule {
     /** Delete provided trip in saving module.
      * @param parUUID Unique trip identifier */
     void deleteTrip(UUID parUUID);
+
+    /** Clone provided trip in saving module.
+     * @param parUUID Unique trip identifier */
+    void cloneTrip(UUID parUUID);
 }

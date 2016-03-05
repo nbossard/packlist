@@ -205,13 +205,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     /**
      * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
+     * @param parTripUUID unique identifier of Trip
      */
     @DebugLog
     @Override
-    public void openNewTripFragment(@Nullable final UUID parUUID) {
+    public void openNewTripFragment(@Nullable final UUID parTripUUID) {
 
         // Create fragment and give it an argument specifying the article it should show
-        NewTripFragment newFragment = NewTripFragment.newInstance(parUUID);
+        NewTripFragment newFragment = NewTripFragment.newInstance(parTripUUID);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

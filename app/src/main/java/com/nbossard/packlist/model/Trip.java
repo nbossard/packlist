@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable, Comparable {
+public class Trip implements Serializable, Comparable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -208,6 +208,14 @@ public class Trip implements Serializable, Comparable {
         mListItem.add(newItem);
     }
 
+    /**
+     * Add a new item in the list of items to bring with this trip.
+     * @param parItem new item
+     */
+    public final void addItem(final Item parItem) {
+        mListItem.add(parItem);
+    }
+
 
     /**
      * Get the full list of items to bring for this trip.
@@ -270,6 +278,19 @@ public class Trip implements Serializable, Comparable {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
+    }
+
+    @Override
+    public Trip clone() throws CloneNotSupportedException {
+        Trip clonedTrip = (Trip) super.clone();
+
+        // setting another UUID
+        clonedTrip.mUUID = UUID.randomUUID();
+
+        // cloning also trip list
+        clonedTrip.mListItem = new ArrayList<>();
+        for(Item item: getListItem()) clonedTrip.addItem(item.clone());
+        return clonedTrip;
     }
 
     @Override

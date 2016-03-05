@@ -42,6 +42,7 @@
     <!-- Main page -->
     <string name="main__welcome">Here is the list of your trips, please click on one for details</string>
     <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
+    <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">Delete</string>
     <string name="ta__in_x_days">In %d days.</string>
     <string name="ta__x_days_ago">%d days ago.</string>

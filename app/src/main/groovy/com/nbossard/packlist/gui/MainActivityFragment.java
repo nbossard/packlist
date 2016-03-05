@@ -134,9 +134,13 @@ public class MainActivityFragment extends Fragment {
 
                 @Override
                 public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
+                    int position = (int) mActionMode.getTag();
+
                     switch (item.getItemId()) {
+                        case R.id.action_clone:
+                            cloneTripClicked(position);
+                            return true;
                         case R.id.action_delete:
-                            int position = (int) mActionMode.getTag();
                             deleteTripClicked(position);
                             return true;
                         default:
@@ -218,6 +222,18 @@ public class MainActivityFragment extends Fragment {
     private void deleteTripClicked(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
+        mActionMode.finish();
+        populateList();
+    }
+
+    /**
+     * Effectively clone selected trip then refresh the list.
+     *
+     * @param parPosition position in list of trip to be deleted
+     */
+    private void cloneTripClicked(final int parPosition) {
+        Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
+        mSavingModule.cloneTrip(selectedTrip.getUUID());
         mActionMode.finish();
         populateList();
     }

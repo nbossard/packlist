@@ -19,15 +19,12 @@
   ~ under the License.
   -->
 
-<!-- menu_main_cab.xml -->
+<!-- menu_trip_detail_cab.xml -->
 <!-- -->
 <!-- menu displayed as a contextual action bar when user long clicks on a list item. -->
 <!-- Resources and Ids for this page must start with "action_main_cab__" -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_clone"
-          android:title="@string/action_main_cab__clone"
-          android:icon="@android:drawable/ic_menu_set_as"/>
     <item android:id="@+id/action_delete"
           android:title="@string/action_main_cab__delete"
           android:icon="@android:drawable/ic_menu_delete"/>

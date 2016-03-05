@@ -10,6 +10,7 @@
         versionName="0.6.0">
         <changelogtext>NEW : adding remaining days before departure in trip list</changelogtext>
         <changelogtext>NEW : ISS10 ordering trip list by start date</changelogtext>
+        <changelogtext>NEW : adding possibility to clone a previous trip</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18th february 2016"

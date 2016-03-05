@@ -35,7 +35,7 @@ import java.util.UUID;
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item implements Serializable {
+public class Item implements Serializable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -105,6 +105,16 @@ public class Item implements Serializable {
      */
     public final void setPacked(final boolean parPacked) {
         mIsPacked = parPacked;
+    }
+
+    @Override
+    protected Item clone() throws CloneNotSupportedException {
+        Item res = (Item) super.clone();
+
+        // setting another UUID for the clone
+        res.mUUID = UUID.randomUUID();
+
+        return res;
     }
 
     @Override
