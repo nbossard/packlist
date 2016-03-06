@@ -7,6 +7,7 @@
  - close date in changelog.xml
  - update readme.md
  - Create a new folder in pub/res_pub
+ - commit and push
  - change to branch master
  - git pull origin master
  - git merge develop
