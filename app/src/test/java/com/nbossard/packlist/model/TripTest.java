@@ -162,6 +162,22 @@ public class TripTest  {
     }
 
     @Test
+    public void testClone() throws Exception {
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        mTestTrip.addItem(NEW_ITEM_NAME2);
+        Trip clonedTrip = mTestTrip.clone();
+
+        assertTrue(mTestTrip.getNote().contentEquals(clonedTrip.getNote()));
+        assertTrue(mTestTrip.getStartDate()==clonedTrip.getStartDate());
+        assertTrue(mTestTrip.getEndDate()==clonedTrip.getEndDate());
+        assertTrue(mTestTrip.getListItem().size()==clonedTrip.getListItem().size());
+
+        assertTrue(mTestTrip.getListItem().get(0).getUUID() != clonedTrip.getListItem().get(0).getUUID());
+        assertTrue(mTestTrip.getName().contentEquals(clonedTrip.getName()));
+        assertTrue(mTestTrip.getUUID()!=clonedTrip.getUUID());
+    }
+
+    @Test
     public void testToString() throws Exception {
         assertNotNull(mTestTrip.toString());
         assertTrue(mTestTrip.toString().contains(TRIP_NAME));
