@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -43,11 +44,22 @@ public class TripTest  {
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
     public static final String NEW_ITEM_NAME = "newItemName";
+    public static final String NEW_ITEM_NAME2 = "newItemName2";
+    public static final String NEW_ITEM_NAME3 = "newItemName3";
+    public static final String NEW_ITEM_NAME4 = "newItemName4";
+
+    private static final String TRIP2_NAME = "Paris";
+    private static final String TRIP2_NOTE = "City of LOVE";
+    private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
+    private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
+
     private Trip mTestTrip;
+    private Trip mTestTrip2;
 
     @Before
     public void setUp() throws Exception {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
+        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
     }
 
     @Test
@@ -122,10 +134,47 @@ public class TripTest  {
     }
 
     @Test
+    public void testDeleteItem() throws Exception {
+
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        UUID delUUID = mTestTrip.addItem(NEW_ITEM_NAME2);
+        mTestTrip.addItem(NEW_ITEM_NAME3);
+        mTestTrip.addItem(NEW_ITEM_NAME4);
+
+        assertTrue(mTestTrip.getListItem().size()==4);
+
+        mTestTrip.deleteItem(delUUID);
+    }
+
+    @Test
     public void testGetListItem() throws Exception {
         assertTrue(mTestTrip.getListItem().size()==0);
         mTestTrip.addItem(NEW_ITEM_NAME);
         assertTrue(mTestTrip.getListItem().size()==1);
+    }
+
+
+    @Test
+    public void testCompareTo() throws Exception {
+        assertTrue(mTestTrip.compareTo(mTestTrip2) < 0);
+        assertTrue(mTestTrip2.compareTo(mTestTrip) > 0);
+        assertTrue(mTestTrip.compareTo(mTestTrip) == 0);
+    }
+
+    @Test
+    public void testClone() throws Exception {
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        mTestTrip.addItem(NEW_ITEM_NAME2);
+        Trip clonedTrip = mTestTrip.clone();
+
+        assertTrue(mTestTrip.getNote().contentEquals(clonedTrip.getNote()));
+        assertTrue(mTestTrip.getStartDate()==clonedTrip.getStartDate());
+        assertTrue(mTestTrip.getEndDate()==clonedTrip.getEndDate());
+        assertTrue(mTestTrip.getListItem().size()==clonedTrip.getListItem().size());
+
+        assertTrue(mTestTrip.getListItem().get(0).getUUID() != clonedTrip.getListItem().get(0).getUUID());
+        assertTrue(mTestTrip.getName().contentEquals(clonedTrip.getName()));
+        assertTrue(mTestTrip.getUUID()!=clonedTrip.getUUID());
     }
 
     @Test

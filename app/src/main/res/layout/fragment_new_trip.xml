@@ -22,7 +22,8 @@
 <!-- New trip main characteristics input page -->
 <!---->
 <!-- Resources and Ids for this page must start with "new_trip__" -->
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -33,36 +34,37 @@
     </data>
 
     <LinearLayout
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingTop="@dimen/margin_top"
-              android:paddingStart="@dimen/margin_start"
-              android:paddingEnd="@dimen/margin_end"
-              android:paddingLeft="@dimen/margin_start"
-              android:paddingRight="@dimen/margin_end">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/margin_end"
+        android:paddingLeft="@dimen/margin_start"
+        android:paddingRight="@dimen/margin_end"
+        android:paddingStart="@dimen/margin_start"
+        android:paddingTop="@dimen/margin_top">
 
         <TextView
             android:id="@+id/new_trip__name__label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/new_trip__name__edit"
             android:focusable="false"
-            android:text="@string/new_trip__name"/>
+            android:labelFor="@+id/new_trip__name__edit"
+            android:text="@string/new_trip__name"
+            tools:text="Brest"/>
 
         <EditText
             android:id="@id/new_trip__name__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{trip.name}"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:text="@{trip.name}"/>
 
         <TextView
             android:id="@+id/new_trip__start_date__label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/new_trip__start_date__edit"
             android:focusable="false"
+            android:labelFor="@+id/new_trip__start_date__edit"
             android:text="@string/new_trip__start_date"/>
 
         <RelativeLayout
@@ -71,28 +73,30 @@
 
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/new_trip__start_date__button"
-                android:src="@drawable/ic_date_range_black_24dp"
-                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_date_range_black_24dp"/>
 
-            <EditText
+            <TextView
                 android:id="@id/new_trip__start_date__edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dip"
                 android:layout_toLeftOf="@id/new_trip__start_date__button"
                 android:layout_toStartOf="@id/new_trip__start_date__button"
+                android:gravity="center_vertical"
                 android:text="@{trip.formattedStartDate}"
-                android:inputType="date"/>
+                android:textColor="@color/chglib_material_color_text_1"
+                tools:text="22/03/2016"/>
         </RelativeLayout>
 
         <TextView
             android:id="@+id/new_trip__end_date__label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/new_trip__end_date__edit"
             android:focusable="false"
+            android:labelFor="@+id/new_trip__end_date__edit"
             android:text="@string/new_trip__end_date"/>
 
         <RelativeLayout
@@ -101,20 +105,22 @@
 
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/new_trip__end_date__button"
-                android:src="@drawable/ic_date_range_black_24dp"
-                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_date_range_black_24dp"/>
 
-            <EditText
+            <TextView
                 android:id="@id/new_trip__end_date__edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dip"
                 android:layout_toLeftOf="@id/new_trip__end_date__button"
                 android:layout_toStartOf="@id/new_trip__end_date__button"
+                android:gravity="center_vertical"
                 android:text="@{trip.formattedEndDate}"
-                android:inputType="date"/>
+                android:textColor="@color/chglib_material_color_text_1"
+                tools:text="27/03/2016"/>
 
         </RelativeLayout>
 
@@ -122,16 +128,16 @@
             android:id="@+id/new_trip__note__label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/new_trip__note__edit"
             android:focusable="false"
+            android:labelFor="@+id/new_trip__note__edit"
             android:text="@string/new_trip__note"/>
 
         <EditText
             android:id="@id/new_trip__note__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{trip.note}"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:text="@{trip.note}"/>
 
         <Button
             android:id="@+id/new_trip__submit__button"

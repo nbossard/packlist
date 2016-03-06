@@ -24,22 +24,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
 
-import hugo.weaving.DebugLog;
-
 /**
- * An adapter for displaying a trip {@link Item} in a ListView.
+ * An adapter for displaying a {@link Trip} in a ListView.
  *
- * @author Created by nbossard on 17/01/16.
+ * @author Created by nbossard on 25/12/15.
  */
-class ItemAdapter extends BaseAdapter {
+class TripAdapter extends BaseAdapter {
 
     // *********************** INNER CLASS *****************************************************************
 
@@ -54,22 +52,35 @@ class ItemAdapter extends BaseAdapter {
 
         // getting views
         /**
-         * Reference (result of findviewbyid) to the item name.
+         * Reference (result of findviewbyid) to the trip name.
          */
         private TextView tvName;
 
         /**
-         * Reference (result of findviewbyid) to the is packed checkbox.
+         * Reference (result of findviewbyid) to the text description of remaining days.
          */
-        private TextView tvIsPacked;
+        private TextView tvInXDays;
+
+        /**
+         * Reference (result of findviewbyid) to the trip start date.
+         */
+        private TextView tvStartDate;
+
+        /** The arrow between start and end date. */
+        private ImageView arrowDate;
+
+        /**
+         * Reference (result of findviewbyid) to the trip end date.
+         */
+        private TextView tvEndDate;
     }
 
     // ********************** FIELDS ************************************************************************
 
     /**
-     * Items to be displayed in the list.
+     * Devices to be displayed in the list.
      */
-    private final List<Item> mItemList;
+    private final List<Trip> mTripsList;
 
     /**
      * Provided context.
@@ -86,21 +97,22 @@ class ItemAdapter extends BaseAdapter {
      * @param parContext
      *            context sic
      */
-    ItemAdapter(final List<Item> parResList, final Context parContext)
+    TripAdapter(final List<Trip> parResList, final Context parContext)
     {
         super();
-        mItemList = parResList;
+        mTripsList = parResList;
         mContext = parContext;
     }
 
+
     @Override
     public int getCount() {
-        return mItemList.size();
+        return mTripsList.size();
     }
 
     @Override
     public Object getItem(final int parPosition) {
-        return mItemList.get(parPosition);
+        return mTripsList.get(parPosition);
     }
 
     @Override
@@ -114,30 +126,43 @@ class ItemAdapter extends BaseAdapter {
         if (parConvertView == null)
         {
             vHolderRecycle = new InnerMyViewHolder();
-            final LayoutInflater inflater = (LayoutInflater) ItemAdapter.this.
+            final LayoutInflater inflater = (LayoutInflater) TripAdapter.this.
                     mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
-
-            // getting views
-            vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
-            vHolderRecycle.tvIsPacked = (TextView) parConvertView.findViewById(R.id.ia__packed);
+            parConvertView = inflater.inflate(R.layout.trip_adapter, parParentView, false);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
+        // getting views
+        vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
+        vHolderRecycle.tvInXDays = (TextView) parConvertView.findViewById(R.id.ta__in_x_days);
+        vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
+        vHolderRecycle.arrowDate = (ImageView) parConvertView.findViewById(R.id.ta__arrow_date);
+        vHolderRecycle.tvEndDate = (TextView) parConvertView.findViewById(R.id.ta__end_date);
 
-        final Item curItem = mItemList.get(parPosition);
+        final Trip oneTrip = mTripsList.get(parPosition);
 
         // updating views
-        vHolderRecycle.tvName.setText(curItem.getName());
-        if (curItem.isPacked()) {
-            vHolderRecycle.tvIsPacked.setVisibility(View.VISIBLE);
+        vHolderRecycle.tvName.setText(oneTrip.getName());
+        vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+        vHolderRecycle.tvStartDate.setText(oneTrip.getFormattedStartDate());
+        vHolderRecycle.tvEndDate.setText(oneTrip.getFormattedEndDate());
+        if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {
+            vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
         } else {
-            vHolderRecycle.tvIsPacked.setVisibility(View.GONE);
+            vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);
         }
 
-        // saving viewholder
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
+    }
+
+    /** Get a human readable presentation of number of days before departure. */
+    private String getFormattedRemainingDays(final long parRemainingDays) {
+        if (parRemainingDays < 0) {
+            return String.format(mContext.getString(R.string.ta__x_days_ago), -parRemainingDays);
+        } else {
+            return String.format(mContext.getString(R.string.ta__in_x_days), parRemainingDays);
+        }
     }
 }

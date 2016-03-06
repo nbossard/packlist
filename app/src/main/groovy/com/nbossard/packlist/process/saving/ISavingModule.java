@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 /*
 @startuml
-    class com.nbossard.packlist.process.saving.ISavingModule {
+    class ISavingModule {
     }
 @enduml
  */
@@ -39,7 +39,7 @@ import java.util.UUID;
  */
 public interface ISavingModule {
 
-    /** Retrieve the list of saved trips.
+    /** Retrieve an ordered list of saved trips, ordered by departure date.
      * @return a list filled with the current trips or an empty list if was never saved. */
     List<Trip> loadSavedTrips();
 
@@ -61,4 +61,8 @@ public interface ISavingModule {
     /** Delete provided trip in saving module.
      * @param parUUID Unique trip identifier */
     void deleteTrip(UUID parUUID);
+
+    /** Clone provided trip in saving module.
+     * @param parUUID Unique trip identifier */
+    void cloneTrip(UUID parUUID);
 }

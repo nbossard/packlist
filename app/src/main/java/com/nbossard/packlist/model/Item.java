@@ -21,7 +21,7 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class com.nbossard.packlist.model.Item {
+    class Item {
         UUID mUUID
         String mName
     }
@@ -35,7 +35,7 @@ import java.util.UUID;
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item implements Serializable {
+public class Item implements Serializable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -108,8 +108,19 @@ public class Item implements Serializable {
     }
 
     @Override
+    protected final Item clone() throws CloneNotSupportedException {
+        Item res = (Item) super.clone();
+
+        // setting another UUID for the clone
+        res.mUUID = UUID.randomUUID();
+
+        return res;
+    }
+
+    @SuppressWarnings("StringBufferReplaceableByString")
+    @Override
     public final String toString() {
-        final StringBuffer sb = new StringBuffer("Item{");
+        final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mUUID=").append(mUUID);
         sb.append(", mName='").append(mName).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');

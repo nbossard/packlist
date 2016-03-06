@@ -21,7 +21,7 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class com.nbossard.packlist.model.Trip {
+    class Trip {
         String mName
         String mStartDate
         String mEndDate
@@ -40,13 +40,15 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A trip data model.
+ * Note that this class has to be left in Java folder for data binding.
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable {
+public class Trip implements Serializable, Comparable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -146,7 +148,7 @@ public class Trip implements Serializable {
     public final String getFormattedStartDate() {
         String res = null;
         if (mStartDate != null) {
-            return DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
         }
         return res;
     }
@@ -200,10 +202,21 @@ public class Trip implements Serializable {
     /**
      * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
+     * @return UUID of newly created item
      */
-    public final void addItem(final String parName) {
+    public final UUID addItem(final String parName) {
         Item newItem = new Item(parName);
         mListItem.add(newItem);
+        return newItem.getUUID();
+    }
+
+    /**
+     * Add a new item in the list of items to bring with this trip.
+     * @param parItem new item
+     */
+    @SuppressWarnings("WeakerAccess")
+    public final void addItem(final Item parItem) {
+        mListItem.add(parItem);
     }
 
 
@@ -216,8 +229,11 @@ public class Trip implements Serializable {
         return mListItem;
     }
 
-
-    public void deleteItem(final UUID parUUID) {
+    /**
+     * Delete the item of provided UUID.
+     * @param parUUID unique identifier of item to be deleted
+     */
+    public final void deleteItem(final UUID parUUID) {
         Item toDeleteItem = null;
         for (Item oneItem:mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
@@ -228,6 +244,15 @@ public class Trip implements Serializable {
             mListItem.remove(toDeleteItem);
         }
     }
+
+    /**
+     * @return Number of days before trip, can be a negative value if trip is in the past.
+     */
+    public final long getRemainingDays() {
+        long diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+    }
+
 
     @Override
     public final boolean equals(final Object parO) {
@@ -249,6 +274,26 @@ public class Trip implements Serializable {
         result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull final Object parAnotherTrip) {
+        int curRemainingDays = ((Long) getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        return curRemainingDays - otherRemainingDays;
+    }
+
+    @Override
+    public Trip clone() throws CloneNotSupportedException {
+        Trip clonedTrip = (Trip) super.clone();
+
+        // setting another UUID
+        clonedTrip.mUUID = UUID.randomUUID();
+
+        // cloning also trip list
+        clonedTrip.mListItem = new ArrayList<>();
+        for(Item item: getListItem()) clonedTrip.addItem(item.clone());
+        return clonedTrip;
     }
 
     @Override

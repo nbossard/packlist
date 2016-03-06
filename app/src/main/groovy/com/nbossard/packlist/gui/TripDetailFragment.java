@@ -52,7 +52,7 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import hugo.weaving.DebugLog;
 /*
 @startuml
-    class com.nbossard.packlist.gui.TripDetailFragment {
+    class TripDetailFragment {
     }
 
 @enduml
@@ -136,7 +136,7 @@ public class TripDetailFragment extends Fragment {
                     mode.setTitle("Selected");
 
                     MenuInflater inflater = mode.getMenuInflater();
-                    inflater.inflate(R.menu.menu_main_cab, menu);
+                    inflater.inflate(R.menu.menu_trip_detail_cab, menu);
                     return true;
                 }
 

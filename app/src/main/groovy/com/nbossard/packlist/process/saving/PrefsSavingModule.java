@@ -29,14 +29,15 @@ import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 /*
 @startuml
-    class com.nbossard.packlist.process.saving.PrefsSavingModule {
+    class PrefsSavingModule {
     }
-    com.nbossard.packlist.process.saving.ISavingModule <|-- com.nbossard.packlist.process.saving.PrefsSavingModule
+    ISavingModule <|-- PrefsSavingModule
 @enduml
  */
 
@@ -58,10 +59,12 @@ public class PrefsSavingModule implements ISavingModule {
     private static final String PREFS_FILENAME = "PREFS";
 //
 // *********************** FIELDS *************************************************************************
+
     private final SharedPreferences mSharedPreferences;
     private final Gson mGson;
 //
 // *********************** METHODS **************************************************************************
+
     PrefsSavingModule(Context parContext) {
         mSharedPreferences = parContext.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE);
         mGson = new Gson();
@@ -72,12 +75,14 @@ public class PrefsSavingModule implements ISavingModule {
     public final List<Trip> loadSavedTrips() {
         List<Trip> savedTripsList;
         String listTrips = mSharedPreferences.getString(LIST_TRIPS_KEY, "");
+
         if (listTrips.length() == 0) {
             savedTripsList = new ArrayList<>();
         } else {
             try {
                 Trip[] tmpArray = mGson.fromJson(listTrips, Trip[].class);
                 savedTripsList = new ArrayList<>(Arrays.asList(tmpArray));
+                Collections.sort(savedTripsList);
             } catch (JsonParseException jpe) {
                 savedTripsList = new ArrayList<>();
             }
@@ -137,6 +142,38 @@ public class PrefsSavingModule implements ISavingModule {
         save(prevSavedTrips);
     }
 
+    @Override
+    public final void cloneTrip(final UUID parUUID) {
+        // retrieve current list
+        List<Trip> prevSavedTrips = loadSavedTrips();
+
+        // clone one Trip
+        Trip tripToClone = null;
+        for (Trip oneTrip:prevSavedTrips) {
+            if (oneTrip.getUUID().compareTo(parUUID) == 0) {
+                tripToClone = oneTrip;
+                break;
+            }
+        }
+        if (tripToClone != null) {
+            try {
+                Trip clonedTrip = tripToClone.clone();
+                clonedTrip.setName(clonedTrip.getName() + " (cloned)");
+                prevSavedTrips.add(clonedTrip);
+            } catch (CloneNotSupportedException cnse) {
+                Log.e(TAG, "cloneTrip: This should never occur");
+            }
+
+        } else {
+            Log.w(TAG, "cloneTrip: failed finding trip to remove of UUID" + parUUID);
+        }
+
+        // save
+        save(prevSavedTrips);
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
     private void updateTrip(final Trip parTmpTrip) {
         List<Trip> tripList = loadSavedTrips();
         List<Trip> updatedTripList = new ArrayList<>();
@@ -161,8 +198,7 @@ public class PrefsSavingModule implements ISavingModule {
         editor.apply();
     }
 
-
-    private final void addTrip(final Trip parTmpTrip) {
+    private void addTrip(final Trip parTmpTrip) {
         // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();
 
