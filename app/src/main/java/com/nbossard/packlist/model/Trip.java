@@ -202,10 +202,12 @@ public class Trip implements Serializable, Comparable, Cloneable {
     /**
      * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
+     * @return UUID of newly created item
      */
-    public final void addItem(final String parName) {
+    public final UUID addItem(final String parName) {
         Item newItem = new Item(parName);
         mListItem.add(newItem);
+        return newItem.getUUID();
     }
 
     /**

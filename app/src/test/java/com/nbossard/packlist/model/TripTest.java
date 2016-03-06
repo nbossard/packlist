@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -43,6 +44,9 @@ public class TripTest  {
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
     public static final String NEW_ITEM_NAME = "newItemName";
+    public static final String NEW_ITEM_NAME2 = "newItemName2";
+    public static final String NEW_ITEM_NAME3 = "newItemName3";
+    public static final String NEW_ITEM_NAME4 = "newItemName4";
 
     private static final String TRIP2_NAME = "Paris";
     private static final String TRIP2_NOTE = "City of LOVE";
@@ -127,6 +131,19 @@ public class TripTest  {
         assertTrue(mTestTrip.getListItem().size()==1);
         assertNotNull(mTestTrip.getListItem().get(0).getName());
         assertTrue(mTestTrip.getListItem().get(0).getName().contentEquals(NEW_ITEM_NAME));
+    }
+
+    @Test
+    public void testDeleteItem() throws Exception {
+
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        UUID delUUID = mTestTrip.addItem(NEW_ITEM_NAME2);
+        mTestTrip.addItem(NEW_ITEM_NAME3);
+        mTestTrip.addItem(NEW_ITEM_NAME4);
+
+        assertTrue(mTestTrip.getListItem().size()==4);
+
+        mTestTrip.deleteItem(delUUID);
     }
 
     @Test
