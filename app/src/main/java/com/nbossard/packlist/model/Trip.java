@@ -212,6 +212,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * Add a new item in the list of items to bring with this trip.
      * @param parItem new item
      */
+    @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
     }
@@ -246,10 +247,10 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * @return Number of days before trip, can be a negative value if trip is in the past.
      */
     public final long getRemainingDays() {
-        long diffInMillisec = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
-        long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillisec);
-        return diffInDays;
+        long diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
+
 
     @Override
     public final boolean equals(final Object parO) {
@@ -274,7 +275,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     @Override
-    public int compareTo(final Object parAnotherTrip) {
+    public int compareTo(@NonNull final Object parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
