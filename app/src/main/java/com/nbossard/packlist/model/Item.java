@@ -108,7 +108,7 @@ public class Item implements Serializable, Cloneable {
     }
 
     @Override
-    protected Item clone() throws CloneNotSupportedException {
+    protected final Item clone() throws CloneNotSupportedException {
         Item res = (Item) super.clone();
 
         // setting another UUID for the clone
@@ -117,9 +117,10 @@ public class Item implements Serializable, Cloneable {
         return res;
     }
 
+    @SuppressWarnings("StringBufferReplaceableByString")
     @Override
     public final String toString() {
-        final StringBuffer sb = new StringBuffer("Item{");
+        final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mUUID=").append(mUUID);
         sb.append(", mName='").append(mName).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');
