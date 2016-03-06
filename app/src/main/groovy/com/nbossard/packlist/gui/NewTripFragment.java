@@ -167,10 +167,10 @@ public class NewTripFragment extends Fragment {
                     mCalendar.get(Calendar.DAY_OF_MONTH), DO_NOT_VIBRATE);
 
     /** Text view for input of "trip start date". */
-    private EditText mStartDateTV;
+    private TextView mStartDateTV;
 
     /** Text view for input of "trip end date". */
-    private EditText mEndDateTV;
+    private TextView mEndDateTV;
 
     /** Text view for input of "free notes on trip". */
     private TextView mNoteTV;
@@ -269,17 +269,19 @@ public class NewTripFragment extends Fragment {
 
         // Getting views
         mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
-        mStartDateTV = (EditText) mRootView.findViewById(R.id.new_trip__start_date__edit);
+        mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
         mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
-        mEndDateTV = (EditText) mRootView.findViewById(R.id.new_trip__end_date__edit);
+        mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
         mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
         mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
 
 
         // Adding listeners
-        addListenerOnStartDate();
-        addListenerOnEndDate();
+        addListenerOnStartDateTextView();
+        addListenerOnStartDateButton();
+        addListenerOnEndDateTextView();
+        addListenerOnEndDateButton();
         addListenerOnSubmitButton();
 
         disableSubmitButtonIfEmptyText();
@@ -302,7 +304,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Add a listener on "trip start date" text field.
      */
-    private void addListenerOnStartDate() {
+    private void addListenerOnStartDateButton() {
         mStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -314,8 +316,32 @@ public class NewTripFragment extends Fragment {
     /**
      * Add a listener on "trip end date" text field.
      */
-    private void addListenerOnEndDate() {
+    private void addListenerOnEndDateButton() {
         mEndDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+            }
+        });
+    }
+
+    /**
+     * Add a listener on "trip start date" text field.
+     */
+    private void addListenerOnStartDateTextView() {
+        mStartDateTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+            }
+        });
+    }
+
+    /**
+     * Add a listener on "trip end date" text field.
+     */
+    private void addListenerOnEndDateTextView() {
+        mEndDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
