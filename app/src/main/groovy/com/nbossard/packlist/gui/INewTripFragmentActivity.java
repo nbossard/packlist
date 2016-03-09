@@ -21,10 +21,8 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface IMainActivity {
+    interface INewTripFragmentActivity {
         + saveTrip(...)
-        + openTripDetailFragment(...)
-        + showFAB(boolean)
     }
 @enduml
  */
@@ -36,9 +34,10 @@ import com.nbossard.packlist.model.Trip;
 import java.util.UUID;
 
 /**
+ * The what {@link NewTripFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface IMainActivity {
+interface INewTripFragmentActivity {
 
     /**
      * Creation and saving of a new trip.
@@ -47,23 +46,4 @@ interface IMainActivity {
      */
     void saveTrip(Trip parTrip);
 
-    /**
-     * Ask Main activity to open detail fragment to display Trip of provided UUID.
-     *
-     * @param parTrip a trip object to be displayed
-     */
-    TripDetailFragment openTripDetailFragment(final Trip parTrip);
-
-    /**
-     * Ask Main activity to open new trip fragment to display Trip of provided UUID.
-     *
-     * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
-     */
-    void openNewTripFragment(@Nullable final UUID parTripId);
-
-    /**
-     * Hide or show FAB, depending on fragment.
-     * @param parShow true to show, false to hide
-     */
-    void showFAB(boolean parShow);
 }

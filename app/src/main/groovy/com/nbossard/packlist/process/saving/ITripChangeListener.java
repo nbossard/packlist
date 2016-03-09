@@ -1,4 +1,3 @@
-
 /*
  * PackList is an open-source packing-list for Android
  *
@@ -18,29 +17,18 @@
  * under the License.
  */
 
-/**
- * Saving data related classes for PackList.
- *
- * @author Nicolas BOSSARD january 2016
- */
 package com.nbossard.packlist.process.saving;
-
 /*
-
-============================== DIAGRAMS OF CLASS ==================================
-
-// To generate graphics please use jar available at :
-//     http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-// syntax description can be found at :
-//     http://plantuml.sourceforge.net/classes.html
-//     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.process.saving #LightPink{
-        !include ISavingModule.java
-        !include ITripChangeListener.java
-        !include PrefsSavingModule.java
+    class ITripChangeListener {
     }
-
 @enduml
+ */
 
-*/
+/**
+ * Interface to be implemented by listeners wishing to be notified of trip change.
+ * @author Created by nbossard on 09/03/16.
+ */
+public interface ITripChangeListener {
+    void onTripChange();
+}

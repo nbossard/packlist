@@ -198,7 +198,7 @@ public class MainActivityFragment extends Fragment {
     /**
      * Populate list with data in {@link ISavingModule}.
      */
-    private void populateList() {
+    public void populateList() {
         mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 

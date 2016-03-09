@@ -141,7 +141,7 @@ public class NewTripFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
     /** For communicating with hosting activity. */
-    private IMainActivity mHostingActivity;
+    private INewTripFragmentActivity mHostingActivity;
 
     /** Root view for easy findviewById use.*/
     private View mRootView;
@@ -265,7 +265,7 @@ public class NewTripFragment extends Fragment {
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mHostingActivity = (IMainActivity) getActivity();
+        mHostingActivity = (INewTripFragmentActivity) getActivity();
 
         // Getting views
         mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);

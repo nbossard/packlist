@@ -37,6 +37,7 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ITripChangeListener;
 
 import java.util.UUID;
 
@@ -60,7 +61,7 @@ import hugo.weaving.DebugLog;
 /**
  * Main activity, supports most fragments.
  */
-public class MainActivity extends AppCompatActivity implements IMainActivity {
+public class MainActivity extends AppCompatActivity implements IMainActivity, INewTripFragmentActivity, ITripChangeListener {
 
 // *********************** CONSTANTS**********************************************************************
 
@@ -75,7 +76,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
+    private MainActivityFragment mMainActivityFragment;
+    private TripDetailFragment mTripDetailFragment;
+
 // *********************** METHODS **************************************************************************
+
 
     @DebugLog
     @Override
@@ -97,8 +102,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     protected final void onStart() {
         super.onStart();
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+        mSavingModule.addListener(this);
 
-        openMainActivityFragment();
+        mMainActivityFragment = openMainActivityFragment();
+    }
+
+    @Override
+    public void onTripChange() {
+        mMainActivityFragment.populateList();
     }
 
     /**
@@ -175,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final Trip parTrip) {
+    public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
@@ -191,6 +202,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // updating FAB action
         mFab.hide();
+
+        mTripDetailFragment = newFragment;
+        return newFragment;
     }
 
     @Override
@@ -243,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
-    private void openMainActivityFragment() {
+    private MainActivityFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         MainActivityFragment newFragment = new MainActivityFragment();
@@ -265,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
                 openNewTripFragment(null);
             }
         });
+        return newFragment;
     }
 //
 }

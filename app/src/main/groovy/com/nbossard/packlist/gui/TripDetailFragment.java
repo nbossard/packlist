@@ -259,6 +259,7 @@ public class TripDetailFragment extends Fragment {
         });
 
         populateList();
+
     }
 
     @DebugLog
