@@ -43,10 +43,10 @@ import java.util.List;
 
 /*
 @startuml
-    class MainActivityFragment {
+    class com.nbossard.packlist.gui.MainActivityFragment {
     }
 
-    MainActivityFragment ..> IMainActivity
+    com.nbossard.packlist.gui.MainActivityFragment ..> com.nbossard.packlist.gui.IMainActivity
 
 @enduml
  */
@@ -191,14 +191,14 @@ public class MainActivityFragment extends Fragment {
     public final void onResume() {
         super.onResume();
         populateList();
-        mIMainActivity.showFAB(true);
+        mIMainActivity.showFABIfAccurate(true);
     }
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
      * Populate list with data in {@link ISavingModule}.
      */
-    private void populateList() {
+    public void populateList() {
         mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 

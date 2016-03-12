@@ -21,9 +21,10 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class Item {
+    class com.nbossard.packlist.model.Item {
         UUID mUUID
         String mName
+        boolean mIsPacked
     }
 @enduml
  */

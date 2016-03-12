@@ -30,6 +30,7 @@
         <changelogtext>NEW : Ajout du nombre de jours restant avant départ dans la liste des voyages</changelogtext>
         <changelogtext>NEW : ISS10 tri de la liste des voyages par date de départ</changelogtext>
         <changelogtext>NEW : Ajout possibilité de cloner un précédent voyage</changelogtext>
+        <changelogtext>NEW : Support des tablettes (format paysage)</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18 février 2016"

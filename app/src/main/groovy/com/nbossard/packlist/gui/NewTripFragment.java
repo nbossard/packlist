@@ -31,7 +31,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -50,10 +49,10 @@ import hugo.weaving.DebugLog;
 
 /*
 @startuml
-    class NewTripFragment {
+    class com.nbossard.packlist.gui.NewTripFragment {
     }
 
-    NewTripFragment --> IMainActivity
+    com.nbossard.packlist.gui.NewTripFragment --> com.nbossard.packlist.gui.IMainActivity
 @enduml
  */
 
@@ -141,7 +140,7 @@ public class NewTripFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
     /** For communicating with hosting activity. */
-    private IMainActivity mHostingActivity;
+    private INewTripFragmentActivity mHostingActivity;
 
     /** Root view for easy findviewById use.*/
     private View mRootView;
@@ -265,7 +264,7 @@ public class NewTripFragment extends Fragment {
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mHostingActivity = (IMainActivity) getActivity();
+        mHostingActivity = (INewTripFragmentActivity) getActivity();
 
         // Getting views
         mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
@@ -291,7 +290,13 @@ public class NewTripFragment extends Fragment {
     @Override
     public final void onResume() {
         super.onResume();
-        mIMainActivity.showFAB(false);
+        mIMainActivity.showFABIfAccurate(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mIMainActivity.showFABIfAccurate(true);
     }
 
     /**

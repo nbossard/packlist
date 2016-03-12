@@ -52,7 +52,7 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import hugo.weaving.DebugLog;
 /*
 @startuml
-    class TripDetailFragment {
+    class com.nbossard.packlist.gui.TripDetailFragment {
     }
 
 @enduml
@@ -259,6 +259,7 @@ public class TripDetailFragment extends Fragment {
         });
 
         populateList();
+
     }
 
     @DebugLog
@@ -277,6 +278,7 @@ public class TripDetailFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mIMainActivity.showFABIfAccurate(true);
     }
 
     @DebugLog

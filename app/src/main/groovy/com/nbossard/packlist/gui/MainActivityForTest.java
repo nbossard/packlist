@@ -174,7 +174,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final Trip parTrip) {
+    public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
@@ -190,6 +190,8 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
 
         // updating FAB action
         mFab.hide();
+
+        return newFragment;
     }
 
     @Override
@@ -198,7 +200,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     }
 
     @Override
-    public final void showFAB(final boolean parShow) {
+    public final void showFABIfAccurate(final boolean parShow) {
         if (parShow) {
             mFab.show();
         } else {
