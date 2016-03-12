@@ -21,10 +21,11 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface IMainActivity {
+    interface com.nbossard.packlist.gui.IMainActivity {
         + saveTrip(...)
         + openTripDetailFragment(...)
-        + showFAB(boolean)
+        + openNewTripFragment(...)
+        + showFABIfAccurate(boolean)
     }
 @enduml
  */
@@ -65,5 +66,5 @@ interface IMainActivity {
      * Hide or show FAB, depending on fragment.
      * @param parShow true to show, false to hide
      */
-    void showFAB(boolean parShow);
+    void showFABIfAccurate(boolean parShow);
 }

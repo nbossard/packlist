@@ -21,7 +21,7 @@ package com.nbossard.packlist.model;
 
 /*
 @startuml
-    class Trip {
+    class com.nbossard.packlist.model.Trip {
         String mName
         String mStartDate
         String mEndDate

@@ -11,6 +11,7 @@
         <changelogtext>NEW : adding remaining days before departure in trip list</changelogtext>
         <changelogtext>NEW : ISS10 ordering trip list by start date</changelogtext>
         <changelogtext>NEW : adding possibility to clone a previous trip</changelogtext>
+        <changelogtext>NEW : supporting tablet (landscape)</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18th february 2016"

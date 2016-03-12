@@ -21,7 +21,7 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface INewTripFragmentActivity {
+    interface com.nbossard.packlist.gui.INewTripFragmentActivity {
         + saveTrip(...)
     }
 @enduml

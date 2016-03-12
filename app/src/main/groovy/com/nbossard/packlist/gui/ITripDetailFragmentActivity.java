@@ -17,19 +17,18 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process.saving;
+package com.nbossard.packlist.gui;
+
 /*
 @startuml
-    interface com.nbossard.packlist.process.saving.ITripChangeListener {
-        +onTripChange()
+    interface com.nbossard.packlist.gui.ITripDetailFragmentActivity {
     }
 @enduml
-*/
+ */
 
 /**
- * Interface to be implemented by listeners wishing to be notified of trip change.
- * @author Created by nbossard on 09/03/16.
+ * The what {@link TripDetailFragment} expects from hosting activity.
+ * @author Created by nbossard on 01/01/16.
  */
-public interface ITripChangeListener {
-    void onTripChange();
+interface ITripDetailFragmentActivity {
 }

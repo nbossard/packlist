@@ -200,7 +200,7 @@ public class MainActivityForTest extends AppCompatActivity implements IMainActiv
     }
 
     @Override
-    public final void showFAB(final boolean parShow) {
+    public final void showFABIfAccurate(final boolean parShow) {
         if (parShow) {
             mFab.show();
         } else {

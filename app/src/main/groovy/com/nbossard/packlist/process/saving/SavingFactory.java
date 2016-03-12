@@ -21,6 +21,14 @@ package com.nbossard.packlist.process.saving;
 
 import android.content.Context;
 
+/*
+@startuml
+    interface com.nbossard.packlist.process.saving.SavingFactory {
+        + {static} getNewSavingModule(...)
+    }
+@enduml
+*/
+
 /**
  * Factory for generating a new best {@link ISavingModule}.
  * @author Created by nbossard on 01/01/16.

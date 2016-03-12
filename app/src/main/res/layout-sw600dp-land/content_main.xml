@@ -23,23 +23,20 @@
 
 <!-- do not use "merge" tag here, as this id is searched in code -->
 <LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <RelativeLayout android:id="@+id/mainactcont__fragment"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
+              android:layout_width="1dip"
               android:layout_height="match_parent"
               android:layout_weight="1"
-              app:layout_behavior="@string/appbar_scrolling_view_behavior"
               tools:layout="@layout/fragment_main"/>
     <RelativeLayout android:id="@+id/mainactcont__right_fragment"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_width="1dip"
                     android:layout_weight="1"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:layout="@layout/fragment_main"/>
+                    tools:layout="@layout/fragment_new_trip"/>
 </LinearLayout>
