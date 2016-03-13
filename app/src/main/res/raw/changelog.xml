@@ -12,6 +12,7 @@
         <changelogtext>NEW : ISS10 ordering trip list by start date</changelogtext>
         <changelogtext>NEW : adding possibility to clone a previous trip</changelogtext>
         <changelogtext>NEW : supporting tablet (landscape)</changelogtext>
+        <changelogtext>NEW : adding japanese translation thanks to naofum</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18th february 2016"

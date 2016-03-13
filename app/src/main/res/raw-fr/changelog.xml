@@ -31,6 +31,7 @@
         <changelogtext>NEW : ISS10 tri de la liste des voyages par date de départ</changelogtext>
         <changelogtext>NEW : Ajout possibilité de cloner un précédent voyage</changelogtext>
         <changelogtext>NEW : Support des tablettes (format paysage)</changelogtext>
+        <changelogtext>NEW : support du Japonais avec l'aide de naofum</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18 février 2016"
