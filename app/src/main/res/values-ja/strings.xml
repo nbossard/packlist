@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ PackList is an open-source packing-list for Android
+  ~
+  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<!-- strings.xml -->
+<!-- -->
+<!-- English strings used in application -->
+<!-- Strings should be grouped by activity / fragment -->
+<resources>
+    <!-- Non-translatable strings -->
+
+    <!-- Common strings -->
+    <string name="app_name">持ち物リスト</string>
+    <string name="demo_changelog_title_standarddialog">変更履歴</string>
+    <string name="about_ok">OK</string>
+    <string name="title_activity_about">AboutActivity</string>
+
+    <!-- Menu items -->
+    <string name="action_whatsnew">最新情報</string>
+    <string name="action_about">アプリについて</string>
+
+    <!-- About page -->
+    <string name="about__main">持ち物リスト %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
+    <string name="about__third_party__button">サードパーティ ライブラリー</string>
+
+    <!-- Main page -->
+    <string name="main__welcome">これは旅行のリストです。詳細はクリックしてください</string>
+    <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
+    <string name="action_main_cab__delete">削除</string>
+
+    <!-- New trip fragment -->
+    <string name="new_trip__name">旅行の名前</string>
+    <string name="new_trip__start_date">開始日</string>
+    <string name="new_trip__end_date">終了日</string>
+    <string name="new_trip__note">メモ</string>
+    <string name="new_trip__submit">レッツゴー…</string>
+
+    <!-- Detail of trip -->
+    <string name="trip_detail__end_date__label">終了</string>
+    <string name="trip_detail__start_date__label">開始</string>
+    <string name="trip_detail__add_item___button">アイテムを追加</string>
+    <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
+
+    <!-- Third party software licences -->
+    <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
+    <string name="help_legal__third_party__label"><u>サードパーティ ライブラリー</u></string>
+    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nCopyright © 2013 Jake Wharton,\n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="trip_detail__edit_trip">旅行を編集</string>
+    <string name="ia__packed">収納済 :</string>
+
+</resources>
