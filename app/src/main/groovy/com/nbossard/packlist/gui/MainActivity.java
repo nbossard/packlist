@@ -20,6 +20,7 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +39,7 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ITripChangeListener;
 
 import java.util.UUID;
 
@@ -44,23 +47,33 @@ import hugo.weaving.DebugLog;
 
 /*
 @startuml
-    class MainActivity {
+    class com.nbossard.packlist.gui.MainActivity {
     }
 
-    IMainActivity <|-- MainActivity
-    NewTripFragment <.. MainActivity : launch in\ncontainer
-    MainActivityFragment <.. MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.AboutActivity <..  MainActivity : start through intent
+    com.nbossard.packlist.gui.IMainActivity <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.INewTripFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.ITripDetailFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
+
+    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.MainActivityFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
 
     ' Moved to main file
-    ' ISavingModule <-- MainActivity
+    ' ISavingModule <-- com.nbossard.packlist.gui.MainActivity
+    ' com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
  */
 
 /**
  * Main activity, supports most fragments.
  */
-public class MainActivity extends AppCompatActivity implements IMainActivity {
+public class MainActivity
+        extends AppCompatActivity
+        implements
+        IMainActivity,
+        INewTripFragmentActivity,
+        ITripDetailFragmentActivity,
+        ITripChangeListener {
 
 // *********************** CONSTANTS**********************************************************************
 
@@ -75,7 +88,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
+    private MainActivityFragment mMainActivityFragment;
+
 // *********************** METHODS **************************************************************************
+
 
     @DebugLog
     @Override
@@ -97,8 +113,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     protected final void onStart() {
         super.onStart();
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+        mSavingModule.addListener(this);
 
-        openMainActivityFragment();
+        mMainActivityFragment = openMainActivityFragment();
+    }
+
+    @Override
+    public void onTripChange() {
+        mMainActivityFragment.populateList();
     }
 
     /**
@@ -175,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      */
     @DebugLog
     @Override
-    public final void openTripDetailFragment(final Trip parTrip) {
+    public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
         TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
@@ -183,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.replace(getTargetFragment(), newFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction
@@ -191,11 +213,17 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // updating FAB action
         mFab.hide();
+
+        return newFragment;
     }
 
+
     @Override
-    public final void showFAB(final boolean parShow) {
-        if (parShow) {
+    public final void showFABIfAccurate(final boolean parShow) {
+        Log.d(TAG, "showFABIfAccurate() called with: " + "parShow = [" + parShow + "]");
+
+        FragmentManager fragMgr = getSupportFragmentManager();
+        if (parShow && fragMgr.getBackStackEntryCount()==0) {
             mFab.show();
         } else {
             mFab.hide();
@@ -217,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.replace(getTargetFragment(), newFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction
@@ -225,11 +253,26 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         // updating FAB action
         mFab.hide();
-
     }
+
     // ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
+
+    /**
+     * Get the target fragment for new fragment to be opened, different on tablet.
+     * @return (right fragment on tablet), same fragment on phone.
+     */
+    private int getTargetFragment() {
+        Resources res = getResources();
+        int resTarget;
+        if (res.getBoolean(R.bool.tablet_layout)) {
+            resTarget = R.id.mainactcont__right_fragment;
+        } else {
+            resTarget =  R.id.mainactcont__fragment;
+        }
+        return resTarget;
+    }
 
     /** Open {@link AboutActivity} on top of this activity. */
     @DebugLog
@@ -243,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
      * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
-    private void openMainActivityFragment() {
+    private MainActivityFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         MainActivityFragment newFragment = new MainActivityFragment();
@@ -265,6 +308,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
                 openNewTripFragment(null);
             }
         });
+        return newFragment;
     }
 //
 }

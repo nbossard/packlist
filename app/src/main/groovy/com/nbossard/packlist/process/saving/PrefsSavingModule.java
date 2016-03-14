@@ -35,9 +35,10 @@ import java.util.UUID;
 
 /*
 @startuml
-    class PrefsSavingModule {
+    class com.nbossard.packlist.process.saving.PrefsSavingModule {
     }
-    ISavingModule <|-- PrefsSavingModule
+    com.nbossard.packlist.process.saving.ISavingModule <|.. com.nbossard.packlist.process.saving.PrefsSavingModule
+    com.nbossard.packlist.process.saving.ITripChangeListener "one or many" <.. com.nbossard.packlist.process.saving.PrefsSavingModule
 @enduml
  */
 
@@ -63,6 +64,8 @@ public class PrefsSavingModule implements ISavingModule {
     private final SharedPreferences mSharedPreferences;
     private final Gson mGson;
 //
+    private List<ITripChangeListener> mChangeListeners = new ArrayList<>();
+
 // *********************** METHODS **************************************************************************
 
     PrefsSavingModule(Context parContext) {
@@ -172,6 +175,11 @@ public class PrefsSavingModule implements ISavingModule {
         save(prevSavedTrips);
     }
 
+    @Override
+    public void addListener(ITripChangeListener parListener) {
+        mChangeListeners.add(parListener);
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     private void updateTrip(final Trip parTmpTrip) {
@@ -185,6 +193,11 @@ public class PrefsSavingModule implements ISavingModule {
             }
         }
         save(updatedTripList);
+
+        // notify listeners
+        for (ITripChangeListener oneListener : mChangeListeners) {
+            oneListener.onTripChange();
+        }
     }
 
     /**

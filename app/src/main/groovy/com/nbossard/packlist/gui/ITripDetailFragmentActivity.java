@@ -17,24 +17,18 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process.saving;
-
-import android.content.Context;
+package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface com.nbossard.packlist.process.saving.SavingFactory {
-        + {static} getNewSavingModule(...)
+    interface com.nbossard.packlist.gui.ITripDetailFragmentActivity {
     }
 @enduml
-*/
+ */
 
 /**
- * Factory for generating a new best {@link ISavingModule}.
+ * The what {@link TripDetailFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-public class SavingFactory {
-    public static ISavingModule getNewSavingModule(Context parContext) {
-        return new PrefsSavingModule(parContext);
-    }
+interface ITripDetailFragmentActivity {
 }

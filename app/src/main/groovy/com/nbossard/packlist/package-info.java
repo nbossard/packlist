@@ -37,11 +37,11 @@ package com.nbossard.packlist;
 @startuml
     package com.nbossard.packlist {
         !include gui/package-info.java
-        !include model/package-info.java
+        !include ../../../../java/com/nbossard/packlist/model/package-info.java
         !include process/saving/package-info.java
-
-        ISavingModule <-- MainActivity
     }
+    com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
 
 */

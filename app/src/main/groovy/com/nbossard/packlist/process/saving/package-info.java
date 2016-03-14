@@ -36,7 +36,9 @@ package com.nbossard.packlist.process.saving;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.process.saving #LightPink{
+        !include SavingFactory.java
         !include ISavingModule.java
+        !include ITripChangeListener.java
         !include PrefsSavingModule.java
     }
 

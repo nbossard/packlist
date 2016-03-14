@@ -5,7 +5,7 @@
     interface IHSSServiceListener
 
     Content <|-- ContentSerie : "java extends"
-    IHSSServiceListener <|.. ContentDownloaderLabgency : "java implements"
+    IHSSServiceListener <|.. ContentDownloaderLabgency : "java implements" <|..
     g <.. H : implémentation temporaire\n (pas un attribut)
 
     ' commentaire, nom des couleurs http://www.w3schools.com/HTML/html_colornames.asp

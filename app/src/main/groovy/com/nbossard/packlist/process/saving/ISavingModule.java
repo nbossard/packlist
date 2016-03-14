@@ -27,7 +27,13 @@ import java.util.List;
 import java.util.UUID;
 /*
 @startuml
-    class ISavingModule {
+    interface com.nbossard.packlist.process.saving.ISavingModule {
+        +loadSavedTrips(...)
+        +addOrUpdateTrip()
+        +deleteAllTrips()
+        +deleteTrip(UUID)
+        +cloneTrip(UUID)
+        +addListener(ITripChangeListener)
     }
 @enduml
  */
@@ -65,4 +71,9 @@ public interface ISavingModule {
     /** Clone provided trip in saving module.
      * @param parUUID Unique trip identifier */
     void cloneTrip(UUID parUUID);
+
+    /**
+     * Listener wishing to be informed of Trip change.
+     */
+    void addListener(ITripChangeListener parListener);
 }

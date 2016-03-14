@@ -159,10 +159,12 @@ class TripAdapter extends BaseAdapter {
 
     /** Get a human readable presentation of number of days before departure. */
     private String getFormattedRemainingDays(final long parRemainingDays) {
+        String res;
         if (parRemainingDays < 0) {
-            return String.format(mContext.getString(R.string.ta__x_days_ago), -parRemainingDays);
+            res = String.format(mContext.getString(R.string.ta__x_days_ago), -parRemainingDays);
         } else {
-            return String.format(mContext.getString(R.string.ta__in_x_days), parRemainingDays);
+            res =  String.format(mContext.getString(R.string.ta__in_x_days), parRemainingDays);
         }
+        return res;
     }
 }

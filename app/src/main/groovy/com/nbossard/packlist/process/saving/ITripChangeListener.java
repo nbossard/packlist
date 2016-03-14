@@ -18,23 +18,18 @@
  */
 
 package com.nbossard.packlist.process.saving;
-
-import android.content.Context;
-
 /*
 @startuml
-    interface com.nbossard.packlist.process.saving.SavingFactory {
-        + {static} getNewSavingModule(...)
+    interface com.nbossard.packlist.process.saving.ITripChangeListener {
+        +onTripChange()
     }
 @enduml
 */
 
 /**
- * Factory for generating a new best {@link ISavingModule}.
- * @author Created by nbossard on 01/01/16.
+ * Interface to be implemented by listeners wishing to be notified of trip change.
+ * @author Created by nbossard on 09/03/16.
  */
-public class SavingFactory {
-    public static ISavingModule getNewSavingModule(Context parContext) {
-        return new PrefsSavingModule(parContext);
-    }
+public interface ITripChangeListener {
+    void onTripChange();
 }
