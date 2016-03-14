@@ -48,7 +48,9 @@ import hugo.weaving.DebugLog;
 /**
  * Main activity for robotium tests.
  */
-public class MainActivityForTest extends AppCompatActivity implements IMainActivity {
+public class MainActivityForTest
+        extends AppCompatActivity
+        implements IMainActivity, INewTripFragmentActivity {
 
 // *********************** CONSTANTS**********************************************************************
 
