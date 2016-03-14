@@ -23,6 +23,11 @@
  - updload APK to android console
  - add apk and screenshots to git / commit / push
  - draft new release in github
+ - make new release on playstore
+ 
+ # Preparing next version
+ - go back to branch develop
+ - cherry pick commit from master if required
  - update versionCode in build.gradle
  - update versionName in build.gradle
  - add new block in both changelog.xml
