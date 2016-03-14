@@ -53,7 +53,7 @@ Basic functionality are still under development
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2 Beta 5
+- Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
 
