@@ -37,12 +37,16 @@
 
     <!-- About page -->
     <string name="about__main">持ち物リスト %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
+    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
 
     <!-- Main page -->
     <string name="main__welcome">これは旅行のリストです。詳細はクリックしてください</string>
     <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
+    <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">削除</string>
+    <string name="ta__in_x_days">In %d days.</string>
+    <string name="ta__x_days_ago">%d days ago.</string>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
@@ -56,6 +60,8 @@
     <string name="trip_detail__start_date__label">開始</string>
     <string name="trip_detail__add_item___button">アイテムを追加</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
+    <string name="trip_detail__edit_trip">旅行を編集</string>
+    <string name="ia__packed">収納済 :</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
@@ -64,7 +70,6 @@
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
-    <string name="trip_detail__edit_trip">旅行を編集</string>
-    <string name="ia__packed">収納済 :</string>
+    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
 
 </resources>
