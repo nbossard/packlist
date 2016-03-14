@@ -46,6 +46,7 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
+- 0.6 14th february 2016
 - 0.5 18th february 2016
 - 0.4 8th february 2016
 - 0.3 alpha 
