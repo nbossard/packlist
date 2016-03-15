@@ -46,6 +46,9 @@ public class Item implements Serializable, Cloneable {
     /** The item name. */
     private String mName;
 
+    /** The item weight. */
+    private int mWeight;
+
     /** Has this item been packed already. true=yes, false=no. */
     private boolean mIsPacked;
 
@@ -92,6 +95,24 @@ public class Item implements Serializable, Cloneable {
         mName = parName;
     }
 
+
+    /**
+     * Getter for weight.
+     * @return i.e. : "100" grammes
+     */
+    public final int getWeight() {
+        return mWeight;
+    }
+
+    /**
+     * Setter for weight.
+     * @param parWeight item weight in grammes.
+     */
+    @SuppressWarnings("WeakerAccess")
+    public final void setName(final int parWeight) {
+        mWeight = parWeight;
+    }
+
     /**
      * Getter for boolean whether or not this item is packed.
      * @return true=yes, false=no.
@@ -124,6 +145,7 @@ public class Item implements Serializable, Cloneable {
         final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mUUID=").append(mUUID);
         sb.append(", mName='").append(mName).append('\'');
+        sb.append(", mWeight='").append(mWeight).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');
         sb.append('}');
         return sb.toString();
