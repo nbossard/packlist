@@ -57,6 +57,7 @@ Basic functionality are still under development
 - Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
+    - PlantUML integration plugin (by Eugene Steinberg)
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
