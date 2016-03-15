@@ -148,6 +148,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trip_detail__add_item___button"
+            android:layout_toStartOf="@+id/trip_detail__new_item_detail__button"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/trip_detail__new_item_detail__button"/>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@id/trip_detail__new_item_detail__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trip_detail__add_item_detail___button"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"/>

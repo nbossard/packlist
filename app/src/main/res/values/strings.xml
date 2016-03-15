@@ -59,6 +59,7 @@
     <string name="trip_detail__end_date__label">to</string>
     <string name="trip_detail__start_date__label">from</string>
     <string name="trip_detail__add_item___button">Add item</string>
+    <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="ia__packed">PACKED :</string>
