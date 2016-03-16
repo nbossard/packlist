@@ -5,9 +5,12 @@
 Why another packing-list... because existing are incomplete, out-of-date or expensive and anyway not open-source.
 Which is very disappointing when you wish to save your lists and keep your phone out of always running tracking apps.
 
-Play Store link : https://play.google.com/store/apps/details?id=com.nbossard.packlist
-
+You can download APK on releases page  : https://github.com/nbossard/packlist/releases
+or 
 [![Get it on F-Droid](get_it_on_f-droid.png?raw=true)](https://f-droid.org/repository/browse/?fdid=com.nbossard.packlist)
+or
+[![Get it on Play Store](play_store_logo.png?raw=true)](https://play.google.com/store/apps/details?id=com.nbossard.packlist)
+
 
 ### Objectives in term of functionality : 
  * multi-language (currently French and english but please help for others)
@@ -56,7 +59,7 @@ Basic functionality are still under development
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2 Beta 5
+- Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
 
