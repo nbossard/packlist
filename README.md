@@ -7,6 +7,8 @@ Which is very disappointing when you wish to save your lists and keep your phone
 
 Play Store link : https://play.google.com/store/apps/details?id=com.nbossard.packlist
 
+[![Get it on F-Droid](get_it_on_f-droid.png?raw=true)](https://f-droid.org/repository/browse/?fdid=com.nbossard.packlist)
+
 ### Objectives in term of functionality : 
  * multi-language (currently French and english but please help for others)
  * pre-filling of list throught questions on what you are planning to do during your trip
