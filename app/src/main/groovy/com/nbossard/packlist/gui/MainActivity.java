@@ -20,6 +20,7 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -116,6 +117,12 @@ public class MainActivity
         mSavingModule.addListener(this);
 
         mMainActivityFragment = openMainActivityFragment();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override
