@@ -9,6 +9,7 @@
         changeDate="xxth march 2016"
         versionName="0.7.0">
         <changelogtext>BUGFIX : ISS#15 fixing rotation restarts activity</changelogtext>
+        <changelogtext>BUGFIX : ISS#16 new added item is under virtual keyboard</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="14th march 2016"

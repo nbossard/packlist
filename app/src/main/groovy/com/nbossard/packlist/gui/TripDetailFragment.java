@@ -88,6 +88,9 @@ public class TripDetailFragment extends Fragment {
     /** List of {@link Item} view. */
     private ListView mItemListView;
 
+    /** Adapter for list view. */
+    private ItemAdapter mListItemAdapter;
+
     /** Edit text. */
     private EditText mNewItemEditText;
 
@@ -305,9 +308,25 @@ public class TripDetailFragment extends Fragment {
         mIMainActivity.saveTrip(mRetrievedTrip);
         mNewItemEditText.setText("");
         populateList();
+        scrollMyListViewToBottom();
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Scroll list view to bottom... so that user can see the just added item.<br>
+     *
+     * Asked by user snelltheta in issue https://github.com/nbossard/packlist/issues/16
+     */
+    private void scrollMyListViewToBottom() {
+        mItemListView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                mItemListView.smoothScrollToPosition(mListItemAdapter.getCount());
+            }
+        });
+    }
 
     /**
      * Effectively delete selected item then refresh the list.
@@ -358,8 +377,8 @@ public class TripDetailFragment extends Fragment {
     private void populateList() {
         mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
-        ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
-        mItemListView.setAdapter(itemAdapter);
+        mListItemAdapter = new ItemAdapter(mRetrievedTrip.getListOfItems(), this.getActivity());
+        mItemListView.setAdapter(mListItemAdapter);
         mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mItemListView.setOnItemClickListener(mItemClickListener);
         mItemListView.setOnItemLongClickListener(mLongClickListener);

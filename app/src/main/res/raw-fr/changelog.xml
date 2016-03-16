@@ -28,6 +28,7 @@
         changeDate="xxth march 2016"
         versionName="0.7.0">
         <changelogtext>BUGFIX : ISS#15 Correction activité redémarrée à la rotation du téléphone</changelogtext>
+        <changelogtext>BUGFIX : ISS#16 L'item nouvellement ajouté est sous le clavier virtuel</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="14 mars 2016"

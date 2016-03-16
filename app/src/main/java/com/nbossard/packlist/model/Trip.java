@@ -225,7 +225,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListItem() {
+    public final List<Item> getListOfItems() {
         return mListItem;
     }
 
@@ -292,7 +292,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for(Item item: getListItem()) clonedTrip.addItem(item.clone());
+        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
         return clonedTrip;
     }
 
