@@ -37,6 +37,7 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import android.util.Log;
 
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
@@ -198,7 +199,12 @@ public class MainActivityForTest
 
     @Override
     public void openNewTripFragment(UUID parTripId) {
+        Log.d(TAG, "openNewTripFragment(...) faked");
+    }
 
+    @Override
+    public void openItemDetailFragment(Item parItem) {
+        Log.d(TAG, "openItemDetailFragment(...) faked");
     }
 
     @Override

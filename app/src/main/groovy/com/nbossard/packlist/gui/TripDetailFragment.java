@@ -94,6 +94,9 @@ public class TripDetailFragment extends Fragment {
     /** Add item button. */
     private Button mAddItemButton;
 
+    /** Add detailed item button. */
+    private Button mAddDetailedItemButton;
+
     // *********************** LISTENERS ********************************************************************
 
     /**
@@ -237,6 +240,14 @@ public class TripDetailFragment extends Fragment {
         mAddItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddItemButton);
 
+        mAddDetailedItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item_detail__button);
+        mAddDetailedItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onClickAddDetailedItem();
+            }
+        });
+
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
             @DebugLog
             @Override
@@ -305,6 +316,15 @@ public class TripDetailFragment extends Fragment {
         mIMainActivity.saveTrip(mRetrievedTrip);
         mNewItemEditText.setText("");
         populateList();
+    }
+
+    /**
+     * Handle click on "Add detail item" button.
+     * Will add a new item with additional details.
+     */
+    public final void onClickAddDetailedItem() {
+        String tmpStr = mNewItemEditText.getText().toString();
+        //TODO
     }
 
     // *********************** PRIVATE METHODS **************************************************************

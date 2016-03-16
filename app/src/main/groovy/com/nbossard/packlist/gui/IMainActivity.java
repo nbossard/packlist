@@ -32,6 +32,7 @@ package com.nbossard.packlist.gui;
 
 import android.support.annotation.Nullable;
 
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.UUID;
@@ -61,6 +62,12 @@ interface IMainActivity {
      * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
      */
     void openNewTripFragment(@Nullable final UUID parTripId);
+
+    /**
+     * Display provided Item to allow editing of details
+     * @param parItem item to be edited
+     */
+    void openItemDetailFragment(final Item parItem);
 
     /**
      * Hide or show FAB, depending on fragment.

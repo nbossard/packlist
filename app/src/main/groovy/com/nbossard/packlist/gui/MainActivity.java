@@ -37,6 +37,7 @@ import android.view.MenuItem;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
@@ -253,6 +254,11 @@ public class MainActivity
 
         // updating FAB action
         mFab.hide();
+    }
+
+    @Override
+    public void openItemDetailFragment(Item parItem) {
+        //TODO
     }
 
     // ----------- end of implementing interface IMainActivity ------------
