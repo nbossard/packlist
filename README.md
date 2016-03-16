@@ -11,6 +11,8 @@ or
 or
 [![Get it on Play Store](play_store_logo.png?raw=true)](https://play.google.com/store/apps/details?id=com.nbossard.packlist)
 
+[![Get it on F-Droid](get_it_on_f-droid.png?raw=true)](https://f-droid.org/repository/browse/?fdid=com.nbossard.packlist)
+
 ### Objectives in term of functionality : 
  * multi-language (currently French and english but please help for others)
  * pre-filling of list throught questions on what you are planning to do during your trip
@@ -50,7 +52,7 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
-- 0.6 14th february 2016
+- 0.6 14th march 2016
 - 0.5 18th february 2016
 - 0.4 8th february 2016
 - 0.3 alpha 
@@ -61,6 +63,7 @@ Basic functionality are still under development
 - Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
+    - PlantUML integration plugin (by Eugene Steinberg)
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
