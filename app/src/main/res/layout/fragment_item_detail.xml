@@ -18,21 +18,57 @@
   ~ under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
+<!-- Item detailed characteristics input page -->
+<!---->
+<!-- Resources and Ids for this page must start with "item_detail__" -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="item"
+            type="com.nbossard.packlist.model.Item"/>
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Chapeau"/>
+        <TextView
+            android:id="@+id/item_detail__name__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/item_detail__name__edit"
+            android:text="@string/item_detail__name__label"
+            tools:text="Brest"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="100g"/>
+        <TextView
+            android:id="@id/item_detail__name__edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.name}"
+            tools:text="Chapeau"/>
+
+        <TextView
+            android:id="@+id/item_detail__weight__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/item_detail__weight__edit"
+            android:text="@string/item_detail__weight__label"
+            tools:text="Brest"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.weight}"
+            tools:text="100g"/>
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

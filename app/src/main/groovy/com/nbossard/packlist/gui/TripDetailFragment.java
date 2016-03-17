@@ -171,13 +171,12 @@ public class TripDetailFragment extends Fragment {
 
     };
 
-
     // *********************** METHODS **********************************************************************
 
     /**
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
-     * @param parTrip ttrip to be displayed
+     * @param parTrip trip to be displayed
      */
     public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
@@ -324,7 +323,9 @@ public class TripDetailFragment extends Fragment {
      */
     public final void onClickAddDetailedItem() {
         String tmpStr = mNewItemEditText.getText().toString();
-        //TODO
+        Item newItem = new Item(tmpStr);
+        ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
+
     }
 
     // *********************** PRIVATE METHODS **************************************************************
