@@ -6,21 +6,49 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="27th january 2015"
-        versionName="0.3.0 alpha">
+        changeDate="xxth march 2016"
+        versionName="0.7.0">
+        <changelogtext>BUGFIX : ISS#15 fixing rotation restarts activity</changelogtext>
+        <changelogtext>BUGFIX : ISS#16 new added item is under virtual keyboard</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="14th march 2016"
+        versionName="0.6.0">
+        <changelogtext>NEW : adding remaining days before departure in trip list</changelogtext>
+        <changelogtext>NEW : ISS10 ordering trip list by start date</changelogtext>
+        <changelogtext>NEW : adding possibility to clone a previous trip</changelogtext>
+        <changelogtext>NEW : supporting tablet (landscape)</changelogtext>
+        <changelogtext>NEW : adding japanese translation thanks to naofum</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="18th february 2016"
+        versionName="0.5.0">
+        <changelogtext>NEW : ISS5 possibility to mark items as packed</changelogtext>
+        <changelogtext>Fixing crash when returning from background</changelogtext>
+        <changelogtext>ISS9 : removing obfuscation</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="05th february 2016"
+        versionName="0.4.0">
+        <changelogtext>NEW : allow edition of trip details</changelogtext>
+        <changelogtext>NEW : ISS4 allow deletion of item</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="27th january 2016"
+        versionName="0.3.0">
         <changelogtext>NEW : usage of datetimepicker for date picking</changelogtext>
         <changelogtext>NEW : improving management of empty fields, especially in dates</changelogtext>
         <changelogtext>NEW : adding missing version name in about page</changelogtext>
     </changelogversion>
     <changelogversion
-        changeDate="24th january 2015"
-        versionName="0.2.0 alpha">
+        changeDate="24th january 2016"
+        versionName="0.2.0">
         <changelogtext>NEW : adding changelog</changelogtext>
         <changelogtext>NEW : adding possibility to add item to a trip</changelogtext>
     </changelogversion>
     <changelogversion
-        changeDate="06th january 2015"
-        versionName="0.1.0 alpha">
+        changeDate="06th january 2016"
+        versionName="0.1.0">
         <changelogtext>NEW : initial version</changelogtext>
     </changelogversion>
 </changelog>

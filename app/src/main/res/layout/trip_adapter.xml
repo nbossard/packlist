@@ -27,7 +27,9 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@drawable/list_bgd">
+
     <TextView
         android:id="@+id/ta__name"
         android:layout_width="wrap_content"
@@ -44,10 +46,20 @@
         android:paddingRight="0dip">
 
         <TextView
+            android:id="@+id/ta__in_x_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="In 10 days"/>
+
+        <Space
+            android:layout_width="10dip"
+            android:layout_height="wrap_content"/>
+
+        <TextView
             android:id="@+id/ta__start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="23 décembre 2015"/>
+            tools:text="23/12/2015"/>
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ta__arrow_date"
@@ -59,7 +71,7 @@
             android:id="@+id/ta__end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="28 décembre 2015"/>
+            tools:text="28/12/2015"/>
 
     </LinearLayout>
 

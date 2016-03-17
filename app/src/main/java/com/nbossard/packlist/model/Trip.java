@@ -34,16 +34,21 @@ package com.nbossard.packlist.model;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A trip data model.
+ * Note that this class has to be left in Java folder for data binding.
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip {
+public class Trip implements Serializable, Comparable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -54,10 +59,10 @@ public class Trip {
     private String mName;
 
     /** Trip start date. */
-    private String mStartDate;
+    private GregorianCalendar mStartDate;
 
     /** Trip return date. */
-    private String mEndDate;
+    private GregorianCalendar mEndDate;
 
     /** Additional notes, free text. */
     private String mNote;
@@ -70,6 +75,14 @@ public class Trip {
 // *********************** METHODS **************************************************************************
 
     /**
+     * No parameter Constructor.
+     */
+    public Trip() {
+        mUUID = UUID.randomUUID();
+        mListItem = new ArrayList<>();
+    }
+
+    /**
      * Full parameters constructor.
      * @param parName trip name, usually destination. i.e. : "Dublin"
      * @param parStartDate trip start date
@@ -77,17 +90,14 @@ public class Trip {
      * @param parNote additional notes, free text
      */
     public Trip(final String parName,
-                final String parStartDate,
-                final String parEndDate,
+                final GregorianCalendar parStartDate,
+                final GregorianCalendar parEndDate,
                 final String parNote) {
-
-        mUUID = UUID.randomUUID();
+        this();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
-
-        mListItem = new ArrayList<>();
     }
 
     /**
@@ -127,8 +137,20 @@ public class Trip {
      * Getter for trip start date.
      * @return trip start date
      */
-    public final String getStartDate() {
+    public final GregorianCalendar getStartDate() {
         return mStartDate;
+    }
+
+    /**
+     * The trip start date but as a locale formatted date.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedStartDate() {
+        String res = null;
+        if (mStartDate != null) {
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -136,7 +158,7 @@ public class Trip {
      * @param parStartDate trip start date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setStartDate(final String parStartDate) {
+    public final void setStartDate(final GregorianCalendar parStartDate) {
         mStartDate = parStartDate;
     }
 
@@ -144,8 +166,20 @@ public class Trip {
      * Getter for trip return date.
      * @return trip return date
      */
-    public final String getEndDate() {
+    public final GregorianCalendar getEndDate() {
         return mEndDate;
+    }
+
+    /**
+     * End date formatted according to device locale.
+     * @return locale formatted date or null if never set
+     */
+    public final String getFormattedEndDate() {
+        String res = null;
+        if (mEndDate != null) {
+            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime());
+        }
+        return res;
     }
 
     /**
@@ -153,14 +187,14 @@ public class Trip {
      * @param parEndDate trip return date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setEndDate(final String parEndDate) {
+    public final void setEndDate(final GregorianCalendar parEndDate) {
         mEndDate = parEndDate;
     }
 
     /**
-     *
      * @return automatically set UUID
      */
+    @NonNull
     public final UUID getUUID() {
         return mUUID;
     }
@@ -168,10 +202,21 @@ public class Trip {
     /**
      * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
+     * @return UUID of newly created item
      */
-    public final void addItem(final String parName) {
+    public final UUID addItem(final String parName) {
         Item newItem = new Item(parName);
         mListItem.add(newItem);
+        return newItem.getUUID();
+    }
+
+    /**
+     * Add a new item in the list of items to bring with this trip.
+     * @param parItem new item
+     */
+    @SuppressWarnings("WeakerAccess")
+    public final void addItem(final Item parItem) {
+        mListItem.add(parItem);
     }
 
 
@@ -180,13 +225,37 @@ public class Trip {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListItem() {
+    public final List<Item> getListOfItems() {
         return mListItem;
+    }
+
+    /**
+     * Delete the item of provided UUID.
+     * @param parUUID unique identifier of item to be deleted
+     */
+    public final void deleteItem(final UUID parUUID) {
+        Item toDeleteItem = null;
+        for (Item oneItem:mListItem) {
+            if (oneItem.getUUID().compareTo(parUUID) == 0) {
+                toDeleteItem = oneItem;
+            }
+        }
+        if (toDeleteItem != null) {
+            mListItem.remove(toDeleteItem);
+        }
+    }
+
+    /**
+     * @return Number of days before trip, can be a negative value if trip is in the past.
+     */
+    public final long getRemainingDays() {
+        long diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
 
 
     @Override
-    public final boolean equals(Object parO) {
+    public final boolean equals(final Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
@@ -205,6 +274,26 @@ public class Trip {
         result = 31 * result + (mStartDate != null ? mStartDate.hashCode() : 0);
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull final Object parAnotherTrip) {
+        int curRemainingDays = ((Long) getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        return curRemainingDays - otherRemainingDays;
+    }
+
+    @Override
+    public Trip clone() throws CloneNotSupportedException {
+        Trip clonedTrip = (Trip) super.clone();
+
+        // setting another UUID
+        clonedTrip.mUUID = UUID.randomUUID();
+
+        // cloning also trip list
+        clonedTrip.mListItem = new ArrayList<>();
+        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
+        return clonedTrip;
     }
 
     @Override

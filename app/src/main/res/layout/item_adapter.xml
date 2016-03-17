@@ -25,13 +25,25 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@drawable/list_bgd">
+
+    <TextView
+        android:id="@+id/ia__packed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ia__packed"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="10dip"
+        android:layout_height="1dip"/>
+
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Verdun"/>
+        tools:text="Socks"/>
 
 </LinearLayout>

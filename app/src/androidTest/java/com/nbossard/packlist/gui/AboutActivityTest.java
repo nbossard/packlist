@@ -73,7 +73,12 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.about__main)));
+        Assert.assertTrue(mSolo.waitForText("Packing list"));
+        Assert.assertTrue(mSolo.waitForText("Copyright NBossard"));
+        Assert.assertTrue(mSolo.waitForText("Apache 2"));
+        Assert.assertTrue(mSolo.waitForText("https://github.com/nbossard/packlist"));
+        Assert.assertTrue(mSolo.waitForText("Merci"));
+        Assert.assertTrue(mSolo.waitForText("naofum"));
 
         // Assert.assertTrue(mSolo.waitForText(BuildConfig.VERSION_NAME));
         // let human see the screen

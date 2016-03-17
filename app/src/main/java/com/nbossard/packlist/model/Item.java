@@ -22,18 +22,41 @@ package com.nbossard.packlist.model;
 /*
 @startuml
     class com.nbossard.packlist.model.Item {
+        UUID mUUID
         String mName
+        boolean mIsPacked
     }
 @enduml
  */
+
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item {
+public class Item implements Serializable, Cloneable {
 
-    /** The trip name usually destination. */
+// *********************** FIELDS *************************************************************************
+
+    /** A unique identifier for this item. */
+    private UUID mUUID;
+
+    /** The item name. */
     private String mName;
+
+    /** Has this item been packed already. true=yes, false=no. */
+    private boolean mIsPacked;
+
+// *********************** METHODS **************************************************************************
+
+    /**
+     * No params constructor.
+     */
+    private Item() {
+        mUUID = UUID.randomUUID();
+    }
 
     /**
      * Full params constructor.
@@ -41,19 +64,27 @@ public class Item {
      * @param parName new item name. i.e. : "socks"
      */
     public Item(final String parName) {
+        this();
         setName(parName);
     }
 
     /**
+     * @return automatically set UUID (unique identifier)
+     */
+    public final UUID getUUID() {
+        return mUUID;
+    }
+
+    /**
      * Getter for name.
-     * @return i.e. : "Dublin"
+     * @return i.e. : "Socks"
      */
     public final String getName() {
         return mName;
     }
 
     /**
-     * Setter for name/ destination of trip.
+     * Setter for name/ destination of item.
      * @param parName trip name, usually destination. i.e. : "Dublin"
      */
     @SuppressWarnings("WeakerAccess")
@@ -61,11 +92,39 @@ public class Item {
         mName = parName;
     }
 
+    /**
+     * Getter for boolean whether or not this item is packed.
+     * @return true=yes, false=no.
+     */
+    public final boolean isPacked() {
+        return mIsPacked;
+    }
+
+    /**
+     * Setter for  whether or not this item is packed.
+     * @param parPacked true=yes, false=no.
+     */
+    public final void setPacked(final boolean parPacked) {
+        mIsPacked = parPacked;
+    }
 
     @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Item{");
-        sb.append("mName='").append(mName).append('\'');
+    protected final Item clone() throws CloneNotSupportedException {
+        Item res = (Item) super.clone();
+
+        // setting another UUID for the clone
+        res.mUUID = UUID.randomUUID();
+
+        return res;
+    }
+
+    @SuppressWarnings("StringBufferReplaceableByString")
+    @Override
+    public final String toString() {
+        final StringBuilder sb = new StringBuilder("Item{");
+        sb.append("mUUID=").append(mUUID);
+        sb.append(", mName='").append(mName).append('\'');
+        sb.append(", mIsPacked='").append(mIsPacked).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -51,14 +51,15 @@
         android:layout_below="@id/main__space"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/trip_adapter">
-    </ListView>
+        tools:listitem="@layout/trip_adapter"
+        android:background="@color/packlist__list_background"/>
 
     <!-- View that will be displayed if list is empty only -->
     <LinearLayout android:id="@+id/main__trip_list_empty"
                   android:layout_width="fill_parent" android:layout_height="fill_parent"
                   android:gravity="center"
-                  android:visibility="gone">
+                  android:visibility="gone"
+                  android:background="@color/packlist__list_background">
 
         <TextView android:text="@string/main__no_trip_yet__label"
                   android:layout_width="wrap_content" android:layout_height="wrap_content">

@@ -92,12 +92,13 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
         mSolo.clickOnImageButton(0);
 
         Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
-
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
         mSolo.clickOnText("OK");
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+        Assert.assertTrue(mSolo.waitForText("/2016"));
 
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
-        Assert.assertTrue(mSolo.waitForText("2016-"));
     }
 
     /**
@@ -113,16 +114,17 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
         mSolo.clickOnImageButton(1);
 
         Assert.assertTrue(mSolo.waitForText("2016",1,TestValues.TIMEOUT_1000_MS, TestValues.DO_NOT_SCROLL));
-
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
         mSolo.clickOnText("OK");
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+        Assert.assertTrue(mSolo.waitForText("/2016"));
 
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
-        Assert.assertTrue(mSolo.waitForText("2016-"));
     }
 
     /**
-     * Test that end date picker opens and allows selection of date.
+     * Test that name is mandatory for unlocking submit button.
      *
      * @throws Exception
      *             if a test has failed.

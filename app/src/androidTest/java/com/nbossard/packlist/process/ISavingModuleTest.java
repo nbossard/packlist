@@ -25,6 +25,7 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -45,28 +46,44 @@ public class ISavingModuleTest extends InstrumentationTestCase {
 // *********************** METHODS **************************************************************************
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip1 = new Trip("Rennes", "12 décembre 2015", "14 décembre 2015", "pas trop loin");
-        mTestTrip2 = new Trip("Dublin", "1 mai 2015", "8 mai 2015", "Bèèèèè");
-        mTestTrip3 = new Trip("Londres", "4 juin 2015", "9 juin 2015", "beurk");
+        mTestTrip1 =
+                new Trip("Rennes",
+                        new GregorianCalendar(2015,12,12),
+                        new GregorianCalendar(2015,12,14),
+                        "pas trop loin");
+        mTestTrip2 =
+                new Trip("Dublin",
+                        new GregorianCalendar(2015,5,1),
+                        new GregorianCalendar(2015,5,8),
+                        "Bèèèèè");
+        mTestTrip3 =
+                new Trip("Londres",
+                        new GregorianCalendar(2015,6,4),
+                        new GregorianCalendar(2015,6,9),
+                        "beurk");
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
+        mTestedSavingModule.deleteAllTrips();
     }
 
     public void testLoadSavedTrips() throws Exception {
         mTestedSavingModule.deleteAllTrips();
-        mTestedSavingModule.addNewTrip(mTestTrip1);
-        mTestedSavingModule.addNewTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
 
         //Checking result
         assertEquals(2,loadedTrips.size());
         assertTrue(loadedTrips.contains(mTestTrip1));
         assertTrue(loadedTrips.contains(mTestTrip2));
+        // ensuring it is in right order, not the addition one
+        assertTrue(loadedTrips.get(0).getUUID().compareTo(mTestTrip2.getUUID())==0);
+        assertTrue(loadedTrips.get(1).getUUID().compareTo(mTestTrip1.getUUID())==0);
     }
 
     public void testDeleteTrip() {
-        mTestedSavingModule.addNewTrip(mTestTrip1);
-        mTestedSavingModule.addNewTrip(mTestTrip2);
-        mTestedSavingModule.addNewTrip(mTestTrip3);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip3);
 
         mTestedSavingModule.deleteTrip(mTestTrip2.getUUID());
         List<Trip> loadedTrips = mTestedSavingModule.loadSavedTrips();
@@ -75,6 +92,19 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertEquals(2,loadedTrips.size());
         assertTrue(loadedTrips.contains(mTestTrip1));
         assertTrue(loadedTrips.contains(mTestTrip3));
+    }
+
+    public void testAddOrUpdateTrip() throws Exception {
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip3);
+
+        mTestTrip2.setNote("Bouh");
+        mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
+
+        Trip loadedTrip = mTestedSavingModule.loadSavedTrip(mTestTrip2.getUUID());
+
+        assertEquals("Bouh", loadedTrip.getNote());
     }
 
 //

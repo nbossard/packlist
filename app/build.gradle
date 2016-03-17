@@ -17,7 +17,9 @@
  * under the License.
  */
 
+
 apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
 apply plugin: 'com.jakewharton.hugo'
 
 android {
@@ -29,20 +31,30 @@ android {
     // 2 --> 0.2
     // 3 --> 0.3
     // 4 --> 0.3.4
+    // 5 --> 0.4
+    // 6 --> 0.5
+    // 7 --> 0.6
+    // 8 --> 0.7
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 4
-        versionName "0.3 alpha"
+        versionCode 8
+        versionName "0.7"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            // setting minifyEnabled to false will disable proguard
+            // and consequently allow easy crash report understanding
+            minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix " DEBUG"
         }
     }
 
@@ -51,17 +63,38 @@ android {
     dataBinding {
         enabled = true
     }
+
+    lintOptions {
+        disable 'InvalidPackage' // lint sees references in the grooid jar to unavailable java classes
+    }
+}
+
+androidGroovy {
+    options {
+        configure(groovyOptions) {
+            forkOptions.jvmArgs = ['-noverify']
+        }
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
+    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
 
 }
+
+
+// NBO : what for ??
+// configurations.all {
+//     resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+//}
