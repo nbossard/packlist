@@ -225,7 +225,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListItem() {
+    public final List<Item> getListOfItems() {
         return mListItem;
     }
 
@@ -247,9 +247,13 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
     /**
      * @return Number of days before trip, can be a negative value if trip is in the past.
+     * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
-        long diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        long diffInMilliSeconds = 0;
+        if (mStartDate != null) {
+            diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        }
         return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
 
@@ -292,7 +296,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for(Item item: getListItem()) clonedTrip.addItem(item.clone());
+        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
         return clonedTrip;
     }
 

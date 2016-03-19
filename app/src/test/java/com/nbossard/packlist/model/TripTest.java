@@ -53,13 +53,19 @@ public class TripTest  {
     private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
     private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
 
+    private static final String TRIP3_NAME = "Toronto";
+
     private Trip mTestTrip;
     private Trip mTestTrip2;
+    private Trip mTestTrip3NoDate;
 
     @Before
     public void setUp() throws Exception {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
         mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
+        mTestTrip3NoDate = new Trip();
+        mTestTrip3NoDate.setName(TRIP3_NAME);
+
     }
 
     @Test
@@ -126,11 +132,11 @@ public class TripTest  {
 
     @Test
     public void testAddItem() throws Exception {
-        assertTrue(mTestTrip.getListItem().size()==0);
+        assertTrue(mTestTrip.getListOfItems().size()==0);
         mTestTrip.addItem(NEW_ITEM_NAME);
-        assertTrue(mTestTrip.getListItem().size()==1);
-        assertNotNull(mTestTrip.getListItem().get(0).getName());
-        assertTrue(mTestTrip.getListItem().get(0).getName().contentEquals(NEW_ITEM_NAME));
+        assertTrue(mTestTrip.getListOfItems().size()==1);
+        assertNotNull(mTestTrip.getListOfItems().get(0).getName());
+        assertTrue(mTestTrip.getListOfItems().get(0).getName().contentEquals(NEW_ITEM_NAME));
     }
 
     @Test
@@ -141,16 +147,16 @@ public class TripTest  {
         mTestTrip.addItem(NEW_ITEM_NAME3);
         mTestTrip.addItem(NEW_ITEM_NAME4);
 
-        assertTrue(mTestTrip.getListItem().size()==4);
+        assertTrue(mTestTrip.getListOfItems().size()==4);
 
         mTestTrip.deleteItem(delUUID);
     }
 
     @Test
     public void testGetListItem() throws Exception {
-        assertTrue(mTestTrip.getListItem().size()==0);
+        assertTrue(mTestTrip.getListOfItems().size()==0);
         mTestTrip.addItem(NEW_ITEM_NAME);
-        assertTrue(mTestTrip.getListItem().size()==1);
+        assertTrue(mTestTrip.getListOfItems().size()==1);
     }
 
 
@@ -170,11 +176,17 @@ public class TripTest  {
         assertTrue(mTestTrip.getNote().contentEquals(clonedTrip.getNote()));
         assertTrue(mTestTrip.getStartDate()==clonedTrip.getStartDate());
         assertTrue(mTestTrip.getEndDate()==clonedTrip.getEndDate());
-        assertTrue(mTestTrip.getListItem().size()==clonedTrip.getListItem().size());
+        assertTrue(mTestTrip.getListOfItems().size()==clonedTrip.getListOfItems().size());
 
-        assertTrue(mTestTrip.getListItem().get(0).getUUID() != clonedTrip.getListItem().get(0).getUUID());
+        assertTrue(mTestTrip.getListOfItems().get(0).getUUID() != clonedTrip.getListOfItems().get(0).getUUID());
         assertTrue(mTestTrip.getName().contentEquals(clonedTrip.getName()));
         assertTrue(mTestTrip.getUUID()!=clonedTrip.getUUID());
+    }
+
+    @Test
+    public void testGetRemainingDays() {
+        // test getRemainingDays when no start date
+       assertEquals(0L, mTestTrip3NoDate.getRemainingDays());
     }
 
     @Test

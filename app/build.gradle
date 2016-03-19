@@ -34,14 +34,15 @@ android {
     // 5 --> 0.4
     // 6 --> 0.5
     // 7 --> 0.6
+    // 8 --> 0.7
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 7
-        versionName "0.6"
+        versionCode 8
+        versionName "0.7"
     }
     buildTypes {
         release {
