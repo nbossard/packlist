@@ -6,6 +6,10 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate="xxth march 2016"
+        versionName="0.8">
+    </changelogversion>
+    <changelogversion
         changeDate="19th march 2016"
         versionName="0.7.0">
         <changelogtext>BUGFIX : ISS#15 fixing rotation restarts activity</changelogtext>

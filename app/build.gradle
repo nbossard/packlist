@@ -34,15 +34,16 @@ android {
     // 5 --> 0.4
     // 6 --> 0.5
     // 7 --> 0.6
-    // 8 --> 0.7
+    // 8 --> 0.7 (published 19th march 2016)
+    // 9 --> 0.8
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 8
-        versionName "0.7"
+        versionCode 9
+        versionName "0.8"
     }
     buildTypes {
         release {
