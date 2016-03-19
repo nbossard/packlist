@@ -89,7 +89,11 @@ public class MainActivity
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
+    /** The fragment MainActivity instantiated. */
     private MainActivityFragment mMainActivityFragment;
+
+    /** The fragment trip detail if already opened. */
+    private TripDetailFragment mTripDetailFragment;
 
 // *********************** METHODS **************************************************************************
 
@@ -195,7 +199,12 @@ public class MainActivity
     @DebugLog
     public final void saveTrip(Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
+
+        //update fragments displaying trips
         mMainActivityFragment.populateList();
+        if (mTripDetailFragment != null) {
+            mTripDetailFragment.displayTrip(parTrip);
+        }
     }
 
     /**
@@ -208,12 +217,12 @@ public class MainActivity
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
-        TripDetailFragment newFragment =  TripDetailFragment.newInstance(parTrip);
+        mTripDetailFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(getTargetFragment(), newFragment);
+        transaction.replace(getTargetFragment(), mTripDetailFragment);
         transaction.addToBackStack(null);
 
         // Commit the transaction
@@ -222,7 +231,7 @@ public class MainActivity
         // updating FAB action
         mFab.hide();
 
-        return newFragment;
+        return mTripDetailFragment;
     }
 
 
