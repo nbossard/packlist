@@ -195,6 +195,7 @@ public class MainActivity
     @DebugLog
     public final void saveTrip(Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
+        mMainActivityFragment.populateList();
     }
 
     /**
