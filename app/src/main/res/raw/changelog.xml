@@ -8,6 +8,7 @@
     <changelogversion
         changeDate="xxth march 2016"
         versionName="0.8">
+        <changelogtext>BUGFIX : ISS#21 packlist display jumps to top upon every (un)pack of an item</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="19th march 2016"

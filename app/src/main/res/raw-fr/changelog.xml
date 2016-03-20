@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xx march 2016"
         versionName="0.8">
+        <changelogtext>BUGFIX : ISS#21 dans le cas d'une longue liste, le simple clic scroll au début</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="19 march 2016"
