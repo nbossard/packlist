@@ -28,22 +28,30 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/list_bgd">
+              android:background="@drawable/list_bgd"
+              android:layout_marginTop="@dimen/month_day_label_text_size"
+              android:paddingTop="@dimen/ia__row_margin"
+              android:paddingBottom="@dimen/ia__row_margin"
+              android:paddingStart="@dimen/ia__start_margin"
+              android:paddingLeft="@dimen/ia__start_margin"
+              android:paddingEnd="@dimen/ia__start_margin"
+              android:paddingRight="@dimen/ia__start_margin">
 
+    <!-- using margin right instead of Space as it is linked to this string-->
     <TextView
         android:id="@+id/ia__packed"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ia__packed"/>
-
-    <android.support.v4.widget.Space
-        android:layout_width="10dip"
-        android:layout_height="1dip"/>
+        android:layout_height="match_parent"
+        android:text="@string/ia__packed"
+        android:layout_marginEnd="10dip"
+        android:layout_marginRight="10dip"
+        android:gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Socks"/>
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
 
 </LinearLayout>
