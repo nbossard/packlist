@@ -142,18 +142,6 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     /**
-     * The trip start date but as a locale formatted date.
-     * @return locale formatted date or null if never set
-     */
-    public final String getFormattedStartDate() {
-        String res = null;
-        if (mStartDate != null) {
-            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
-        }
-        return res;
-    }
-
-    /**
      * Setter for start date of trip.
      * @param parStartDate trip start date
      */
@@ -168,18 +156,6 @@ public class Trip implements Serializable, Comparable, Cloneable {
      */
     public final GregorianCalendar getEndDate() {
         return mEndDate;
-    }
-
-    /**
-     * End date formatted according to device locale.
-     * @return locale formatted date or null if never set
-     */
-    public final String getFormattedEndDate() {
-        String res = null;
-        if (mEndDate != null) {
-            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime());
-        }
-        return res;
     }
 
     /**

@@ -11,6 +11,7 @@ or
 or
 [![Get it on Play Store](play_store_logo.png?raw=true)](https://play.google.com/store/apps/details?id=com.nbossard.packlist)
 
+Tech note : Github and Play Store releases use same certificate. F-droid use their own certificate.
 
 ### Objectives in term of functionality : 
  * multi-language (currently French and english but please help for others)
