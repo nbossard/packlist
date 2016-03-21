@@ -30,6 +30,9 @@
         <variable
             name="trip"
             type="com.nbossard.packlist.model.Trip"/>
+        <variable
+            name="tripFormatter"
+            type="com.nbossard.packlist.model.TripFormatter"/>
 
     </data>
 
@@ -86,7 +89,7 @@
                 android:layout_toLeftOf="@id/new_trip__start_date__button"
                 android:layout_toStartOf="@id/new_trip__start_date__button"
                 android:gravity="center_vertical"
-                android:text="@{trip.formattedStartDate}"
+                android:text="@{tripFormatter.getFormattedDate(trip.startDate)}"
                 android:textColor="@color/chglib_material_color_text_1"
                 tools:text="22/03/2016"/>
         </RelativeLayout>
@@ -118,7 +121,7 @@
                 android:layout_toLeftOf="@id/new_trip__end_date__button"
                 android:layout_toStartOf="@id/new_trip__end_date__button"
                 android:gravity="center_vertical"
-                android:text="@{trip.formattedEndDate}"
+                android:text="@{tripFormatter.getFormattedDate(trip.endDate)}"
                 android:textColor="@color/chglib_material_color_text_1"
                 tools:text="27/03/2016"/>
 

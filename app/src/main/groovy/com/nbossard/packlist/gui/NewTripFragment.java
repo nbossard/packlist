@@ -38,6 +38,7 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentNewTripBinding;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.text.DateFormat;
@@ -251,6 +252,7 @@ public class NewTripFragment extends Fragment {
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentNewTripBinding mBinding = DataBindingUtil.bind(mRootView);
         mBinding.setTrip(mTrip);
+        mBinding.setTripFormatter(new TripFormatter(getContext()));
         mBinding.executePendingBindings();
 
         mStartDate = mTrip.getStartDate();
