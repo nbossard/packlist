@@ -26,4 +26,8 @@
     <dimen name="margin_start">10dip</dimen>
     <dimen name="margin_end">10dip</dimen>
     <dimen name="space_label_value">4dip</dimen>
+
+    <!-- packlist specific dimensions -->
+    <dimen name="ia__row_margin">10dip</dimen>
+    <dimen name="ia__start_margin">10dip</dimen>
 </resources>
