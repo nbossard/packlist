@@ -20,18 +20,29 @@
 package com.nbossard.packlist.model;
 
 import android.content.Context;
-import android.provider.Settings;
-import android.text.TextUtils;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
 
 /**
- * Created by naub7473 on 21/03/16.
+ * Formatter for {@link Trip}, used in data binding for presentation.
+ *
+ * @author Created by naub7473 on 21/03/16.
  */
 public class TripFormatter
 {
+
+// *********************** CONSTANTS**********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = TripFormatter.class.getName();
+
+// *********************** FIELDS ***************************************************************************
+
     private final Context mContext;
+
+// *********************** METHODS **************************************************************************
 
     public TripFormatter(Context parContext)
     {
@@ -43,20 +54,33 @@ public class TripFormatter
      * @return locale formatted date or null if never set
      */
     public final String getFormattedDate(GregorianCalendar parDate) {
-        String res = null;
 
-        final String format = Settings.System.getString(mContext.getContentResolver(), Settings.System.DATE_FORMAT);
+        Log.d(TAG, "getFormattedDate() called with: " + "parDate = [" + parDate + "]");
+
+        String res = null;
         DateFormat dateFormat;
 
+        //S3 : works fine on recent android (without date format)
+        // and takes into account date format on old android
+        dateFormat = android.text.format.DateFormat.getDateFormat(mContext);
+
+        /*
+        //S2 : the whole block
+        final String format = Settings.System.getString(mContext.getContentResolver(), Settings.System.DATE_FORMAT);
+
         if (TextUtils.isEmpty(format)) {
-            dateFormat = android.text.format.DateFormat.getMediumDateFormat(mContext.getApplicationContext());
-        } else {
+            // S1
             dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+        } else {
+            dateFormat = new SimpleDateFormat(format, Locale.getDefault());
         }
+        */
 
         if (parDate != null) {
             res = dateFormat.format(parDate.getTime());
         }
+
+        Log.d(TAG, "getFormattedDate() returned: " + res);
         return res;
     }
 
