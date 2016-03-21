@@ -144,7 +144,9 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.tvName.setText(oneTrip.getName());
-        vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+        if (oneTrip.getStartDate() != null) {
+            vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+        }
         vHolderRecycle.tvStartDate.setText(oneTrip.getFormattedStartDate());
         vHolderRecycle.tvEndDate.setText(oneTrip.getFormattedEndDate());
         if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {

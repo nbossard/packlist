@@ -53,13 +53,19 @@ public class TripTest  {
     private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
     private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
 
+    private static final String TRIP3_NAME = "Toronto";
+
     private Trip mTestTrip;
     private Trip mTestTrip2;
+    private Trip mTestTrip3NoDate;
 
     @Before
     public void setUp() throws Exception {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
         mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
+        mTestTrip3NoDate = new Trip();
+        mTestTrip3NoDate.setName(TRIP3_NAME);
+
     }
 
     @Test
@@ -175,6 +181,12 @@ public class TripTest  {
         assertTrue(mTestTrip.getListOfItems().get(0).getUUID() != clonedTrip.getListOfItems().get(0).getUUID());
         assertTrue(mTestTrip.getName().contentEquals(clonedTrip.getName()));
         assertTrue(mTestTrip.getUUID()!=clonedTrip.getUUID());
+    }
+
+    @Test
+    public void testGetRemainingDays() {
+        // test getRemainingDays when no start date
+       assertEquals(0L, mTestTrip3NoDate.getRemainingDays());
     }
 
     @Test

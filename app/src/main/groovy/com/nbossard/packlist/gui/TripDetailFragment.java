@@ -212,15 +212,11 @@ public class TripDetailFragment extends Fragment {
                                        final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
 
-        // Magic of binding
-        // Do not use this syntax, it will overwrite actvity (we are in a fragment)
-        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
-        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setTrip(mRetrievedTrip);
-        mBinding.executePendingBindings();
+        displayTrip(mRetrievedTrip);
 
         return mRootView;
     }
+
 
     @DebugLog
     @Override
@@ -263,6 +259,23 @@ public class TripDetailFragment extends Fragment {
 
         populateList();
 
+    }
+
+    /** Display provided trip.
+     * Savec it in {@link #mRetrievedTrip} as the trip currently being displayed.
+     *
+     * @param parTrip trip to be displayed
+     */
+    public void displayTrip(Trip parTrip) {
+
+        mRetrievedTrip = parTrip;
+
+        // Magic of binding
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
+        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
+        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
+        mBinding.setTrip(mRetrievedTrip);
+        mBinding.executePendingBindings();
     }
 
     @DebugLog

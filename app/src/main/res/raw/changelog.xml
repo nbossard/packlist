@@ -6,10 +6,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xxth march 2016"
+        changeDate="19th march 2016"
         versionName="0.7.0">
         <changelogtext>BUGFIX : ISS#15 fixing rotation restarts activity</changelogtext>
         <changelogtext>BUGFIX : ISS#16 new added item is under virtual keyboard</changelogtext>
+        <changelogtext>BUGFIX : ISS#18 crash when displaying a trip with no start date</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="14th march 2016"
