@@ -47,6 +47,7 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
@@ -113,7 +114,7 @@ public class TripDetailFragment extends Fragment {
             Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
             mIMainActivity.saveTrip(mRetrievedTrip);
-            populateList();
+            mListItemAdapter.notifyDataSetChanged();
         }
     };
 
@@ -275,6 +276,7 @@ public class TripDetailFragment extends Fragment {
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
         mBinding.setTrip(mRetrievedTrip);
+        mBinding.setTripFormatter(new TripFormatter(getContext()));
         mBinding.executePendingBindings();
     }
 

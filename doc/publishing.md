@@ -23,7 +23,7 @@
  - updload APK to android console
  - add apk and screenshots to git / commit / push
  - draft new release in github
- - make new release on playstore
+ - commit and push master
  
  # Preparing next version
  - go back to branch develop

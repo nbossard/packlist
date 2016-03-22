@@ -11,7 +11,7 @@ or
 or
 [![Get it on Play Store](play_store_logo.png?raw=true)](https://play.google.com/store/apps/details?id=com.nbossard.packlist)
 
-Tech note : Github and Play Store releases use same certificate. F-droid use their own certificate. 
+Tech note : Github and Play Store releases use same certificate. F-droid use their own certificate.
 
 ### Objectives in term of functionality : 
  * multi-language (currently French and english but please help for others)
@@ -52,7 +52,11 @@ Apache 2
 Basic functionality are still under development
 
 ### History of release
-- 0.7 19th march 2016
+
+[See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
+
+- 0.7.1 22th march 2016,  bugfixing
+- 0.7 19th march 2016,  bugfixing
 - 0.6 14th march 2016
 - 0.5 18th february 2016
 - 0.4 8th february 2016
@@ -64,7 +68,6 @@ Basic functionality are still under development
 - Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
-    - PlantUML integration plugin (by Eugene Steinberg)
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
