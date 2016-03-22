@@ -22,8 +22,9 @@
  - copy apk to pub/res_pub folder
  - updload APK to android console
  - add apk and screenshots to git / commit / push
- - draft new release in github
  - commit and push master
+ - draft new release in github
+
  
  # Preparing next version
  - go back to branch develop

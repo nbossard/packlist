@@ -43,8 +43,8 @@ android {
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 9
-        versionName "0.7.1"
+        versionCode 10
+        versionName "0.8"
     }
     buildTypes {
         release {
