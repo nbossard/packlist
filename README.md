@@ -55,7 +55,7 @@ Basic functionality are still under development
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
-- 0.7.1 20th march 2016,  bugfixing
+- 0.7.1 22th march 2016,  bugfixing
 - 0.7 19th march 2016,  bugfixing
 - 0.6 14th march 2016
 - 0.5 18th february 2016

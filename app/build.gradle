@@ -35,7 +35,7 @@ android {
     // 6 --> 0.5
     // 7 --> 0.6
     // 8 --> 0.7 (published 19th march 2016)
-    // 9 --> 0.7.1 (published 20th march 2016)
+    // 9 --> 0.7.1 (published 22nd march 2016)
     // 10 --> 0.8
     defaultConfig {
         applicationId "com.nbossard.packlist"
