@@ -24,9 +24,13 @@
  - add apk and screenshots to git / commit / push
  - commit and push master
  - draft new release in github
+ - [update f-droid metadata file](https://gitlab.com/fdroid/fdroiddata/blob/master/metadata/com.nbossard.packlist.txt)
+    - field "Current Version"
+    - field "Current Version Code"
 
  
- # Preparing next version
+## Preparing next version
+ 
  - go back to branch develop
  - cherry pick commit from master if required
  - update versionCode in build.gradle
