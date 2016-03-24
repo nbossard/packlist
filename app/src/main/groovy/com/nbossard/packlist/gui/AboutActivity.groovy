@@ -72,8 +72,10 @@ class AboutActivity extends AppCompatActivity {
 
         // updating version number
         def mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
-        mGeneralInfo.setText(String.format(getString(R.string.about__main),
-                BuildConfig.VERSION_NAME))
+        mGeneralInfo.setText(
+                String.format(getString(R.string.about__main),
+                            BuildConfig.VERSION_NAME,
+                            getString(R.string.about__additional__info)))
 
     }
 
