@@ -36,7 +36,8 @@ android {
     // 7 --> 0.6
     // 8 --> 0.7 (published 19th march 2016)
     // 9 --> 0.7.1 (published 22nd march 2016)
-    // 10 --> 0.8
+    // 10 --> 0.7.2 (published 24nd march 2016)
+    // 11 --> 0.8
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
@@ -44,7 +45,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 10
-        versionName "0.8"
+        versionName "0.7.2"
     }
     buildTypes {
         release {
