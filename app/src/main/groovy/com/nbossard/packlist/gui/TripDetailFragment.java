@@ -47,6 +47,7 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
@@ -88,6 +89,9 @@ public class TripDetailFragment extends Fragment {
     /** List of {@link Item} view. */
     private ListView mItemListView;
 
+    /** Adapter for list view. */
+    private ItemAdapter mListItemAdapter;
+
     /** Edit text. */
     private EditText mNewItemEditText;
 
@@ -113,7 +117,7 @@ public class TripDetailFragment extends Fragment {
             Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
             mIMainActivity.saveTrip(mRetrievedTrip);
-            populateList();
+            mListItemAdapter.notifyDataSetChanged();
         }
     };
 
@@ -211,15 +215,11 @@ public class TripDetailFragment extends Fragment {
                                        final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
 
-        // Magic of binding
-        // Do not use this syntax, it will overwrite actvity (we are in a fragment)
-        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
-        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setTrip(mRetrievedTrip);
-        mBinding.executePendingBindings();
+        displayTrip(mRetrievedTrip);
 
         return mRootView;
     }
+
 
     @DebugLog
     @Override
@@ -272,6 +272,24 @@ public class TripDetailFragment extends Fragment {
 
     }
 
+    /** Display provided trip.
+     * Savec it in {@link #mRetrievedTrip} as the trip currently being displayed.
+     *
+     * @param parTrip trip to be displayed
+     */
+    public void displayTrip(Trip parTrip) {
+
+        mRetrievedTrip = parTrip;
+
+        // Magic of binding
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
+        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
+        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
+        mBinding.setTrip(mRetrievedTrip);
+        mBinding.setTripFormatter(new TripFormatter(getContext()));
+        mBinding.executePendingBindings();
+    }
+
     @DebugLog
     @Override
     public void setUserVisibleHint(final boolean isVisibleToUser) {
@@ -315,6 +333,7 @@ public class TripDetailFragment extends Fragment {
         mIMainActivity.saveTrip(mRetrievedTrip);
         mNewItemEditText.setText("");
         populateList();
+        scrollMyListViewToBottom();
     }
 
     /**
@@ -329,6 +348,21 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Scroll list view to bottom... so that user can see the just added item.<br>
+     *
+     * Asked by user snelltheta in issue https://github.com/nbossard/packlist/issues/16
+     */
+    private void scrollMyListViewToBottom() {
+        mItemListView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                mItemListView.smoothScrollToPosition(mListItemAdapter.getCount());
+            }
+        });
+    }
 
     /**
      * Effectively delete selected item then refresh the list.
@@ -379,8 +413,8 @@ public class TripDetailFragment extends Fragment {
     private void populateList() {
         mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
-        ItemAdapter itemAdapter = new ItemAdapter(mRetrievedTrip.getListItem(), this.getActivity());
-        mItemListView.setAdapter(itemAdapter);
+        mListItemAdapter = new ItemAdapter(mRetrievedTrip.getListOfItems(), this.getActivity());
+        mItemListView.setAdapter(mListItemAdapter);
         mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mItemListView.setOnItemClickListener(mItemClickListener);
         mItemListView.setOnItemLongClickListener(mLongClickListener);

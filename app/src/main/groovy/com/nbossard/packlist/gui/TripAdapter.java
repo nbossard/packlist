@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.TripFormatter;
 
 import java.util.List;
 
@@ -123,6 +124,8 @@ class TripAdapter extends BaseAdapter {
     @Override
     public View getView(final int parPosition, View parConvertView, final ViewGroup parParentView) {
         InnerMyViewHolder vHolderRecycle;
+        TripFormatter tripFormatter = new TripFormatter(mContext);
+
         if (parConvertView == null)
         {
             vHolderRecycle = new InnerMyViewHolder();
@@ -144,9 +147,11 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.tvName.setText(oneTrip.getName());
-        vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
-        vHolderRecycle.tvStartDate.setText(oneTrip.getFormattedStartDate());
-        vHolderRecycle.tvEndDate.setText(oneTrip.getFormattedEndDate());
+        if (oneTrip.getStartDate() != null) {
+            vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+        }
+        vHolderRecycle.tvStartDate.setText(tripFormatter.getFormattedDate(oneTrip.getStartDate()));
+        vHolderRecycle.tvEndDate.setText(tripFormatter.getFormattedDate(oneTrip.getEndDate()));
         if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {
             vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
         } else {

@@ -34,15 +34,17 @@ android {
     // 5 --> 0.4
     // 6 --> 0.5
     // 7 --> 0.6
-    // 8 --> 0.7
+    // 8 --> 0.7 (published 19th march 2016)
+    // 9 --> 0.7.1 (published 22nd march 2016)
+    // 10 --> 0.8
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 8
-        versionName "0.7"
+        versionCode 10
+        versionName "0.8"
     }
     buildTypes {
         release {
@@ -51,10 +53,11 @@ android {
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            versionNameSuffix " " + getDate()
         }
         debug {
             applicationIdSuffix ".debug"
-            versionNameSuffix " DEBUG"
+            versionNameSuffix " DEBUG " + getDate()
         }
     }
 
@@ -93,6 +96,11 @@ dependencies {
 
 }
 
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy-MM-dd')
+    return formattedDate
+}
 
 // NBO : what for ??
 // configurations.all {

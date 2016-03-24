@@ -142,18 +142,6 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     /**
-     * The trip start date but as a locale formatted date.
-     * @return locale formatted date or null if never set
-     */
-    public final String getFormattedStartDate() {
-        String res = null;
-        if (mStartDate != null) {
-            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mStartDate.getTime());
-        }
-        return res;
-    }
-
-    /**
      * Setter for start date of trip.
      * @param parStartDate trip start date
      */
@@ -168,18 +156,6 @@ public class Trip implements Serializable, Comparable, Cloneable {
      */
     public final GregorianCalendar getEndDate() {
         return mEndDate;
-    }
-
-    /**
-     * End date formatted according to device locale.
-     * @return locale formatted date or null if never set
-     */
-    public final String getFormattedEndDate() {
-        String res = null;
-        if (mEndDate != null) {
-            res = DateFormat.getDateInstance(DateFormat.SHORT).format(mEndDate.getTime());
-        }
-        return res;
     }
 
     /**
@@ -225,7 +201,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListItem() {
+    public final List<Item> getListOfItems() {
         return mListItem;
     }
 
@@ -247,9 +223,13 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
     /**
      * @return Number of days before trip, can be a negative value if trip is in the past.
+     * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
-        long diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        long diffInMilliSeconds = 0;
+        if (mStartDate != null) {
+            diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        }
         return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
 
@@ -292,7 +272,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for(Item item: getListItem()) clonedTrip.addItem(item.clone());
+        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
         return clonedTrip;
     }
 

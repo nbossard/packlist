@@ -31,6 +31,9 @@
             name="trip"
             type="com.nbossard.packlist.model.Trip"/>
         <import type="android.view.View" />
+        <variable
+            name="tripFormatter"
+            type="com.nbossard.packlist.model.TripFormatter"/>
 
     </data>
 
@@ -101,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="@{trip.formattedStartDate}"
+                    android:text="@{tripFormatter.getFormattedDate(trip.startDate)}"
                     tools:text="20 décembre 2015"/>
 
                 <android.support.v4.widget.Space
@@ -126,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="@{trip.formattedEndDate}"
+                    android:text="@{tripFormatter.getFormattedDate(trip.endDate)}"
                     tools:text="28 décembre 2015"/>
             </LinearLayout>
 
