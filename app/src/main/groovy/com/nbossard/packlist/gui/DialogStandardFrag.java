@@ -31,8 +31,16 @@ import com.nbossard.packlist.R;
 import hugo.weaving.DebugLog;
 import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.DialogStandardFrag {
+    }
+@enduml
+ */
+
 /**
- * Changelog dialog
+ * Changelog dialog.
+ *
  * Created by naub7473 on 19/01/2016.
  */
 public class DialogStandardFrag extends DialogFragment {

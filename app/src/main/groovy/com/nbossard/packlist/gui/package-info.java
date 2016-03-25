@@ -37,6 +37,7 @@ package com.nbossard.packlist.gui;
 @startuml
     package com.nbossard.packlist.gui #LightGreen {
         !include AboutActivity.groovy
+        !include DialogStandardFrag.java
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
         !include MainActivity.java
