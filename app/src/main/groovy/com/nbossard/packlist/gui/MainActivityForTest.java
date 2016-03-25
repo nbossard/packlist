@@ -50,7 +50,9 @@ import hugo.weaving.DebugLog;
  */
 public class MainActivityForTest
         extends AppCompatActivity
-        implements IMainActivity, INewTripFragmentActivity {
+        implements
+        ITripListFragmentActivity,
+            INewTripFragmentActivity {
 
 // *********************** CONSTANTS**********************************************************************
 
@@ -220,7 +222,7 @@ public class MainActivityForTest
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
-        MainActivityFragment newFragment = new MainActivityFragment();
+        TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

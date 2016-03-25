@@ -40,6 +40,7 @@ import hugo.weaving.DebugLog;
 @startuml
     class com.nbossard.packlist.gui.AboutActivity {
     }
+    com.nbossard.packlist.gui.HelpThirdPartyActivity <.. com.nbossard.packlist.gui.AboutActivity : start through intent
 @enduml
  */
 

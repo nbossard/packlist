@@ -56,7 +56,7 @@ import hugo.weaving.DebugLog;
     class com.nbossard.packlist.gui.TripDetailFragment {
     }
     com.nbossard.packlist.gui.ItemAdapter <-- com.nbossard.packlist.gui.TripDetailFragment
-    com.nbossard.packlist.gui.TripDetailFragment ..> com.nbossard.packlist.gui.IMainActivity
+    com.nbossard.packlist.gui.TripDetailFragment ..> com.nbossard.packlist.gui.ITripDetailFragmentActivity
 
 @enduml
  */
@@ -81,7 +81,7 @@ public class TripDetailFragment extends Fragment {
     private Trip mRetrievedTrip;
 
     /** Supporting activity, to save trip.*/
-    private IMainActivity mIMainActivity;
+    private ITripDetailFragmentActivity mIHostingActivity;
 
     /**
      * The object to support Contextual Action Bar (CAB).
@@ -115,7 +115,7 @@ public class TripDetailFragment extends Fragment {
                                 final long id) {
             Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
-            mIMainActivity.saveTrip(mRetrievedTrip);
+            mIHostingActivity.saveTrip(mRetrievedTrip);
             mListItemAdapter.notifyDataSetChanged();
         }
     };
@@ -197,7 +197,7 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         if (args != null) {
@@ -298,7 +298,7 @@ public class TripDetailFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mIMainActivity.showFABIfAccurate(true);
+        mIHostingActivity.showFABIfAccurate(true);
     }
 
     @DebugLog
@@ -322,7 +322,7 @@ public class TripDetailFragment extends Fragment {
     public final void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
-        mIMainActivity.saveTrip(mRetrievedTrip);
+        mIHostingActivity.saveTrip(mRetrievedTrip);
         mNewItemEditText.setText("");
         populateList();
         scrollMyListViewToBottom();
@@ -353,7 +353,7 @@ public class TripDetailFragment extends Fragment {
     private void deleteItemClicked(final int parPosition) {
         Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
         mRetrievedTrip.deleteItem(selectedItem.getUUID());
-        mIMainActivity.saveTrip(mRetrievedTrip);
+        mIHostingActivity.saveTrip(mRetrievedTrip);
         mActionMode.finish();
         populateList();
     }

@@ -53,7 +53,7 @@ import hugo.weaving.DebugLog;
     class com.nbossard.packlist.gui.NewTripFragment {
     }
 
-    com.nbossard.packlist.gui.NewTripFragment ..> com.nbossard.packlist.gui.IMainActivity
+    com.nbossard.packlist.gui.NewTripFragment ..> com.nbossard.packlist.gui.INewTripFragmentActivity
 @enduml
  */
 
@@ -85,6 +85,7 @@ public class NewTripFragment extends Fragment {
     private GregorianCalendar mStartDate;
 
     // *********************** LISTENERS ********************************************************************
+
     /**
      * Listener for when user clicks on "submit" button.
      */
@@ -147,7 +148,7 @@ public class NewTripFragment extends Fragment {
     private View mRootView;
 
     /** Hosting activity interface. */
-    private IMainActivity mIMainActivity;
+    private INewTripFragmentActivity mIHostingActivity;
 
     /** Calendar to retrieve current date. */
     private final Calendar mCalendar = Calendar.getInstance();
@@ -225,7 +226,7 @@ public class NewTripFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (INewTripFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         mTripId = null;
@@ -292,13 +293,13 @@ public class NewTripFragment extends Fragment {
     @Override
     public final void onResume() {
         super.onResume();
-        mIMainActivity.showFABIfAccurate(false);
+        mIHostingActivity.showFABIfAccurate(false);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mIMainActivity.showFABIfAccurate(true);
+        mIHostingActivity.showFABIfAccurate(true);
     }
 
     /**

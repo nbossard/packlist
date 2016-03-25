@@ -23,27 +23,27 @@ import com.nbossard.packlist.model.Trip;
 
 /*
 @startuml
-    interface com.nbossard.packlist.gui.INewTripFragmentActivity {
-        + saveTrip(...)
+    interface com.nbossard.packlist.gui.ITripListFragmentActivity {
+        + openNewTripFragment(...)
     }
 
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.INewTripFragmentActivity
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripListFragmentActivity
 
 @enduml
  */
 
 
 /**
- * The what {@link NewTripFragment} expects from hosting activity.
+ * The what {@link TripListFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface INewTripFragmentActivity extends IMainActivity {
+interface ITripListFragmentActivity extends IMainActivity {
 
     /**
-     * Creation and saving of a new trip.
+     * Ask Main activity to open detail fragment to display Trip of provided UUID.
      *
-     * @param parTrip Trip to be saved
+     * @param parTrip a trip object to be displayed
      */
-    void saveTrip(Trip parTrip);
+    TripDetailFragment openTripDetailFragment(final Trip parTrip);
 
 }

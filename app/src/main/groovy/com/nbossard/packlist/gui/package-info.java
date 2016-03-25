@@ -41,12 +41,13 @@ package com.nbossard.packlist.gui;
         !include HelpThirdPartyActivity.java
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
+        !include ITripListFragmentActivity.java
         !include ItemAdapter.java
         !include MainActivity.java
         !include NewTripFragment.java
         !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
-        !include MainActivityFragment.java
+        !include TripListFragment.java
     }
 @enduml
 

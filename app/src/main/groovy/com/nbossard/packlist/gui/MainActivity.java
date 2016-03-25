@@ -51,13 +51,14 @@ import hugo.weaving.DebugLog;
     class com.nbossard.packlist.gui.MainActivity {
     }
 
-    com.nbossard.packlist.gui.IMainActivity <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.ITripListFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.INewTripFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.ITripDetailFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
 
     com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.MainActivityFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
+    com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
 
     ' Moved to main file
     ' ISavingModule <-- com.nbossard.packlist.gui.MainActivity
@@ -71,7 +72,7 @@ import hugo.weaving.DebugLog;
 public class MainActivity
         extends AppCompatActivity
         implements
-        IMainActivity,
+        ITripListFragmentActivity,
         INewTripFragmentActivity,
         ITripDetailFragmentActivity,
         ITripChangeListener {
@@ -90,7 +91,7 @@ public class MainActivity
     private FloatingActionButton mFab;
 
     /** The fragment MainActivity instantiated. */
-    private MainActivityFragment mMainActivityFragment;
+    private TripListFragment mTripListFragment;
 
     /** The fragment trip detail if already opened. */
     private TripDetailFragment mTripDetailFragment;
@@ -120,7 +121,7 @@ public class MainActivity
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
         mSavingModule.addListener(this);
 
-        mMainActivityFragment = openMainActivityFragment();
+        mTripListFragment = openMainActivityFragment();
     }
 
     @Override
@@ -131,7 +132,7 @@ public class MainActivity
 
     @Override
     public void onTripChange() {
-        mMainActivityFragment.populateList();
+        mTripListFragment.populateList();
     }
 
     /**
@@ -201,7 +202,7 @@ public class MainActivity
         mSavingModule.addOrUpdateTrip(parTrip);
 
         //update fragments displaying trips
-        mMainActivityFragment.populateList();
+        mTripListFragment.populateList();
         if (mTripDetailFragment != null) {
             mTripDetailFragment.displayTrip(parTrip);
         }
@@ -303,10 +304,10 @@ public class MainActivity
      * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
-    private MainActivityFragment openMainActivityFragment() {
+    private TripListFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
-        MainActivityFragment newFragment = new MainActivityFragment();
+        TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

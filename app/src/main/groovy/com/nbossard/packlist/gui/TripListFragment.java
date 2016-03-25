@@ -43,25 +43,25 @@ import java.util.List;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.MainActivityFragment {
+    class com.nbossard.packlist.gui.TripListFragment {
     }
 
-    com.nbossard.packlist.gui.MainActivityFragment ..> com.nbossard.packlist.gui.IMainActivity
+    com.nbossard.packlist.gui.TripListFragment ..> com.nbossard.packlist.gui.ITripListFragmentActivity
 
 @enduml
  */
 
 /**
- * A placeholder fragment containing a simple list view.
+ * A placeholder fragment containing a simple list view of {@link Trip}.
  */
-public class MainActivityFragment extends Fragment {
+public class TripListFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
 
     /**
      * Log tag.
      */
-    private static final String TAG = MainActivityFragment.class.getName();
+    private static final String TAG = TripListFragment.class.getName();
 
     // *********************** FIELDS ***********************************************************************
 
@@ -84,7 +84,7 @@ public class MainActivityFragment extends Fragment {
     /**
      * Hosting activity interface.
      */
-    private IMainActivity mIMainActivity;
+    private ITripListFragmentActivity mIHostingActivity;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -99,7 +99,7 @@ public class MainActivityFragment extends Fragment {
                                 final int position,
                                 final long id) {
             Trip clickedTrip = (Trip) mTripListView.getItemAtPosition(position);
-            mIMainActivity.openTripDetailFragment(clickedTrip);
+            mIHostingActivity.openTripDetailFragment(clickedTrip);
         }
     };
 
@@ -164,13 +164,13 @@ public class MainActivityFragment extends Fragment {
     /**
      * Empty constructor.
      */
-    public MainActivityFragment() {
+    public TripListFragment() {
     }
 
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (ITripListFragmentActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
@@ -191,7 +191,7 @@ public class MainActivityFragment extends Fragment {
     public final void onResume() {
         super.onResume();
         populateList();
-        mIMainActivity.showFABIfAccurate(true);
+        mIHostingActivity.showFABIfAccurate(true);
     }
     // *********************** PRIVATE METHODS **************************************************************
 

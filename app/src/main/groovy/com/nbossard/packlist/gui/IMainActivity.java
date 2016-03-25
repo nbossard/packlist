@@ -22,7 +22,6 @@ package com.nbossard.packlist.gui;
 /*
 @startuml
     interface com.nbossard.packlist.gui.IMainActivity {
-        + saveTrip(...)
         + openTripDetailFragment(...)
         + openNewTripFragment(...)
         + showFABIfAccurate(boolean)
@@ -40,20 +39,6 @@ import java.util.UUID;
  * @author Created by nbossard on 01/01/16.
  */
 interface IMainActivity {
-
-    /**
-     * Creation and saving of a new trip.
-     *
-     * @param parTrip Trip to be saved
-     */
-    void saveTrip(Trip parTrip);
-
-    /**
-     * Ask Main activity to open detail fragment to display Trip of provided UUID.
-     *
-     * @param parTrip a trip object to be displayed
-     */
-    TripDetailFragment openTripDetailFragment(final Trip parTrip);
 
     /**
      * Ask Main activity to open new trip fragment to display Trip of provided UUID.
