@@ -28,7 +28,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +35,13 @@ import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
+
+/*
+@startuml
+    class com.nbossard.packlist.gui.AboutActivity {
+    }
+@enduml
+ */
 
 /**
  * About activity.

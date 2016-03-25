@@ -36,6 +36,7 @@ package com.nbossard.packlist.gui;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.gui #LightGreen {
+        !include AboutActivity.groovy
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
         !include MainActivity.java
@@ -43,8 +44,6 @@ package com.nbossard.packlist.gui;
         !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
         !include MainActivityFragment.java
-
-        class com.nbossard.packlist.gui.AboutActivity
     }
 @enduml
 
