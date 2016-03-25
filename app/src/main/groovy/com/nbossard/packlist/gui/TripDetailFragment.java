@@ -55,6 +55,8 @@ import hugo.weaving.DebugLog;
 @startuml
     class com.nbossard.packlist.gui.TripDetailFragment {
     }
+    com.nbossard.packlist.gui.ItemAdapter <-- com.nbossard.packlist.gui.TripDetailFragment
+    com.nbossard.packlist.gui.TripDetailFragment ..> com.nbossard.packlist.gui.IMainActivity
 
 @enduml
  */

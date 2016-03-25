@@ -31,6 +31,13 @@ import com.nbossard.packlist.model.Item;
 
 import java.util.List;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.ItemAdapter {
+    }
+@enduml
+*/
+
 /**
  * An adapter for displaying a trip {@link Item} in a ListView.
  *
