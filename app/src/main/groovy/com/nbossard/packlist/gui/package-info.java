@@ -38,6 +38,7 @@ package com.nbossard.packlist.gui;
     package com.nbossard.packlist.gui #LightGreen {
         !include AboutActivity.groovy
         !include DialogStandardFrag.java
+        !include HelpThirdPartyActivity.java
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
         !include MainActivity.java

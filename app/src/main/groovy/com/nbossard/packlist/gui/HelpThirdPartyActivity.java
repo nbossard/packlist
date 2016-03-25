@@ -26,8 +26,17 @@ import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.HelpThirdPartyActivity {
+    }
+@enduml
+ */
+
 /**
  * Activity displaying third party libraries and their licences.
+ *
+ * Accessed from About page.
  * 
  * @author Nicolas BOSSARD (naub7473)
  * 
