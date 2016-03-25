@@ -31,7 +31,16 @@ import com.nbossard.packlist.databinding.FragmentItemDetailBinding;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
+/*
+ * @startuml
+ * class com.nbossard.packlist.gui.ItemDetailFragment {
+ *  +setItem(Item)
+ * }
+ * @enduml
+ */
+
 /**
+ * Class for displaying details about an {@link Item}.
  * @author Created by nbossard on 17/03/16.
  */
 public class ItemDetailFragment extends Fragment {
@@ -60,5 +69,16 @@ public class ItemDetailFragment extends Fragment {
         mBinding.setItem(mRetrievedItem);
         mBinding.executePendingBindings();
 
-        return mRootView;    }
+        return mRootView;
+    }
+
+    /**
+     * Set item to be displayed by this view
+     *
+     * @param parRetrievedItem item to be displayed
+     */
+    public void setItem(Item parRetrievedItem) {
+        mRetrievedItem = parRetrievedItem;
+    }
+
 }

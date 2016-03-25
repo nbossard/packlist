@@ -38,6 +38,7 @@ package com.nbossard.packlist.gui;
     package com.nbossard.packlist.gui #LightGreen {
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
+        !include ItemDetailFragment.java
         !include MainActivity.java
         !include NewTripFragment.java
         !include TripDetailFragment.java
