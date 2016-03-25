@@ -34,9 +34,13 @@
               android:layout_height="match_parent"
               android:layout_weight="1"
               tools:layout="@layout/fragment_main"/>
+
+    <!-- Note this id is only in tablet version, so Lint complains : InconsistentLayout -->
+    <!-- This is normal so ignoring it -->
     <RelativeLayout android:id="@+id/mainactcont__right_fragment"
                     android:layout_height="match_parent"
                     android:layout_width="1dip"
                     android:layout_weight="1"
-                    tools:layout="@layout/fragment_new_trip"/>
+                    tools:layout="@layout/fragment_new_trip"
+                    tools:ignore="InconsistentLayout"/>
 </LinearLayout>
