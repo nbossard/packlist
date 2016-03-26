@@ -20,6 +20,7 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,13 @@ import java.util.List;
  * @author Created by nbossard on 25/12/15.
  */
 class TripAdapter extends BaseAdapter {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = TripAdapter.class.getName();
 
     // *********************** INNER CLASS *****************************************************************
 
@@ -164,12 +172,19 @@ class TripAdapter extends BaseAdapter {
 
     /** Get a human readable presentation of number of days before departure. */
     private String getFormattedRemainingDays(final long parRemainingDays) {
+
+        Log.d(TAG, "getFormattedRemainingDays() called with: " + "parRemainingDays = [" + parRemainingDays + "]");
+
         String res;
         if (parRemainingDays < 0) {
-            res = String.format(mContext.getString(R.string.ta__x_days_ago), -parRemainingDays);
+            res = String.format(mContext.getResources().
+                    getQuantityString(R.plurals.ta__x_days_ago, (int) parRemainingDays), -parRemainingDays);
         } else {
-            res =  String.format(mContext.getString(R.string.ta__in_x_days), parRemainingDays);
+            res =  String.format(mContext.getResources().
+                    getQuantityString(R.plurals.ta__in_x_days, (int) parRemainingDays), parRemainingDays);
         }
+
+        Log.d(TAG, "getFormattedRemainingDays() returned: " + res);
         return res;
     }
 }

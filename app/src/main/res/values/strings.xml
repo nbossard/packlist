@@ -45,8 +45,15 @@
     <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">Delete</string>
-    <string name="ta__in_x_days">In %d days.</string>
-    <string name="ta__x_days_ago">%d days ago.</string>
+
+    <plurals name="ta__in_x_days">
+        <item quantity="one">In %d day.</item>
+        <item quantity="other">In %d days.</item>
+    </plurals>
+    <plurals name="ta__x_days_ago">
+        <item quantity="one">%d day ago.</item>
+        <item quantity="other">%d days ago.</item>
+    </plurals>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>

@@ -33,9 +33,9 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -49,6 +49,14 @@ import java.util.concurrent.TimeUnit;
  * @author Created by nbossard on 25/12/15.
  */
 public class Trip implements Serializable, Comparable, Cloneable {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = Trip.class.getName();
+
 
 // *********************** FIELDS *************************************************************************
 
@@ -226,11 +234,17 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
+        Log.d(TAG, "getRemainingDays() called.");
+
         long diffInMilliSeconds = 0;
         if (mStartDate != null) {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
-        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+        Log.d(TAG, "getRemainingDays: diffInMilliSeconds = " + diffInMilliSeconds);
+
+        long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+        Log.d(TAG, "getRemainingDays() returned: " + res);
+        return res;
     }
 
 
