@@ -43,10 +43,10 @@ public class TripTest  {
     private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
-    public static final String NEW_ITEM_NAME = "newItemName";
-    public static final String NEW_ITEM_NAME2 = "newItemName2";
-    public static final String NEW_ITEM_NAME3 = "newItemName3";
-    public static final String NEW_ITEM_NAME4 = "newItemName4";
+    private static final String NEW_ITEM_NAME = "newItemName";
+    private static final String NEW_ITEM_NAME2 = "newItemName2";
+    private static final String NEW_ITEM_NAME3 = "newItemName3";
+    private static final String NEW_ITEM_NAME4 = "newItemName4";
 
     private static final String TRIP2_NAME = "Paris";
     private static final String TRIP2_NOTE = "City of LOVE";
