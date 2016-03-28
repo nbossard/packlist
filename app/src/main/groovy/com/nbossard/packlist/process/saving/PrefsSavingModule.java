@@ -64,7 +64,7 @@ public class PrefsSavingModule implements ISavingModule {
     private final SharedPreferences mSharedPreferences;
     private final Gson mGson;
 //
-    private List<ITripChangeListener> mChangeListeners = new ArrayList<>();
+    private final List<ITripChangeListener> mChangeListeners = new ArrayList<>();
 
 // *********************** METHODS **************************************************************************
 
@@ -164,7 +164,7 @@ public class PrefsSavingModule implements ISavingModule {
                 clonedTrip.setName(clonedTrip.getName() + " (cloned)");
                 prevSavedTrips.add(clonedTrip);
             } catch (CloneNotSupportedException cnse) {
-                Log.e(TAG, "cloneTrip: This should never occur");
+                Log.e(TAG, "cloneTrip: This should never occur : " + cnse);
             }
 
         } else {
