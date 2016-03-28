@@ -22,6 +22,7 @@ package com.nbossard.packlist.gui;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -49,6 +50,7 @@ public class DialogStandardFrag extends DialogFragment {
     public DialogStandardFrag() {
     }
 
+    @NonNull
     @DebugLog
     @Override
     public final Dialog onCreateDialog(final Bundle savedInstanceState) {
