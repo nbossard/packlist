@@ -106,7 +106,7 @@ public class TripDetailFragment extends Fragment {
      * Listener for click on one item of the list.
      * Opens a new fragment displaying detail on item.
      */
-    private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         @DebugLog
         public void onItemClick(final AdapterView<?> parent,
@@ -125,7 +125,7 @@ public class TripDetailFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private AdapterView.OnItemLongClickListener mLongClickListener =
+    private final AdapterView.OnItemLongClickListener mLongClickListener =
             new AdapterView.OnItemLongClickListener() {
         @DebugLog
         @Override
@@ -185,7 +185,7 @@ public class TripDetailFragment extends Fragment {
     /**
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
-     * @param parTrip ttrip to be displayed
+     * @param parTrip trip to be displayed
      */
     public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
@@ -289,27 +289,9 @@ public class TripDetailFragment extends Fragment {
 
     @DebugLog
     @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-    }
-
-    @DebugLog
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @DebugLog
-    @Override
     public void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
-    }
-
-    @DebugLog
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
     // *********************** PRIVATE METHODS **************************************************************
