@@ -67,16 +67,16 @@ public class NewTripFragment extends Fragment {
     // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
-    public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+    private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
 
     /** constant for "do not vibrate" in calendar. */
     private static final boolean DO_NOT_VIBRATE = false;
 
     /** Frag to identify fragment for start date picker. */
-    public static final String DATEPICKER_START_TAG = "datepickerstart";
+    private static final String DATEPICKER_START_TAG = "datepickerstart";
 
     /** Frag to identify fragment for end date picker. */
-    public static final String DATEPICKER_END_TAG = "datepickerstart";
+    private static final String DATEPICKER_END_TAG = "datepickerstart";
 
     /** End of trip date as a GregorianCalendar. */
     private GregorianCalendar mEndDate;
@@ -193,6 +193,7 @@ public class NewTripFragment extends Fragment {
     private UUID mTripId;
 
     /** The saving module to retrieve and update data (trips).*/
+    @SuppressWarnings("FieldCanBeLocal")
     private ISavingModule mSavingModule;
 
     /** Trip object to be displayed and added item. */
