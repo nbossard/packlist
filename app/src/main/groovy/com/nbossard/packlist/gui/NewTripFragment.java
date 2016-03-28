@@ -189,9 +189,11 @@ public class NewTripFragment extends Fragment {
     private Button mSubmitButton;
 
     /** Value provided when instantiating this fragment, unique identifier of trip. */
+    @SuppressWarnings("FieldCanBeLocal")
     private UUID mTripId;
 
     /** The saving module to retrieve and update data (trips).*/
+    @SuppressWarnings("FieldCanBeLocal")
     private ISavingModule mSavingModule;
 
     /** Trip object to be displayed and added item. */
