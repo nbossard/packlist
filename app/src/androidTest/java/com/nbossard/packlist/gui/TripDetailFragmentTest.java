@@ -33,7 +33,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Robotium tests on {@link TripDetailFragment} using {@link MainActivityForTest}
- * Created by naub7473 on 26/01/2016.
+ * @author Created by naub7473 on 26/01/2016.
  */
 public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<MainActivityForTest> {
 

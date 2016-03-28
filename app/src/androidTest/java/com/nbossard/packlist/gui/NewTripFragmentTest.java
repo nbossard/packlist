@@ -29,7 +29,7 @@ import junit.framework.Assert;
 
 /**
  * Robotium tests on {@link NewTripFragment} using {@link MainActivityForTest}
- * Created by naub7473 on 26/01/2016.
+ * @author Created by naub7473 on 26/01/2016.
  */
 public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainActivityForTest> {
 

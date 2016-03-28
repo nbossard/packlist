@@ -42,7 +42,7 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
 /**
  * Changelog dialog.
  *
- * Created by naub7473 on 19/01/2016.
+ * @author Created by naub7473 on 19/01/2016.
  */
 public class DialogStandardFrag extends DialogFragment {
 
