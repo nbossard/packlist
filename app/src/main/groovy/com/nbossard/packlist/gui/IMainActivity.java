@@ -31,8 +31,6 @@ package com.nbossard.packlist.gui;
 
 import android.support.annotation.Nullable;
 
-import com.nbossard.packlist.model.Trip;
-
 import java.util.UUID;
 
 /**
