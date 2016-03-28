@@ -70,7 +70,7 @@ public class TripDetailFragment extends Fragment {
     // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
-    public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+    private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
 
     // *********************** FIELDS ***********************************************************************
 
@@ -270,7 +270,7 @@ public class TripDetailFragment extends Fragment {
     }
 
     /** Display provided trip.
-     * Savec it in {@link #mRetrievedTrip} as the trip currently being displayed.
+     * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
      *
      * @param parTrip trip to be displayed
      */
@@ -312,19 +312,13 @@ public class TripDetailFragment extends Fragment {
         super.onDestroyView();
     }
 
-    /**
-     * Handle click on "Add item" button.
-     * Will add a new item.
-     */
-    public final void onClickEditTrip() {
-        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
-    }
+    // *********************** PRIVATE METHODS **************************************************************
 
     /**
      * Handle click on "Add item" button.
      * Will add a new item.
      */
-    public final void onClickAddItem() {
+    private void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
         mIHostingActivity.saveTrip(mRetrievedTrip);
@@ -333,7 +327,13 @@ public class TripDetailFragment extends Fragment {
         scrollMyListViewToBottom();
     }
 
-    // *********************** PRIVATE METHODS **************************************************************
+    /**
+     * Handle click on "Add item" button.
+     * Will add a new item.
+     */
+    private void onClickEditTrip() {
+        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
+    }
 
     /**
      * Scroll list view to bottom... so that user can see the just added item.<br>
