@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,26 @@ package com.nbossard.packlist.gui;
 /*
 @startuml
     interface com.nbossard.packlist.gui.ITripDetailFragmentActivity {
+        + saveTrip(...)
     }
+
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripDetailFragmentActivity
 @enduml
  */
+
+import com.nbossard.packlist.model.Trip;
 
 /**
  * The what {@link TripDetailFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface ITripDetailFragmentActivity {
+interface ITripDetailFragmentActivity extends IMainActivity {
+
+    /**
+     * Creation and saving of a new trip.
+     *
+     * @param parTrip Trip to be saved
+     */
+    void saveTrip(Trip parTrip);
+
 }

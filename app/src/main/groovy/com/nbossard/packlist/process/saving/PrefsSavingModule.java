@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public class PrefsSavingModule implements ISavingModule {
     private final SharedPreferences mSharedPreferences;
     private final Gson mGson;
 //
-    private List<ITripChangeListener> mChangeListeners = new ArrayList<>();
+    private final List<ITripChangeListener> mChangeListeners = new ArrayList<>();
 
 // *********************** METHODS **************************************************************************
 
@@ -164,7 +164,7 @@ public class PrefsSavingModule implements ISavingModule {
                 clonedTrip.setName(clonedTrip.getName() + " (cloned)");
                 prevSavedTrips.add(clonedTrip);
             } catch (CloneNotSupportedException cnse) {
-                Log.e(TAG, "cloneTrip: This should never occur");
+                Log.e(TAG, "cloneTrip: This should never occur : " + cnse);
             }
 
         } else {

@@ -17,24 +17,33 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process.saving;
+package com.nbossard.packlist.gui;
 
-import android.content.Context;
+import com.nbossard.packlist.model.Trip;
 
 /*
 @startuml
-    interface com.nbossard.packlist.process.saving.SavingFactory {
-        + {static} getNewSavingModule(...)
+    interface com.nbossard.packlist.gui.ITripListFragmentActivity {
+        + openNewTripFragment(...)
     }
+
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripListFragmentActivity
+
 @enduml
-*/
+ */
+
 
 /**
- * Factory for generating a new best {@link ISavingModule}.
+ * The what {@link TripListFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-public class SavingFactory {
-    public static ISavingModule getNewSavingModule(Context parContext) {
-        return new PrefsSavingModule(parContext);
-    }
+interface ITripListFragmentActivity extends IMainActivity {
+
+    /**
+     * Ask Main activity to open detail fragment to display Trip of provided UUID.
+     *
+     * @param parTrip a trip object to be displayed
+     */
+    TripDetailFragment openTripDetailFragment(final Trip parTrip);
+
 }

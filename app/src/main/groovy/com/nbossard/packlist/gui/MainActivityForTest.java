@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ import hugo.weaving.DebugLog;
  */
 public class MainActivityForTest
         extends AppCompatActivity
-        implements IMainActivity, INewTripFragmentActivity {
+        implements
+        ITripListFragmentActivity,
+            INewTripFragmentActivity {
 
 // *********************** CONSTANTS**********************************************************************
 
@@ -105,11 +107,11 @@ public class MainActivityForTest
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment prev = fm.findFragmentByTag("changelogdemo_dialog");
+            Fragment prev = fm.findFragmentByTag("changelog_dialog");
             if (prev != null) {
                 ft.remove(prev);
             }
-            parDialogStandardFragment.show(ft, "changelogdemo_dialog");
+            parDialogStandardFragment.show(ft, "changelog_dialog");
         }
     }
 
@@ -226,7 +228,7 @@ public class MainActivityForTest
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
-        MainActivityFragment newFragment = new MainActivityFragment();
+        TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -251,6 +253,7 @@ public class MainActivityForTest
      * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
      */
+    @SuppressWarnings("WeakerAccess")
     @DebugLog
     @VisibleForTesting
     protected void openNewTripFragment() {

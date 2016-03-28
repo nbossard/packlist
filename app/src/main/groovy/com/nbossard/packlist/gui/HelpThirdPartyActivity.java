@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,17 @@ import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.HelpThirdPartyActivity {
+    }
+@enduml
+ */
+
 /**
  * Activity displaying third party libraries and their licences.
+ *
+ * Accessed from About page.
  * 
  * @author Nicolas BOSSARD (naub7473)
  * 

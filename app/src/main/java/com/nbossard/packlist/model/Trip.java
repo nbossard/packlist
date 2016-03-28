@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -48,7 +48,15 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable, Comparable, Cloneable {
+public class Trip implements Serializable, Comparable<Trip>, Cloneable {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = Trip.class.getName();
+
 
 // *********************** FIELDS *************************************************************************
 
@@ -226,11 +234,17 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
+        Log.d(TAG, "getRemainingDays() called.");
+
         long diffInMilliSeconds = 0;
         if (mStartDate != null) {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
-        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+        Log.d(TAG, "getRemainingDays: diffInMilliSeconds = " + diffInMilliSeconds);
+
+        long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+        Log.d(TAG, "getRemainingDays() returned: " + res);
+        return res;
     }
 
 
@@ -257,9 +271,9 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     @Override
-    public int compareTo(@NonNull final Object parAnotherTrip) {
+    public int compareTo(@NonNull final Trip  parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
     }
 

@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,13 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
 import java.util.List;
+
+/*
+@startuml
+    class com.nbossard.packlist.gui.ItemAdapter {
+    }
+@enduml
+*/
 
 /**
  * An adapter for displaying a trip {@link Item} in a ListView.

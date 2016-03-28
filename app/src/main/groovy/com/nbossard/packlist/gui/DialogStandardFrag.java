@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,47 @@ package com.nbossard.packlist.gui;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
 
+/*
+@startuml
+    class com.nbossard.packlist.gui.DialogStandardFrag {
+    }
+@enduml
+ */
+
 /**
- * Changelog dialog
- * Created by naub7473 on 19/01/2016.
+ * Changelog dialog.
+ *
+ * @author Created by naub7473 on 19/01/2016.
  */
 public class DialogStandardFrag extends DialogFragment {
 
     public DialogStandardFrag() {
     }
 
+    @NonNull
     @DebugLog
     @Override
     public final Dialog onCreateDialog(final Bundle savedInstanceState) {
 
+        // Try to get a root view for inflater
+        // doest not matter if it is null finally
+        ViewGroup rootView = (ViewGroup) getActivity().findViewById(android.R.id.content);
+
         LayoutInflater layoutInflater =  getActivity().getLayoutInflater();
         ChangeLogRecyclerView chgList =
                 (ChangeLogRecyclerView) layoutInflater.inflate(
-                        R.layout.demo_changelog_fragment_dialogstandard, null, false);
+                        R.layout.demo_changelog_fragment_dialogstandard, rootView, false);
 
         return new AlertDialog.Builder(getActivity(), R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)

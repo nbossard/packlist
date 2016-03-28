@@ -2,7 +2,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,16 +36,19 @@ package com.nbossard.packlist.gui;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.gui #LightGreen {
+        !include AboutActivity.groovy
+        !include DialogStandardFrag.java
+        !include HelpThirdPartyActivity.java
         !include IMainActivity.java
         !include INewTripFragmentActivity.java
+        !include ITripListFragmentActivity.java
+        !include ItemAdapter.java
         !include ItemDetailFragment.java
         !include MainActivity.java
         !include NewTripFragment.java
         !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
-        !include MainActivityFragment.java
-
-        class com.nbossard.packlist.gui.AboutActivity
+        !include TripListFragment.java
     }
 @enduml
 

@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,10 +43,10 @@ public class TripTest  {
     private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
-    public static final String NEW_ITEM_NAME = "newItemName";
-    public static final String NEW_ITEM_NAME2 = "newItemName2";
-    public static final String NEW_ITEM_NAME3 = "newItemName3";
-    public static final String NEW_ITEM_NAME4 = "newItemName4";
+    private static final String NEW_ITEM_NAME = "newItemName";
+    private static final String NEW_ITEM_NAME2 = "newItemName2";
+    private static final String NEW_ITEM_NAME3 = "newItemName3";
+    private static final String NEW_ITEM_NAME4 = "newItemName4";
 
     private static final String TRIP2_NAME = "Paris";
     private static final String TRIP2_NOTE = "City of LOVE";
@@ -60,7 +60,7 @@ public class TripTest  {
     private Trip mTestTrip3NoDate;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
         mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
         mTestTrip3NoDate = new Trip();

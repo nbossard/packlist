@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
     <string name="action_about">アプリについて</string>
 
     <!-- About page -->
-    <string name="about__main">持ち物リスト %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
 
@@ -45,8 +45,13 @@
     <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">削除</string>
-    <string name="ta__in_x_days">In %d days.</string>
-    <string name="ta__x_days_ago">%d days ago.</string>
+
+    <plurals name="ta__in_x_days">
+        <item quantity="other">In %d days.</item>
+    </plurals>
+    <plurals name="ta__x_days_ago">
+        <item quantity="other">%d days ago.</item>
+    </plurals>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
