@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable, Comparable, Cloneable {
+public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     // ********************** CONSTANTS *********************************************************************
 
@@ -271,9 +271,9 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     @Override
-    public int compareTo(@NonNull final Object parAnotherTrip) {
+    public int compareTo(@NonNull final Trip  parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
     }
 
