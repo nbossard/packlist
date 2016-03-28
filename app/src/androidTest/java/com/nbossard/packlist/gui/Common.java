@@ -22,7 +22,7 @@ package com.nbossard.packlist.gui;
 /**
  * Common values used by all Robotium tests
  */
-public class Common {
+class Common {
 
     // ********************** CONSTANTS *********************************************************************
 
