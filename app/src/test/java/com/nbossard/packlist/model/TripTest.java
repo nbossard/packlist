@@ -60,7 +60,7 @@ public class TripTest  {
     private Trip mTestTrip3NoDate;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
         mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
         mTestTrip3NoDate = new Trip();
