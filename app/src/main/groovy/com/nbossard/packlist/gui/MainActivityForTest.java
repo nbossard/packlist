@@ -106,11 +106,11 @@ public class MainActivityForTest
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment prev = fm.findFragmentByTag("changelogdemo_dialog");
+            Fragment prev = fm.findFragmentByTag("changelog_dialog");
             if (prev != null) {
                 ft.remove(prev);
             }
-            parDialogStandardFragment.show(ft, "changelogdemo_dialog");
+            parDialogStandardFragment.show(ft, "changelog_dialog");
         }
     }
 
@@ -247,6 +247,7 @@ public class MainActivityForTest
      * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
      */
+    @SuppressWarnings("WeakerAccess")
     @DebugLog
     @VisibleForTesting
     protected void openNewTripFragment() {
