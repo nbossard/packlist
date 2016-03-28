@@ -94,6 +94,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertTrue(loadedTrips.contains(mTestTrip3));
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void testAddOrUpdateTrip() throws Exception {
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
