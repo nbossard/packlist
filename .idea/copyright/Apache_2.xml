@@ -1,6 +1,7 @@
 <component name="CopyrightManager">
   <copyright>
+    <option name="allowReplaceKeyword" value="Nicolas Bossard." />
     <option name="myName" value="Apache 2" />
-    <option name="notice" value="PackList is an open-source packing-list for Android&#10;&#10;Copyright (c) &amp;#36;today.year Nicolas Bossard.&#10;&#10;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#10;you may not use this file except in compliance with the License.&#10;You may obtain a copy of the License at&#10;&#10;  http://www.apache.org/licenses/LICENSE-2.0&#10;&#10;Unless required by applicable law or agreed to in writing,&#10;software distributed under the License is distributed on an&#10;&quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY&#10;KIND, either express or implied.  See the License for the&#10;specific language governing permissions and limitations&#10;under the License." />
+    <option name="notice" value="PackList is an open-source packing-list for Android&#10;&#10;Copyright (c) &amp;#36;today.year Nicolas Bossard and other contributors.&#10;&#10;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#10;you may not use this file except in compliance with the License.&#10;You may obtain a copy of the License at&#10;&#10;  http://www.apache.org/licenses/LICENSE-2.0&#10;&#10;Unless required by applicable law or agreed to in writing,&#10;software distributed under the License is distributed on an&#10;&quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY&#10;KIND, either express or implied.  See the License for the&#10;specific language governing permissions and limitations&#10;under the License." />
   </copyright>
 </component>

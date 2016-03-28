@@ -72,3 +72,4 @@ Basic functionality are still under development
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
 - parameters should start with "par" (enforced in codeStyleSettings.xml)
+- copyright is to be automatically added in each file, for Android Studio reference is stored and commited in [.idea/copyright/Apache_2.xml](.idea/copyright/Apache_2.xml)
