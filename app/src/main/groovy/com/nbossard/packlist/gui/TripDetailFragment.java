@@ -167,8 +167,13 @@ public class TripDetailFragment extends Fragment {
                 public void onDestroyActionMode(final ActionMode mode) {
                 }
             });
-            mActionMode.setTag(pos);
-            arg1.setSelected(true);
+
+            // mActionMode can be null if canceled
+            if (mActionMode != null) {
+                mActionMode.setTag(pos);
+                arg1.setSelected(true);
+            }
+
             return true;
         }
 
