@@ -32,6 +32,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Robotium tests on {@link TripDetailFragment} using {@link MainActivityForTest}
+ *
  * @author Created by naub7473 on 26/01/2016.
  */
 public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<MainActivityForTest> {
@@ -39,8 +40,8 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     // ********************** CONSTANTS *********************************************************************
 
     private static final String TEST_TRIP_NAME = "Rome";
-    private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011,1,1);
-    private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012,2,2);
+    private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011, 1, 1);
+    private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012, 2, 2);
     private static final String TEST_NOTE = "Have fun";
     private static final String TEST_ITEM_NAME = "Socks";
 
@@ -51,8 +52,10 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
      */
     private Solo mSolo;
 
-    private Trip testEmptyItemSetTrip = new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
-    private Trip testNonEmptyItemSetTrip = new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
+    private final Trip testEmptyItemSetTrip =
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
+    private final Trip testNonEmptyItemSetTrip =
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
 
 
     // ********************** METHODS ***********************************************************************
@@ -65,11 +68,9 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     /**
      * Will launch activity to be tested.
      *
-     * @throws Exception
-     *             if a test has failed.
+     * @throws Exception if a test has failed.
      */
-    public final void setUp() throws Exception
-    {
+    public final void setUp() throws Exception {
         mSolo = new Solo(getInstrumentation(), getActivity());
 
         testNonEmptyItemSetTrip.addItem(TEST_ITEM_NAME);
@@ -79,8 +80,7 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     /**
      * Test that the string that should always appear are displayed.
      *
-     * @throws Exception
-     *             if a test has failed.
+     * @throws Exception if a test has failed.
      */
     public final void testAlwaysThereStrings() throws Exception {
         getActivity().openTripDetailFragment(testEmptyItemSetTrip);
@@ -123,7 +123,7 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     /**
      * Required however the second opening of fragment will send a "Test failed to run to completion.
      * Reason: 'Instrumentation run failed due to 'java.lang.NullPointerException''"
-
+     *
      * @throws Exception
      */
     @Override
