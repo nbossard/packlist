@@ -23,7 +23,6 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.TestValues;
-import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.robotium.solo.Solo;
 
@@ -39,11 +38,11 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
 
     // ********************** CONSTANTS *********************************************************************
 
-    public static final String TEST_TRIP_NAME = "Rome";
-    public static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011,1,1);
-    public static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012,2,2);
-    public static final String TEST_NOTE = "Have fun";
-    public static final String TEST_ITEM_NAME = "Socks";
+    private static final String TEST_TRIP_NAME = "Rome";
+    private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011,1,1);
+    private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012,2,2);
+    private static final String TEST_NOTE = "Have fun";
+    private static final String TEST_ITEM_NAME = "Socks";
 
     // ********************** FIELDS ************************************************************************
 
@@ -54,7 +53,6 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
 
     private Trip testEmptyItemSetTrip = new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
     private Trip testNonEmptyItemSetTrip = new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
-    private Item firstTestItem = new Item(TEST_ITEM_NAME);
 
 
     // ********************** METHODS ***********************************************************************
