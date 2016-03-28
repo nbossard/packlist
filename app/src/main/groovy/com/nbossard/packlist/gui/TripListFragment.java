@@ -61,6 +61,7 @@ public class TripListFragment extends Fragment {
     /**
      * Log tag.
      */
+    @SuppressWarnings("unused")
     private static final String TAG = TripListFragment.class.getName();
 
     // *********************** FIELDS ***********************************************************************
@@ -92,7 +93,7 @@ public class TripListFragment extends Fragment {
      * Listener for click on one item of the list.
      * Opens a new fragment displaying detail on trip.
      */
-    private AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(final AdapterView<?> parent,
                                 final View view,
@@ -108,7 +109,7 @@ public class TripListFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
+    private final AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
