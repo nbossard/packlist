@@ -55,8 +55,8 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.INewTripFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.ITripDetailFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
 
-    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
-    com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\ncontainer
+    com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
+    com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
     com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
 
@@ -145,11 +145,11 @@ public class MainActivity
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment prev = fm.findFragmentByTag("changelogdemo_dialog");
+            Fragment prev = fm.findFragmentByTag("changelog_dialog");
             if (prev != null) {
                 ft.remove(prev);
             }
-            parDialogStandardFragment.show(ft, "changelogdemo_dialog");
+            parDialogStandardFragment.show(ft, "changelog_dialog");
         }
     }
 
@@ -313,7 +313,7 @@ public class MainActivity
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.mainactcont__fragment, newFragment);
-        // NO add to backstack, this is lowest level fragment
+        // NO add to back stack, this is lowest level fragment
 
         // Commit the transaction
         transaction.commit();
