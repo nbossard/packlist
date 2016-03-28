@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.nbossard.packlist.R;
 
@@ -52,10 +53,14 @@ public class DialogStandardFrag extends DialogFragment {
     @Override
     public final Dialog onCreateDialog(final Bundle savedInstanceState) {
 
+        // Try to get a root view for inflater
+        // doest not matter if it is null finally
+        ViewGroup rootView = (ViewGroup) getActivity().findViewById(android.R.id.content);
+
         LayoutInflater layoutInflater =  getActivity().getLayoutInflater();
         ChangeLogRecyclerView chgList =
                 (ChangeLogRecyclerView) layoutInflater.inflate(
-                        R.layout.demo_changelog_fragment_dialogstandard, null, false);
+                        R.layout.demo_changelog_fragment_dialogstandard, rootView, false);
 
         return new AlertDialog.Builder(getActivity(), R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)
