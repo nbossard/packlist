@@ -73,10 +73,10 @@ public class NewTripFragment extends Fragment {
     private static final boolean DO_NOT_VIBRATE = false;
 
     /** Frag to identify fragment for start date picker. */
-    private static final String DATEPICKER_START_TAG = "datepickerstart";
+    private static final String DATE_PICKER_START_TAG = "datePickerStart";
 
     /** Frag to identify fragment for end date picker. */
-    private static final String DATEPICKER_END_TAG = "datepickerstart";
+    private static final String DATE_PICKER_END_TAG = "datePickerEnd";
 
     /** End of trip date as a GregorianCalendar. */
     private GregorianCalendar mEndDate;
@@ -89,7 +89,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Listener for when user clicks on "submit" button.
      */
-    private View.OnClickListener mSubmitListener = new View.OnClickListener() {
+    private final View.OnClickListener mSubmitListener = new View.OnClickListener() {
         @DebugLog
         @Override
         public void onClick(final View v) {
@@ -113,7 +113,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Listener for when user has selected a start date.
      */
-    private DatePickerDialog.OnDateSetListener dateStartSelectedListener =
+    private final DatePickerDialog.OnDateSetListener dateStartSelectedListener =
         new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(final DatePickerDialog parDatePickerDialog,
@@ -128,7 +128,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Listener for when user has selected a end date.
      */
-    private DatePickerDialog.OnDateSetListener dateEndSelectedListener =
+    private final DatePickerDialog.OnDateSetListener dateEndSelectedListener =
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(final DatePickerDialog parDatePickerDialog,
@@ -144,7 +144,7 @@ public class NewTripFragment extends Fragment {
     /** For communicating with hosting activity. */
     private INewTripFragmentActivity mHostingActivity;
 
-    /** Root view for easy findviewById use.*/
+    /** Root view for easy findViewById use.*/
     private View mRootView;
 
     /** Hosting activity interface. */
@@ -251,7 +251,7 @@ public class NewTripFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_new_trip, container, false);
 
         // Magic of binding
-        // Do not use this syntax, it will overwrite actvity (we are in a fragment)
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentNewTripBinding mBinding = DataBindingUtil.bind(mRootView);
         mBinding.setTrip(mTrip);
@@ -318,7 +318,7 @@ public class NewTripFragment extends Fragment {
         mStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+                dateStartPickerDialog.show(getFragmentManager(), DATE_PICKER_START_TAG);
             }
         });
     }
@@ -330,7 +330,7 @@ public class NewTripFragment extends Fragment {
         mEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+                dateEndPickerDialog.show(getFragmentManager(), DATE_PICKER_END_TAG);
             }
         });
     }
@@ -342,7 +342,7 @@ public class NewTripFragment extends Fragment {
         mStartDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+                dateStartPickerDialog.show(getFragmentManager(), DATE_PICKER_START_TAG);
             }
         });
     }
@@ -354,7 +354,7 @@ public class NewTripFragment extends Fragment {
         mEndDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+                dateEndPickerDialog.show(getFragmentManager(), DATE_PICKER_END_TAG);
             }
         });
     }
