@@ -25,12 +25,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-
         <variable
             name="item"
             type="com.nbossard.packlist.model.Item"/>
-        <import type="android.view.View" />
-
     </data>
 
     <LinearLayout
@@ -66,9 +63,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.weight}"
+            android:text="@{String.valueOf(item.weight)}"
             tools:text="100g"/>
-
 
     </LinearLayout>
 </layout>

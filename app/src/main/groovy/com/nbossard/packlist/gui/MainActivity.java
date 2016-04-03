@@ -276,7 +276,21 @@ public class MainActivity
 
     @Override
     public void openItemDetailFragment(Item parItem) {
-        //TODO
+
+        // Create fragment and give it an argument specifying the article it should show
+        ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(getTargetFragment(), newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
     }
 
     // ----------- end of implementing interface IMainActivity ------------

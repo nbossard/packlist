@@ -47,14 +47,40 @@ public class ItemDetailFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Bundle parameter when instantiating this fragment. */
+    private static final String BUNDLE_PAR_ITEM = "bundleParItem";
+
+
     // *********************** FIELDS ***********************************************************************
 
     /** The root view, will be used to findViewById. */
     private View mRootView;
 
-    private Item mRetrievedItem;
+
+    /** Item object to be displayed and edited. */
+    private Item mItem;
 
     // *********************** METHODS **********************************************************************
+
+    public static ItemDetailFragment newInstance(Item parItem) {
+        ItemDetailFragment f = new ItemDetailFragment();
+        if (parItem != null) {
+            Bundle b = new Bundle();
+            b.putSerializable(BUNDLE_PAR_ITEM, parItem);
+            f.setArguments(b);
+        }
+        return f;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            mItem = (Item) args.getSerializable(BUNDLE_PAR_ITEM);
+        }
+    }
 
     @Nullable
     @Override
@@ -66,7 +92,7 @@ public class ItemDetailFragment extends Fragment {
         // Do not use this syntax, it will overwrite activity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentItemDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setItem(mRetrievedItem);
+        mBinding.setItem(mItem);
         mBinding.executePendingBindings();
 
         return mRootView;
@@ -78,7 +104,6 @@ public class ItemDetailFragment extends Fragment {
      * @param parRetrievedItem item to be displayed
      */
     public void setItem(Item parRetrievedItem) {
-        mRetrievedItem = parRetrievedItem;
+        mItem = parRetrievedItem;
     }
-
 }
