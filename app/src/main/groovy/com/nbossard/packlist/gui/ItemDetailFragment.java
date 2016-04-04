@@ -23,13 +23,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.nbossard.packlist.databinding.FragmentItemDetailBinding;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+
+import hugo.weaving.DebugLog;
 
 /*
  * @startuml
@@ -50,6 +55,29 @@ public class ItemDetailFragment extends Fragment {
     /** Bundle parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_ITEM = "bundleParItem";
 
+    // *********************** LISTENERS ********************************************************************
+
+    /**
+     * Listener for when user clicks on "submit" button.
+     */
+    private final View.OnClickListener mSubmitListener = new View.OnClickListener() {
+        @DebugLog
+        @Override
+        public void onClick(final View v) {
+
+            // update item
+            mItem.setName(mNameEdit.getText().toString());
+            mItem.setWeight(Integer.valueOf(mWeightEdit.getText().toString()));
+
+            // asking supporting activity to update item
+            mIHostingActivity.updateItem(mItem);
+
+            // navigating back
+            FragmentManager fragMgr = getActivity().getSupportFragmentManager();
+            fragMgr.beginTransaction().remove(ItemDetailFragment.this).commit();
+            fragMgr.popBackStack();
+        }
+    };
 
     // *********************** FIELDS ***********************************************************************
 
@@ -59,6 +87,19 @@ public class ItemDetailFragment extends Fragment {
 
     /** Item object to be displayed and edited. */
     private Item mItem;
+
+
+    /** Supporting activity, to save trip.*/
+    private IItemDetailFragmentActivity mIHostingActivity;
+
+    /** Edit text for item name. */
+    private EditText mNameEdit;
+
+    /** Edit text for item weight. */
+    private EditText mWeightEdit;
+
+    /** Button to save and close. */
+    private Button mSubmitButton;
 
     // *********************** METHODS **********************************************************************
 
@@ -96,6 +137,31 @@ public class ItemDetailFragment extends Fragment {
         mBinding.executePendingBindings();
 
         return mRootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mIHostingActivity = (IItemDetailFragmentActivity) getActivity();
+
+
+        // Getting views
+        mNameEdit = (EditText) mRootView.findViewById(R.id.item_detail__name__edit);
+        mWeightEdit = (EditText) mRootView.findViewById(R.id.item_detail__weight__edit);
+        mSubmitButton = (Button) mRootView.findViewById(R.id.item_detail__submit__button);
+
+
+        // Adding listeners
+        addListenerOnSubmitButton();
+
+    }
+
+    /**
+     * Add a listener on "submit" button.
+     */
+    private void addListenerOnSubmitButton() {
+        mSubmitButton.setOnClickListener(mSubmitListener);
     }
 
     /**

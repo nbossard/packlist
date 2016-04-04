@@ -129,6 +129,10 @@ public class Item implements Serializable, Cloneable {
         mIsPacked = parPacked;
     }
 
+    public void setWeight(int parWeight) {
+        mWeight = parWeight;
+    }
+
     @Override
     protected final Item clone() throws CloneNotSupportedException {
         Item res = (Item) super.clone();

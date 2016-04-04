@@ -44,7 +44,7 @@
             android:text="@string/item_detail__name__label"
             tools:text="Brest"/>
 
-        <TextView
+        <EditText
             android:id="@id/item_detail__name__edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,11 +60,17 @@
             android:text="@string/item_detail__weight__label"
             tools:text="Brest"/>
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(item.weight)}"
             tools:text="100g"/>
+
+        <Button
+            android:id="@+id/item_detail__submit__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_trip__submit"/>
 
     </LinearLayout>
 </layout>
