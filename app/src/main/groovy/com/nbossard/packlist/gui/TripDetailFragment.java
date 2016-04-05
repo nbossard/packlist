@@ -279,6 +279,13 @@ public class TripDetailFragment extends Fragment {
 
     }
 
+    @DebugLog
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mIHostingActivity.showFABIfAccurate(true);
+    }
+
     /** Display provided trip.
      * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
      *
@@ -297,14 +304,21 @@ public class TripDetailFragment extends Fragment {
         mBinding.executePendingBindings();
     }
 
-    @DebugLog
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mIHostingActivity.showFABIfAccurate(true);
+    /**
+     * @return the {@link Trip} being currently displayed.
+     */
+    public Trip getCurrentTrip() {
+        return mRetrievedTrip;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Handle click on edit trip button.
+     */
+    private void onClickEditTrip() {
+        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
+    }
 
     /**
      * Handle click on "Add item" button.
@@ -320,20 +334,12 @@ public class TripDetailFragment extends Fragment {
     }
 
     /**
-     * Handle click on "Add item" button.
-     * Will add a new item.
-     */
-    private void onClickEditTrip() {
-        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
-    }
-
-    /**
      * Handle click on "Add detail item" button.
      * Will add a new item with additional details.
      */
     public final void onClickAddDetailedItem() {
         String tmpStr = mNewItemEditText.getText().toString();
-        Item newItem = new Item(tmpStr);
+        Item newItem = new Item(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
 
     }

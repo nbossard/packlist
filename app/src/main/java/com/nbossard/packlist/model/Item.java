@@ -43,6 +43,9 @@ public class Item implements Serializable, Cloneable {
     /** A unique identifier for this item. */
     private UUID mUUID;
 
+    /** A unique identifier of the {@link Trip} this item belongs to. */
+    private UUID mTripUUID;
+
     /** The item name. */
     private String mName;
 
@@ -64,10 +67,12 @@ public class Item implements Serializable, Cloneable {
     /**
      * Full params constructor.
      *
+     * @param parTrip the {@link Trip} this item belongs to.
      * @param parName new item name. i.e. : "socks"
      */
-    public Item(final String parName) {
+    public Item(final Trip parTrip, final String parName) {
         this();
+        setTripUUID(parTrip.getUUID());
         setName(parName);
     }
 
@@ -131,6 +136,20 @@ public class Item implements Serializable, Cloneable {
 
     public void setWeight(int parWeight) {
         mWeight = parWeight;
+    }
+
+    /**
+     * @param parTripUUID The UUID of the {@link Trip} this item belongs to.
+     */
+    public void setTripUUID(UUID parTripUUID) {
+        mTripUUID = parTripUUID;
+    }
+
+    /**
+     * @return The UUID of the {@link Trip} this item belongs to.
+     */
+    public UUID getTripUUID() {
+        return mTripUUID;
     }
 
     @Override

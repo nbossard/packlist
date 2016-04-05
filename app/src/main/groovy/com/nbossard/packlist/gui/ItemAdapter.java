@@ -133,7 +133,11 @@ class ItemAdapter extends BaseAdapter {
         final Item curItem = mItemList.get(parPosition);
 
         // updating views
-        vHolderRecycle.tvName.setText(curItem.getName());
+        String nameAndWeight = curItem.getName();
+        if (curItem.getWeight()>0) {
+            nameAndWeight+= "(" + curItem.getWeight() + "g)";
+        }
+        vHolderRecycle.tvName.setText(nameAndWeight);
         if (curItem.isPacked()) {
             vHolderRecycle.tvIsPacked.setVisibility(View.VISIBLE);
         } else {
