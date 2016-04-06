@@ -156,14 +156,23 @@ public class TripDetailFragment extends Fragment {
 
                 @Override
                 public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
+                    int position;
+                    boolean res;
                     switch (item.getItemId()) {
-                        case R.id.action_delete:
-                            int position = (int) mActionMode.getTag();
+                        case R.id.action_trip_cab__delete:
+                            position = (int) mActionMode.getTag();
                             deleteItemClicked(position);
-                            return true;
+                            res = true;
+                            break;
+                        case R.id.action_trip_cab__edit:
+                            position = (int) mActionMode.getTag();
+                            editItemClicked(position);
+                            res = true;
+                            break;
                         default:
-                            return false;
+                            res =  false;
                     }
+                    return res;
                 }
 
                 @Override
@@ -374,6 +383,17 @@ public class TripDetailFragment extends Fragment {
         mIHostingActivity.saveTrip(mRetrievedTrip);
         mActionMode.finish();
         populateList();
+    }
+
+    /**
+     * Effectively edit selected item..
+     *
+     * @param parPosition position in list of item to be edited
+     */
+    private void editItemClicked(final int parPosition) {
+        Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        mIHostingActivity.openItemDetailFragment(selectedItem);
+        mActionMode.finish();
     }
 
     /**

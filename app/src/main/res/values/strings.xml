@@ -71,6 +71,8 @@
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="trip_detail__before_weight__label">weight of bag : more than</string>
     <string name="ia__packed">PACKED :</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
+    <string name="action_trip_cab__edit">Edit</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>

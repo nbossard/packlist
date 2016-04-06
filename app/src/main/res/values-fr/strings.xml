@@ -69,6 +69,8 @@
     <string name="trip_detail__edit_trip">Modifier</string>
     <string name="trip_detail__before_weight__label">poids du sac : plus de </string>
     <string name="ia__packed">EMPAQUETE :</string>
+    <string name="action_trip_cab__edit">Modifier</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
