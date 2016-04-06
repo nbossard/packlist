@@ -342,6 +342,7 @@ public class TripDetailFragment extends Fragment {
      */
     public final void onClickAddDetailedItem() {
         String tmpStr = mNewItemEditText.getText().toString();
+        mNewItemEditText.setText("");
         Item newItem = new Item(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
 

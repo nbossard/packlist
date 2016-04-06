@@ -69,6 +69,7 @@
     <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
     <string name="trip_detail__edit_trip">edit trip</string>
+    <string name="trip_detail__before_weight__label">weight of bag : more than</string>
     <string name="ia__packed">PACKED :</string>
 
     <!-- Third party software licences -->
@@ -83,5 +84,6 @@
     <!-- Detail of item -->
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight</string>
+    <string name="item_detail__submit">Update</string>
 
 </resources>

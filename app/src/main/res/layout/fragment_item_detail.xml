@@ -46,7 +46,7 @@
 
         <EditText
             android:id="@id/item_detail__name__edit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{item.name}"
             tools:text="Chapeau"/>
@@ -62,7 +62,7 @@
 
         <EditText
             android:id="@id/item_detail__weight__edit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:text="@{String.valueOf(item.weight)}"
@@ -72,7 +72,7 @@
             android:id="@+id/item_detail__submit__button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_trip__submit"/>
+            android:text="@string/item_detail__submit"/>
 
     </LinearLayout>
 </layout>
