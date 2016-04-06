@@ -29,6 +29,8 @@ package com.nbossard.packlist.model;
 @enduml
  */
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -70,7 +72,7 @@ public class Item implements Serializable, Cloneable {
      * @param parTrip the {@link Trip} this item belongs to.
      * @param parName new item name. i.e. : "socks"
      */
-    public Item(final Trip parTrip, final String parName) {
+    public Item(@NonNull final Trip parTrip, final String parName) {
         this();
         setTripUUID(parTrip.getUUID());
         setName(parName);
@@ -79,7 +81,7 @@ public class Item implements Serializable, Cloneable {
     /**
      * @return automatically set UUID (unique identifier)
      */
-    public final UUID getUUID() {
+    public final @NonNull UUID getUUID() {
         return mUUID;
     }
 
@@ -103,7 +105,7 @@ public class Item implements Serializable, Cloneable {
 
     /**
      * Getter for weight.
-     * @return i.e. : "100" grammes
+     * @return a weight in grams. 0 if never set. i.e. : "100" grammes
      */
     public final int getWeight() {
         return mWeight;
@@ -114,13 +116,13 @@ public class Item implements Serializable, Cloneable {
      * @param parWeight item weight in grammes.
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setName(final int parWeight) {
+    public final void setWeight(final int parWeight) {
         mWeight = parWeight;
     }
 
     /**
      * Getter for boolean whether or not this item is packed.
-     * @return true=yes, false=no.
+     * @return true=yes, default value is false=no.
      */
     public final boolean isPacked() {
         return mIsPacked;
@@ -132,10 +134,6 @@ public class Item implements Serializable, Cloneable {
      */
     public final void setPacked(final boolean parPacked) {
         mIsPacked = parPacked;
-    }
-
-    public void setWeight(int parWeight) {
-        mWeight = parWeight;
     }
 
     /**
