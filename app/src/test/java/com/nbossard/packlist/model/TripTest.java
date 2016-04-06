@@ -43,10 +43,15 @@ public class TripTest  {
     private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
+
     private static final String NEW_ITEM_NAME = "newItemName";
-    private static final String NEW_ITEM_NAME2 = "newItemName2";
-    private static final String NEW_ITEM_NAME3 = "newItemName3";
-    private static final String NEW_ITEM_NAME4 = "newItemName4";
+    private static final int NEW_ITEM_WEIGHT = 112;
+    private static final String NEW_ITEM2_NAME = "newItemName2";
+    private static final int NEW_ITEM2_WEIGHT = 50;
+    private static final String NEW_ITEM3_NAME = "newItemName3";
+    private static final int NEW_ITEM3_WEIGHT = 100;
+    private static final String NEW_ITEM4_NAME = "newItemName4";
+
 
     private static final String TRIP2_NAME = "Paris";
     private static final String TRIP2_NOTE = "City of LOVE";
@@ -143,9 +148,9 @@ public class TripTest  {
     public void testDeleteItem() throws Exception {
 
         mTestTrip.addItem(NEW_ITEM_NAME);
-        UUID delUUID = mTestTrip.addItem(NEW_ITEM_NAME2);
-        mTestTrip.addItem(NEW_ITEM_NAME3);
-        mTestTrip.addItem(NEW_ITEM_NAME4);
+        UUID delUUID = mTestTrip.addItem(NEW_ITEM2_NAME);
+        mTestTrip.addItem(NEW_ITEM3_NAME);
+        mTestTrip.addItem(NEW_ITEM4_NAME);
 
         assertTrue(mTestTrip.getListOfItems().size()==4);
 
@@ -170,7 +175,7 @@ public class TripTest  {
     @Test
     public void testClone() throws Exception {
         mTestTrip.addItem(NEW_ITEM_NAME);
-        mTestTrip.addItem(NEW_ITEM_NAME2);
+        mTestTrip.addItem(NEW_ITEM2_NAME);
         Trip clonedTrip = mTestTrip.clone();
 
         assertTrue(mTestTrip.getNote().contentEquals(clonedTrip.getNote()));
@@ -194,5 +199,33 @@ public class TripTest  {
         assertNotNull(mTestTrip.toString());
         assertTrue(mTestTrip.toString().contains(TRIP_NAME));
         assertTrue(mTestTrip.toString().contains(TRIP_NOTE));
+    }
+
+    @Test
+    public void testTotalWeight() {
+
+        // testing default weight
+        assertEquals(0,mTestTrip.getTotalWeight());
+
+        // adding an item with weight, checking total weight is updated
+        Item newItem = new Item(mTestTrip, NEW_ITEM_NAME);
+        newItem.setWeight(NEW_ITEM_WEIGHT);
+        mTestTrip.addItem(newItem);
+        assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
+
+        // adding an item without weight, checking total weight is updated
+        Item newItem4 = new Item(mTestTrip, NEW_ITEM4_NAME);
+        mTestTrip.addItem(newItem4);
+        assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
+
+        // adding another item with weight, checking total weight is updated
+        Item newItem2 = new Item(mTestTrip, NEW_ITEM2_NAME);
+        newItem2.setWeight(NEW_ITEM2_WEIGHT);
+        mTestTrip.addItem(newItem2);
+        assertEquals(NEW_ITEM_WEIGHT + NEW_ITEM2_WEIGHT, mTestTrip.getTotalWeight());
+
+        // removing item, checking total weight is updated
+        mTestTrip.deleteItem(newItem2.getUUID());
+        assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
     }
 }

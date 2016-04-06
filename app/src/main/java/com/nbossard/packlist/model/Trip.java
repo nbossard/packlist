@@ -33,6 +33,7 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -75,11 +76,12 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     /** Additional notes, free text. */
     private String mNote;
 
-
     /** List of items to bring in this trip. */
     private List<Item> mListItem;
 
-    //
+    /** The total weight of all items in this trip. */
+    private int mTotalWeight;
+
 // *********************** METHODS **************************************************************************
 
     /**
@@ -106,6 +108,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
+        mTotalWeight = 0;
     }
 
     /**
@@ -195,14 +198,20 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
-     * Add a new item in the list of items to bring with this trip.
+     * Add a new item in the list of items to bring with this trip.<br>
+     *
+     * Automatically updates total weight.
      * @param parItem new item
      */
     @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
+        mTotalWeight = recomputeTotalWeight();
     }
 
+    public int getTotalWeight() {
+        return mTotalWeight;
+    }
 
     /**
      * Get the full list of items to bring for this trip.
@@ -213,8 +222,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         return mListItem;
     }
 
+
     /**
-     * Delete the item of provided UUID.
+     * Delete the item of provided UUID.<br>
+     *
+     * Automatically updates total weight.
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
@@ -227,6 +239,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
+        mTotalWeight = recomputeTotalWeight();
     }
 
     /**
@@ -247,7 +260,6 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         return res;
     }
 
-
     @Override
     public final boolean equals(final Object parO) {
         if (this == parO) return true;
@@ -261,6 +273,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         return mEndDate != null ? mEndDate.equals(trip.mEndDate) : trip.mEndDate == null;
 
     }
+
 
     @Override
     public final int hashCode() {
@@ -299,5 +312,18 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
                 + ", mNote=" + mNote
                 + ", mListItem=" + mListItem
                 + '}';
+    }
+
+    /**
+     * Recomputes the total weight by adding all weight of all items.
+     * @return
+     */
+    @VisibleForTesting
+    private int recomputeTotalWeight() {
+        int resTotalWeight = 0;
+        for (Item item : mListItem) {
+            resTotalWeight+= item.getWeight();
+        }
+        return resTotalWeight;
     }
 }
