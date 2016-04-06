@@ -143,7 +143,21 @@
                 android:layout_toLeftOf="@id/trip_detail__edit_button"
                 android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.note}"
+                android:visibility="@{((trip.note != null) &amp;&amp; (trip.note.length()>0)) ? View.VISIBLE : View.GONE}"
                 tools:text="Un très beau voyage"/>
+
+            <TextView
+                android:id="@+id/trip_detail__weight__label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/trip_detail__note__label"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
+                android:text="@{tripFormatter.getFormattedWeight(trip.totalWeight)}"
+                android:visibility="@{trip.totalWeight >0 ? View.VISIBLE : View.GONE}"
+                tools:text="120g"/>
         </RelativeLayout>
 
         <android.support.v7.widget.AppCompatButton

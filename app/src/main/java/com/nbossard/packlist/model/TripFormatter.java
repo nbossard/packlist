@@ -84,4 +84,17 @@ public class TripFormatter
         return res;
     }
 
+    /**
+     * The trip formatted weight.
+     * @return formatted weight
+     */
+    public final String getFormattedWeight(int parWeight) {
+
+        Log.d(TAG, "getFormattedWeight() called with: " + "parWeight = [" + parWeight + "]");
+
+        String res = Integer.toString(parWeight) + "g";
+        Log.d(TAG, "getFormattedWeight() returned: " + res);
+        return res;
+    }
+
 }

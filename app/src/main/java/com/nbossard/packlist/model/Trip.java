@@ -314,11 +314,12 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
                 + '}';
     }
 
+    // *********************** PRIVATE METHODS **************************************************************
+
     /**
      * Recomputes the total weight by adding all weight of all items.
-     * @return
+     * @return a weight or 0 if no item at all has a weight.
      */
-    @VisibleForTesting
     private int recomputeTotalWeight() {
         int resTotalWeight = 0;
         for (Item item : mListItem) {
