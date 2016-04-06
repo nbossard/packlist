@@ -35,7 +35,7 @@ public class ItemTest extends TestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestItem = new Item(ITEM_TEST_NAME);
+        mTestItem = new Item(new Trip(), ITEM_TEST_NAME);
     }
 
     public void testGetName() throws Exception {
@@ -46,6 +46,30 @@ public class ItemTest extends TestCase {
         assertTrue(mTestItem.getName().contentEquals(ITEM_TEST_NAME));
         mTestItem.setName(UPDATED_ITEM_TEST_NAME);
         assertTrue(mTestItem.getName().contentEquals(UPDATED_ITEM_TEST_NAME));
+    }
+
+    public void testWeight() {
+        // test that default weight is 0
+        assertTrue(mTestItem.getWeight()==0);
+        mTestItem.setWeight(123);
+        assertTrue(mTestItem.getWeight()==123);
+    }
+
+    public void testPacked() {
+        // test that default weight is 0
+        assertFalse(mTestItem.isPacked());
+        mTestItem.setPacked(true);
+        assertTrue(mTestItem.isPacked());
+        mTestItem.setPacked(false);
+        assertFalse(mTestItem.isPacked());
+    }
+
+    public void testCloneAndUUID() throws CloneNotSupportedException {
+        // test that there is always an UUID
+        assertNotNull(mTestItem.getUUID());
+        Item clonedItem = mTestItem.clone();
+        assertNotNull(clonedItem.getUUID());
+        assertNotSame(mTestItem.getUUID(), clonedItem.getUUID());
     }
 
     public void testToString() throws Exception {

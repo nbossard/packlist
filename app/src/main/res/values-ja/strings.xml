@@ -66,7 +66,10 @@
     <string name="trip_detail__add_item___button">アイテムを追加</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
     <string name="trip_detail__edit_trip">旅行を編集</string>
+    <string name="trip_detail__before_weight__label">weight of bag : more than </string>
     <string name="ia__packed">収納済 :</string>
+    <string name="action_trip_cab__edit">Edit</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
@@ -76,5 +79,8 @@
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="item_detail__name__label">item name</string>
+    <string name="item_detail__submit">update</string>
+    <string name="item_detail__weight__label">poids</string>
 
 </resources>

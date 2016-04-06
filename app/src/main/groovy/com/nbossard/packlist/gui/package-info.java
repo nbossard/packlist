@@ -43,6 +43,7 @@ package com.nbossard.packlist.gui;
         !include INewTripFragmentActivity.java
         !include ITripListFragmentActivity.java
         !include ItemAdapter.java
+        !include ItemDetailFragment.java
         !include MainActivity.java
         !include NewTripFragment.java
         !include TripDetailFragment.java

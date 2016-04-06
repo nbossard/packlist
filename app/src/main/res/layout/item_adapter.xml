@@ -23,7 +23,7 @@
 <!---->
 <!-- Resources and Ids for this page must start with "ia__" -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="horizontal"
               android:layout_width="match_parent"
@@ -52,6 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
+        tools:text="Some beautiful big red socks very warm and very red which smell good"
+        android:layout_toEndOf="@id/ia__packed"
+        android:layout_toRightOf="@id/ia__packed"/>
 
-</LinearLayout>
+</RelativeLayout>

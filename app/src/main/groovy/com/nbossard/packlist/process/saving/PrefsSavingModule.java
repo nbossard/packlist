@@ -25,6 +25,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
@@ -180,6 +181,20 @@ public class PrefsSavingModule implements ISavingModule {
         mChangeListeners.add(parListener);
     }
 
+    @Override
+    public void updateItem(Item parItem) {
+        // retrieve trip of item
+        Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
+
+        // update item
+        if (prevSavedTrips != null) {
+            prevSavedTrips.deleteItem(parItem.getUUID());
+            prevSavedTrips.addItem(parItem);
+        }
+
+        updateTrip(prevSavedTrips);
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     private void updateTrip(final Trip parTmpTrip) {
@@ -188,6 +203,7 @@ public class PrefsSavingModule implements ISavingModule {
         for (Trip oneTrip : tripList) {
             if (oneTrip.getUUID().compareTo(parTmpTrip.getUUID()) == 0) {
                 updatedTripList.add(parTmpTrip);
+
             } else {
                 updatedTripList.add(oneTrip);
             }

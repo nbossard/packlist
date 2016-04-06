@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -173,11 +174,11 @@ public class NewTripFragment extends Fragment {
     /** Text view for input of "trip end date". */
     private TextView mEndDateTV;
 
-    /** Text view for input of "free notes on trip". */
-    private TextView mNoteTV;
+    /** EditText for input of "free notes on trip". */
+    private EditText mNoteTV;
 
-    /** Text view for input of "trip name". */
-    private TextView mNameTV;
+    /** EditText for input of "trip name". */
+    private EditText mNameTV;
 
     /** Button to open dialog to pick a start date. */
     private AppCompatImageButton mStartDateButton;
@@ -272,12 +273,12 @@ public class NewTripFragment extends Fragment {
         mHostingActivity = (INewTripFragmentActivity) getActivity();
 
         // Getting views
-        mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
+        mNameTV = (EditText) mRootView.findViewById(R.id.new_trip__name__edit);
         mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
         mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
         mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
-        mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
+        mNoteTV = (EditText) mRootView.findViewById(R.id.new_trip__note__edit);
         mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
 
 

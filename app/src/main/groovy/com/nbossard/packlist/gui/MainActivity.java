@@ -38,6 +38,7 @@ import android.view.MenuItem;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
@@ -75,6 +76,7 @@ public class MainActivity
         ITripListFragmentActivity,
         INewTripFragmentActivity,
         ITripDetailFragmentActivity,
+        IItemDetailFragmentActivity,
         ITripChangeListener {
 
 // *********************** CONSTANTS**********************************************************************
@@ -98,7 +100,6 @@ public class MainActivity
 
 // *********************** METHODS **************************************************************************
 
-
     @DebugLog
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
@@ -114,6 +115,7 @@ public class MainActivity
         onNewIntent(getIntent());
     }
 
+
     @DebugLog
     @Override
     protected final void onStart() {
@@ -128,11 +130,6 @@ public class MainActivity
     public void onConfigurationChanged(Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onTripChange() {
-        mTripListFragment.populateList();
     }
 
     /**
@@ -192,6 +189,28 @@ public class MainActivity
             Trip loadedTrip = mSavingModule.loadSavedTrip(UUID.fromString(tripId));
             openTripDetailFragment(loadedTrip);
         }
+    }
+
+// ----------- implementing interface ITripChangeListener -------------------
+
+
+    @Override
+    public void onTripChange() {
+        mTripListFragment.populateList();
+
+        //update detail trip fragment
+        if (mTripDetailFragment != null) {
+            UUID curTripUUID = mTripDetailFragment.getCurrentTrip().getUUID();
+            Trip loadedTrip = mSavingModule.loadSavedTrip(curTripUUID);
+            mTripDetailFragment.displayTrip(loadedTrip);
+        }
+    }
+
+// ----------- implementing interface IItemDetailFragmentActivity -------------------
+
+    @Override
+    public void updateItem(Item parItem) {
+        mSavingModule.updateItem(parItem);
     }
 
 // ----------- implementing interface IMainActivity -------------------
@@ -259,6 +278,25 @@ public class MainActivity
 
         // Create fragment and give it an argument specifying the article it should show
         NewTripFragment newFragment = NewTripFragment.newInstance(parTripUUID);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(getTargetFragment(), newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
+    }
+
+    @Override
+    public void openItemDetailFragment(Item parItem) {
+
+        // Create fragment and give it an argument specifying the article it should show
+        ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

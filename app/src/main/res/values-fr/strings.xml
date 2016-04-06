@@ -67,7 +67,10 @@
     <string name="trip_detail__add_item___button">Ajouter</string>
     <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
     <string name="trip_detail__edit_trip">Modifier</string>
+    <string name="trip_detail__before_weight__label">poids du sac : plus de </string>
     <string name="ia__packed">EMPAQUETE :</string>
+    <string name="action_trip_cab__edit">Modifier</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
@@ -77,5 +80,9 @@
     <string name="help_legal__third_party_lib_changelog__label">   <b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="trip_detail__add_item_detail___button">+ détails</string>
+    <string name="item_detail__weight__label">poids</string>
+    <string name="item_detail__name__label">nom</string>
+    <string name="item_detail__submit">modifier</string>
 
 </resources>

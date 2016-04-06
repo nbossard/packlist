@@ -21,42 +21,27 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface com.nbossard.packlist.gui.IMainActivity {
-        + openTripDetailFragment(...)
-        + openNewTripFragment(...)
-        + showFABIfAccurate(boolean)
+    interface com.nbossard.packlist.gui.IItemDetailFragmentActivity {
+        + updateItem(...)
     }
+
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.IItemDetailFragmentActivity
 @enduml
  */
 
-import android.support.annotation.Nullable;
-
 import com.nbossard.packlist.model.Item;
-import com.nbossard.packlist.model.Trip;
-
-import java.util.UUID;
 
 /**
+ * The what {@link ItemDetailFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface IMainActivity {
+interface IItemDetailFragmentActivity extends IMainActivity {
 
     /**
-     * Ask Main activity to open new trip fragment to display Trip of provided UUID.
+     * Updating of an item.
      *
-     * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
+     * @param parItem Trip to be updated
      */
-    void openNewTripFragment(@Nullable final UUID parTripId);
+    void updateItem(Item parItem);
 
-    /**
-     * Display provided Item to allow editing of details
-     * @param parItem item to be edited
-     */
-    void openItemDetailFragment(final Item parItem);
-
-    /**
-     * Hide or show FAB, depending on fragment.
-     * @param parShow true to show, false to hide
-     */
-    void showFABIfAccurate(boolean parShow);
 }
