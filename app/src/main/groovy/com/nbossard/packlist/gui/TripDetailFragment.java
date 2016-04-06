@@ -253,7 +253,10 @@ public class TripDetailFragment extends Fragment {
                 onClickAddDetailedItem();
             }
         });
+        mAddDetailedItemButton.setEnabled(false);
+        disableButtonIfEmptyText(mAddDetailedItemButton);
 
+        // auto click on button
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
             @DebugLog
             @Override
