@@ -46,18 +46,14 @@
         android:layout_marginEnd="10dip"
         android:layout_marginRight="10dip"
         android:gravity="center_vertical"/>
+
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
-        android:layout_toRightOf="@id/ia__space"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        tools:text="100g"/>
+        tools:text="Some beautiful big red socks very warm and very red which smell good"
+        android:layout_toEndOf="@id/ia__packed"
+        android:layout_toRightOf="@id/ia__packed"/>
 
 </RelativeLayout>
