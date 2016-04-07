@@ -28,6 +28,7 @@
         changeDate="7th april 2016"
         versionName="0.8.0">
         <changelogtext>NEW : ISS#13 support of item weights</changelogtext>
+        <changelogtext>NEW : ISS#20 mass import in a trip (i.e. from external text file)</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="22th march 2016"
