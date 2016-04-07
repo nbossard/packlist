@@ -23,8 +23,6 @@ package com.nbossard.packlist.gui;
 @startuml
     interface com.nbossard.packlist.gui.IMassImportFragmentActivity {
     }
-
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripDetailFragmentActivity
 @enduml
  */
 

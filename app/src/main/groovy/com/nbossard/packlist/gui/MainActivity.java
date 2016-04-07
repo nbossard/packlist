@@ -55,11 +55,13 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.ITripListFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.INewTripFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.ITripDetailFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.IMassImportFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
 
     com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
     com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.MassImportFragment <..  com.nbossard.packlist.gui.MainActivity : launch in\n container
 
     ' Moved to main file
     ' ISavingModule <-- com.nbossard.packlist.gui.MainActivity

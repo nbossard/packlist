@@ -40,6 +40,9 @@ import hugo.weaving.DebugLog;
 @startuml
     class com.nbossard.packlist.gui.MassImportFragment {
     }
+
+    com.nbossard.packlist.gui.MassImportFragment ..> com.nbossard.packlist.gui.IMassImportFragmentActivity
+
 @enduml
  */
 

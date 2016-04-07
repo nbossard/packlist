@@ -49,6 +49,8 @@ package com.nbossard.packlist.gui;
         !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
         !include TripListFragment.java
+        !include IMassImportFragmentActivity.java
+        !include MassImportFragment.java
     }
 @enduml
 
