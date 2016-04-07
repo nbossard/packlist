@@ -77,6 +77,7 @@ public class MainActivity
         INewTripFragmentActivity,
         ITripDetailFragmentActivity,
         IItemDetailFragmentActivity,
+        IMassImportFragmentActivity,
         ITripChangeListener {
 
 // *********************** CONSTANTS**********************************************************************
@@ -216,10 +217,10 @@ public class MainActivity
     // ----------- implementing interface ITripDetailFragmentActivity -------------------
 
     @Override
-    public void openMassImportFragment() {
+    public void openMassImportFragment(Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
-        MassImportFragment newFragment = MassImportFragment.newInstance();
+        MassImportFragment newFragment = MassImportFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,

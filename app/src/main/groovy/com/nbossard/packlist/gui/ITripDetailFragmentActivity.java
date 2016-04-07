@@ -47,5 +47,5 @@ interface ITripDetailFragmentActivity extends IMainActivity {
     /**
      * Ask activity to open a mass import fragment.
      */
-    void openMassImportFragment();
+    void openMassImportFragment(Trip parTrip);
 }

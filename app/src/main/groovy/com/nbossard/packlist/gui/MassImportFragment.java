@@ -22,12 +22,17 @@ package com.nbossard.packlist.gui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.Trip;
 
 import hugo.weaving.DebugLog;
 
@@ -45,6 +50,15 @@ import hugo.weaving.DebugLog;
  */
 public class MassImportFragment extends Fragment {
 
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = MassImportFragment.class.getName();
+
+    private static final String BUNDLE_PAR_TRIP = "bundlepartrip";
+
     // *********************** FIELDS ***********************************************************************
 
     /** For communicating with hosting activity. */
@@ -56,20 +70,44 @@ public class MassImportFragment extends Fragment {
     /** Button to launch mass import. */
     private Button mMassImportButton;
 
+    /** Text edit area to input text. */
+    private EditText mItemsEditText;
+    private Trip mTrip;
+
     // *********************** LISTENERS ********************************************************************
 
     /**
      * Listener for click on mass import button.
      */
+    @DebugLog
     private void onClickMassImport() {
-        //TODO
+
+        String textToImport = mItemsEditText.getText().toString();
+        String[] names = textToImport.split("\n");
+        for (String name : names) {
+            Item newItem = new Item(mTrip, name);
+            mTrip.addItem(newItem);
+        }
+
+        mIHostingActivity.saveTrip(mTrip);
+
+        // navigating back
+        FragmentManager fragMgr = getActivity().getSupportFragmentManager();
+        fragMgr.beginTransaction().remove(MassImportFragment.this).commit();
+        fragMgr.popBackStack();
     }
 
     // *********************** METHODS **********************************************************************
 
 
-    public static MassImportFragment newInstance() {
-        return new MassImportFragment();
+    public static MassImportFragment newInstance(Trip parTrip) {
+        MassImportFragment f = new MassImportFragment();
+        if (parTrip != null) {
+            Bundle b = new Bundle();
+            b.putSerializable(BUNDLE_PAR_TRIP, parTrip);
+            f.setArguments(b);
+        }
+        return f;
     }
 
     public MassImportFragment() {
@@ -83,6 +121,14 @@ public class MassImportFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIHostingActivity = (IMassImportFragmentActivity) getActivity();
+
+        Bundle args = getArguments();
+        mTrip = null;
+        if (args != null) {
+            mTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP);
+        }else {
+            Log.e(TAG, "onCreate() : This should never occur");
+        }
     }
 
     @DebugLog
@@ -98,7 +144,9 @@ public class MassImportFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMassImportButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        // Getting views
+        mItemsEditText = (EditText) mRootView.findViewById(R.id.mass_import__items__edit);
+        mMassImportButton = (Button) mRootView.findViewById(R.id.mass_import__import__button);
         mMassImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {

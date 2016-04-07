@@ -27,9 +27,19 @@ package com.nbossard.packlist.gui;
     com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripDetailFragmentActivity
 @enduml
  */
+
+import com.nbossard.packlist.model.Trip;
+
 /**
  * The what {@link MassImportFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
 public interface IMassImportFragmentActivity {
+
+    /**
+     * Creation and saving of a new trip.
+     *
+     * @param parTrip Trip to be saved
+     */
+    void saveTrip(Trip parTrip);
 }

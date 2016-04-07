@@ -313,7 +313,7 @@ public class TripDetailFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_trip__import_txt:
-                mIHostingActivity.openMassImportFragment();
+                mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             default:
                 break;
