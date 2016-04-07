@@ -242,6 +242,9 @@ public class TripDetailFragment extends Fragment {
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // custom menu for this fragment
+        setHasOptionsMenu(true);
+
         // TODO old style, improve this
         mNewItemEditText = (AppCompatEditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
 
@@ -296,6 +299,26 @@ public class TripDetailFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_detail, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_trip__import_txt:
+                mIHostingActivity.openMassImportFragment();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /** Display provided trip.

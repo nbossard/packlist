@@ -87,5 +87,10 @@
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight</string>
     <string name="item_detail__submit">Update</string>
+    <string name="action_trip__import">import text file</string>
+
+    <!-- Mass import -->
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__import__button">Import</string>
 
 </resources>

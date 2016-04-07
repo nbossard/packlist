@@ -213,7 +213,26 @@ public class MainActivity
         mSavingModule.updateItem(parItem);
     }
 
-// ----------- implementing interface IMainActivity -------------------
+    // ----------- implementing interface ITripDetailFragmentActivity -------------------
+
+    @Override
+    public void openMassImportFragment() {
+
+        // Create fragment and give it an argument specifying the article it should show
+        MassImportFragment newFragment = MassImportFragment.newInstance();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(getTargetFragment(), newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
+    }
 
     @Override
     @DebugLog
@@ -226,6 +245,9 @@ public class MainActivity
             mTripDetailFragment.displayTrip(parTrip);
         }
     }
+
+    // ----------- implementing interface IMainActivity -------------------
+
 
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
