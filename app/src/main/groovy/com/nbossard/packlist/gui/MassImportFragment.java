@@ -39,6 +39,7 @@ import hugo.weaving.DebugLog;
 /*
 @startuml
     class com.nbossard.packlist.gui.MassImportFragment {
+        +{static} newInstance(Trip)
     }
 
     com.nbossard.packlist.gui.MassImportFragment ..> com.nbossard.packlist.gui.IMassImportFragmentActivity
@@ -75,6 +76,8 @@ public class MassImportFragment extends Fragment {
 
     /** Text edit area to input text. */
     private EditText mItemsEditText;
+
+
     private Trip mTrip;
 
     // *********************** LISTENERS ********************************************************************
@@ -156,5 +159,18 @@ public class MassImportFragment extends Fragment {
                 onClickMassImport();
             }
         });
+    }
+
+    @DebugLog
+    @Override
+    public final void onResume() {
+        super.onResume();
+        mIHostingActivity.showFABIfAccurate(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mIHostingActivity.showFABIfAccurate(true);
     }
 }

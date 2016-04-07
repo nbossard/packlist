@@ -22,7 +22,11 @@ package com.nbossard.packlist.gui;
 /*
 @startuml
     interface com.nbossard.packlist.gui.IMassImportFragmentActivity {
+        + saveTrip(...)
     }
+
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.IMassImportFragmentActivity
+
 @enduml
  */
 
@@ -30,9 +34,9 @@ import com.nbossard.packlist.model.Trip;
 
 /**
  * The what {@link MassImportFragment} expects from hosting activity.
- * @author Created by nbossard on 01/01/16.
+ * @author Created by nbossard on 07th april 2016.
  */
-public interface IMassImportFragmentActivity {
+public interface IMassImportFragmentActivity extends IMainActivity {
 
     /**
      * Creation and saving of a new trip.
