@@ -14,7 +14,7 @@ or
 Tech note : GitHub and Play Store releases use same certificate. F-droid use their own certificate.
 
 ### Objectives in term of functionality : 
- * multi-language (currently French and english but please help for others)
+ * multi-language (currently English , Japanese and French but please help for others)
  * pre-filling of list through questions on what you are planning to do during your trip
  
 ### Objectives : 
@@ -68,6 +68,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 - Android Studio 2.1 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
+    - Checkstyle-idea
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)
