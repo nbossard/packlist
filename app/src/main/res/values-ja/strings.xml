@@ -34,6 +34,7 @@
     <!-- Menu items -->
     <string name="action_whatsnew">最新情報</string>
     <string name="action_about">アプリについて</string>
+    <string name="action_trip__import">Import text file</string>
 
     <!-- About page -->
     <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
