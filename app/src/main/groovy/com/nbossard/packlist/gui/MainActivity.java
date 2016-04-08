@@ -130,7 +130,7 @@ public class MainActivity
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public final void onConfigurationChanged(Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
     }
@@ -198,7 +198,7 @@ public class MainActivity
 
 
     @Override
-    public void onTripChange() {
+    public final void onTripChange() {
         mTripListFragment.populateList();
 
         //update detail trip fragment
@@ -209,10 +209,10 @@ public class MainActivity
         }
     }
 
-// ----------- implementing interface IItemDetailFragmentActivity -------------------
+    // ----------- implementing interface IItemDetailFragmentActivity -------------------
 
     @Override
-    public void updateItem(Item parItem) {
+    public final void updateItem(final Item parItem) {
         mSavingModule.updateItem(parItem);
     }
 
@@ -239,7 +239,7 @@ public class MainActivity
 
     @Override
     @DebugLog
-    public final void saveTrip(Trip parTrip) {
+    public final void saveTrip(final Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
 
         //update fragments displaying trips
@@ -285,7 +285,7 @@ public class MainActivity
         Log.d(TAG, "showFABIfAccurate() called with: " + "parShow = [" + parShow + "]");
 
         FragmentManager fragMgr = getSupportFragmentManager();
-        if (parShow && fragMgr.getBackStackEntryCount()==0) {
+        if (parShow && fragMgr.getBackStackEntryCount() == 0) {
             mFab.show();
         } else {
             mFab.hide();
@@ -299,7 +299,7 @@ public class MainActivity
      */
     @DebugLog
     @Override
-    public void openNewTripFragment(@Nullable final UUID parTripUUID) {
+    public final void openNewTripFragment(@Nullable final UUID parTripUUID) {
 
         // Create fragment and give it an argument specifying the article it should show
         NewTripFragment newFragment = NewTripFragment.newInstance(parTripUUID);
@@ -318,7 +318,7 @@ public class MainActivity
     }
 
     @Override
-    public void openItemDetailFragment(Item parItem) {
+    public final void openItemDetailFragment(Item parItem) {
 
         // Create fragment and give it an argument specifying the article it should show
         ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
@@ -367,7 +367,7 @@ public class MainActivity
      * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
-    private TripListFragment openMainActivityFragment() {
+    private final TripListFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         TripListFragment newFragment = new TripListFragment();
