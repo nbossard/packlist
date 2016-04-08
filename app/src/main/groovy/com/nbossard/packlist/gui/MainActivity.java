@@ -55,11 +55,13 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.ITripListFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.INewTripFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.ITripDetailFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.IMassImportFragmentActivity <|.. com.nbossard.packlist.gui.MainActivity
 
     com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
     com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.MassImportFragment <..  com.nbossard.packlist.gui.MainActivity : launch in\n container
 
     ' Moved to main file
     ' ISavingModule <-- com.nbossard.packlist.gui.MainActivity
@@ -77,6 +79,7 @@ public class MainActivity
         INewTripFragmentActivity,
         ITripDetailFragmentActivity,
         IItemDetailFragmentActivity,
+        IMassImportFragmentActivity,
         ITripChangeListener {
 
 // *********************** CONSTANTS**********************************************************************
@@ -127,7 +130,7 @@ public class MainActivity
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public final void onConfigurationChanged(Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
     }
@@ -195,7 +198,7 @@ public class MainActivity
 
 
     @Override
-    public void onTripChange() {
+    public final void onTripChange() {
         mTripListFragment.populateList();
 
         //update detail trip fragment
@@ -206,18 +209,37 @@ public class MainActivity
         }
     }
 
-// ----------- implementing interface IItemDetailFragmentActivity -------------------
+    // ----------- implementing interface IItemDetailFragmentActivity -------------------
 
     @Override
-    public void updateItem(Item parItem) {
+    public final void updateItem(final Item parItem) {
         mSavingModule.updateItem(parItem);
     }
 
-// ----------- implementing interface IMainActivity -------------------
+    // ----------- implementing interface ITripDetailFragmentActivity -------------------
+
+    @Override
+    public void openMassImportFragment(Trip parTrip) {
+
+        // Create fragment and give it an argument specifying the article it should show
+        MassImportFragment newFragment = MassImportFragment.newInstance(parTrip);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(getTargetFragment(), newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
+    }
 
     @Override
     @DebugLog
-    public final void saveTrip(Trip parTrip) {
+    public final void saveTrip(final Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
 
         //update fragments displaying trips
@@ -226,6 +248,9 @@ public class MainActivity
             mTripDetailFragment.displayTrip(parTrip);
         }
     }
+
+    // ----------- implementing interface IMainActivity -------------------
+
 
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
@@ -260,7 +285,7 @@ public class MainActivity
         Log.d(TAG, "showFABIfAccurate() called with: " + "parShow = [" + parShow + "]");
 
         FragmentManager fragMgr = getSupportFragmentManager();
-        if (parShow && fragMgr.getBackStackEntryCount()==0) {
+        if (parShow && fragMgr.getBackStackEntryCount() == 0) {
             mFab.show();
         } else {
             mFab.hide();
@@ -274,7 +299,7 @@ public class MainActivity
      */
     @DebugLog
     @Override
-    public void openNewTripFragment(@Nullable final UUID parTripUUID) {
+    public final void openNewTripFragment(@Nullable final UUID parTripUUID) {
 
         // Create fragment and give it an argument specifying the article it should show
         NewTripFragment newFragment = NewTripFragment.newInstance(parTripUUID);
@@ -293,7 +318,7 @@ public class MainActivity
     }
 
     @Override
-    public void openItemDetailFragment(Item parItem) {
+    public final void openItemDetailFragment(Item parItem) {
 
         // Create fragment and give it an argument specifying the article it should show
         ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
@@ -342,7 +367,7 @@ public class MainActivity
      * Open a new fragment allowing him to view trip list.
      */
     @DebugLog
-    private TripListFragment openMainActivityFragment() {
+    private final TripListFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         TripListFragment newFragment = new TripListFragment();

@@ -34,6 +34,7 @@
     <!-- Menu items -->
     <string name="action_whatsnew">What\'s new</string>
     <string name="action_about">About</string>
+    <string name="action_trip__import">Import text file</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright NBossard 2015.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
@@ -87,5 +88,9 @@
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight</string>
     <string name="item_detail__submit">Update</string>
+
+    <!-- Mass import -->
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__import__button">Import</string>
 
 </resources>
