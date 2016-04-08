@@ -48,7 +48,7 @@ import hugo.weaving.DebugLog;
  */
 
 /**
- * Mass import dialog.
+ * Mass item import fragment.
  *
  * @author Created by naub7473 on 19/01/2016.
  */
@@ -61,7 +61,8 @@ public class MassImportFragment extends Fragment {
      */
     private static final String TAG = MassImportFragment.class.getName();
 
-    private static final String BUNDLE_PAR_TRIP = "bundlepartrip";
+    /** Key identifier for serialising trip in bundle. */
+    private static final String BUNDLE_PAR_TRIP = "bundle_par_trip";
 
     // *********************** FIELDS ***********************************************************************
 
@@ -77,7 +78,7 @@ public class MassImportFragment extends Fragment {
     /** Text edit area to input text. */
     private EditText mItemsEditText;
 
-
+    /** Trip onto which mass import items. */
     private Trip mTrip;
 
     // *********************** LISTENERS ********************************************************************
@@ -87,6 +88,8 @@ public class MassImportFragment extends Fragment {
      */
     @DebugLog
     private void onClickMassImport() {
+
+        enableGUI(false);
 
         String textToImport = mItemsEditText.getText().toString();
         String[] names = textToImport.split("\n");
@@ -105,8 +108,13 @@ public class MassImportFragment extends Fragment {
 
     // *********************** METHODS **********************************************************************
 
-
-    public static MassImportFragment newInstance(Trip parTrip) {
+    /**
+     * Create a new instance of MassImportFragment that will be initialized
+     * with the given arguments.
+     * @param parTrip trip to be added items
+     * @return fragment to be displayed
+     */
+    public static MassImportFragment newInstance(final Trip parTrip) {
         MassImportFragment f = new MassImportFragment();
         if (parTrip != null) {
             Bundle b = new Bundle();
@@ -116,6 +124,9 @@ public class MassImportFragment extends Fragment {
         return f;
     }
 
+    /**
+     * Standard empty constructor, required for a fragment.
+     */
     public MassImportFragment() {
     }
 
@@ -132,7 +143,7 @@ public class MassImportFragment extends Fragment {
         mTrip = null;
         if (args != null) {
             mTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP);
-        }else {
+        } else {
             Log.e(TAG, "onCreate() : This should never occur");
         }
     }
@@ -147,7 +158,7 @@ public class MassImportFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // Getting views
@@ -169,8 +180,17 @@ public class MassImportFragment extends Fragment {
     }
 
     @Override
-    public void onDetach() {
+    public final void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+    /**
+     * Enable to disable GUI, to prevent user interactions when processing.
+     *
+     * @param parEnable false to disable, true to enable
+     */
+    private void enableGUI(final boolean parEnable) {
+        mMassImportButton.setEnabled(parEnable);
     }
 }
