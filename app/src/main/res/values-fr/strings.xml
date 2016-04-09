@@ -90,6 +90,6 @@
 
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse.\n\nUn objet par ligne.</string>
-    <string name="mass_import__import__button">Import</string>
+    <string name="mass_import__import__button">Importer</string>
 
 </resources>

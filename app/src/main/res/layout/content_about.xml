@@ -66,7 +66,7 @@
         android:id="@+id/help__third_party__button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/accessibility_minimal_height"
+        android:minHeight="@dimen/accessibility_button_min_height"
         android:layout_below="@id/help__spacer2"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/about__third_party__button"/>

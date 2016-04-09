@@ -59,7 +59,7 @@
                 android:id="@+id/trip_detail__edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/accessibility_minimal_height"
+                android:minHeight="@dimen/accessibility_button_min_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:text="@string/trip_detail__edit_trip"/>

@@ -146,8 +146,8 @@
             android:id="@+id/new_trip__submit__button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:minHeight="@dimen/accessibility_minimal_height"
+            android:layout_gravity="end"
+            android:minHeight="@dimen/accessibility_button_min_height"
             android:text="@string/new_trip__submit"/>
 
     </LinearLayout>

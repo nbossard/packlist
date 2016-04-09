@@ -37,12 +37,15 @@
         android:id="@+id/mass_import__items__edit"
         android:layout_width="match_parent"
         android:layout_height="300dip"
+        android:background="@color/packlist__list_background"
         android:inputType="textMultiLine"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/mass_import__import__button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:minHeight="@dimen/accessibility_button_min_height"
         android:text="@string/mass_import__import__button"/>
 
 </LinearLayout>

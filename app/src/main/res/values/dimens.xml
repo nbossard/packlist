@@ -30,5 +30,5 @@
     <!-- packlist specific dimensions -->
     <dimen name="ia__row_margin">10dip</dimen>
     <dimen name="ia__start_margin">10dip</dimen>
-    <dimen name="accessibility_minimal_height">36dip</dimen>
+    <dimen name="accessibility_button_min_height">36dip</dimen>
 </resources>
