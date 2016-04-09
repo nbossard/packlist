@@ -86,7 +86,7 @@
 
     <!-- Detail of item -->
     <string name="item_detail__name__label">item name</string>
-    <string name="item_detail__weight__label">weight</string>
+    <string name="item_detail__weight__label">weight (in grams)</string>
     <string name="item_detail__submit">Update</string>
 
     <!-- Mass import -->

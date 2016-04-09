@@ -84,8 +84,8 @@
     <string name="trip_detail__add_item_detail___button">+ détails</string>
 
     <!-- Item detail -->
-    <string name="item_detail__weight__label">poids</string>
     <string name="item_detail__name__label">nom</string>
+    <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">modifier</string>
 
     <!-- Mass import -->
