@@ -247,16 +247,13 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
-        Log.d(TAG, "getRemainingDays() called.");
 
         long diffInMilliSeconds = 0;
         if (mStartDate != null) {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
-        Log.d(TAG, "getRemainingDays: diffInMilliSeconds = " + diffInMilliSeconds);
 
         long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
-        Log.d(TAG, "getRemainingDays() returned: " + res);
         return res;
     }
 
