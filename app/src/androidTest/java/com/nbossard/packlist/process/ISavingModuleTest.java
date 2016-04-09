@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -94,6 +94,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertTrue(loadedTrips.contains(mTestTrip3));
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void testAddOrUpdateTrip() throws Exception {
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip2);

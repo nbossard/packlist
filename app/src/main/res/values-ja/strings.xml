@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -34,9 +34,10 @@
     <!-- Menu items -->
     <string name="action_whatsnew">最新情報</string>
     <string name="action_about">アプリについて</string>
+    <string name="action_trip__import">Import text file</string>
 
     <!-- About page -->
-    <string name="about__main">持ち物リスト %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright NBossard 2015.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
 
@@ -45,8 +46,13 @@
     <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">削除</string>
-    <string name="ta__in_x_days">In %d days.</string>
-    <string name="ta__x_days_ago">%d days ago.</string>
+
+    <plurals name="ta__in_x_days">
+        <item quantity="other">In %d days.</item>
+    </plurals>
+    <plurals name="ta__x_days_ago">
+        <item quantity="other">%d days ago.</item>
+    </plurals>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
@@ -61,7 +67,10 @@
     <string name="trip_detail__add_item___button">アイテムを追加</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
     <string name="trip_detail__edit_trip">旅行を編集</string>
+    <string name="trip_detail__before_weight__label">weight of bag : more than </string>
     <string name="ia__packed">収納済 :</string>
+    <string name="action_trip_cab__edit">Edit</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
@@ -71,5 +80,14 @@
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+
+    <!-- Item detail -->
+    <string name="item_detail__name__label">item name</string>
+    <string name="item_detail__weight__label">weight (in grams)</string>
+    <string name="item_detail__submit">update</string>
+
+    <!-- Mass import -->
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__import__button">Import</string>
 
 </resources>

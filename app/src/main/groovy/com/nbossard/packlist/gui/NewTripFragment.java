@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -53,7 +54,7 @@ import hugo.weaving.DebugLog;
     class com.nbossard.packlist.gui.NewTripFragment {
     }
 
-    com.nbossard.packlist.gui.NewTripFragment --> com.nbossard.packlist.gui.IMainActivity
+    com.nbossard.packlist.gui.NewTripFragment ..> com.nbossard.packlist.gui.INewTripFragmentActivity
 @enduml
  */
 
@@ -67,16 +68,16 @@ public class NewTripFragment extends Fragment {
     // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
-    public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+    private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
 
     /** constant for "do not vibrate" in calendar. */
     private static final boolean DO_NOT_VIBRATE = false;
 
     /** Frag to identify fragment for start date picker. */
-    public static final String DATEPICKER_START_TAG = "datepickerstart";
+    private static final String DATE_PICKER_START_TAG = "datePickerStart";
 
     /** Frag to identify fragment for end date picker. */
-    public static final String DATEPICKER_END_TAG = "datepickerstart";
+    private static final String DATE_PICKER_END_TAG = "datePickerEnd";
 
     /** End of trip date as a GregorianCalendar. */
     private GregorianCalendar mEndDate;
@@ -85,10 +86,11 @@ public class NewTripFragment extends Fragment {
     private GregorianCalendar mStartDate;
 
     // *********************** LISTENERS ********************************************************************
+
     /**
      * Listener for when user clicks on "submit" button.
      */
-    private View.OnClickListener mSubmitListener = new View.OnClickListener() {
+    private final View.OnClickListener mSubmitListener = new View.OnClickListener() {
         @DebugLog
         @Override
         public void onClick(final View v) {
@@ -112,7 +114,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Listener for when user has selected a start date.
      */
-    private DatePickerDialog.OnDateSetListener dateStartSelectedListener =
+    private final DatePickerDialog.OnDateSetListener dateStartSelectedListener =
         new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(final DatePickerDialog parDatePickerDialog,
@@ -127,7 +129,7 @@ public class NewTripFragment extends Fragment {
     /**
      * Listener for when user has selected a end date.
      */
-    private DatePickerDialog.OnDateSetListener dateEndSelectedListener =
+    private final DatePickerDialog.OnDateSetListener dateEndSelectedListener =
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(final DatePickerDialog parDatePickerDialog,
@@ -143,11 +145,11 @@ public class NewTripFragment extends Fragment {
     /** For communicating with hosting activity. */
     private INewTripFragmentActivity mHostingActivity;
 
-    /** Root view for easy findviewById use.*/
+    /** Root view for easy findViewById use.*/
     private View mRootView;
 
     /** Hosting activity interface. */
-    private IMainActivity mIMainActivity;
+    private INewTripFragmentActivity mIHostingActivity;
 
     /** Calendar to retrieve current date. */
     private final Calendar mCalendar = Calendar.getInstance();
@@ -172,11 +174,11 @@ public class NewTripFragment extends Fragment {
     /** Text view for input of "trip end date". */
     private TextView mEndDateTV;
 
-    /** Text view for input of "free notes on trip". */
-    private TextView mNoteTV;
+    /** EditText for input of "free notes on trip". */
+    private EditText mNoteTV;
 
-    /** Text view for input of "trip name". */
-    private TextView mNameTV;
+    /** EditText for input of "trip name". */
+    private EditText mNameTV;
 
     /** Button to open dialog to pick a start date. */
     private AppCompatImageButton mStartDateButton;
@@ -188,9 +190,11 @@ public class NewTripFragment extends Fragment {
     private Button mSubmitButton;
 
     /** Value provided when instantiating this fragment, unique identifier of trip. */
+    @SuppressWarnings("FieldCanBeLocal")
     private UUID mTripId;
 
     /** The saving module to retrieve and update data (trips).*/
+    @SuppressWarnings("FieldCanBeLocal")
     private ISavingModule mSavingModule;
 
     /** Trip object to be displayed and added item. */
@@ -225,7 +229,7 @@ public class NewTripFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (INewTripFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         mTripId = null;
@@ -248,7 +252,7 @@ public class NewTripFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_new_trip, container, false);
 
         // Magic of binding
-        // Do not use this syntax, it will overwrite actvity (we are in a fragment)
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentNewTripBinding mBinding = DataBindingUtil.bind(mRootView);
         mBinding.setTrip(mTrip);
@@ -269,12 +273,12 @@ public class NewTripFragment extends Fragment {
         mHostingActivity = (INewTripFragmentActivity) getActivity();
 
         // Getting views
-        mNameTV = (TextView) mRootView.findViewById(R.id.new_trip__name__edit);
+        mNameTV = (EditText) mRootView.findViewById(R.id.new_trip__name__edit);
         mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
         mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
         mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
-        mNoteTV = (TextView) mRootView.findViewById(R.id.new_trip__note__edit);
+        mNoteTV = (EditText) mRootView.findViewById(R.id.new_trip__note__edit);
         mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
 
 
@@ -292,13 +296,13 @@ public class NewTripFragment extends Fragment {
     @Override
     public final void onResume() {
         super.onResume();
-        mIMainActivity.showFABIfAccurate(false);
+        mIHostingActivity.showFABIfAccurate(false);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mIMainActivity.showFABIfAccurate(true);
+        mIHostingActivity.showFABIfAccurate(true);
     }
 
     /**
@@ -315,7 +319,7 @@ public class NewTripFragment extends Fragment {
         mStartDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+                dateStartPickerDialog.show(getFragmentManager(), DATE_PICKER_START_TAG);
             }
         });
     }
@@ -327,7 +331,7 @@ public class NewTripFragment extends Fragment {
         mEndDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+                dateEndPickerDialog.show(getFragmentManager(), DATE_PICKER_END_TAG);
             }
         });
     }
@@ -339,7 +343,7 @@ public class NewTripFragment extends Fragment {
         mStartDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateStartPickerDialog.show(getFragmentManager(), DATEPICKER_START_TAG);
+                dateStartPickerDialog.show(getFragmentManager(), DATE_PICKER_START_TAG);
             }
         });
     }
@@ -351,7 +355,7 @@ public class NewTripFragment extends Fragment {
         mEndDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                dateEndPickerDialog.show(getFragmentManager(), DATEPICKER_END_TAG);
+                dateEndPickerDialog.show(getFragmentManager(), DATE_PICKER_END_TAG);
             }
         });
     }

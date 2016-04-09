@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +35,14 @@ import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
+
+/*
+@startuml
+    class com.nbossard.packlist.gui.AboutActivity {
+    }
+    com.nbossard.packlist.gui.HelpThirdPartyActivity <.. com.nbossard.packlist.gui.AboutActivity : start through intent
+@enduml
+ */
 
 /**
  * About activity.
@@ -72,8 +79,10 @@ class AboutActivity extends AppCompatActivity {
 
         // updating version number
         def mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
-        mGeneralInfo.setText(String.format(getString(R.string.about__main),
-                BuildConfig.VERSION_NAME))
+        mGeneralInfo.setText(
+                String.format(getString(R.string.about__main),
+                            BuildConfig.VERSION_NAME,
+                            getString(R.string.about__additional__info)))
 
     }
 

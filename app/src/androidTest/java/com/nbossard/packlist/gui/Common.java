@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package com.nbossard.packlist.gui;
 /**
  * Common values used by all Robotium tests
  */
-public class Common {
+class Common {
 
     // ********************** CONSTANTS *********************************************************************
 

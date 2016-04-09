@@ -19,33 +19,31 @@
 
 package com.nbossard.packlist.gui;
 
+import com.nbossard.packlist.model.Trip;
+
 /*
 @startuml
-    interface com.nbossard.packlist.gui.ITripDetailFragmentActivity {
-        + saveTrip(...)
+    interface com.nbossard.packlist.gui.ITripListFragmentActivity {
+        + openNewTripFragment(...)
     }
 
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripDetailFragmentActivity
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripListFragmentActivity
+
 @enduml
  */
 
-import com.nbossard.packlist.model.Trip;
 
 /**
- * The what {@link TripDetailFragment} expects from hosting activity.
+ * The what {@link TripListFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface ITripDetailFragmentActivity extends IMainActivity {
+interface ITripListFragmentActivity extends IMainActivity {
 
     /**
-     * Creation and saving of a new trip.
+     * Ask Main activity to open detail fragment to display Trip of provided UUID.
      *
-     * @param parTrip Trip to be saved
+     * @param parTrip a trip object to be displayed
      */
-    void saveTrip(Trip parTrip);
+    TripDetailFragment openTripDetailFragment(final Trip parTrip);
 
-    /**
-     * Ask activity to open a mass import fragment.
-     */
-    void openMassImportFragment(Trip parTrip);
 }

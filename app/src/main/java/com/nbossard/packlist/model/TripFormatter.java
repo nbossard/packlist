@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,6 +81,19 @@ public class TripFormatter
         }
 
         Log.d(TAG, "getFormattedDate() returned: " + res);
+        return res;
+    }
+
+    /**
+     * The trip formatted weight.
+     * @return formatted weight
+     */
+    public final String getFormattedWeight(int parWeight) {
+
+        Log.d(TAG, "getFormattedWeight() called with: " + "parWeight = [" + parWeight + "]");
+
+        String res = Integer.toString(parWeight) + "g";
+        Log.d(TAG, "getFormattedWeight() returned: " + res);
         return res;
     }
 

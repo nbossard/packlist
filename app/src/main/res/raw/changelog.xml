@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ PackList is an open-source packing-list for Android
+  ~
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
 <!-- This file is used to generate change log dialog for Homelan version in Default language(french) -->
 <!-- Each change entry should be prefixed with "NEW", "BUG FIX" or "MINOR" -->
 <!-- Each new entry should be added at end of release block. -->
 
 <changelog bulletedList="true">
+    <changelogversion
+        changeDate="9th april 2016"
+        versionName="0.8.0">
+        <changelogtext>NEW : ISS#13 support of item weights</changelogtext>
+        <changelogtext>NEW : ISS#20 mass import in a trip (i.e. from external text file)</changelogtext>
+    </changelogversion>
     <changelogversion
         changeDate="22th march 2016"
         versionName="0.7.1">

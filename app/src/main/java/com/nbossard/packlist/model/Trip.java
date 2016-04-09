@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,10 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
+import android.util.Log;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -48,7 +49,15 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip implements Serializable, Comparable, Cloneable {
+public class Trip implements Serializable, Comparable<Trip>, Cloneable {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = Trip.class.getName();
+
 
 // *********************** FIELDS *************************************************************************
 
@@ -67,11 +76,12 @@ public class Trip implements Serializable, Comparable, Cloneable {
     /** Additional notes, free text. */
     private String mNote;
 
-
     /** List of items to bring in this trip. */
     private List<Item> mListItem;
 
-    //
+    /** The total weight of all items in this trip. */
+    private int mTotalWeight;
+
 // *********************** METHODS **************************************************************************
 
     /**
@@ -98,6 +108,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
+        mTotalWeight = 0;
     }
 
     /**
@@ -181,20 +192,26 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * @return UUID of newly created item
      */
     public final UUID addItem(final String parName) {
-        Item newItem = new Item(parName);
+        Item newItem = new Item(this, parName);
         mListItem.add(newItem);
         return newItem.getUUID();
     }
 
     /**
-     * Add a new item in the list of items to bring with this trip.
+     * Add a new item in the list of items to bring with this trip.<br>
+     *
+     * Automatically updates total weight.
      * @param parItem new item
      */
     @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
+        mTotalWeight = recomputeTotalWeight();
     }
 
+    public int getTotalWeight() {
+        return mTotalWeight;
+    }
 
     /**
      * Get the full list of items to bring for this trip.
@@ -205,8 +222,11 @@ public class Trip implements Serializable, Comparable, Cloneable {
         return mListItem;
     }
 
+
     /**
-     * Delete the item of provided UUID.
+     * Delete the item of provided UUID.<br>
+     *
+     * Automatically updates total weight.
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
@@ -219,6 +239,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
+        mTotalWeight = recomputeTotalWeight();
     }
 
     /**
@@ -226,13 +247,15 @@ public class Trip implements Serializable, Comparable, Cloneable {
      * 0, default value if no startDate defined.
      */
     public final long getRemainingDays() {
+
         long diffInMilliSeconds = 0;
         if (mStartDate != null) {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
-        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
-    }
 
+        long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+        return res;
+    }
 
     @Override
     public final boolean equals(final Object parO) {
@@ -248,6 +271,7 @@ public class Trip implements Serializable, Comparable, Cloneable {
 
     }
 
+
     @Override
     public final int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
@@ -257,9 +281,9 @@ public class Trip implements Serializable, Comparable, Cloneable {
     }
 
     @Override
-    public int compareTo(@NonNull final Object parAnotherTrip) {
+    public int compareTo(@NonNull final Trip  parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) ((Trip) parAnotherTrip).getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
     }
 
@@ -285,5 +309,19 @@ public class Trip implements Serializable, Comparable, Cloneable {
                 + ", mNote=" + mNote
                 + ", mListItem=" + mListItem
                 + '}';
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Recomputes the total weight by adding all weight of all items.
+     * @return a weight or 0 if no item at all has a weight.
+     */
+    private int recomputeTotalWeight() {
+        int resTotalWeight = 0;
+        for (Item item : mListItem) {
+            resTotalWeight+= item.getWeight();
+        }
+        return resTotalWeight;
     }
 }

@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ package com.nbossard.packlist.gui;
 /*
 @startuml
     interface com.nbossard.packlist.gui.IMainActivity {
-        + saveTrip(...)
         + openTripDetailFragment(...)
         + openNewTripFragment(...)
         + showFABIfAccurate(boolean)
@@ -32,6 +31,7 @@ package com.nbossard.packlist.gui;
 
 import android.support.annotation.Nullable;
 
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.UUID;
@@ -42,25 +42,17 @@ import java.util.UUID;
 interface IMainActivity {
 
     /**
-     * Creation and saving of a new trip.
-     *
-     * @param parTrip Trip to be saved
-     */
-    void saveTrip(Trip parTrip);
-
-    /**
-     * Ask Main activity to open detail fragment to display Trip of provided UUID.
-     *
-     * @param parTrip a trip object to be displayed
-     */
-    TripDetailFragment openTripDetailFragment(final Trip parTrip);
-
-    /**
      * Ask Main activity to open new trip fragment to display Trip of provided UUID.
      *
      * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
      */
     void openNewTripFragment(@Nullable final UUID parTripId);
+
+    /**
+     * Display provided Item to allow editing of details
+     * @param parItem item to be edited
+     */
+    void openItemDetailFragment(final Item parItem);
 
     /**
      * Hide or show FAB, depending on fragment.

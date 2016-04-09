@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,6 +55,8 @@ import hugo.weaving.DebugLog;
 @startuml
     class com.nbossard.packlist.gui.TripDetailFragment {
     }
+    com.nbossard.packlist.gui.ItemAdapter <-- com.nbossard.packlist.gui.TripDetailFragment
+    com.nbossard.packlist.gui.TripDetailFragment ..> com.nbossard.packlist.gui.ITripDetailFragmentActivity
 
 @enduml
  */
@@ -68,7 +70,7 @@ public class TripDetailFragment extends Fragment {
     // ********************** CONSTANTS *********************************************************************
 
     /** Bundle mandatory parameter when instantiating this fragment. */
-    public static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
+    private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
 
     // *********************** FIELDS ***********************************************************************
 
@@ -79,7 +81,7 @@ public class TripDetailFragment extends Fragment {
     private Trip mRetrievedTrip;
 
     /** Supporting activity, to save trip.*/
-    private IMainActivity mIMainActivity;
+    private ITripDetailFragmentActivity mIHostingActivity;
 
     /**
      * The object to support Contextual Action Bar (CAB).
@@ -98,13 +100,16 @@ public class TripDetailFragment extends Fragment {
     /** Add item button. */
     private Button mAddItemButton;
 
+    /** Add detailed item button. */
+    private Button mAddDetailedItemButton;
+
     // *********************** LISTENERS ********************************************************************
 
     /**
      * Listener for click on one item of the list.
      * Opens a new fragment displaying detail on item.
      */
-    private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         @DebugLog
         public void onItemClick(final AdapterView<?> parent,
@@ -113,7 +118,7 @@ public class TripDetailFragment extends Fragment {
                                 final long id) {
             Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
-            mIMainActivity.saveTrip(mRetrievedTrip);
+            mIHostingActivity.saveTrip(mRetrievedTrip);
             mListItemAdapter.notifyDataSetChanged();
         }
     };
@@ -123,7 +128,7 @@ public class TripDetailFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private AdapterView.OnItemLongClickListener mLongClickListener =
+    private final AdapterView.OnItemLongClickListener mLongClickListener =
             new AdapterView.OnItemLongClickListener() {
         @DebugLog
         @Override
@@ -151,34 +156,47 @@ public class TripDetailFragment extends Fragment {
 
                 @Override
                 public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
+                    int position;
+                    boolean res;
                     switch (item.getItemId()) {
-                        case R.id.action_delete:
-                            int position = (int) mActionMode.getTag();
+                        case R.id.action_trip_cab__delete:
+                            position = (int) mActionMode.getTag();
                             deleteItemClicked(position);
-                            return true;
+                            res = true;
+                            break;
+                        case R.id.action_trip_cab__edit:
+                            position = (int) mActionMode.getTag();
+                            editItemClicked(position);
+                            res = true;
+                            break;
                         default:
-                            return false;
+                            res =  false;
                     }
+                    return res;
                 }
 
                 @Override
                 public void onDestroyActionMode(final ActionMode mode) {
                 }
             });
-            mActionMode.setTag(pos);
-            arg1.setSelected(true);
+
+            // mActionMode can be null if canceled
+            if (mActionMode != null) {
+                mActionMode.setTag(pos);
+                arg1.setSelected(true);
+            }
+
             return true;
         }
 
     };
-
 
     // *********************** METHODS **********************************************************************
 
     /**
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
-     * @param parTrip ttrip to be displayed
+     * @param parTrip trip to be displayed
      */
     public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
@@ -195,7 +213,7 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         if (args != null) {
@@ -224,6 +242,9 @@ public class TripDetailFragment extends Fragment {
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // custom menu for this fragment
+        setHasOptionsMenu(true);
+
         // TODO old style, improve this
         mNewItemEditText = (AppCompatEditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
 
@@ -237,6 +258,17 @@ public class TripDetailFragment extends Fragment {
         mAddItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddItemButton);
 
+        mAddDetailedItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item_detail__button);
+        mAddDetailedItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onClickAddDetailedItem();
+            }
+        });
+        mAddDetailedItemButton.setEnabled(false);
+        disableButtonIfEmptyText(mAddDetailedItemButton);
+
+        // auto click on button
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
             @DebugLog
             @Override
@@ -262,8 +294,35 @@ public class TripDetailFragment extends Fragment {
 
     }
 
+    @DebugLog
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mIHostingActivity.showFABIfAccurate(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_detail, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_trip__import_txt:
+                mIHostingActivity.openMassImportFragment(mRetrievedTrip);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /** Display provided trip.
-     * Savec it in {@link #mRetrievedTrip} as the trip currently being displayed.
+     * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
      *
      * @param parTrip trip to be displayed
      */
@@ -280,36 +339,19 @@ public class TripDetailFragment extends Fragment {
         mBinding.executePendingBindings();
     }
 
-    @DebugLog
-    @Override
-    public void setUserVisibleHint(final boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
+    /**
+     * @return the {@link Trip} being currently displayed.
+     */
+    public Trip getCurrentTrip() {
+        return mRetrievedTrip;
     }
 
-    @DebugLog
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @DebugLog
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mIMainActivity.showFABIfAccurate(true);
-    }
-
-    @DebugLog
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
+    // *********************** PRIVATE METHODS **************************************************************
 
     /**
-     * Handle click on "Add item" button.
-     * Will add a new item.
+     * Handle click on edit trip button.
      */
-    public final void onClickEditTrip() {
+    private void onClickEditTrip() {
         ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
     }
 
@@ -317,16 +359,26 @@ public class TripDetailFragment extends Fragment {
      * Handle click on "Add item" button.
      * Will add a new item.
      */
-    public final void onClickAddItem() {
+    private void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
-        mIMainActivity.saveTrip(mRetrievedTrip);
+        mIHostingActivity.saveTrip(mRetrievedTrip);
         mNewItemEditText.setText("");
         populateList();
         scrollMyListViewToBottom();
     }
 
-    // *********************** PRIVATE METHODS **************************************************************
+    /**
+     * Handle click on "Add detail item" button.
+     * Will add a new item with additional details.
+     */
+    public final void onClickAddDetailedItem() {
+        String tmpStr = mNewItemEditText.getText().toString();
+        mNewItemEditText.setText("");
+        Item newItem = new Item(mRetrievedTrip, tmpStr);
+        ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
+
+    }
 
     /**
      * Scroll list view to bottom... so that user can see the just added item.<br>
@@ -351,9 +403,20 @@ public class TripDetailFragment extends Fragment {
     private void deleteItemClicked(final int parPosition) {
         Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
         mRetrievedTrip.deleteItem(selectedItem.getUUID());
-        mIMainActivity.saveTrip(mRetrievedTrip);
+        mIHostingActivity.saveTrip(mRetrievedTrip);
         mActionMode.finish();
         populateList();
+    }
+
+    /**
+     * Effectively edit selected item..
+     *
+     * @param parPosition position in list of item to be edited
+     */
+    private void editItemClicked(final int parPosition) {
+        Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        mIHostingActivity.openItemDetailFragment(selectedItem);
+        mActionMode.finish();
     }
 
     /**

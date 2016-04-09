@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -24,6 +24,12 @@
 <!-- Each new entry should be added at end of release block. -->
 
 <changelog bulletedList="true">
+    <changelogversion
+        changeDate="09 avril 2016"
+        versionName="0.8.0">
+        <changelogtext>NEW : ISS#13 gestion du poid de la valise</changelogtext>
+        <changelogtext>NEW : ISS#20 import en masse dans un voyage, par exemple à partir d'une liste externe</changelogtext>
+    </changelogversion>
     <changelogversion
         changeDate="22 mars 2016"
         versionName="0.7.1">

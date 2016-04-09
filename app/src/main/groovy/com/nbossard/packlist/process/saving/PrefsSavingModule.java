@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class PrefsSavingModule implements ISavingModule {
     private final SharedPreferences mSharedPreferences;
     private final Gson mGson;
 //
-    private List<ITripChangeListener> mChangeListeners = new ArrayList<>();
+    private final List<ITripChangeListener> mChangeListeners = new ArrayList<>();
 
 // *********************** METHODS **************************************************************************
 
@@ -164,7 +165,7 @@ public class PrefsSavingModule implements ISavingModule {
                 clonedTrip.setName(clonedTrip.getName() + " (cloned)");
                 prevSavedTrips.add(clonedTrip);
             } catch (CloneNotSupportedException cnse) {
-                Log.e(TAG, "cloneTrip: This should never occur");
+                Log.e(TAG, "cloneTrip: This should never occur : " + cnse);
             }
 
         } else {
@@ -180,6 +181,20 @@ public class PrefsSavingModule implements ISavingModule {
         mChangeListeners.add(parListener);
     }
 
+    @Override
+    public void updateItem(Item parItem) {
+        // retrieve trip of item
+        Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
+
+        // update item
+        if (prevSavedTrips != null) {
+            prevSavedTrips.deleteItem(parItem.getUUID());
+            prevSavedTrips.addItem(parItem);
+        }
+
+        updateTrip(prevSavedTrips);
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     private void updateTrip(final Trip parTmpTrip) {
@@ -188,6 +203,7 @@ public class PrefsSavingModule implements ISavingModule {
         for (Trip oneTrip : tripList) {
             if (oneTrip.getUUID().compareTo(parTmpTrip.getUUID()) == 0) {
                 updatedTripList.add(parTmpTrip);
+
             } else {
                 updatedTripList.add(oneTrip);
             }

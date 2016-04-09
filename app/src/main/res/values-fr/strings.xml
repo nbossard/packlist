@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -33,9 +33,10 @@
     <!-- Menu items -->
     <string name="action_whatsnew">Quoi de neuf</string>
     <string name="action_about">A propos</string>
+    <string name="action_trip__import">Importer un fichier texte</string>
 
     <!-- About page -->
-    <string name="about__main">Packing list %1$s.\n Copyright NBossard 2015.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">Packing list %1$s.\n%2$s\nCopyright NBossard 2015.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises</string>
     <string name="about__third_party__button">Librairies tierces</string>
 
@@ -44,8 +45,15 @@
     <string name="main__no_trip_yet__label">Pas de voyage prévu… encore, cliquez sur le bouton "+" pour ajouter un voyage.</string>
     <string name="action_main_cab__clone">Dupliquer</string>
     <string name="action_main_cab__delete">Supprimer</string>
-    <string name="ta__in_x_days">Dans %d jours.</string>
-    <string name="ta__x_days_ago">Il y a %d jours.</string>
+
+    <plurals name="ta__in_x_days">
+        <item quantity="one">Dans %d jour.</item>
+        <item quantity="other">Dans %d jours.</item>
+    </plurals>
+    <plurals name="ta__x_days_ago">
+        <item quantity="one">Il y a %d jour.</item>
+        <item quantity="other">Il y a %d jours.</item>
+    </plurals>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">Votre destination</string>
@@ -60,7 +68,10 @@
     <string name="trip_detail__add_item___button">Ajouter</string>
     <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
     <string name="trip_detail__edit_trip">Modifier</string>
+    <string name="trip_detail__before_weight__label">poids du sac : plus de </string>
     <string name="ia__packed">EMPAQUETE :</string>
+    <string name="action_trip_cab__edit">Modifier</string>
+    <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
@@ -70,5 +81,15 @@
     <string name="help_legal__third_party_lib_changelog__label">   <b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="trip_detail__add_item_detail___button">+ détails</string>
+
+    <!-- Item detail -->
+    <string name="item_detail__name__label">nom</string>
+    <string name="item_detail__weight__label">poids (en grammes)</string>
+    <string name="item_detail__submit">modifier</string>
+
+    <!-- Mass import -->
+    <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse.\n\nUn objet par ligne.</string>
+    <string name="mass_import__import__button">Importer</string>
 
 </resources>

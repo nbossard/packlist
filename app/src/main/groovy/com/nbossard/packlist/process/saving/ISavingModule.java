@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.support.annotation.Nullable;
 
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
@@ -76,4 +77,10 @@ public interface ISavingModule {
      * Listener wishing to be informed of Trip change.
      */
     void addListener(ITripChangeListener parListener);
+
+    /**
+     * Update an existing Item of a trip.
+     * @param parItem item to be updated
+     */
+    void updateItem(Item parItem);
 }

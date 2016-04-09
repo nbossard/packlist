@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,25 +43,26 @@ import java.util.List;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.MainActivityFragment {
+    class com.nbossard.packlist.gui.TripListFragment {
     }
 
-    com.nbossard.packlist.gui.MainActivityFragment ..> com.nbossard.packlist.gui.IMainActivity
+    com.nbossard.packlist.gui.TripListFragment ..> com.nbossard.packlist.gui.ITripListFragmentActivity
 
 @enduml
  */
 
 /**
- * A placeholder fragment containing a simple list view.
+ * A placeholder fragment containing a simple list view of {@link Trip}.
  */
-public class MainActivityFragment extends Fragment {
+public class TripListFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
 
     /**
      * Log tag.
      */
-    private static final String TAG = MainActivityFragment.class.getName();
+    @SuppressWarnings("unused")
+    private static final String TAG = TripListFragment.class.getName();
 
     // *********************** FIELDS ***********************************************************************
 
@@ -84,7 +85,7 @@ public class MainActivityFragment extends Fragment {
     /**
      * Hosting activity interface.
      */
-    private IMainActivity mIMainActivity;
+    private ITripListFragmentActivity mIHostingActivity;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -92,14 +93,14 @@ public class MainActivityFragment extends Fragment {
      * Listener for click on one item of the list.
      * Opens a new fragment displaying detail on trip.
      */
-    private AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(final AdapterView<?> parent,
                                 final View view,
                                 final int position,
                                 final long id) {
             Trip clickedTrip = (Trip) mTripListView.getItemAtPosition(position);
-            mIMainActivity.openTripDetailFragment(clickedTrip);
+            mIHostingActivity.openTripDetailFragment(clickedTrip);
         }
     };
 
@@ -108,7 +109,7 @@ public class MainActivityFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
+    private final AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
@@ -152,8 +153,13 @@ public class MainActivityFragment extends Fragment {
                 public void onDestroyActionMode(final ActionMode mode) {
                 }
             });
-            mActionMode.setTag(pos);
-            arg1.setSelected(true);
+
+            // mActionMode can be null if canceled
+            if (mActionMode != null) {
+                mActionMode.setTag(pos);
+                arg1.setSelected(true);
+            }
+
             return true;
         }
 
@@ -164,13 +170,13 @@ public class MainActivityFragment extends Fragment {
     /**
      * Empty constructor.
      */
-    public MainActivityFragment() {
+    public TripListFragment() {
     }
 
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIMainActivity = (IMainActivity) getActivity();
+        mIHostingActivity = (ITripListFragmentActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
     }
 
@@ -191,7 +197,7 @@ public class MainActivityFragment extends Fragment {
     public final void onResume() {
         super.onResume();
         populateList();
-        mIMainActivity.showFABIfAccurate(true);
+        mIHostingActivity.showFABIfAccurate(true);
     }
     // *********************** PRIVATE METHODS **************************************************************
 

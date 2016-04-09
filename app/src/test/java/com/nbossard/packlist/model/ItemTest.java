@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,18 +22,20 @@ package com.nbossard.packlist.model;
 import junit.framework.TestCase;
 
 /**
+ * Test class for {@link Item} class.
+ *
  * @author Created by nbossard on 24/01/16.
  */
 public class ItemTest extends TestCase {
 
-    public static final String ITEM_TEST_NAME = "ItemTestName";
-    public static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
+    private static final String ITEM_TEST_NAME = "ItemTestName";
+    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private Item mTestItem;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestItem = new Item(ITEM_TEST_NAME);
+        mTestItem = new Item(new Trip(), ITEM_TEST_NAME);
     }
 
     public void testGetName() throws Exception {
@@ -44,6 +46,30 @@ public class ItemTest extends TestCase {
         assertTrue(mTestItem.getName().contentEquals(ITEM_TEST_NAME));
         mTestItem.setName(UPDATED_ITEM_TEST_NAME);
         assertTrue(mTestItem.getName().contentEquals(UPDATED_ITEM_TEST_NAME));
+    }
+
+    public void testWeight() {
+        // test that default weight is 0
+        assertTrue(mTestItem.getWeight()==0);
+        mTestItem.setWeight(123);
+        assertTrue(mTestItem.getWeight()==123);
+    }
+
+    public void testPacked() {
+        // test that default weight is 0
+        assertFalse(mTestItem.isPacked());
+        mTestItem.setPacked(true);
+        assertTrue(mTestItem.isPacked());
+        mTestItem.setPacked(false);
+        assertFalse(mTestItem.isPacked());
+    }
+
+    public void testCloneAndUUID() throws CloneNotSupportedException {
+        // test that there is always an UUID
+        assertNotNull(mTestItem.getUUID());
+        Item clonedItem = mTestItem.clone();
+        assertNotNull(clonedItem.getUUID());
+        assertNotSame(mTestItem.getUUID(), clonedItem.getUUID());
     }
 
     public void testToString() throws Exception {

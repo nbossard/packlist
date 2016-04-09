@@ -21,31 +21,27 @@ package com.nbossard.packlist.gui;
 
 /*
 @startuml
-    interface com.nbossard.packlist.gui.ITripDetailFragmentActivity {
-        + saveTrip(...)
+    interface com.nbossard.packlist.gui.IItemDetailFragmentActivity {
+        + updateItem(...)
     }
 
-    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripDetailFragmentActivity
+    com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.IItemDetailFragmentActivity
 @enduml
  */
 
-import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.model.Item;
 
 /**
- * The what {@link TripDetailFragment} expects from hosting activity.
+ * The what {@link ItemDetailFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface ITripDetailFragmentActivity extends IMainActivity {
+interface IItemDetailFragmentActivity extends IMainActivity {
 
     /**
-     * Creation and saving of a new trip.
+     * Updating of an item.
      *
-     * @param parTrip Trip to be saved
+     * @param parItem Trip to be updated
      */
-    void saveTrip(Trip parTrip);
+    void updateItem(Item parItem);
 
-    /**
-     * Ask activity to open a mass import fragment.
-     */
-    void openMassImportFragment(Trip parTrip);
 }

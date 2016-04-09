@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import android.util.Log;
 
+import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
@@ -50,7 +51,10 @@ import hugo.weaving.DebugLog;
  */
 public class MainActivityForTest
         extends AppCompatActivity
-        implements IMainActivity, INewTripFragmentActivity {
+        implements
+        ITripListFragmentActivity,
+        INewTripFragmentActivity,
+        IMassImportFragmentActivity {
 
 // *********************** CONSTANTS**********************************************************************
 
@@ -104,11 +108,11 @@ public class MainActivityForTest
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            Fragment prev = fm.findFragmentByTag("changelogdemo_dialog");
+            Fragment prev = fm.findFragmentByTag("changelog_dialog");
             if (prev != null) {
                 ft.remove(prev);
             }
-            parDialogStandardFragment.show(ft, "changelogdemo_dialog");
+            parDialogStandardFragment.show(ft, "changelog_dialog");
         }
     }
 
@@ -198,7 +202,12 @@ public class MainActivityForTest
 
     @Override
     public void openNewTripFragment(UUID parTripId) {
+        Log.d(TAG, "openNewTripFragment(...) faked");
+    }
 
+    @Override
+    public void openItemDetailFragment(Item parItem) {
+        Log.d(TAG, "openItemDetailFragment(...) faked");
     }
 
     @Override
@@ -220,7 +229,7 @@ public class MainActivityForTest
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
-        MainActivityFragment newFragment = new MainActivityFragment();
+        TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -245,6 +254,7 @@ public class MainActivityForTest
      * Handle user click on "add a trip" button and open a new fragment allowing him to input trip
      * Characteristics.
      */
+    @SuppressWarnings("WeakerAccess")
     @DebugLog
     @VisibleForTesting
     protected void openNewTripFragment() {
@@ -264,6 +274,26 @@ public class MainActivityForTest
         // updating FAB action
         mFab.hide();
 
+    }
+
+    // ----------- implementing interface ITripDetailFragmentActivity -------------------
+
+    public void openMassImportFragment(Trip parTrip) {
+
+        // Create fragment and give it an argument specifying the article it should show
+        MassImportFragment newFragment = MassImportFragment.newInstance(parTrip);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+
+        // updating FAB action
+        mFab.hide();
     }
 //
 }

@@ -19,20 +19,31 @@
 
 package com.nbossard.packlist.gui;
 
-import junit.framework.Assert;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.nbossard.packlist.R;
 import com.nbossard.packlist.TestValues;
+import com.nbossard.packlist.model.Trip;
 import com.robotium.solo.Solo;
 
+import junit.framework.Assert;
+
+import java.util.GregorianCalendar;
+
 /**
- * Robotium tests on {@link AboutActivity}
- *
- * @author Nicolas BOSSARD (naub7473)
- *
+ * Robotium tests on {@link MassImportFragment} using {@link MainActivityForTest}
+ * @author Created by nbossard on 08/04/16.
  */
-public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutActivity>
-{
+public class MassImportFragmentTest  extends ActivityInstrumentationTestCase2<MainActivityForTest> {
+
+
+    private static final String TEST_TRIP_NAME = "Rome";
+    private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011, 1, 1);
+    private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012, 2, 2);
+    private static final String TEST_NOTE = "Have fun";
+
+    private final Trip testEmptyItemSetTrip =
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
 
     // ********************** FIELDS ************************************************************************
 
@@ -43,12 +54,8 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
 
     // ********************** METHODS ***********************************************************************
 
-    /**
-     * Mandatory call.
-     */
-    public AboutActivityTest()
-    {
-        super(AboutActivity.class);
+    public MassImportFragmentTest() {
+        super(MainActivityForTest.class);
     }
 
     /**
@@ -60,6 +67,7 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     public final void setUp() throws Exception
     {
         mSolo = new Solo(getInstrumentation(), getActivity());
+        getActivity().openMassImportFragment(testEmptyItemSetTrip);
     }
 
     /**
@@ -72,40 +80,11 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        Assert.assertTrue(mSolo.waitForText("Packing list"));
-        Assert.assertTrue(mSolo.waitForText("Copyright NBossard"));
-        Assert.assertTrue(mSolo.waitForText("Apache 2"));
-        Assert.assertTrue(mSolo.waitForText("https://github.com/nbossard/packlist"));
-        Assert.assertTrue(mSolo.waitForText("Merci"));
-        Assert.assertTrue(mSolo.waitForText("naofum"));
+        // working on a substring as does not work on multi-lines
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.mass_import__principle_explanation__label).substring(20)));
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.mass_import__import__button)));
 
-        // Assert.assertTrue(mSolo.waitForText(BuildConfig.VERSION_NAME));
         // let human see the screen
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
-    }
-
-    /**
-     * Test that the string that should always appear are displayed.
-     *
-     * @throws Exception
-     *             if a test has failed.
-     */
-    public final void testClickOnActionButton() throws Exception
-    {
-        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
-
-        mSolo.clickOnImageButton(0);
-        // Default timeout is 20 seconds.
-        // "HomeActivity" is github app
-        mSolo.waitForActivity("HomeActivity");
-        // let human see the screen
-
-        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
-    }
-
-    @Override
-    public final void tearDown() throws Exception
-    {
-        mSolo.finishOpenedActivities();
     }
 }
