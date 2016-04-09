@@ -35,6 +35,7 @@ Tech note : GitHub and Play Store releases use same certificate. F-droid use the
  - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
    - datetimepicker (https://github.com/flavienlaurent/datetimepicker)
+- effort on accessibility [see detailed doc](doc/accessibility.md)
 
 
 ### BUT a place for experimentation of up-to-date technology
