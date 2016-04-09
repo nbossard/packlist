@@ -80,7 +80,8 @@ public class MassImportFragmentTest  extends ActivityInstrumentationTestCase2<Ma
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.mass_import__principle_explanation__label)));
+        // working on a substring as does not work on multi-lines
+        Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.mass_import__principle_explanation__label).substring(20)));
         Assert.assertTrue(mSolo.waitForText(mSolo.getString(R.string.mass_import__import__button)));
 
         // let human see the screen
