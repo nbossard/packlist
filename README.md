@@ -20,6 +20,7 @@ Tech note : GitHub and Play Store releases use same certificate. F-droid use the
 ### Objectives : 
  * free (in terms of free beer)
  * open-source
+ * high respect of user privacy: no data uploaded, no permissions [see FAQ, "where is data stored"](doc/faq.md)
 
 ### Objectives in term of coding :
  - multi-developer (yes you are welcome to help)
@@ -50,9 +51,9 @@ Tech note : GitHub and Play Store releases use same certificate. F-droid use the
 Apache 2
 
 ### Development status
-Basic functionality are fresh but working, advanced functionality are being added when asked in issue tracker. 
+Basic functionality are fresh but working, advanced functionality are being added when asked in issue tracker
 
-### History of release
+# History of release
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
