@@ -1,6 +1,8 @@
 # English screenshots and text description for publication
 
-[Playstore description](playstore_description.md)
+[Playstore description can be found here](playstore_description.md)
+
+See also [Tablets screenshots](./tab)
 
 ![List of trips](trip_list.png)
 ![Detail of a trip](trip_detail.png)
