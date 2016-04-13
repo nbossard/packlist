@@ -15,9 +15,10 @@ Tech note : GitHub and Play Store releases use same certificate. F-droid use the
 
 ### Screenshots
 
-[Screenshots in english can be found here](./pub/res_pub/latest/en/)
+[Screenshots in english can be found here](./pub/res_pub/latest/en/).
 They are also available in [other languages](./pub/res_pub/latest/)
-![One tab screenshot](./pub/res_pub/latest/en/tab/trip_detail.md)
+
+![One tab screenshot](./pub/res_pub/latest/en/tab/trip_detail.png)
 
 ### Objectives in term of functionality : 
  * multi-language (currently English , Japanese and French but please help for others)
