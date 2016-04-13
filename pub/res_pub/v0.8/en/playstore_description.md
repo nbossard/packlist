@@ -1,11 +1,12 @@
 **short description**
 
-Créez une liste  d'objets à mettre dans votre valise semi-automatiquement.
+Manage a list of items to bring with your for your incoming trip.
 
 **long description**
 
-Une application pour créer une liste  d'objets qu'il ne faut pas oublier de mettre dans votre valise.
+This application will help you create a packing list (a list  of items to bring to your trip).
 
-Cette application est open-source (sur github), n'inclue aucune publicité ni aucun tracking, même anonyme.
+This application is open-source Apache 2 (sources are available on github),  no add, no tracking.
 
-Vos commentaires, voir vos contributions, sont les bienvenus.
+Your suggestions and help is welcome.
+
