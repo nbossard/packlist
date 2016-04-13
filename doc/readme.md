@@ -5,6 +5,7 @@
 * [design_rules.md](design_rules.md): the design rules that have been followed up-to-now and that should be followed in new screens to be produce consistent design
 * [licences.md](licences.md): the origin and licences of media used in app
 * [publishing.md](publishing.md): the new release publication process checklist
+* [screenshots.md](screenshots.md): how-to take smart screenshots
 
 
 
