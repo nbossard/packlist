@@ -47,6 +47,7 @@ import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
+//CHECKSTYLE:OFF: LineLength
 /*
 @startuml
     class com.nbossard.packlist.gui.MainActivity {
@@ -68,6 +69,7 @@ import hugo.weaving.DebugLog;
     ' com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
  */
+//CHECKSTYLE:ON: LineLength
 
 /**
  * Main activity, supports most fragments.
@@ -130,7 +132,7 @@ public class MainActivity
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration newConfig) {
+    public final void onConfigurationChanged(final Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
     }
@@ -221,7 +223,7 @@ public class MainActivity
     // ----------- implementing interface ITripDetailFragmentActivity -------------------
 
     @Override
-    public void openMassImportFragment(Trip parTrip) {
+    public final void openMassImportFragment(final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
         MassImportFragment newFragment = MassImportFragment.newInstance(parTrip);
@@ -320,7 +322,7 @@ public class MainActivity
     }
 
     @Override
-    public final void openItemDetailFragment(Item parItem) {
+    public final void openItemDetailFragment(final Item parItem) {
 
         // Create fragment and give it an argument specifying the article it should show
         ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
@@ -367,9 +369,10 @@ public class MainActivity
 
     /**
      * Open a new fragment allowing him to view trip list.
+     * @return the newly created and displayed TripListFragment
      */
     @DebugLog
-    private final TripListFragment openMainActivityFragment() {
+    private TripListFragment openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
         TripListFragment newFragment = new TripListFragment();

@@ -36,6 +36,7 @@ import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 
+//CHECKSTYLE:OFF: LineLength
 /*
 @startuml
     class com.nbossard.packlist.gui.AboutActivity {
@@ -43,6 +44,7 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.HelpThirdPartyActivity <.. com.nbossard.packlist.gui.AboutActivity : start through intent
 @enduml
  */
+//CHECKSTYLE:ON: LineLength
 
 /**
  * About activity.
@@ -55,6 +57,7 @@ class AboutActivity extends AppCompatActivity {
     // *********************** CONSTANTS**********************************************************************
 
     /** Log tag. */
+    @SuppressWarnings("unused")
     private static final def TAG = AboutActivity.class.getName()
 
     // *********************** METHODS **********************************************************************

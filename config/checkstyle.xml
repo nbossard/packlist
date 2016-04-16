@@ -31,7 +31,9 @@
 <module name="Checker">
     <property name="severity" value="warning"/>
     <module name="SuppressWarningsFilter"/>
+    <module name="SuppressionCommentFilter"/>
     <module name="TreeWalker">
+        <module name="FileContentsHolder"/>
         <module name="JavadocMethod">
             <property name="suppressLoadErrors" value="true"/>
         </module>

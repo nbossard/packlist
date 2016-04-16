@@ -30,6 +30,7 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -139,14 +140,14 @@ public class Item implements Serializable, Cloneable {
     /**
      * @param parTripUUID The UUID of the {@link Trip} this item belongs to.
      */
-    public void setTripUUID(UUID parTripUUID) {
+    public final void setTripUUID(final UUID parTripUUID) {
         mTripUUID = parTripUUID;
     }
 
     /**
-     * @return The UUID of the {@link Trip} this item belongs to.
+     * @return The UUID of the {@link Trip} this item belongs to, can be null if loading old versions.
      */
-    public UUID getTripUUID() {
+    public final @Nullable UUID getTripUUID() {
         return mTripUUID;
     }
 

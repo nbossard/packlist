@@ -103,7 +103,13 @@ public class ItemDetailFragment extends Fragment {
 
     // *********************** METHODS **********************************************************************
 
-    public static ItemDetailFragment newInstance(Item parItem) {
+    /**
+     * Method for creating a new DetailFragment and insuring that right bundle is provided.
+     * @param parItem item tp be displayed
+     * @return a new DetailFragment.
+     */
+    @DebugLog
+    public static ItemDetailFragment newInstance(final Item parItem) {
         ItemDetailFragment f = new ItemDetailFragment();
         if (parItem != null) {
             Bundle b = new Bundle();
@@ -114,7 +120,7 @@ public class ItemDetailFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Bundle args = getArguments();
@@ -125,7 +131,9 @@ public class ItemDetailFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public final View onCreateView(final LayoutInflater inflater,
+                             @Nullable final ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
 
         mRootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
 
@@ -140,7 +148,7 @@ public class ItemDetailFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mIHostingActivity = (IItemDetailFragmentActivity) getActivity();
@@ -165,11 +173,12 @@ public class ItemDetailFragment extends Fragment {
     }
 
     /**
-     * Set item to be displayed by this view
+     * Set item to be displayed by this view.
      *
      * @param parRetrievedItem item to be displayed
      */
-    public void setItem(Item parRetrievedItem) {
+    @DebugLog
+    public final void setItem(final Item parRetrievedItem) {
         mItem = parRetrievedItem;
     }
 }
