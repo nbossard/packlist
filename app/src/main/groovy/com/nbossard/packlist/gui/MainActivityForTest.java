@@ -133,9 +133,9 @@ public class MainActivityForTest
         int id = item.getItemId();
 
 
-        if (id == R.id.action_whatsnew) {
+        if (id == R.id.action__whatsnew) {
             openDialogFragment(new DialogStandardFrag());
-        } else  if (id == R.id.action_about) {
+        } else  if (id == R.id.action__about) {
             openAboutActivity();
         }
 

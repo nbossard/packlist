@@ -100,6 +100,7 @@ dependencies {
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
+    compile 'ch.acra:acra:4.8.5'
 
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
