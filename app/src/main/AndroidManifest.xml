@@ -22,6 +22,10 @@
           package="com.nbossard.packlist"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <!-- Required by ACRA for sending logs. -->
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+
     <application
         android:name=".PackListApp"
         android:allowBackup="true"

@@ -28,6 +28,7 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
 import org.acra.ACRA;
+import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
@@ -44,11 +45,27 @@ import hugo.weaving.DebugLog;
  */
 @ReportsCrashes(formUri = "",
         sendReportsInDevMode = true,
-        mailTo = "packlist@gmail.com",
+        logcatArguments = { "-t", "100", "-v", "long", "ActivityManager:I", "MyApp:D", "*:S" },
+        mailTo = "open.packlist@gmail.com",
         mode = ReportingInteractionMode.DIALOG,
         resDialogIcon = R.mipmap.packlist_icon,
         resDialogTitle = R.string.acra__dialog__title,
-        resDialogText = R.string.acra__crash_report_dialog__label)
+        resDialogText = R.string.acra__crash_report_dialog__label,
+        customReportContent = {ReportField.USER_COMMENT,
+                ReportField.REPORT_ID,
+                ReportField.APP_VERSION_CODE,
+                ReportField.APP_VERSION_NAME,
+                ReportField.PACKAGE_NAME,
+                ReportField.FILE_PATH,
+                ReportField.PHONE_MODEL,
+                ReportField.ANDROID_VERSION,
+                ReportField.BRAND,
+                ReportField.PRODUCT,
+                ReportField.DISPLAY,
+                ReportField.USER_APP_START_DATE,
+                ReportField.USER_CRASH_DATE,
+                ReportField.STACK_TRACE,
+                ReportField.LOGCAT})
 public class PackListApp extends Application {
 
 // ********************** CONSTANTS *********************************************************************
