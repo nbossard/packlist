@@ -93,5 +93,6 @@
     <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
     <string name="mass_import__import__button">Import</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
+    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 
 </resources>

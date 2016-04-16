@@ -28,6 +28,7 @@
         changeDate="xxth avril 2016"
         versionName="0.9.0">
         <changelogtext>NEW : ISS#25 ajout de ACRA pour générer des rapports en cas de crash</changelogtext>
+        <changelogtext>NEW : ISS#26 crash à la modification d'un item</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="09 avril 2016"

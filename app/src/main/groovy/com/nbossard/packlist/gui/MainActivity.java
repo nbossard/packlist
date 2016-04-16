@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
@@ -217,7 +218,12 @@ public class MainActivity
 
     @Override
     public final void updateItem(final Item parItem) {
-        mSavingModule.updateItem(parItem);
+        boolean resUpdate = mSavingModule.updateItem(parItem);
+        if (resUpdate) {
+            Log.d(TAG, "updateItem(...) update of item succeded");
+        } else {
+            Toast.makeText(this, R.string.toast_update_failed_incompatible_format, Toast.LENGTH_LONG).show();
+        }
     }
 
     // ----------- implementing interface ITripDetailFragmentActivity -------------------

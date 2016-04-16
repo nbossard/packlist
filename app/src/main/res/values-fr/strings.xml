@@ -29,6 +29,7 @@
     <string name="demo_changelog_title_standarddialog">Journal des changements</string>
     <string name="about_ok">OK</string>
     <string name="title_activity_about">A propos</string>
+    <string name="toast_update_failed_incompatible_format">La mise à jour a échouée, il s\'agit probablement d\'une incompatibilité de version, recréez cet item.</string>
 
     <!-- Menu items -->
     <string name="action__whatsnew">Quoi de neuf</string>

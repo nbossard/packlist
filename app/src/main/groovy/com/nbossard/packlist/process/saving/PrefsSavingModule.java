@@ -35,6 +35,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import hugo.weaving.DebugLog;
+
 //CHECKSTYLE:OFF: LineLength
 /*
 @startuml
@@ -108,12 +110,19 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
+    @DebugLog
     public final Trip loadSavedTrip(@Nullable final UUID parUUID) {
-        List<Trip> tmpList = loadSavedTrips();
         Trip res = null;
-        for (Trip oneTrip:tmpList) {
-            if (oneTrip.getUUID().compareTo(parUUID) == 0) {
-                res = oneTrip;
+
+        if (parUUID == null) {
+            // Do nothing
+            Log.w(TAG, "loadSavedTrip() : null parUUID, doing nothing");
+        } else {
+            List<Trip> tmpList = loadSavedTrips();
+            for (Trip oneTrip:tmpList) {
+                if (oneTrip.getUUID().compareTo(parUUID) == 0) {
+                    res = oneTrip;
+                }
             }
         }
         return res;
@@ -195,17 +204,21 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final void updateItem(final Item parItem) {
+    public final boolean updateItem(final Item parItem) {
         // retrieve trip of item
         Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
 
         // update item
+        boolean res;
         if (prevSavedTrips != null) {
             prevSavedTrips.deleteItem(parItem.getUUID());
             prevSavedTrips.addItem(parItem);
+            updateTrip(prevSavedTrips);
+            res = true;
+        } else {
+            res = false;
         }
-
-        updateTrip(prevSavedTrips);
+        return res;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
