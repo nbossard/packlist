@@ -164,7 +164,7 @@
                     android:id="@+id/trip_detail__weight__label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{tripFormatter.getFormattedWeight(trip.totalWeight)}"
+                    android:text="@{tripFormatter.getFormattedWeight(trip.totalWeight, trip.packedWeight)}"
                     tools:text="@string/trip_detail__before_weight__label"/>
             </LinearLayout>
         </RelativeLayout>

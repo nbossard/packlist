@@ -33,8 +33,6 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
-import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,6 +55,18 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * Log tag.
      */
     private static final String TAG = Trip.class.getName();
+
+    // For better code readability
+
+    /**
+     * Count weight of all items.
+     */
+    public static final boolean PACKED_ITEMS_ONLY = true;
+
+    /**
+     * Count weight of all packed items only.
+     */
+    public static final boolean ALL_ITEMS = false;
 
 
 // *********************** FIELDS *************************************************************************
@@ -81,6 +91,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /** The total weight of all items in this trip. */
     private int mTotalWeight;
+
+    /**
+     * The total weight of all items in this trip... that are packed
+     */
+    private int mPackedWeight;
 
 // *********************** METHODS **************************************************************************
 
@@ -206,11 +221,22 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
-        mTotalWeight = recomputeTotalWeight();
+        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
+        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
     }
 
-    public int getTotalWeight() {
+    /**
+     * @return total weight of all items that have a weight.
+     */
+    public final int getTotalWeight() {
         return mTotalWeight;
+    }
+
+    /**
+     * @return total weight of all items that have a weight and that are packed.
+     */
+    public final int getPackedWeight() {
+        return mPackedWeight;
     }
 
     /**
@@ -239,7 +265,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
-        mTotalWeight = recomputeTotalWeight();
+        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
+        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
     }
 
     /**
@@ -281,14 +308,14 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     @Override
-    public int compareTo(@NonNull final Trip  parAnotherTrip) {
+    public final int compareTo(@NonNull final Trip parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
     }
 
     @Override
-    public Trip clone() throws CloneNotSupportedException {
+    public final Trip clone() throws CloneNotSupportedException {
         Trip clonedTrip = (Trip) super.clone();
 
         // setting another UUID
@@ -311,16 +338,27 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
                 + '}';
     }
 
+    /**
+     * Notify this trip that one of its item has changed its packing state.
+     */
+    public final void packingChange() {
+        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
      * Recomputes the total weight by adding all weight of all items.
+     *
+     * @param parPackedOnly if true, count only the packed items
      * @return a weight or 0 if no item at all has a weight.
      */
-    private int recomputeTotalWeight() {
+    private int recomputeTotalWeight(final boolean parPackedOnly) {
         int resTotalWeight = 0;
         for (Item item : mListItem) {
-            resTotalWeight+= item.getWeight();
+            if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
+                resTotalWeight += item.getWeight();
+            }
         }
         return resTotalWeight;
     }

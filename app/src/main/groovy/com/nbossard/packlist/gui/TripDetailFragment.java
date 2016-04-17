@@ -118,6 +118,7 @@ public class TripDetailFragment extends Fragment {
                                 final long id) {
             Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
+            mRetrievedTrip.packingChange();
             mIHostingActivity.saveTrip(mRetrievedTrip);
             mListItemAdapter.notifyDataSetChanged();
         }
@@ -326,7 +327,7 @@ public class TripDetailFragment extends Fragment {
      *
      * @param parTrip trip to be displayed
      */
-    public void displayTrip(Trip parTrip) {
+    public final void displayTrip(final Trip parTrip) {
 
         mRetrievedTrip = parTrip;
 
@@ -342,7 +343,7 @@ public class TripDetailFragment extends Fragment {
     /**
      * @return the {@link Trip} being currently displayed.
      */
-    public Trip getCurrentTrip() {
+    public final Trip getCurrentTrip() {
         return mRetrievedTrip;
     }
 

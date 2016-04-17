@@ -101,12 +101,14 @@ public class TripFormatter
      * @param parWeight weight in grams to be formatted for display, an integer
      * @return formatted weight
      */
-    public final String getFormattedWeight(final int parWeight) {
+    public final String getFormattedWeight(final int parWeight, final int parPackedWeight) {
 
-        Log.d(TAG, "getFormattedWeight() called with: " + "parWeight = [" + parWeight + "]");
+        Log.d(TAG, "getFormattedWeight() called with: "
+                + "parWeight = [" + parWeight + "]"
+                + ", parPackedWeight = [" + parPackedWeight + "]");
 
         String res = String.format(mContext.getString(R.string.trip_detail__before_weight__label),
-                parWeight);
+                parWeight, parPackedWeight);
         Log.d(TAG, "getFormattedWeight() returned: " + res);
         return res;
     }
