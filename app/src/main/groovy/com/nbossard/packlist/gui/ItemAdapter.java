@@ -20,6 +20,7 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ class ItemAdapter extends BaseAdapter {
         /**
          * Reference (result of findviewbyid) to the is packed checkbox.
          */
-        private TextView tvIsPacked;
+        private AppCompatCheckBox tvIsPacked;
     }
 
     // ********************** FIELDS ************************************************************************
@@ -126,7 +127,7 @@ class ItemAdapter extends BaseAdapter {
 
             // getting views
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
-            vHolderRecycle.tvIsPacked = (TextView) parConvertView.findViewById(R.id.ia__packed);
+            vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
@@ -140,11 +141,7 @@ class ItemAdapter extends BaseAdapter {
             nameAndWeight += "(" + curItem.getWeight() + "g)";
         }
         vHolderRecycle.tvName.setText(nameAndWeight);
-        if (curItem.isPacked()) {
-            vHolderRecycle.tvIsPacked.setVisibility(View.VISIBLE);
-        } else {
-            vHolderRecycle.tvIsPacked.setVisibility(View.GONE);
-        }
+        vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
 
         // saving viewholder
         parConvertView.setTag(vHolderRecycle);

@@ -75,8 +75,7 @@
     <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
     <string name="trip_detail__edit_trip">edit trip</string>
-    <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$d&#160;packed).</string>
-    <string name="ia__packed">PACKED:</string>
+    <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
 

@@ -30,6 +30,7 @@
         <changelogtext>NEW : ISS#25 ajout de ACRA pour générer des rapports en cas de crash</changelogtext>
         <changelogtext>NEW : ISS#26 crash à la modification d'un item</changelogtext>
         <changelogtext>NEW : ISS#22 ajout du poids empaqueté</changelogtext>
+        <changelogtext>NEW : ISS#23 remplacement du texte "EMPAQUETE" par une checkbox</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="09 avril 2016"

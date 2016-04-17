@@ -30,6 +30,7 @@
         <changelogtext>NEW : ISS#25 adding ACRA for generating crash reports</changelogtext>
         <changelogtext>NEW : ISS#26 crash when modifying an item</changelogtext>
         <changelogtext>NEW : ISS#22 add a packing weight</changelogtext>
+        <changelogtext>NEW : ISS#23 replacing "PACKED" by a checkbox</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="9th april 2016"
