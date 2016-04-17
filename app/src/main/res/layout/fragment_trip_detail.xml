@@ -59,9 +59,9 @@
                 android:id="@+id/trip_detail__edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/accessibility_button_min_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:minHeight="@dimen/accessibility_button_min_height"
                 android:text="@string/trip_detail__edit_trip"/>
 
             <TextView
@@ -161,17 +161,11 @@
                 android:visibility="@{trip.totalWeight >0 ? View.VISIBLE : View.GONE}">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:labelFor="@+id/trip_detail__weight__label"
-                    android:text="@string/trip_detail__before_weight__label"/>
-
-                <TextView
-                    android:id="@id/trip_detail__weight__label"
+                    android:id="@+id/trip_detail__weight__label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{tripFormatter.getFormattedWeight(trip.totalWeight)}"
-                    tools:text="120g"/>
+                    tools:text="@string/trip_detail__before_weight__label"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -228,9 +222,9 @@
             tools:visibility="visible">
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/trip_detail__no_item_yet__label">
             </TextView>
 
