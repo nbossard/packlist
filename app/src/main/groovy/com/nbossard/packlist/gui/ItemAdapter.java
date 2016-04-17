@@ -113,7 +113,9 @@ class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int parPosition, View parConvertView, final ViewGroup parParentView) {
+    public View getView(final int parPosition,
+                        @SuppressWarnings("CheckStyle") View parConvertView,
+                        final ViewGroup parParentView) {
         InnerMyViewHolder vHolderRecycle;
         if (parConvertView == null)
         {
@@ -134,8 +136,8 @@ class ItemAdapter extends BaseAdapter {
 
         // updating views
         String nameAndWeight = curItem.getName();
-        if (curItem.getWeight()>0) {
-            nameAndWeight+= "(" + curItem.getWeight() + "g)";
+        if (curItem.getWeight() > 0) {
+            nameAndWeight += "(" + curItem.getWeight() + "g)";
         }
         vHolderRecycle.tvName.setText(nameAndWeight);
         if (curItem.isPacked()) {
