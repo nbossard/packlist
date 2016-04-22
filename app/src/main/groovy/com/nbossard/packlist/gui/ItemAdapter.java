@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -40,7 +41,7 @@ import java.util.List;
 */
 
 /**
- * An adapter for displaying a trip {@link Item} in a ListView.
+ * An adapter for displaying a trip {@link Item} in a ListView, see {@link TripDetailFragment}.
  *
  * @author Created by nbossard on 17/01/16.
  */
@@ -58,18 +59,20 @@ class ItemAdapter extends BaseAdapter {
     {
 
         // getting views
+
         /**
          * Reference (result of findviewbyid) to the item name.
          */
         private TextView tvName;
-
         /**
          * Reference (result of findviewbyid) to the is packed checkbox.
          */
         private AppCompatCheckBox tvIsPacked;
-    }
 
+    }
     // ********************** FIELDS ************************************************************************
+
+    private SortModes mSortMode;
 
     /**
      * Items to be displayed in the list.
@@ -96,6 +99,17 @@ class ItemAdapter extends BaseAdapter {
         super();
         mItemList = parResList;
         mContext = parContext;
+    }
+
+    // For applying sorting
+    @Override
+    public void notifyDataSetChanged() {
+
+        if (mSortMode == SortModes.PACKED) {
+            Collections.sort(mItemList);
+        }
+
+        super.notifyDataSetChanged();
     }
 
     @Override
@@ -146,5 +160,9 @@ class ItemAdapter extends BaseAdapter {
         // saving viewholder
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
+    }
+
+    public void setSortMode(SortModes parSortMode) {
+        mSortMode = parSortMode;
     }
 }

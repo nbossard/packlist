@@ -39,6 +39,7 @@
     <string name="action__whatsnew">What\'s new</string>
     <string name="action__send_logs">Send a report</string>
     <string name="action__about">About</string>
+    <string name="action_trip__sort">Sort</string>
     <string name="action_trip__import">Import text file</string>
 
     <!-- About page -->

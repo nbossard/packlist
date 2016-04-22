@@ -36,6 +36,7 @@
     <string name="action__send_logs">Send a reoort</string>
     <string name="action__about">アプリについて</string>
     <string name="action_trip__import">Import text file</string>
+    <string name="action_trip__sort">Sort</string>
 
     <!-- About page -->
     <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>

@@ -31,6 +31,7 @@
         <changelogtext>NEW : ISS#26 crash when modifying an item</changelogtext>
         <changelogtext>NEW : ISS#22 add a packing weight</changelogtext>
         <changelogtext>NEW : ISS#23 replacing "PACKED" by a checkbox</changelogtext>
+        <changelogtext>NEW : ISS#24 basic optional item sorting based on packing status</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="9th april 2016"

@@ -20,6 +20,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_trip__sort"
+        android:title="@string/action_trip__sort"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_sort_by_size"/>
     <item android:id="@+id/action_trip__import_txt"
           android:title="@string/action_trip__import"
           app:showAsAction="ifRoom"

@@ -36,6 +36,7 @@
     <string name="action__send_logs">Envoyer un rapport</string>
     <string name="action__about">A propos</string>
     <string name="action_trip__import">Importer un fichier texte</string>
+    <string name="action_trip__sort">Trier</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>

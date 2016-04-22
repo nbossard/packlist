@@ -31,6 +31,7 @@
         <changelogtext>NEW : ISS#26 crash à la modification d'un item</changelogtext>
         <changelogtext>NEW : ISS#22 ajout du poids empaqueté</changelogtext>
         <changelogtext>NEW : ISS#23 remplacement du texte "EMPAQUETE" par une checkbox</changelogtext>
+        <changelogtext>NEW : ISS#24 tri optionnel basé sur item empaqueté ou non</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="09 avril 2016"

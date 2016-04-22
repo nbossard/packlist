@@ -316,6 +316,10 @@ public class TripDetailFragment extends Fragment {
             case R.id.action_trip__import_txt:
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
+            case R.id.action_trip__sort:
+                mListItemAdapter.setSortMode(SortModes.PACKED);
+                mListItemAdapter.notifyDataSetChanged();
+                break;
             default:
                 break;
         }

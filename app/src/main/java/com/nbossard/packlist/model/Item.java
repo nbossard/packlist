@@ -39,7 +39,7 @@ import java.util.UUID;
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item implements Serializable, Cloneable {
+public class Item implements Serializable, Cloneable, Comparable<Item> {
 
 // *********************** FIELDS *************************************************************************
 
@@ -149,6 +149,17 @@ public class Item implements Serializable, Cloneable {
      */
     public final @Nullable UUID getTripUUID() {
         return mTripUUID;
+    }
+
+    @Override
+    public int compareTo(final Item parAnother) {
+        int res = 0;
+        if (!this.isPacked() && parAnother.isPacked()) {
+            res = -1;
+        } else if (this.isPacked() && !parAnother.isPacked()) {
+            res = 1;
+        }
+        return res;
     }
 
     @Override
