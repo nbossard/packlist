@@ -93,8 +93,8 @@ androidGroovy {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
     compile 'com.google.code.gson:gson:2.4'
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
