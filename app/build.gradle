@@ -22,7 +22,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
 apply plugin: 'com.jakewharton.hugo'
 
+
 android {
+    // This is now required cause we are using a JDK8
+    targetCompatibility = '1.7'
+    sourceCompatibility = '1.7'
+
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
