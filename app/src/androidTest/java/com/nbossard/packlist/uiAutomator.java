@@ -22,6 +22,7 @@ package com.nbossard.packlist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.test.filters.SdkSuppress;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiDevice;
@@ -78,7 +79,7 @@ public class uiAutomator {
     }
 
     @Test
-    public void testOpenAbout() throws UiObjectNotFoundException, InterruptedException {
+    public void testOpenMenu() throws UiObjectNotFoundException, InterruptedException {
         UiObject menuButton = mDevice.findObject(new UiSelector().descriptionContains("More options"));
 
         // Simulate a user-click on the menu button, if found.
@@ -88,8 +89,54 @@ public class uiAutomator {
 
         mDevice.wait(Until.findObject(By.text("About")), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
+        UiObject menuSendAReport = mDevice.findObject(new UiSelector().text("Send a report"));
+        UiObject menuWhatsNew = mDevice.findObject(new UiSelector().text("What's new"));
         UiObject menuAbout = mDevice.findObject(new UiSelector().text("About"));
+
+        assertTrue(menuSendAReport.exists());
+        assertTrue(menuWhatsNew.exists());
         assertTrue(menuAbout.exists());
     }
 
+    @Test
+    public void testEmptyList() throws UiObjectNotFoundException, InterruptedException {
+
+        deleteAllTrips();
+
+        UiObject menuAbout = mDevice.findObject(new UiSelector().text("No trip planned"));
+        assertTrue(menuAbout.exists());
+    }
+
+    @Test
+    public void testAddTrip() throws UiObjectNotFoundException, InterruptedException {
+
+        deleteAllTrips();
+
+        addTripToRome();
+
+    }
+
+    private void addTripToRome() {
+        //TODO
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    private void deleteAllTrips() throws UiObjectNotFoundException {
+        UiObject listView = mDevice.findObject(new UiSelector().className("android.widget.ListView"));
+        UiObject firstLine = listView.getChild(new UiSelector().clickable(true).index(0));
+
+        while (firstLine.exists() && firstLine.isEnabled()) {
+
+            Rect firstLineRect = firstLine.getBounds();
+            mDevice.swipe(firstLineRect.centerX(),
+                    firstLineRect.centerY(),
+                    firstLineRect.centerX(),
+                    firstLineRect.centerY(), 300);
+
+
+            UiObject deleteButton = mDevice.findObject(new UiSelector().descriptionContains("Delete"));
+            deleteButton.click();
+        }
+    }
 }
