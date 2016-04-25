@@ -33,6 +33,7 @@ import android.support.test.uiautomator.UiSelector;
 import android.support.test.uiautomator.Until;
 import android.support.test.InstrumentationRegistry;
 import android.widget.Button;
+import android.widget.EditText;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,10 +47,8 @@ import static org.junit.Assert.assertThat;
 @SdkSuppress(minSdkVersion = 18)
 public class uiAutomator {
 
-    private static final String BASIC_SAMPLE_PACKAGE
-            = "com.nbossard.packlist.debug";
+    private static final String BASIC_SAMPLE_PACKAGE = "com.nbossard.packlist.debug";
     private static final int LAUNCH_TIMEOUT = 5000;
-    private static final String STRING_TO_BE_TYPED = "UiAutomator";
     private UiDevice mDevice;
 
     @Before
@@ -108,17 +107,39 @@ public class uiAutomator {
         assertTrue(menuAbout.exists());
     }
 
-    @Test
+    // Removed @Test as fully included in testOpenTrip
     public void testAddTrip() throws UiObjectNotFoundException, InterruptedException {
         deleteAllTrips();
         addTripToRome();
     }
 
-    @Test
+    // Removed @Test as fully included in testAddItem
     public void testOpenTrip() throws UiObjectNotFoundException, InterruptedException {
-        deleteAllTrips();
-        addTripToRome();
+
+        testAddTrip();
+
         openFirstTripInList();
+    }
+
+    @Test
+    public void testAddItem() throws UiObjectNotFoundException, InterruptedException {
+
+        testOpenTrip();
+
+        addAnItem();
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    private void addAnItem() throws UiObjectNotFoundException {
+
+        //fill item name
+        UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
+        editTripName.setText("Chapeau");
+
+        //add item
+        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("Add item"));
+        saveButton.clickAndWaitForNewWindow();
     }
 
     /**
@@ -143,10 +164,6 @@ public class uiAutomator {
         UiObject firstLine = listView.getChild(new UiSelector().clickable(true).index(0));
         firstLine.clickAndWaitForNewWindow();
     }
-
-
-
-    // *********************** PRIVATE METHODS **************************************************************
 
     private void deleteAllTrips() throws UiObjectNotFoundException {
         UiObject listView = mDevice.findObject(new UiSelector().className("android.widget.ListView"));
