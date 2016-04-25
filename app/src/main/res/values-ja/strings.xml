@@ -22,6 +22,10 @@
 <!-- -->
 <!-- Japanese strings used in application -->
 <!-- Strings should be grouped by activity / fragment -->
+<!-- -->
+<!-- Remember : -->
+<!--   "fab" stands for Floating Action Button -->
+<!--   "cab" stands for Contextual Action Bar-->
 <resources>
     <!-- Non-translatable strings -->
 
@@ -42,12 +46,14 @@
     <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
+    <string name="about_act__fab_go_to_website">Open website</string>
 
     <!-- Main page -->
     <string name="main__welcome">これは旅行のリストです。詳細はクリックしてください</string>
     <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">削除</string>
+    <string name="mainact__fab_add_a_trip">Add a new trip</string>
 
     <plurals name="ta__in_x_days">
         <item quantity="other">In %d days.</item>
@@ -94,5 +100,6 @@
     <string name="mass_import__import__button">Import</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
     <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
+
 
 </resources>
