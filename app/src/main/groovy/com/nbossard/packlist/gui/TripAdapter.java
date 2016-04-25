@@ -170,6 +170,8 @@ class TripAdapter extends BaseAdapter {
         return parConvertView;
     }
 
+    // *********************** PRIVATE METHODS **************************************************************
+
     /**
      * Get a human readable presentation of number of days before departure.
      *
