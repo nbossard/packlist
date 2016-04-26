@@ -64,12 +64,13 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
-- 0.8 9th april 2016, mass import and total weight
+- 0.8.1 26th april 2016, adding crash reports, bug fixing and minor changes  
+- 0.8   9th april 2016, mass import and total weight
 - 0.7.1 22th march 2016,  bug-fixing
-- 0.7 19th march 2016,  bug-fixing
-- 0.6 14th march 2016
-- 0.5 18th february 2016
-- 0.4 8th february 2016
+- 0.7   19th march 2016,  bug-fixing
+- 0.6   14th march 2016
+- 0.5   18th february 2016
+- 0.4   8th february 2016
 - 0.3 alpha 
 - 0.2 alpha 24th january 2016
 - 0.1 alpha 6th january 2016
