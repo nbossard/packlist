@@ -1,0 +1,1 @@
+Ajout de nouvelles fonctionnalités : ajout en masse d'objets à emmener, estimation du poids du bagage.
