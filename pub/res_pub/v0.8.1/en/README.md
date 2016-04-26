@@ -1,4 +1,4 @@
-# French screenshots and text description for publication
+# English screenshots and text description for publication
 
 [Playstore description can be found here](playstore_description.md)
 
