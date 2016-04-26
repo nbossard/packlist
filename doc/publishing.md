@@ -22,8 +22,8 @@
     - check about page
     - check what's new
     - add a new trip, add items, close and reopen
- - make new screenshots if useful
- - copy apk to pub/res_pub folder
+ - copy apk to pub/res_pub folder vx.x and latest
+ - upload screenshots to android console    
  - updload APK to android console
  - add apk and screenshots to git / commit / push
  - commit and push master
