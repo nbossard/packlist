@@ -99,7 +99,8 @@ public class TripFormatter
     /**
      * The trip formatted weight.
      * @param parWeight weight in grams to be formatted for display, an integer
-     * @return formatted weight
+     * @param parPackedWeight weight of packed items in grams to be formatted for display, an integer
+     * @return formatted string including weights
      */
     public final String getFormattedWeight(final int parWeight, final int parPackedWeight) {
 
