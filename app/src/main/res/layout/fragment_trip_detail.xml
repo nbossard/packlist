@@ -225,7 +225,6 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="@string/trip_detail__no_item_yet__label">
             </TextView>
 
