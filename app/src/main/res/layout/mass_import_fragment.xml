@@ -23,10 +23,16 @@
 <!---->
 <!-- Resources and Ids for this page must start with "mass_import__" -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/margin_end"
+    android:paddingLeft="@dimen/margin_start"
+    android:paddingRight="@dimen/margin_end"
+    android:paddingStart="@dimen/margin_start"
+    android:paddingTop="@dimen/margin_top">
 
     <TextView
         android:layout_width="match_parent"

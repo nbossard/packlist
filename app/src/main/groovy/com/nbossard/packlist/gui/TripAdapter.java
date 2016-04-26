@@ -35,7 +35,7 @@ import com.nbossard.packlist.model.TripFormatter;
 import java.util.List;
 
 /**
- * An adapter for displaying a {@link Trip} in a ListView.
+ * An adapter for displaying a {@link Trip} in a ListView, see {@link TripListFragment}.
  *
  * @author Created by nbossard on 25/12/15.
  */
@@ -170,10 +170,18 @@ class TripAdapter extends BaseAdapter {
         return parConvertView;
     }
 
-    /** Get a human readable presentation of number of days before departure. */
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Get a human readable presentation of number of days before departure.
+     *
+     * @param parRemainingDays a number of days before or after trip departure
+     * @return i.e. : "25 days ago"
+     */
     private String getFormattedRemainingDays(final long parRemainingDays) {
 
-        Log.d(TAG, "getFormattedRemainingDays() called with: " + "parRemainingDays = [" + parRemainingDays + "]");
+        Log.d(TAG, "getFormattedRemainingDays() called with: "
+                + "parRemainingDays = [" + parRemainingDays + "]");
 
         String res;
         if (parRemainingDays < 0) {

@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -34,6 +35,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import hugo.weaving.DebugLog;
+
+//CHECKSTYLE:OFF: LineLength
 /*
 @startuml
     class com.nbossard.packlist.process.saving.PrefsSavingModule {
@@ -42,6 +46,7 @@ import java.util.UUID;
     com.nbossard.packlist.process.saving.ITripChangeListener "one or many" <.. com.nbossard.packlist.process.saving.PrefsSavingModule
 @enduml
  */
+//CHECKSTYLE:ON: LineLength
 
 /**
  * An implementation of {@link ISavingModule} based on shared preferences
@@ -57,22 +62,32 @@ public class PrefsSavingModule implements ISavingModule {
     /** Log tag. */
     private static final String TAG = PrefsSavingModule.class.getName();
 
+    /** The key for saving in preferences the list of {@link Trip}. */
     private static final String LIST_TRIPS_KEY = "LIST_TRIPS";
+
+    /** The name of filename in where to save preferences. */
     private static final String PREFS_FILENAME = "PREFS";
 //
 // *********************** FIELDS *************************************************************************
 
+    /** Object to manipulate shared preferences. */
     private final SharedPreferences mSharedPreferences;
+
+    /** The Gson serialisation tool. */
     private final Gson mGson;
-//
+
+    /** The list of listeners to be notified of change. */
     private final List<ITripChangeListener> mChangeListeners = new ArrayList<>();
 
 // *********************** METHODS **************************************************************************
 
-    PrefsSavingModule(Context parContext) {
+    /**
+     * Standard constructor.
+     * @param parContext context for loading shared preferences.
+     */
+    PrefsSavingModule(final Context parContext) {
         mSharedPreferences = parContext.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE);
         mGson = new Gson();
-
     }
 
     @Override
@@ -95,12 +110,19 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final Trip loadSavedTrip(final UUID parUUID) {
-        List<Trip> tmpList = loadSavedTrips();
+    @DebugLog
+    public final Trip loadSavedTrip(@Nullable final UUID parUUID) {
         Trip res = null;
-        for (Trip oneTrip:tmpList) {
-            if (oneTrip.getUUID().compareTo(parUUID) == 0) {
-                res = oneTrip;
+
+        if (parUUID == null) {
+            // Do nothing
+            Log.w(TAG, "loadSavedTrip() : null parUUID, doing nothing");
+        } else {
+            List<Trip> tmpList = loadSavedTrips();
+            for (Trip oneTrip:tmpList) {
+                if (oneTrip.getUUID().compareTo(parUUID) == 0) {
+                    res = oneTrip;
+                }
             }
         }
         return res;
@@ -177,26 +199,34 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public void addListener(ITripChangeListener parListener) {
+    public final void addListener(final ITripChangeListener parListener) {
         mChangeListeners.add(parListener);
     }
 
     @Override
-    public void updateItem(Item parItem) {
+    public final boolean updateItem(final Item parItem) {
         // retrieve trip of item
         Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
 
         // update item
+        boolean res;
         if (prevSavedTrips != null) {
             prevSavedTrips.deleteItem(parItem.getUUID());
             prevSavedTrips.addItem(parItem);
+            updateTrip(prevSavedTrips);
+            res = true;
+        } else {
+            res = false;
         }
-
-        updateTrip(prevSavedTrips);
+        return res;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
 
+    /**
+     * Update an existing trip.
+     * @param parTmpTrip trip to be updated
+     */
     private void updateTrip(final Trip parTmpTrip) {
         List<Trip> tripList = loadSavedTrips();
         List<Trip> updatedTripList = new ArrayList<>();
@@ -227,6 +257,10 @@ public class PrefsSavingModule implements ISavingModule {
         editor.apply();
     }
 
+    /**
+     * Add a new Trip.
+     * @param parTmpTrip trip to be added.
+     */
     private void addTrip(final Trip parTmpTrip) {
         // retrieve current list
         List<Trip> prevSavedTrips = loadSavedTrips();

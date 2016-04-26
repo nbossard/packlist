@@ -20,7 +20,10 @@
 package com.nbossard.packlist.model;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.nbossard.packlist.R;
 
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
@@ -40,20 +43,29 @@ public class TripFormatter
 
 // *********************** FIELDS ***************************************************************************
 
+    /**
+     * Context provided in constructor, will be used to retrieve strings and format dates.
+     */
     private final Context mContext;
 
 // *********************** METHODS **************************************************************************
 
-    public TripFormatter(Context parContext)
+    /**
+     * Standard constructor.
+     *
+     * @param parContext will be used to retrieve strings and format dates
+     */
+    public TripFormatter(final Context parContext)
     {
         mContext = parContext;
     }
 
     /**
      * The trip start date but as a locale formatted date.
+     * @param parDate date to be returned formatted
      * @return locale formatted date or null if never set
      */
-    public final String getFormattedDate(GregorianCalendar parDate) {
+    public final String getFormattedDate(final GregorianCalendar parDate) {
 
         Log.d(TAG, "getFormattedDate() called with: " + "parDate = [" + parDate + "]");
 
@@ -66,7 +78,8 @@ public class TripFormatter
 
         /*
         //S2 : the whole block
-        final String format = Settings.System.getString(mContext.getContentResolver(), Settings.System.DATE_FORMAT);
+        final String format = Settings.System.getString(
+                            mContext.getContentResolver(), Settings.System.DATE_FORMAT);
 
         if (TextUtils.isEmpty(format)) {
             // S1
@@ -86,13 +99,25 @@ public class TripFormatter
 
     /**
      * The trip formatted weight.
-     * @return formatted weight
+     * @param parWeight weight in grams to be formatted for display, an integer
+     * @param parPackedWeight weight of packed items in grams to be formatted for display, an integer
+     * @return formatted string including weights
      */
-    public final String getFormattedWeight(int parWeight) {
+    public final
+    @Nullable
+    String getFormattedWeight(final int parWeight, final int parPackedWeight) {
 
-        Log.d(TAG, "getFormattedWeight() called with: " + "parWeight = [" + parWeight + "]");
-
-        String res = Integer.toString(parWeight) + "g";
+        Log.d(TAG, "getFormattedWeight() called with: "
+                + "parWeight = [" + parWeight + "]"
+                + ", parPackedWeight = [" + parPackedWeight + "]");
+        String res;
+        if (mContext != null) {
+            res = String.format(mContext.getString(R.string.trip_detail__before_weight__label),
+                    parWeight, parPackedWeight);
+        } else {
+            Log.w(TAG, "getFormattedWeight() found a null context, VERY STRANGE.");
+            res = null;
+        }
         Log.d(TAG, "getFormattedWeight() returned: " + res);
         return res;
     }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Frnch screenshots and text description for publication
+=======
+# French screenshots and text description for publication
+>>>>>>> develop
 
 [Playstore description can be found here](playstore_description.md)
 

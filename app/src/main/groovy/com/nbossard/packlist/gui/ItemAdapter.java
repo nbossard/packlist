@@ -20,6 +20,7 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -39,7 +41,7 @@ import java.util.List;
 */
 
 /**
- * An adapter for displaying a trip {@link Item} in a ListView.
+ * An adapter for displaying a trip {@link Item} in a ListView, see {@link TripDetailFragment}.
  *
  * @author Created by nbossard on 17/01/16.
  */
@@ -57,18 +59,20 @@ class ItemAdapter extends BaseAdapter {
     {
 
         // getting views
+
         /**
          * Reference (result of findviewbyid) to the item name.
          */
         private TextView tvName;
-
         /**
          * Reference (result of findviewbyid) to the is packed checkbox.
          */
-        private TextView tvIsPacked;
-    }
+        private AppCompatCheckBox tvIsPacked;
 
+    }
     // ********************** FIELDS ************************************************************************
+
+    private SortModes mSortMode;
 
     /**
      * Items to be displayed in the list.
@@ -97,6 +101,17 @@ class ItemAdapter extends BaseAdapter {
         mContext = parContext;
     }
 
+    // For applying sorting
+    @Override
+    public void notifyDataSetChanged() {
+
+        if (mSortMode == SortModes.PACKED) {
+            Collections.sort(mItemList);
+        }
+
+        super.notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return mItemList.size();
@@ -113,7 +128,9 @@ class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int parPosition, View parConvertView, final ViewGroup parParentView) {
+    public View getView(final int parPosition,
+                        @SuppressWarnings("CheckStyle") View parConvertView,
+                        final ViewGroup parParentView) {
         InnerMyViewHolder vHolderRecycle;
         if (parConvertView == null)
         {
@@ -124,7 +141,7 @@ class ItemAdapter extends BaseAdapter {
 
             // getting views
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
-            vHolderRecycle.tvIsPacked = (TextView) parConvertView.findViewById(R.id.ia__packed);
+            vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
@@ -134,18 +151,18 @@ class ItemAdapter extends BaseAdapter {
 
         // updating views
         String nameAndWeight = curItem.getName();
-        if (curItem.getWeight()>0) {
-            nameAndWeight+= "(" + curItem.getWeight() + "g)";
+        if (curItem.getWeight() > 0) {
+            nameAndWeight += "(" + curItem.getWeight() + "g)";
         }
         vHolderRecycle.tvName.setText(nameAndWeight);
-        if (curItem.isPacked()) {
-            vHolderRecycle.tvIsPacked.setVisibility(View.VISIBLE);
-        } else {
-            vHolderRecycle.tvIsPacked.setVisibility(View.GONE);
-        }
+        vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
 
         // saving viewholder
         parConvertView.setTag(vHolderRecycle);
         return parConvertView;
+    }
+
+    public void setSortMode(SortModes parSortMode) {
+        mSortMode = parSortMode;
     }
 }

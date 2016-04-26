@@ -24,36 +24,39 @@
 <!-- Resources and Ids for this page must start with "ia__" -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/list_bgd"
-              android:layout_marginTop="@dimen/month_day_label_text_size"
-              android:paddingTop="@dimen/ia__row_margin"
-              android:paddingBottom="@dimen/ia__row_margin"
-              android:paddingStart="@dimen/ia__start_margin"
-              android:paddingLeft="@dimen/ia__start_margin"
-              android:paddingEnd="@dimen/ia__start_margin"
-              android:paddingRight="@dimen/ia__start_margin">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/month_day_label_text_size"
+                android:background="@drawable/list_bgd"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/ia__row_margin"
+                android:paddingEnd="@dimen/ia__start_margin"
+                android:paddingLeft="@dimen/ia__start_margin"
+                android:paddingRight="@dimen/ia__start_margin"
+                android:paddingStart="@dimen/ia__start_margin"
+                android:paddingTop="@dimen/ia__row_margin">
 
     <!-- using margin right instead of Space as it is linked to this string-->
-    <TextView
+    <!--focusable and focusableInTouchMode are set to allow click on full row and not only checkbox -->
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/ia__packed"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="@string/ia__packed"
         android:layout_marginEnd="10dip"
         android:layout_marginRight="10dip"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        tools:text="Some beautiful big red socks very warm and very red which smell good"
+        android:layout_height="wrap_content"
         android:layout_toEndOf="@id/ia__packed"
-        android:layout_toRightOf="@id/ia__packed"/>
+        android:layout_toRightOf="@id/ia__packed"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
 
 </RelativeLayout>

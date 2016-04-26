@@ -6,9 +6,12 @@
  - ensure that versionName is increased in build.gradle
  - close date in changelog.xml
  - update readme.md
- - Create a new folder in pub/res_pub
+ - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
+ - delete "latest" folder
+ - Rename "incoming" folder in pub/res_pub to "latest"
+ - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
- - change to branch master
+ - change to branch mastergit 
  - git pull origin master
  - git merge develop
  - change build Variants to release

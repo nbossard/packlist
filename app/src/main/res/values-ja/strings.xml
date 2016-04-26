@@ -22,6 +22,10 @@
 <!-- -->
 <!-- Japanese strings used in application -->
 <!-- Strings should be grouped by activity / fragment -->
+<!-- -->
+<!-- Remember : -->
+<!--   "fab" stands for Floating Action Button -->
+<!--   "cab" stands for Contextual Action Bar-->
 <resources>
     <!-- Non-translatable strings -->
 
@@ -32,20 +36,24 @@
     <string name="title_activity_about">AboutActivity</string>
 
     <!-- Menu items -->
-    <string name="action_whatsnew">最新情報</string>
-    <string name="action_about">アプリについて</string>
+    <string name="action__whatsnew">最新情報</string>
+    <string name="action__send_logs">Send a reoort</string>
+    <string name="action__about">アプリについて</string>
     <string name="action_trip__import">Import text file</string>
+    <string name="action_trip__sort">Sort</string>
 
     <!-- About page -->
     <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
+    <string name="about_act__fab_go_to_website">Open website</string>
 
     <!-- Main page -->
     <string name="main__welcome">これは旅行のリストです。詳細はクリックしてください</string>
     <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">削除</string>
+    <string name="mainact__fab_add_a_trip">Add a new trip</string>
 
     <plurals name="ta__in_x_days">
         <item quantity="other">In %d days.</item>
@@ -68,8 +76,7 @@
     <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
     <string name="trip_detail__edit_trip">旅行を編集</string>
-    <string name="trip_detail__before_weight__label">weight of bag : more than </string>
-    <string name="ia__packed">収納済 :</string>
+    <string name="trip_detail__before_weight__label">weight of bag : more than  %1$dg  (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
@@ -81,6 +88,7 @@
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
     <!-- Item detail -->
     <string name="item_detail__name__label">item name</string>
@@ -90,5 +98,8 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
     <string name="mass_import__import__button">Import</string>
+    <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
+    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
+
 
 </resources>

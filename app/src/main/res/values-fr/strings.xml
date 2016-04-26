@@ -22,6 +22,10 @@
 <!-- -->
 <!-- French strings used in application -->
 <!-- Strings should be grouped by activity / fragment -->
+<!-- -->
+<!-- Remember : -->
+<!--   "fab" stands for Floating Action Button -->
+<!--   "cab" stands for Contextual Action Bar-->
 <resources>
 
     <!-- Common strings -->
@@ -29,22 +33,27 @@
     <string name="demo_changelog_title_standarddialog">Journal des changements</string>
     <string name="about_ok">OK</string>
     <string name="title_activity_about">A propos</string>
+    <string name="toast_update_failed_incompatible_format">La mise à jour a échouée, il s\'agit probablement d\'une incompatibilité de version, recréez cet item.</string>
 
     <!-- Menu items -->
-    <string name="action_whatsnew">Quoi de neuf</string>
-    <string name="action_about">A propos</string>
+    <string name="action__whatsnew">Quoi de neuf</string>
+    <string name="action__send_logs">Envoyer un rapport</string>
+    <string name="action__about">A propos</string>
     <string name="action_trip__import">Importer un fichier texte</string>
+    <string name="action_trip__sort">Trier</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises</string>
     <string name="about__third_party__button">Librairies tierces</string>
+    <string name="about_act__fab_go_to_website">Open website</string>
 
     <!-- Main page -->
     <string name="main__welcome">Voici la liste de vos voyages prévus, cliquez sur un pour voir son détail</string>
     <string name="main__no_trip_yet__label">Pas de voyage prévu… encore, cliquez sur le bouton "+" pour ajouter un voyage.</string>
     <string name="action_main_cab__clone">Dupliquer</string>
     <string name="action_main_cab__delete">Supprimer</string>
+    <string name="mainact__fab_add_a_trip">Ajouter un nouveau voyage</string>
 
     <plurals name="ta__in_x_days">
         <item quantity="one">Dans %d jour.</item>
@@ -68,8 +77,7 @@
     <string name="trip_detail__add_item___button">Ajouter</string>
     <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
     <string name="trip_detail__edit_trip">Modifier</string>
-    <string name="trip_detail__before_weight__label">poids du sac : plus de </string>
-    <string name="ia__packed">EMPAQUETE :</string>
+    <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
 
@@ -81,6 +89,7 @@
     <string name="help_legal__third_party_lib_changelog__label">   <b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="trip_detail__add_item_detail___button">+ détails</string>
 
     <!-- Item detail -->
@@ -91,5 +100,6 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse.\n\nUn objet par ligne.</string>
     <string name="mass_import__import__button">Importer</string>
+    <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
 </resources>

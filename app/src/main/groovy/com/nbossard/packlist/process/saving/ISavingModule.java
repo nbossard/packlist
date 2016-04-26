@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.process.saving;
 
+import android.support.annotation.CheckResult;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
@@ -50,7 +51,7 @@ public interface ISavingModule {
      * @return a list filled with the current trips or an empty list if was never saved. */
     List<Trip> loadSavedTrips();
 
-    /** Retrieve trip of provided UUID
+    /** Retrieve trip of provided UUID.
      * @param parUUID Unique trip identifier
      * @return a trip of provided UUID or null if not found. */
     @Nullable
@@ -75,12 +76,14 @@ public interface ISavingModule {
 
     /**
      * Listener wishing to be informed of Trip change.
+     * @param parListener listener to be added
      */
     void addListener(ITripChangeListener parListener);
 
     /**
      * Update an existing Item of a trip.
      * @param parItem item to be updated
+     * @return true if update succeeded, false otherwise
      */
-    void updateItem(Item parItem);
+    @CheckResult boolean updateItem(Item parItem);
 }
