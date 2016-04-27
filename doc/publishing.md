@@ -29,6 +29,8 @@
  - commit and push master
  - draft new release in github
  - [update f-droid metadata file](https://gitlab.com/fdroid/fdroiddata/blob/master/metadata/com.nbossard.packlist.txt)
+    - add "Build" block, do not remove old ones
+    - take care of trailing spaces
     - field "Current Version"
     - field "Current Version Code"
 
