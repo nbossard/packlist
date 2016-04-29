@@ -1,6 +1,7 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - update plantuml global schema
  - run all tests
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle

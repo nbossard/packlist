@@ -39,11 +39,11 @@ They are also available in [other languages](./pub/res_pub/latest/)
    - unit testing and android testing and Robotium testing
    - continuous integration using Travis (https://travis-ci.org/nbossard/packlist)
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
- - large usage of plantuml for documentation
+ - large usage of plantuml for documentation ([see project plantuml doc](doc/plantuml.md))
  - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
    - datetimepicker (https://github.com/flavienlaurent/datetimepicker)
-- effort on accessibility [see detailed doc](doc/accessibility.md)
+- effort on accessibility ([see detailed doc](doc/accessibility.md))
 
 
 ### BUT a place for experimentation of up-to-date technology
