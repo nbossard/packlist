@@ -46,7 +46,8 @@ import java.util.List;
     class com.nbossard.packlist.gui.TripListFragment {
     }
 
-    com.nbossard.packlist.gui.TripListFragment ..> com.nbossard.packlist.gui.ITripListFragmentActivity
+    com.nbossard.packlist.gui.TripListFragment --> com.nbossard.packlist.gui.ITripListFragmentActivity
+    com.nbossard.packlist.gui.TripAdapter <.. com.nbossard.packlist.gui.TripListFragment
 
 @enduml
  */

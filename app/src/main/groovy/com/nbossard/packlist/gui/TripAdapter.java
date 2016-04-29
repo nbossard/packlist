@@ -34,6 +34,14 @@ import com.nbossard.packlist.model.TripFormatter;
 
 import java.util.List;
 
+
+/*
+@startuml
+    class com.nbossard.packlist.gui.TripAdapter {
+    }
+@enduml
+ */
+
 /**
  * An adapter for displaying a {@link Trip} in a ListView, see {@link TripListFragment}.
  *

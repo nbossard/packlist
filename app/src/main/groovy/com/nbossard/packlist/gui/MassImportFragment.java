@@ -42,7 +42,7 @@ import hugo.weaving.DebugLog;
         +{static} newInstance(Trip)
     }
 
-    com.nbossard.packlist.gui.MassImportFragment ..> com.nbossard.packlist.gui.IMassImportFragmentActivity
+    com.nbossard.packlist.gui.MassImportFragment --> com.nbossard.packlist.gui.IMassImportFragmentActivity
 
 @enduml
  */

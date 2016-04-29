@@ -37,6 +37,9 @@ import java.util.List;
 @startuml
     class com.nbossard.packlist.gui.ItemAdapter {
     }
+
+    com.nbossard.packlist.gui.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
+
 @enduml
 */
 
@@ -72,6 +75,9 @@ class ItemAdapter extends BaseAdapter {
     }
     // ********************** FIELDS ************************************************************************
 
+    /**
+     * User selected item sort mode.
+     */
     private SortModes mSortMode;
 
     /**

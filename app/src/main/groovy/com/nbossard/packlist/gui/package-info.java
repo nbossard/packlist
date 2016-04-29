@@ -39,18 +39,21 @@ package com.nbossard.packlist.gui;
         !include AboutActivity.groovy
         !include DialogStandardFrag.java
         !include HelpThirdPartyActivity.java
+        !include IItemDetailFragmentActivity.java
         !include IMainActivity.java
+        !include IMassImportFragmentActivity.java
         !include INewTripFragmentActivity.java
         !include ITripListFragmentActivity.java
         !include ItemAdapter.java
         !include ItemDetailFragment.java
         !include MainActivity.java
-        !include NewTripFragment.java
         !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
-        !include TripListFragment.java
-        !include IMassImportFragmentActivity.java
         !include MassImportFragment.java
+        !include NewTripFragment.java
+        !include SortModes.java
+        !include TripAdapter.java
+        !include TripListFragment.java
     }
 @enduml
 

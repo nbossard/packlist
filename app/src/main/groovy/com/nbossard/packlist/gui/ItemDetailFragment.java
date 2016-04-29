@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,8 @@ import hugo.weaving.DebugLog;
  * class com.nbossard.packlist.gui.ItemDetailFragment {
  *  +setItem(Item)
  * }
+ *
+ * com.nbossard.packlist.gui.ItemDetailFragment --> com.nbossard.packlist.gui.IItemDetailFragmentActivity
  * @enduml
  */
 
@@ -84,10 +86,8 @@ public class ItemDetailFragment extends Fragment {
     /** The root view, will be used to findViewById. */
     private View mRootView;
 
-
     /** Item object to be displayed and edited. */
     private Item mItem;
-
 
     /** Supporting activity, to save trip.*/
     private IItemDetailFragmentActivity mIHostingActivity;

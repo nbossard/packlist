@@ -19,6 +19,13 @@
 
 package com.nbossard.packlist.gui;
 
+/*
+@startuml
+    enum com.nbossard.packlist.gui.SortModes {
+    }
+@enduml
+ */
+
 /**
  * List of possible item sorting modes.
  *
