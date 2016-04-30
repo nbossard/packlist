@@ -80,6 +80,7 @@
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
+    <string name="action_trip__share">Partager</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>

@@ -19,11 +19,13 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -313,12 +315,23 @@ public class TripDetailFragment extends Fragment {
     {
         switch (item.getItemId())
         {
+            case R.id.action_trip__share:
+                Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setText(toSharableString(mRetrievedTrip))
+                        .getIntent();
+                // Avoid ActivityNotFoundException
+                if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(shareIntent);
+                }
+                break;
             case R.id.action_trip__import_txt:
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__sort:
                 mListItemAdapter.setSortMode(SortModes.PACKED);
                 mListItemAdapter.notifyDataSetChanged();
+                // informUserOfSortingMode(SortModes.PACKED);
                 break;
             default:
                 break;
@@ -352,6 +365,44 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Make a pretty plaintext presentation of trip so we can share it.
+     *
+     * @param parRetrievedTrip trip to be shared
+     * @return trip as a human readable string
+     */
+    private String toSharableString(final Trip parRetrievedTrip) {
+        StringBuilder res = new StringBuilder();
+        TripFormatter tripFormatter = new TripFormatter(getActivity());
+
+        res.append(parRetrievedTrip.getName());
+        res.append("\n");
+        res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
+        res.append("\u2192"); // Arrow right
+        res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
+        res.append("\n");
+        res.append(parRetrievedTrip.getNote());
+        res.append("\n");
+        res.append("\n");
+        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
+            if (oneItem.isPacked()) {
+                res.append("\u2611"); // checked
+            } else {
+                res.append("\u2610"); // unchecked
+            }
+            res.append(" ");
+            res.append(oneItem.getName());
+            res.append(" ");
+            if (oneItem.getWeight() > 0) {
+                res.append("(");
+                res.append(oneItem.getWeight());
+                res.append("g)");
+            }
+            res.append("\n");
+        }
+        return res.toString();
+    }
 
     /**
      * Handle click on edit trip button.
