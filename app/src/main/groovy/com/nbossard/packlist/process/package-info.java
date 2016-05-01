@@ -19,11 +19,11 @@
  */
 
 /**
- * Model related classes for PackList.
+ * Process related classes.
  *
  * @author Nicolas BOSSARD
  */
-package com.nbossard.packlist;
+package com.nbossard.packlist.process;
 
 /*
 
@@ -35,16 +35,11 @@ package com.nbossard.packlist;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist {
-        !include gui/package-info.java
-        !include ../../../../java/com/nbossard/packlist/model/package-info.java
-        !include process/package-info.java
+    package com.nbossard.packlist.process {
+        !include saving/package-info.java
 
-        !include PackListApp.java
+        !include ImportExport.java
     }
-
-    com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
-    com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
 
 */

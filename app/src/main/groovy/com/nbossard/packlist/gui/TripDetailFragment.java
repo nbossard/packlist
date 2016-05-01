@@ -19,11 +19,13 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,6 +50,7 @@ import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
+import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
@@ -313,12 +316,24 @@ public class TripDetailFragment extends Fragment {
     {
         switch (item.getItemId())
         {
+            case R.id.action_trip__share:
+                ImportExport port = new ImportExport();
+                Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setText(port.toSharableString(getActivity(), mRetrievedTrip))
+                        .getIntent();
+                // Avoid ActivityNotFoundException
+                if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(shareIntent);
+                }
+                break;
             case R.id.action_trip__import_txt:
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__sort:
                 mListItemAdapter.setSortMode(SortModes.PACKED);
                 mListItemAdapter.notifyDataSetChanged();
+                // informUserOfSortingMode(SortModes.PACKED);
                 break;
             default:
                 break;
@@ -352,6 +367,7 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
 
     /**
      * Handle click on edit trip button.

@@ -31,8 +31,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.ImportExport;
 
 import hugo.weaving.DebugLog;
 
@@ -92,12 +92,8 @@ public class MassImportFragment extends Fragment {
         enableGUI(false);
 
         String textToImport = mItemsEditText.getText().toString();
-        String[] names = textToImport.split("\n");
-        for (String name : names) {
-            Item newItem = new Item(mTrip, name);
-            mTrip.addItem(newItem);
-        }
-
+        ImportExport importer = new ImportExport();
+        importer.massImportItems(mTrip, textToImport);
         mIHostingActivity.saveTrip(mTrip);
 
         // navigating back

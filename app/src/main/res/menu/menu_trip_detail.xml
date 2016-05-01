@@ -21,6 +21,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_trip__share"
+        android:title="@string/action_trip__share"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_share"/>
+    <item
         android:id="@+id/action_trip__sort"
         android:title="@string/action_trip__sort"
         app:showAsAction="ifRoom"
