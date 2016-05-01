@@ -61,8 +61,10 @@ public class ImportExportTest extends InstrumentationTestCase {
                 "Gonna be cold");
         mTestPort = new ImportExport();
 
-        // line to be ignored
+        // line to be ignored cause starting by ignoresymbol
         String testStr = "# Dublin\n";
+        // empty line to be ignored cause just spaces
+        testStr += "    \n";
         // basic case
         testStr += FIRST_LINE_NAME + "\n";
         // with weight and spaces in middle

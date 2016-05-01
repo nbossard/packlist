@@ -76,8 +76,10 @@ public class ImportExport {
 
         for (String oneLine : lines) {
 
+            oneLine = oneLine.trim();
+
             // Testing if line should be ignored
-            if (oneLine.startsWith(IGNORE_SYMBOL)) {
+            if (oneLine.startsWith(IGNORE_SYMBOL) || oneLine.length() == 0) {
                 Log.d(TAG, "massImportItems: ignoring this line, because starts with " + IGNORE_SYMBOL);
             } else {
                 // normal case, it is an item to be added
@@ -130,15 +132,17 @@ public class ImportExport {
             }
             res.append("\n");
         }
-        if (parRetrievedTrip.getNote() != null) {
+        if (parRetrievedTrip.getNote() != null && parRetrievedTrip.getNote().length() > 0) {
             res.append(IGNORE_SYMBOL);
             res.append(parRetrievedTrip.getNote());
             res.append("\n");
         }
-        res.append(IGNORE_SYMBOL);
-        res.append(tripFormatter.getFormattedWeight(parRetrievedTrip.getTotalWeight(),
-                parRetrievedTrip.getPackedWeight()));
-        res.append("\n");
+        if (parRetrievedTrip.getTotalWeight() > 0) {
+            res.append(IGNORE_SYMBOL);
+            res.append(tripFormatter.getFormattedWeight(parRetrievedTrip.getTotalWeight(),
+                    parRetrievedTrip.getPackedWeight()));
+            res.append("\n");
+        }
         res.append("\n");
         for (Item oneItem : parRetrievedTrip.getListOfItems()) {
             if (oneItem.isPacked()) {
