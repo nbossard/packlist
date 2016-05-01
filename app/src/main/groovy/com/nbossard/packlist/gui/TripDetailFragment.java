@@ -50,6 +50,7 @@ import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
+import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
@@ -316,9 +317,10 @@ public class TripDetailFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_trip__share:
+                ImportExport port = new ImportExport();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText(toSharableString(mRetrievedTrip))
+                        .setText(port.toSharableString(getActivity(), mRetrievedTrip))
                         .getIntent();
                 // Avoid ActivityNotFoundException
                 if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -366,43 +368,6 @@ public class TripDetailFragment extends Fragment {
 
     // *********************** PRIVATE METHODS **************************************************************
 
-    /**
-     * Make a pretty plaintext presentation of trip so we can share it.
-     *
-     * @param parRetrievedTrip trip to be shared
-     * @return trip as a human readable string
-     */
-    private String toSharableString(final Trip parRetrievedTrip) {
-        StringBuilder res = new StringBuilder();
-        TripFormatter tripFormatter = new TripFormatter(getActivity());
-
-        res.append(parRetrievedTrip.getName());
-        res.append("\n");
-        res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
-        res.append("\u2192"); // Arrow right
-        res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
-        res.append("\n");
-        res.append(parRetrievedTrip.getNote());
-        res.append("\n");
-        res.append("\n");
-        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
-            if (oneItem.isPacked()) {
-                res.append("\u2611"); // checked
-            } else {
-                res.append("\u2610"); // unchecked
-            }
-            res.append(" ");
-            res.append(oneItem.getName());
-            res.append(" ");
-            if (oneItem.getWeight() > 0) {
-                res.append("(");
-                res.append(oneItem.getWeight());
-                res.append("g)");
-            }
-            res.append("\n");
-        }
-        return res.toString();
-    }
 
     /**
      * Handle click on edit trip button.

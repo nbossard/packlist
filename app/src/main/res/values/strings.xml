@@ -101,7 +101,7 @@
     <string name="item_detail__submit">Update</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item perline.\n\ni.e.:\nGuide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->

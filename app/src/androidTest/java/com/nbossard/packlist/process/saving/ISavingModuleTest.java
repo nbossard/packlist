@@ -17,13 +17,11 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process;
+package com.nbossard.packlist.process.saving;
 
 import android.test.InstrumentationTestCase;
 
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.saving.ISavingModule;
-import com.nbossard.packlist.process.saving.SavingFactory;
 
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -44,6 +42,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
 //
 
 // *********************** METHODS **************************************************************************
+
     public void setUp() throws Exception {
         super.setUp();
         mTestTrip1 =

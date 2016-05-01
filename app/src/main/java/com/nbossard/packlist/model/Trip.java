@@ -221,8 +221,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
-        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
 
     /**
@@ -251,13 +251,14 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Delete the item of provided UUID.<br>
-     *
+     * <p/>
      * Automatically updates total weight.
+     *
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
         Item toDeleteItem = null;
-        for (Item oneItem:mListItem) {
+        for (Item oneItem : mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
                 toDeleteItem = oneItem;
             }
@@ -265,9 +266,18 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
-        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
+
+    public void setTotalWeight(int parTotalWeight) {
+        mTotalWeight = parTotalWeight;
+    }
+
+    public void setPackedWeight(int parPackedWeight) {
+        mPackedWeight = parPackedWeight;
+    }
+
 
     /**
      * @return Number of days before trip, can be a negative value if trip is in the past.
@@ -298,7 +308,6 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     }
 
-
     @Override
     public final int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
@@ -312,6 +321,13 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
+    }
+
+    /**
+     * Notify this trip that one of its item has changed its packing state.
+     */
+    public final void packingChange() {
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
 
     @Override
@@ -336,13 +352,6 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
                 + ", mNote=" + mNote
                 + ", mListItem=" + mListItem
                 + '}';
-    }
-
-    /**
-     * Notify this trip that one of its item has changed its packing state.
-     */
-    public final void packingChange() {
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
     }
 
     // *********************** PRIVATE METHODS **************************************************************
