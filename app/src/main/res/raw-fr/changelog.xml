@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xx mai 2016"
         versionName="0.x">
+        <changelogtext>NEW : ISS#27 export d'un voyage</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="26 avril 2016"
