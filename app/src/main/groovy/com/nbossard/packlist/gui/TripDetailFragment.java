@@ -44,6 +44,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
@@ -331,9 +332,10 @@ public class TripDetailFragment extends Fragment {
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__sort:
-                mListItemAdapter.setSortMode(SortModes.PACKED);
+                SortModes curSortMode = mListItemAdapter.getSortMode();
+                curSortMode = curSortMode.next();
                 mListItemAdapter.notifyDataSetChanged();
-                // informUserOfSortingMode(SortModes.PACKED);
+                Toast.makeText(TripDetailFragment.this.getActivity(), "Sortin mode is now " + curSortMode, Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

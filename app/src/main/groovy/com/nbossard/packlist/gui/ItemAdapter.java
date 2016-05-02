@@ -29,8 +29,11 @@ import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ItemComparatorAdditionDate;
+import com.nbossard.packlist.model.ItemComparatorPacking;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -78,7 +81,7 @@ class ItemAdapter extends BaseAdapter {
     /**
      * User selected item sort mode.
      */
-    private SortModes mSortMode;
+    private SortModes mSortMode = SortModes.DEFAULT;
 
     /**
      * Items to be displayed in the list.
@@ -111,9 +114,13 @@ class ItemAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
 
-        if (mSortMode == SortModes.PACKED) {
-            Collections.sort(mItemList);
+        Comparator<? super Item> itemComparator = null;
+        if (mSortMode == SortModes.DEFAULT) {
+            itemComparator = new ItemComparatorAdditionDate();
+        } else if (mSortMode == SortModes.UNPACKED_FIRST) {
+            itemComparator = new ItemComparatorPacking();
         }
+        Collections.sort(mItemList, itemComparator);
 
         super.notifyDataSetChanged();
     }
@@ -168,7 +175,20 @@ class ItemAdapter extends BaseAdapter {
         return parConvertView;
     }
 
-    public void setSortMode(SortModes parSortMode) {
+    /**
+     * Set current items sorting mode.
+     *
+     * @param parSortMode new sorting mode to use
+     */
+    public void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
+
+    /**
+     * Get current items sorting mode.
+     */
+    public SortModes getSortMode() {
+        return mSortMode;
+    }
+
 }

@@ -17,39 +17,24 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.model;
 
-/*
-@startuml
-    enum com.nbossard.packlist.gui.SortModes {
-    }
-@enduml
- */
+import java.util.Comparator;
 
 /**
- * List of possible item sorting modes.
+ * Comparator to sort Items based on unpacked first.
  *
- * @author Created by nbossard on 22/04/16.
+ * @author Created by nbossard on 02/05/16.
  */
-public enum SortModes {
-    /**
-     * Default (no) sorting mode.
-     */
-    DEFAULT,
-    /**
-     * first all unpacked then all packed items.
-     */
-    UNPACKED_FIRST;
-
-    /**
-     * Used for computing next sorting mode.
-     */
-    private static SortModes[] vals = values();
-
-    /**
-     * @return next sorting mode in the list.
-     */
-    public SortModes next() {
-        return vals[(this.ordinal() + 1) % vals.length];
+public class ItemComparatorAdditionDate implements Comparator<Item> {
+    @Override
+    public int compare(final Item parItem, final Item parAnother) {
+        int res = 0;
+        if (parItem.getAdditionDate().before(parAnother.getAdditionDate())) {
+            res = -1;
+        } else {
+            res = 1;
+        }
+        return res;
     }
 }

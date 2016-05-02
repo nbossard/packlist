@@ -33,13 +33,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 
 /**
  * An item to take in a trip.
  * @author Created by nbossard on 17/01/16.
  */
-public class Item implements Serializable, Cloneable, Comparable<Item> {
+public class Item implements Serializable, Cloneable {
 
 // *********************** FIELDS *************************************************************************
 
@@ -57,6 +58,11 @@ public class Item implements Serializable, Cloneable, Comparable<Item> {
 
     /** Has this item been packed already. true=yes, false=no. */
     private boolean mIsPacked;
+
+    /**
+     * Date of addition of this item.
+     */
+    private Date mAdditionDate;
 
 // *********************** METHODS **************************************************************************
 
@@ -77,6 +83,7 @@ public class Item implements Serializable, Cloneable, Comparable<Item> {
         this();
         setTripUUID(parTrip.getUUID());
         setName(parName);
+        mAdditionDate = new Date();
     }
 
     /**
@@ -151,15 +158,8 @@ public class Item implements Serializable, Cloneable, Comparable<Item> {
         return mTripUUID;
     }
 
-    @Override
-    public int compareTo(final Item parAnother) {
-        int res = 0;
-        if (!this.isPacked() && parAnother.isPacked()) {
-            res = -1;
-        } else if (this.isPacked() && !parAnother.isPacked()) {
-            res = 1;
-        }
-        return res;
+    public Date getAdditionDate() {
+        return mAdditionDate;
     }
 
     @Override
