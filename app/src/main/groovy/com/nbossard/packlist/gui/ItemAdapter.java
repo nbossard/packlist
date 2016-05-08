@@ -168,7 +168,12 @@ class ItemAdapter extends BaseAdapter {
         return parConvertView;
     }
 
-    public void setSortMode(SortModes parSortMode) {
+    /**
+     * Set user selected item sort mode.
+     *
+     * @param parSortMode new sorting mode
+     */
+    public final void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
 }

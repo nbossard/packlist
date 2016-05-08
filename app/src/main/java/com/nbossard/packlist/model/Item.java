@@ -152,7 +152,7 @@ public class Item implements Serializable, Cloneable, Comparable<Item> {
     }
 
     @Override
-    public int compareTo(final Item parAnother) {
+    public final int compareTo(@NonNull final Item parAnother) {
         int res = 0;
         if (!this.isPacked() && parAnother.isPacked()) {
             res = -1;
