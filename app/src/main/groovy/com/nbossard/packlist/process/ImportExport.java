@@ -29,6 +29,8 @@ import com.nbossard.packlist.model.TripFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.parseInt;
+
 //CHECKSTYLE:OFF: LineLength
 /*
 @startuml
@@ -98,7 +100,7 @@ public class ImportExport {
                 }
 
                 Item newItem = new Item(parTrip, name);
-                newItem.setWeight(Integer.valueOf(weightStr));
+                newItem.setWeight(parseInt(weightStr));
                 parTrip.addItem(newItem);
             }
         }

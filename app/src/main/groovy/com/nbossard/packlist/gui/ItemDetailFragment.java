@@ -36,6 +36,8 @@ import com.nbossard.packlist.model.Item;
 
 import hugo.weaving.DebugLog;
 
+import static java.lang.Integer.parseInt;
+
 /*
  * @startuml
  * class com.nbossard.packlist.gui.ItemDetailFragment {
@@ -69,7 +71,7 @@ public class ItemDetailFragment extends Fragment {
 
             // update item
             mItem.setName(mNameEdit.getText().toString());
-            mItem.setWeight(Integer.valueOf(mWeightEdit.getText().toString()));
+            mItem.setWeight(parseInt(mWeightEdit.getText().toString()));
 
             // asking supporting activity to update item
             mIHostingActivity.updateItem(mItem);
