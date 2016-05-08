@@ -94,7 +94,7 @@ public class ImportExport {
                     name = m.group(1).trim();
                     weightStr = m.group(2);
                 } else {
-                    // 2nd try, all xonsidered as name without weight
+                    // 2nd try, the whole block is considered as name without weight
                     name = oneLine.trim();
                     weightStr = "0";
                 }
