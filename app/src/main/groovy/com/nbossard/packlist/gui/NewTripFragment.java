@@ -206,7 +206,7 @@ public class NewTripFragment extends Fragment {
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
      * @param parTripId identifier of trip to be displayed
-     * @return a NewTripFragment with accurate arguments
+     * @return a NewTripFragment called with accurate arguments
      */
     public static NewTripFragment newInstance(final UUID parTripId) {
         NewTripFragment f = new NewTripFragment();

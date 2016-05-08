@@ -107,7 +107,7 @@ public class ItemDetailFragment extends Fragment {
 
     /**
      * Method for creating a new DetailFragment and insuring that right bundle is provided.
-     * @param parItem item tp be displayed
+     * @param parItem item to be displayed
      * @return a new DetailFragment.
      */
     @DebugLog
