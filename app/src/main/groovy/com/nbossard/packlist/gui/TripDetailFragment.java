@@ -105,6 +105,7 @@ public class TripDetailFragment extends Fragment {
     private Button mAddItemButton;
 
     /** Add detailed item button. */
+    @SuppressWarnings("FieldCanBeLocal")
     private Button mAddDetailedItemButton;
 
     // *********************** LISTENERS ********************************************************************
@@ -202,6 +203,7 @@ public class TripDetailFragment extends Fragment {
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
      * @param parTrip trip to be displayed
+     * @return a TripDetailFragment called with accurate arguments
      */
     public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
@@ -273,11 +275,11 @@ public class TripDetailFragment extends Fragment {
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
 
-        // auto click on button
+        // auto click on button if keyboard "enter" pressed
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
             @DebugLog
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onEditorAction(final TextView v, final int actionId, final KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_GO) {
                     mAddItemButton.performClick();
@@ -290,7 +292,7 @@ public class TripDetailFragment extends Fragment {
         final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 onClickEditTrip();
             }
         });
@@ -301,13 +303,13 @@ public class TripDetailFragment extends Fragment {
 
     @DebugLog
     @Override
-    public void onDetach() {
+    public final void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.menu_trip_detail, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
