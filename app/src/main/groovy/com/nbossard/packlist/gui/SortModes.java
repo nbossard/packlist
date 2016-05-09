@@ -33,13 +33,17 @@ package com.nbossard.packlist.gui;
  */
 public enum SortModes {
     /**
-     * Default (no) sorting mode.
+     * Default (no) sorting mode, in fact sorted by addition date .
      */
     DEFAULT,
     /**
      * first all unpacked then all packed items.
      */
-    UNPACKED_FIRST;
+    UNPACKED_FIRST,
+    /**
+     * first all unpacked then all packed items.
+     */
+    ALPHABETICAL;
 
     /**
      * Used for computing next sorting mode.

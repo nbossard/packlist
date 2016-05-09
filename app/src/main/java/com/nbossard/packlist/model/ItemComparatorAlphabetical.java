@@ -22,21 +22,13 @@ package com.nbossard.packlist.model;
 import java.util.Comparator;
 
 /**
- * Comparator to sort Items based on unpacked first.
+ * Comparator to sort Items based on alphabetical order.
  *
  * @author Created by nbossard on 02/05/16.
  */
-public class ItemComparatorAdditionDate implements Comparator<Item> {
+public class ItemComparatorAlphabetical implements Comparator<Item> {
     @Override
     public final int compare(final Item parItem, final Item parAnother) {
-        int res;
-        if (parItem.getAdditionDate() == null || parAnother.getAdditionDate() == null) {
-            res = 0;
-        } else if (parItem.getAdditionDate().before(parAnother.getAdditionDate())) {
-            res = -1;
-        } else {
-            res = 1;
-        }
-        return res;
+        return parItem.getName().compareTo(parAnother.getName());
     }
 }

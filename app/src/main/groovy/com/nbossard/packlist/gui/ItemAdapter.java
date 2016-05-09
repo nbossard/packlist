@@ -30,11 +30,14 @@ import android.widget.TextView;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ItemComparatorAdditionDate;
+import com.nbossard.packlist.model.ItemComparatorAlphabetical;
 import com.nbossard.packlist.model.ItemComparatorPacking;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import hugo.weaving.DebugLog;
 
 /*
 @startuml
@@ -119,6 +122,8 @@ class ItemAdapter extends BaseAdapter {
             itemComparator = new ItemComparatorAdditionDate();
         } else if (mSortMode == SortModes.UNPACKED_FIRST) {
             itemComparator = new ItemComparatorPacking();
+        } else if (mSortMode == SortModes.ALPHABETICAL) {
+            itemComparator = new ItemComparatorAlphabetical();
         }
         Collections.sort(mItemList, itemComparator);
 
@@ -180,12 +185,14 @@ class ItemAdapter extends BaseAdapter {
      *
      * @param parSortMode new sorting mode to use
      */
+    @DebugLog
     public void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
 
     /**
      * Get current items sorting mode.
+     * @return current sorting mode
      */
     public SortModes getSortMode() {
         return mSortMode;

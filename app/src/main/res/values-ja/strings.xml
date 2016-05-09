@@ -80,6 +80,10 @@
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Share</string>
+    <string name="sorting_mode">Sorting mode is now %s.</string>
+    <string name="sorting_mode_default">default</string>
+    <string name="sorting_mode_unpacked_first">unpacked first</string>
+    <string name="sorting_mode_alphabetical">alphabetical order</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>

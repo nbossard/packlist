@@ -335,9 +335,12 @@ public class TripDetailFragment extends Fragment {
                 break;
             case R.id.action_trip__sort:
                 SortModes curSortMode = mListItemAdapter.getSortMode();
-                curSortMode = curSortMode.next();
+                SortModes newSortMode = curSortMode.next();
+                mListItemAdapter.setSortMode(newSortMode);
                 mListItemAdapter.notifyDataSetChanged();
-                Toast.makeText(TripDetailFragment.this.getActivity(), "Sortin mode is now " + curSortMode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TripDetailFragment.this.getActivity(),
+                        String.format(getString(R.string.sorting_mode), getReadableName(newSortMode)),
+                        Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -371,6 +374,29 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Get a human readable and localized name of sorting.
+     *
+     * @param parNewSortMode sorting mode to provide corresponding string
+     * @return a human readable and localized name of sorting.
+     */
+    private String getReadableName(final SortModes parNewSortMode) {
+        String res;
+        switch (parNewSortMode) {
+            case UNPACKED_FIRST:
+                res = getString(R.string.sorting_mode_unpacked_first);
+                break;
+            case ALPHABETICAL:
+                res = getString(R.string.sorting_mode_alphabetical);
+                break;
+            case DEFAULT:
+            default:
+                res = getString(R.string.sorting_mode_default);
+                break;
+        }
+        return res;
+    }
 
 
     /**
