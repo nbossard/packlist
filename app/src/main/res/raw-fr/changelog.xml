@@ -28,6 +28,7 @@
         changeDate="xx mai 2016"
         versionName="0.x">
         <changelogtext>NEW : ISS#27 export d'un voyage</changelogtext>
+        <changelogtext>NEW : amélioration tri des items</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="26 avril 2016"

@@ -44,6 +44,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
@@ -333,9 +334,13 @@ public class TripDetailFragment extends Fragment {
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__sort:
-                mListItemAdapter.setSortMode(SortModes.PACKED);
+                SortModes curSortMode = mListItemAdapter.getSortMode();
+                SortModes newSortMode = curSortMode.next();
+                mListItemAdapter.setSortMode(newSortMode);
                 mListItemAdapter.notifyDataSetChanged();
-                // informUserOfSortingMode(SortModes.PACKED);
+                Toast.makeText(TripDetailFragment.this.getActivity(),
+                        String.format(getString(R.string.sorting_mode), getReadableName(newSortMode)),
+                        Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -369,6 +374,29 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Get a human readable and localized name of sorting.
+     *
+     * @param parNewSortMode sorting mode to provide corresponding string
+     * @return a human readable and localized name of sorting.
+     */
+    private String getReadableName(final SortModes parNewSortMode) {
+        String res;
+        switch (parNewSortMode) {
+            case UNPACKED_FIRST:
+                res = getString(R.string.sorting_mode_unpacked_first);
+                break;
+            case ALPHABETICAL:
+                res = getString(R.string.sorting_mode_alphabetical);
+                break;
+            case DEFAULT:
+            default:
+                res = getString(R.string.sorting_mode_default);
+                break;
+        }
+        return res;
+    }
 
 
     /**

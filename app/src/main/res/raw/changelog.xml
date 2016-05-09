@@ -28,6 +28,7 @@
         changeDate="xxth may 2016"
         versionName="0.x">
         <changelogtext>NEW : ISS#27 export to readable format</changelogtext>
+        <changelogtext>NEW : improving sorting of items</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="26th april 2016"
