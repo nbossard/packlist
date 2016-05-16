@@ -54,6 +54,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     /**
      * Log tag.
      */
+    @SuppressWarnings("unused")
     private static final String TAG = Trip.class.getName();
 
     // For better code readability
@@ -270,11 +271,21 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
 
-    public void setTotalWeight(int parTotalWeight) {
+    /**
+     * Updating of total weight.
+     *
+     * @param parTotalWeight the new total weight in grams.
+     */
+    private void setTotalWeight(final int parTotalWeight) {
         mTotalWeight = parTotalWeight;
     }
 
-    public void setPackedWeight(int parPackedWeight) {
+    /**
+     * Updating of packed weight.
+     *
+     * @param parPackedWeight the new packed weight in grams.
+     */
+    private void setPackedWeight(final int parPackedWeight) {
         mPackedWeight = parPackedWeight;
     }
 
@@ -290,10 +301,10 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
 
-        long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
-        return res;
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
 
+    //CHECKSTYLE : BEGIN GENERATED CODE
     @Override
     public final boolean equals(final Object parO) {
         if (this == parO) return true;
@@ -315,6 +326,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         result = 31 * result + (mEndDate != null ? mEndDate.hashCode() : 0);
         return result;
     }
+
+    //CHECKSTYLE : END GENERATED CODE
 
     @Override
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
