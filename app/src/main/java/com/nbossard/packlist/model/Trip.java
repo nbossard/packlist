@@ -62,12 +62,12 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     /**
      * Count weight of all items.
      */
-    public static final boolean PACKED_ITEMS_ONLY = true;
+    private static final boolean PACKED_ITEMS_ONLY = true;
 
     /**
      * Count weight of all packed items only.
      */
-    public static final boolean ALL_ITEMS = false;
+    private static final boolean ALL_ITEMS = false;
 
 
 // *********************** FIELDS *************************************************************************
@@ -352,7 +352,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
+        for (Item item : getListOfItems()) {
+            clonedTrip.addItem(item.clone());
+        }
         return clonedTrip;
     }
 
@@ -378,6 +380,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     private int recomputeTotalWeight(final boolean parPackedOnly) {
         int resTotalWeight = 0;
         for (Item item : mListItem) {
+            //noinspection ConstantConditions
             if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
                 resTotalWeight += item.getWeight();
             }
