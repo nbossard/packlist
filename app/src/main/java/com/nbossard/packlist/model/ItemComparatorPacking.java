@@ -28,7 +28,7 @@ import java.util.Comparator;
  */
 public class ItemComparatorPacking implements Comparator<Item> {
     @Override
-    public int compare(final Item parItem, final Item parAnother) {
+    public final int compare(final Item parItem, final Item parAnother) {
         int res = 0;
         if (!parItem.isPacked() && parAnother.isPacked()) {
             res = -1;
