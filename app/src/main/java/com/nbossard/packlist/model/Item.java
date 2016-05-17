@@ -158,7 +158,11 @@ public class Item implements Serializable, Cloneable {
         return mTripUUID;
     }
 
-    public Date getAdditionDate() {
+    /**
+     * Getter for addition date of this item.
+     * @return the addition date of this item, will be used by default sorting mode
+     */
+    public final Date getAdditionDate() {
         return mAdditionDate;
     }
 
