@@ -28,6 +28,8 @@ package com.nbossard.packlist.model;
         String mNote
 
         addItem()
+        deleteItem(UUID)
+        unpackAll()
     }
 @enduml
  */
@@ -269,6 +271,15 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         }
         setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
         setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
+    }
+
+    /**
+     * unpack all items of this trip.
+     */
+    public final void unpackAll() {
+        for (Item oneItem : mListItem) {
+            oneItem.setPacked(false);
+        }
     }
 
     /**

@@ -185,6 +185,7 @@ public class PrefsSavingModule implements ISavingModule {
             try {
                 Trip clonedTrip = tripToClone.clone();
                 clonedTrip.setName(clonedTrip.getName() + " (cloned)");
+                clonedTrip.unpackAll();
                 prevSavedTrips.add(clonedTrip);
             } catch (CloneNotSupportedException cnse) {
                 Log.e(TAG, "cloneTrip: This should never occur : " + cnse);

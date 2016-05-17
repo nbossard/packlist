@@ -43,6 +43,7 @@
     <string name="action__about">About</string>
     <string name="action_trip__sort">Sort</string>
     <string name="action_trip__import">Import text file</string>
+    <string name="action_trip__unpack_all">unpack all items</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>

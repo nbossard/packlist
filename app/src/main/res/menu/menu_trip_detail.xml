@@ -22,16 +22,22 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_trip__share"
+        android:icon="@android:drawable/ic_menu_share"
         android:title="@string/action_trip__share"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_share"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_trip__sort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/action_trip__sort"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_sort_by_size"/>
-    <item android:id="@+id/action_trip__import_txt"
-          android:title="@string/action_trip__import"
-          app:showAsAction="ifRoom"
-          android:icon="@android:drawable/ic_menu_add"/>
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_trip__import_txt"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/action_trip__import"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_trip__unpack_all"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="@string/action_trip__unpack_all"
+        app:showAsAction="ifRoom"/>
 </menu>

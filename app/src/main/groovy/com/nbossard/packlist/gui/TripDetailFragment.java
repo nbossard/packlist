@@ -333,6 +333,10 @@ public class TripDetailFragment extends Fragment {
             case R.id.action_trip__import_txt:
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
+            case R.id.action_trip__unpack_all:
+                mRetrievedTrip.unpackAll();
+                mListItemAdapter.notifyDataSetChanged();
+                break;
             case R.id.action_trip__sort:
                 SortModes curSortMode = mListItemAdapter.getSortMode();
                 SortModes newSortMode = curSortMode.next();
