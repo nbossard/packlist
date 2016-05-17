@@ -271,6 +271,12 @@ public class MainActivity
     @Override
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
+        // ensure we are not adding on top of not empty backstack
+        FragmentManager fm = getSupportFragmentManager();
+        while (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStackImmediate();
+        }
+
         // Create fragment and give it an argument specifying the article it should show
         mTripDetailFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -283,8 +289,7 @@ public class MainActivity
         // Commit the transaction
         transaction.commit();
 
-        // updating FAB action
-        mFab.hide();
+        // No need of updating (hiding) FAB action as this is managed in onAttach
 
         return mTripDetailFragment;
     }

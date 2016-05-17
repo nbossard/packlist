@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
@@ -213,6 +214,15 @@ public class TripDetailFragment extends Fragment {
         return f;
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Management of FAB, forcing hiding of FAB, see also onDetach
+        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
+        mIHostingActivity.showFABIfAccurate(false);
+    }
+
     /**
      * During creation, if arguments have been supplied to the fragment
      * then parse those out.
@@ -220,7 +230,6 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         if (args != null) {
