@@ -20,6 +20,12 @@
 package com.nbossard.packlist.model;
 
 import java.util.Comparator;
+/*
+@startuml
+    class com.nbossard.packlist.model.ItemComparatorAlphabetical {
+    }
+@enduml
+ */
 
 /**
  * Comparator to sort Items based on alphabetical order.

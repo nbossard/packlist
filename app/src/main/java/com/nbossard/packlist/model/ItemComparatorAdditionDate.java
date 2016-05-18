@@ -21,6 +21,13 @@ package com.nbossard.packlist.model;
 
 import java.util.Comparator;
 
+/*
+@startuml
+    class com.nbossard.packlist.model.ItemComparatorAdditionDate {
+    }
+@enduml
+ */
+
 /**
  * Comparator to sort Items based on unpacked first.
  *

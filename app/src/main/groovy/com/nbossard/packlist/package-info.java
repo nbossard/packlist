@@ -45,6 +45,13 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
+
+    com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAdditionDate
+    com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAlphabetical
+    com.nbossard.packlist.gui.ItemAdapter ..>  com.nbossard.packlist.model.ItemComparatorPacking
+    com.nbossard.packlist.gui.ItemAdapter --> "*" com.nbossard.packlist.model.Item
+
+    com.nbossard.packlist.gui.TripAdapter --> "*" com.nbossard.packlist.model.Trip
 @enduml
 
 */
