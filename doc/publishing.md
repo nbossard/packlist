@@ -1,12 +1,17 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - update plantuml global schema
  - run all tests
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle
  - close date in changelog.xml
  - update readme.md
- - Create a new folder in pub/res_pub
+ - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
+ - create or update whats_new.md based on changelog.xml contents
+ - delete "latest" folder
+ - Rename "incoming" folder in pub/res_pub to "latest"
+ - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
  - change to branch master
  - git pull origin master
@@ -18,13 +23,15 @@
     - check about page
     - check what's new
     - add a new trip, add items, close and reopen
- - make new screenshots if useful
- - copy apk to pub/res_pub folder
+ - copy apk to pub/res_pub folder vx.x and latest
+ - upload screenshots to android console    
  - updload APK to android console
  - add apk and screenshots to git / commit / push
  - commit and push master
  - draft new release in github
  - [update f-droid metadata file](https://gitlab.com/fdroid/fdroiddata/blob/master/metadata/com.nbossard.packlist.txt)
+    - add "Build" block, do not remove old ones
+    - take care of trailing spaces
     - field "Current Version"
     - field "Current Version Code"
 

@@ -1,12 +1,12 @@
 @startuml
 
-    title Aide mémoire for (Plant)UML
+    title Aide mémoire for (Plant)UML, diagramme de classe
 
-    interface IHSSServiceListener
+    interface IContentDownloader
 
-    Content <|-- ContentSerie : "java extends"
-    IHSSServiceListener <|.. ContentDownloaderLabgency : "java implements" <|..
-    g <.. H : implémentation temporaire\n (pas un attribut)
+    Content <|-- ContentSerie : réalisation de spécialisation\n(aka héritage)\nen java mot clé 'extends'.\nsyntaxe : \n<|--
+    IContentDownloader <|.. ContentDownloaderLabgency : Relation de réalisation\njava implements\nsyntaxe :\n<|..
+    g <.. H : Relation de dépendance\nimplémentation temporaire\n (pas un attribut)\n syntaxe :\n<..
 
     ' commentaire, nom des couleurs http://www.w3schools.com/HTML/html_colornames.asp
     Package equivalent #LightCoral {
@@ -14,17 +14,29 @@
             String name;
         }
         Person2 "*" *-- "1" String2 : name
+        Note top of Person2:  La composition\nest une agrégation forte\nsi l'agrégat est détruit ses composants le sont aussi.\nA une instance de composant ne peut être liée qu'à un seul agrégat
+        Note top of Person2:  syntaxe :\n*--
+
+        note "notations équivalentes au\nniveau du code" as equivalent
+        Person2 . equivalent
+        equivalent . Person
     }
 
-    C o-- D : aggregation
+    Email "*" o-- "1..n" Destinataire : aggregation\n syntaxe :\no--
+    Email "1" o-- "0..1" Titre
+    Email "1" o-- "0..1" Texte
+    Note top of Email : Aggregation\nun élément agrégé peut être partagé\nUne instance d'élément agrégé peut exister sans agrégat
 
-    E <-- F : navigabilité \nunidirectionelle
-    note on link #red: typically an "inject"
-    note right of F #RED : note on class
+    M <-- N : association\n à navigabilité unidirectionelle,\n typiquement un atribut, un inject.\n syntaxe  : \n<--
 
-    K +-- L : innerclass
 
-    I<.J : ligne horizontale
+    E <-- F
+    note on link #red: note sur une lien\n syntaxe : \nnote on link #RED
+    note right of F #RED : note sur une classe\n syntaxe : \nnote right of F #RED
+
+    K +-- L : innerclass\nsyntaxe :\n +--
+
+    I<.J : ligne horizontale\n syntaxe : \nun seul trait ou point "<-"au lieu de deux
 
     ' ---- Hide a class : ----
     class Z

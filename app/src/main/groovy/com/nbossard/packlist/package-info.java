@@ -38,10 +38,20 @@ package com.nbossard.packlist;
     package com.nbossard.packlist {
         !include gui/package-info.java
         !include ../../../../java/com/nbossard/packlist/model/package-info.java
-        !include process/saving/package-info.java
+        !include process/package-info.java
+
+        !include PackListApp.java
     }
+
     com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
+
+    com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAdditionDate
+    com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAlphabetical
+    com.nbossard.packlist.gui.ItemAdapter ..>  com.nbossard.packlist.model.ItemComparatorPacking
+    com.nbossard.packlist.gui.ItemAdapter --> "*" com.nbossard.packlist.model.Item
+
+    com.nbossard.packlist.gui.TripAdapter --> "*" com.nbossard.packlist.model.Trip
 @enduml
 
 */

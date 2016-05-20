@@ -46,7 +46,8 @@ import java.util.List;
     class com.nbossard.packlist.gui.TripListFragment {
     }
 
-    com.nbossard.packlist.gui.TripListFragment ..> com.nbossard.packlist.gui.ITripListFragmentActivity
+    com.nbossard.packlist.gui.TripListFragment --> com.nbossard.packlist.gui.ITripListFragmentActivity
+    com.nbossard.packlist.gui.TripAdapter <.. com.nbossard.packlist.gui.TripListFragment
 
 @enduml
  */
@@ -109,7 +110,8 @@ public class TripListFragment extends Fragment {
      * Opens the contextual action bar.
      */
     @NonNull
-    private final AdapterView.OnItemLongClickListener mLongClickListener = new AdapterView.OnItemLongClickListener() {
+    private final AdapterView.OnItemLongClickListener mLongClickListener
+            = new AdapterView.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
@@ -199,12 +201,13 @@ public class TripListFragment extends Fragment {
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
     }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
      * Populate list with data in {@link ISavingModule}.
      */
-    public void populateList() {
+    public final void populateList() {
         mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
 

@@ -20,6 +20,7 @@
 package com.nbossard.packlist.model;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.nbossard.packlist.R;
@@ -99,16 +100,24 @@ public class TripFormatter
     /**
      * The trip formatted weight.
      * @param parWeight weight in grams to be formatted for display, an integer
-     * @return formatted weight
+     * @param parPackedWeight weight of packed items in grams to be formatted for display, an integer
+     * @return formatted string including weights
      */
-    public final String getFormattedWeight(final int parWeight, final int parPackedWeight) {
+    public final
+    @Nullable
+    String getFormattedWeight(final int parWeight, final int parPackedWeight) {
 
         Log.d(TAG, "getFormattedWeight() called with: "
                 + "parWeight = [" + parWeight + "]"
                 + ", parPackedWeight = [" + parPackedWeight + "]");
-
-        String res = String.format(mContext.getString(R.string.trip_detail__before_weight__label),
-                parWeight, parPackedWeight);
+        String res;
+        if (mContext != null) {
+            res = String.format(mContext.getString(R.string.trip_detail__before_weight__label),
+                    parWeight, parPackedWeight);
+        } else {
+            Log.w(TAG, "getFormattedWeight() found a null context, VERY STRANGE.");
+            res = null;
+        }
         Log.d(TAG, "getFormattedWeight() returned: " + res);
         return res;
     }

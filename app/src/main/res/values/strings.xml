@@ -43,6 +43,7 @@
     <string name="action__about">About</string>
     <string name="action_trip__sort">Sort</string>
     <string name="action_trip__import">Import text file</string>
+    <string name="action_trip__unpack_all">unpack all items</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
@@ -83,6 +84,11 @@
     <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
+    <string name="action_trip__share">Share</string>
+    <string name="sorting_mode">Sorting mode is now %s.</string>
+    <string name="sorting_mode_default">default</string>
+    <string name="sorting_mode_unpacked_first">unpacked first</string>
+    <string name="sorting_mode_alphabetical">alphabetical order</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>
@@ -100,7 +106,7 @@
     <string name="item_detail__submit">Update</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item perline.\n\ni.e.:\nGuide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->

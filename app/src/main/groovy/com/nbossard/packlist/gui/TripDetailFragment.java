@@ -19,11 +19,14 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,12 +45,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
+import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import hugo.weaving.DebugLog;
@@ -56,7 +61,7 @@ import hugo.weaving.DebugLog;
     class com.nbossard.packlist.gui.TripDetailFragment {
     }
     com.nbossard.packlist.gui.ItemAdapter <-- com.nbossard.packlist.gui.TripDetailFragment
-    com.nbossard.packlist.gui.TripDetailFragment ..> com.nbossard.packlist.gui.ITripDetailFragmentActivity
+    com.nbossard.packlist.gui.TripDetailFragment --> com.nbossard.packlist.gui.ITripDetailFragmentActivity
 
 @enduml
  */
@@ -101,6 +106,7 @@ public class TripDetailFragment extends Fragment {
     private Button mAddItemButton;
 
     /** Add detailed item button. */
+    @SuppressWarnings("FieldCanBeLocal")
     private Button mAddDetailedItemButton;
 
     // *********************** LISTENERS ********************************************************************
@@ -198,6 +204,7 @@ public class TripDetailFragment extends Fragment {
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
      * @param parTrip trip to be displayed
+     * @return a TripDetailFragment called with accurate arguments
      */
     public static TripDetailFragment newInstance(final Trip parTrip) {
         TripDetailFragment f = new TripDetailFragment();
@@ -207,6 +214,15 @@ public class TripDetailFragment extends Fragment {
         return f;
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Management of FAB, forcing hiding of FAB, see also onDetach
+        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
+        mIHostingActivity.showFABIfAccurate(false);
+    }
+
     /**
      * During creation, if arguments have been supplied to the fragment
      * then parse those out.
@@ -214,7 +230,6 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         if (args != null) {
@@ -269,11 +284,11 @@ public class TripDetailFragment extends Fragment {
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
 
-        // auto click on button
+        // auto click on button if keyboard "enter" pressed
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
             @DebugLog
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onEditorAction(final TextView v, final int actionId, final KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_GO) {
                     mAddItemButton.performClick();
@@ -286,7 +301,7 @@ public class TripDetailFragment extends Fragment {
         final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 onClickEditTrip();
             }
         });
@@ -297,13 +312,13 @@ public class TripDetailFragment extends Fragment {
 
     @DebugLog
     @Override
-    public void onDetach() {
+    public final void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.menu_trip_detail, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -313,12 +328,32 @@ public class TripDetailFragment extends Fragment {
     {
         switch (item.getItemId())
         {
+            case R.id.action_trip__share:
+                ImportExport port = new ImportExport();
+                Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setText(port.toSharableString(getActivity(), mRetrievedTrip))
+                        .getIntent();
+                // Avoid ActivityNotFoundException
+                if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(shareIntent);
+                }
+                break;
             case R.id.action_trip__import_txt:
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
-            case R.id.action_trip__sort:
-                mListItemAdapter.setSortMode(SortModes.PACKED);
+            case R.id.action_trip__unpack_all:
+                mRetrievedTrip.unpackAll();
                 mListItemAdapter.notifyDataSetChanged();
+                break;
+            case R.id.action_trip__sort:
+                SortModes curSortMode = mListItemAdapter.getSortMode();
+                SortModes newSortMode = curSortMode.next();
+                mListItemAdapter.setSortMode(newSortMode);
+                mListItemAdapter.notifyDataSetChanged();
+                Toast.makeText(TripDetailFragment.this.getActivity(),
+                        String.format(getString(R.string.sorting_mode), getReadableName(newSortMode)),
+                        Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -352,6 +387,30 @@ public class TripDetailFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Get a human readable and localized name of sorting.
+     *
+     * @param parNewSortMode sorting mode to provide corresponding string
+     * @return a human readable and localized name of sorting.
+     */
+    private String getReadableName(final SortModes parNewSortMode) {
+        String res;
+        switch (parNewSortMode) {
+            case UNPACKED_FIRST:
+                res = getString(R.string.sorting_mode_unpacked_first);
+                break;
+            case ALPHABETICAL:
+                res = getString(R.string.sorting_mode_alphabetical);
+                break;
+            case DEFAULT:
+            default:
+                res = getString(R.string.sorting_mode_default);
+                break;
+        }
+        return res;
+    }
+
 
     /**
      * Handle click on edit trip button.

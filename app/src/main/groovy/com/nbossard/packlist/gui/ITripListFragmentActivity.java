@@ -43,6 +43,7 @@ interface ITripListFragmentActivity extends IMainActivity {
      * Ask Main activity to open detail fragment to display Trip of provided UUID.
      *
      * @param parTrip a trip object to be displayed
+     * @return the just opened TripDetailFragment
      */
     TripDetailFragment openTripDetailFragment(final Trip parTrip);
 

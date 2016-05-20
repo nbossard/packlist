@@ -39,8 +39,9 @@
     <string name="action__whatsnew">Quoi de neuf</string>
     <string name="action__send_logs">Envoyer un rapport</string>
     <string name="action__about">A propos</string>
-    <string name="action_trip__import">Importer un fichier texte</string>
     <string name="action_trip__sort">Trier</string>
+    <string name="action_trip__import">Importer un fichier texte</string>
+    <string name="action_trip__unpack_all">dépaqueter tous les items</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
@@ -80,6 +81,11 @@
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;packed).</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
+    <string name="action_trip__share">Partager</string>
+    <string name="sorting_mode">Les articles sont désormais triés par %s.</string>
+    <string name="sorting_mode_default">défaut</string>
+    <string name="sorting_mode_unpacked_first">empaquetés ou non</string>
+    <string name="sorting_mode_alphabetical">ordre alphabetique</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
@@ -98,7 +104,7 @@
     <string name="item_detail__submit">modifier</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse.\n\nUn objet par ligne.</string>
+    <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>
     <string name="mass_import__import__button">Importer</string>
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 

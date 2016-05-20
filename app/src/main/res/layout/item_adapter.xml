@@ -52,9 +52,10 @@
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_toEndOf="@id/ia__packed"
         android:layout_toRightOf="@id/ia__packed"
+        android:layout_centerVertical="true"
         android:gravity="center_vertical"
         tools:text="Some beautiful big red socks very warm and very red which smell good"/>
 
