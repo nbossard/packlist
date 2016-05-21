@@ -103,8 +103,10 @@ public class uiAutomator {
 
         deleteAllTrips();
 
-        UiObject menuAbout = mDevice.findObject(new UiSelector().text("No trip planned"));
-        assertTrue(menuAbout.exists());
+        mDevice.wait(Until.findObject(By.textContains("No trip planned")), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
+        UiObject emptyListText = mDevice.findObject(new UiSelector().textContains("No trip planned"));
+        assertTrue(emptyListText.exists());
     }
 
     // Removed @Test as fully included in testOpenTrip
