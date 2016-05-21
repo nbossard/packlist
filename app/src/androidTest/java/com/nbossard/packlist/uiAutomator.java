@@ -129,6 +129,12 @@ public class uiAutomator {
         testOpenTrip();
 
         addAnItem();
+
+        addAnItemWithWeight();
+
+        //ensure wight is now displayed
+        UiObject weightSumText = mDevice.findObject(new UiSelector().textContains("more than 100g"));
+        assertTrue(weightSumText.exists());
     }
 
     // *********************** PRIVATE METHODS **************************************************************
@@ -142,6 +148,26 @@ public class uiAutomator {
         //add item
         UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("Add item"));
         saveButton.clickAndWaitForNewWindow();
+    }
+
+    private void addAnItemWithWeight() throws UiObjectNotFoundException {
+
+        //fill item name
+        UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
+        editTripName.setText("Pantalon");
+
+        //add item with weight
+        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("More"));
+        saveButton.clickAndWaitForNewWindow();
+
+        // type weight
+        UiObject editWeight = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/item_detail__weight__edit"));
+        editWeight.setText("100");
+
+        //close the window (update button)
+        UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).text("UPDATE"));
+        updateButton.clickAndWaitForNewWindow();
+
     }
 
     /**
