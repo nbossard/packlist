@@ -53,7 +53,7 @@
 
     <!-- Main page -->
     <string name="main__welcome">Here is the list of your trips, please click on one for details</string>
-    <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
+    <string name="main__no_trip_yet__label">No trip planned yet,\nclick + button below to add a new trip</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">Delete</string>
     <string name="mainact__fab_add_a_trip">Add a new trip</string>

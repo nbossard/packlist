@@ -219,7 +219,13 @@
             android:background="@color/packlist__list_background"
             android:gravity="center"
             android:visibility="gone"
+            android:orientation="vertical"
             tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_plus_one_black_24dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

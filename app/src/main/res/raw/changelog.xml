@@ -31,6 +31,7 @@
         <changelogtext>NEW : improving sorting of items</changelogtext>
         <changelogtext>NEW : ISS#31 Make a cloned trip by default all unchecked</changelogtext>
         <changelogtext>NEW : ISS#32 Uncheck all items of a trip</changelogtext>
+        <changelogtext>NEW : adding illustrations for empty lists</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="26th april 2016"

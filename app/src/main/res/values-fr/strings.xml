@@ -51,7 +51,7 @@
 
     <!-- Main page -->
     <string name="main__welcome">Voici la liste de vos voyages prévus, cliquez sur un pour voir son détail</string>
-    <string name="main__no_trip_yet__label">Pas de voyage prévu… encore, cliquez sur le bouton "+" pour ajouter un voyage.</string>
+    <string name="main__no_trip_yet__label">Pas de voyage prévu… encore,\ncliquez sur le bouton "+" pour ajouter un voyage.</string>
     <string name="action_main_cab__clone">Dupliquer</string>
     <string name="action_main_cab__delete">Supprimer</string>
     <string name="mainact__fab_add_a_trip">Ajouter un nouveau voyage</string>
