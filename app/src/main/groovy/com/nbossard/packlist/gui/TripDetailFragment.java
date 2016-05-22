@@ -216,7 +216,7 @@ public class TripDetailFragment extends Fragment {
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(final Context context) {
         super.onAttach(context);
         // Management of FAB, forcing hiding of FAB, see also onDetach
         mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
@@ -248,6 +248,7 @@ public class TripDetailFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
 
         displayTrip(mRetrievedTrip);
+        mIHostingActivity.updateTitleBar(mRetrievedTrip.getName());
 
         return mRootView;
     }

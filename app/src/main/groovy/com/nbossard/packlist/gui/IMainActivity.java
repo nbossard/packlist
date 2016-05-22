@@ -59,4 +59,12 @@ interface IMainActivity {
      * @param parShow true to show, false to hide
      */
     void showFABIfAccurate(boolean parShow);
+
+    /**
+     * Ask activity to update title bar with provided new title.
+     * This will also display homeAsUp.
+     *
+     * @param parNewTitleInTitleBar new title to be displayed in title bar
+     */
+    void updateTitleBar(String parNewTitleInTitleBar);
 }

@@ -32,6 +32,7 @@
         <changelogtext>NEW : ISS#31 un voyage cloné est par défaut décoché</changelogtext>
         <changelogtext>NEW : ISS#32 possibilité de décocher tous les items d'un voyage</changelogtext>
         <changelogtext>NEW : ajout d'illustrations pour les vues de listes vides</changelogtext>
+        <changelogtext>NEW : ajout du nom du voyage en cours dans la barre de titre</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="26 avril 2016"

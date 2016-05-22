@@ -218,6 +218,11 @@ public class MainActivityForTest
             mFab.hide();
         }
     }
+
+    @Override
+    public void updateTitleBar(String parNewTitleInTitleBar) {
+
+    }
     // ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
