@@ -47,7 +47,8 @@
         android:layout_marginRight="10dip"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:clickable="false"/>
 
     <TextView
         android:id="@+id/ia__name"
