@@ -73,11 +73,12 @@
     <!-- Detail of trip -->
     <string name="trip_detail__end_date__label">終了</string>
     <string name="trip_detail__start_date__label">開始</string>
-    <string name="trip_detail__add_item___button">アイテムを追加</string>
-    <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
     <string name="trip_detail__edit_trip">旅行を編集</string>
+    <string name="trip_detail__add_item___button">アイテムを追加</string>
+    <string name="trip_detail__add_item_detail___button">More</string>
     <string name="trip_detail__before_weight__label">weight of bag : more than  %1$dg  (%2$dg&#160;packed).</string>
+    <string name="trip_detail__new_item__access">name&#8230;</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Share</string>

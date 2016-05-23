@@ -1,6 +1,7 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
  - run all tests
  - ensure that versionCode is increased in build.gradle

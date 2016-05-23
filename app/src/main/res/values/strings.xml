@@ -36,6 +36,7 @@
     <string name="demo_changelog_title_standarddialog">Change log</string>
     <string name="about_ok">OK</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 
     <!-- Menu items -->
     <string name="action__whatsnew">What\'s new</string>
@@ -82,6 +83,7 @@
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
+    <string name="trip_detail__new_item__access">name&#8230;</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip__share">Share</string>
@@ -112,6 +114,5 @@
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
-    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 
 </resources>

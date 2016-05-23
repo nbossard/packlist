@@ -75,10 +75,12 @@
     <!-- Detail of trip -->
     <string name="trip_detail__end_date__label">au</string>
     <string name="trip_detail__start_date__label">du</string>
-    <string name="trip_detail__add_item___button">Ajouter</string>
     <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
     <string name="trip_detail__edit_trip">Modifier</string>
+    <string name="trip_detail__add_item___button">Ajouter</string>
+    <string name="trip_detail__add_item_detail___button">+ détails</string>
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;packed).</string>
+    <string name="trip_detail__new_item__access">nom&#8230;</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Partager</string>
@@ -96,7 +98,6 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
-    <string name="trip_detail__add_item_detail___button">+ détails</string>
 
     <!-- Item detail -->
     <string name="item_detail__name__label">nom</string>
@@ -106,6 +107,8 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>
     <string name="mass_import__import__button">Importer</string>
+
+    <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
 </resources>

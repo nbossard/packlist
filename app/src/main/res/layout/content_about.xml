@@ -62,7 +62,7 @@
         android:layout_height="20dip"
         android:layout_below="@+id/help__contributors"/>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/help__third_party__button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
