@@ -75,7 +75,8 @@
                 android:focusable="false"
                 android:labelFor="@+id/trip_detail__name__edit"
                 android:text="@{trip.name}"
-                tools:text="Verdun"/>
+                tools:text="Verdun"
+                tools:ignore="UnusedAttribute"/>
 
             <!-- for display of dates -->
             <LinearLayout
@@ -226,10 +227,13 @@
             android:orientation="vertical"
             tools:visibility="visible">
 
+            <!-- Setting contentDescription to null as this is image should not be read -->
+            <!-- It is just an eye-candy and content description would preferentially be text below -->
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_plus_one_black_24dp"/>
+                android:src="@drawable/ic_plus_one_black_24dp"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:layout_width="wrap_content"

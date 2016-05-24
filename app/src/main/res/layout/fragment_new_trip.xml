@@ -52,15 +52,16 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:labelFor="@+id/new_trip__name__edit"
-            android:text="@string/new_trip__name"
-            tools:text="Brest"/>
+            android:text="@string/new_trip__name"/>
 
         <EditText
             android:id="@id/new_trip__name__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
             android:inputType="text"
-            android:text="@{trip.name}"/>
+            android:text="@{trip.name}"
+            tools:text="Brest"/>
 
         <TextView
             android:id="@+id/new_trip__start_date__label"
@@ -78,14 +79,16 @@
                 android:id="@+id/new_trip__start_date__button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_date_range_black_24dp"/>
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:contentDescription="@string/new_trip__start_date_access__button"/>
 
             <TextView
                 android:id="@id/new_trip__start_date__edit"
                 android:layout_width="match_parent"
-                android:layout_height="40dip"
+                android:layout_height="@dimen/accessibility_edit_text_min_height"
                 android:layout_toLeftOf="@id/new_trip__start_date__button"
                 android:layout_toStartOf="@id/new_trip__start_date__button"
                 android:gravity="center_vertical"
@@ -110,14 +113,16 @@
                 android:id="@+id/new_trip__end_date__button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_date_range_black_24dp"/>
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:contentDescription="@string/new_trip__end_date_access__button"/>
 
             <TextView
                 android:id="@id/new_trip__end_date__edit"
                 android:layout_width="match_parent"
-                android:layout_height="40dip"
+                android:layout_height="@dimen/accessibility_edit_text_min_height"
                 android:layout_toLeftOf="@id/new_trip__end_date__button"
                 android:layout_toStartOf="@id/new_trip__end_date__button"
                 android:gravity="center_vertical"
@@ -139,6 +144,7 @@
             android:id="@id/new_trip__note__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
             android:inputType="text"
             android:text="@{trip.note}"/>
 

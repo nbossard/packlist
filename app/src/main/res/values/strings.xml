@@ -71,11 +71,14 @@
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>
+    <string name="new_trip__start_date_access__button">modify start date</string>
     <string name="new_trip__end_date">end date</string>
+    <string name="new_trip__end_date_access__button">modify end date</string>
     <string name="new_trip__note">note</string>
     <string name="new_trip__submit">let\'s go…</string>
 
     <!-- Detail of trip -->
+    <string name="trip_detail__main__titlebar">List for %1s</string>
     <string name="trip_detail__end_date__label">to</string>
     <string name="trip_detail__start_date__label">from</string>
     <string name="trip_detail__add_item___button">Add item</string>
@@ -110,6 +113,7 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item perline.\n\ni.e.:\nGuide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
+    <string name="mass_import__items__hint">type or paste here...</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>

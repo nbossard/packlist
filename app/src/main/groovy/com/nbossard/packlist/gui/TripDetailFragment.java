@@ -248,7 +248,8 @@ public class TripDetailFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
 
         displayTrip(mRetrievedTrip);
-        mIHostingActivity.updateTitleBar(mRetrievedTrip.getName());
+        mIHostingActivity.updateTitleBar(
+                String.format(getString(R.string.trip_detail__main__titlebar), mRetrievedTrip.getName()));
 
         return mRootView;
     }

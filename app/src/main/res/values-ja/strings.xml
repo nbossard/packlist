@@ -71,6 +71,7 @@
     <string name="new_trip__submit">レッツゴー…</string>
 
     <!-- Detail of trip -->
+    <string name="trip_detail__main__titlebar">List for %1s</string>
     <string name="trip_detail__end_date__label">終了</string>
     <string name="trip_detail__start_date__label">開始</string>
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
@@ -105,6 +106,9 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item perline.\n\ni.e.:\nGuide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
+    <string name="mass_import__items__hint">type or paste here…</string>
+
+    <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
     <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 

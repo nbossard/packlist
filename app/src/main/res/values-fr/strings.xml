@@ -73,6 +73,7 @@
     <string name="new_trip__submit">En voyage…</string>
 
     <!-- Detail of trip -->
+    <string name="trip_detail__main__titlebar">List for %1s</string>
     <string name="trip_detail__end_date__label">au</string>
     <string name="trip_detail__start_date__label">du</string>
     <string name="trip_detail__no_item_yet__label">Rien dans votre sac encore, utilisez le bouton ci-dessous pour ajouter</string>
@@ -107,6 +108,7 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>
     <string name="mass_import__import__button">Importer</string>
+    <string name="mass_import__items__hint">saisissez ou collez ici&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
