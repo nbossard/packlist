@@ -55,6 +55,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:contentDescription="@string/mainact__fab_add_a_trip"
-        android:src="@android:drawable/ic_input_add"/>
+        android:src="@drawable/ic_work_white_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
