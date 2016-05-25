@@ -29,7 +29,7 @@ android {
     sourceCompatibility = '1.7'
 
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     // Reminder
     // API level 14 ===> Android 4.0
@@ -50,11 +50,13 @@ android {
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
-        // 14 because of use of setTag in list
+        // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 13
         versionName "0.9"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -109,8 +111,20 @@ dependencies {
     compile 'ch.acra:acra:4.8.5'
 
     testCompile 'junit:junit:4.12'
+
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
 
+    // added because of conflict with app and test app
+    androidTestCompile 'com.android.support:support-annotations:23.4.0'
+    // added because uiautomator needs it
+    androidTestCompile 'com.android.support.test:runner:0.2'
+    androidTestCompile 'com.android.support.test:rules:0.2'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    // this addition of ui automator caused following build error :
+    // java.lang.RuntimeException: Manifest merger failed : uses-sdk:minSdkVersion 14
+    // cannot be smaller than version 18 declared in library
+    // Suggestion: use tools:overrideLibrary="android.support.test.uiautomator.v18" to force usage
+    // tools:overrideLibrary="android.support.test.uiautomator.v18"
 }
 
 // ----------------------- tool for getting build date --------
