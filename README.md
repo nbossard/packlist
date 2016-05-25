@@ -36,7 +36,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
    - very strict formatting rules
    - mandatory usage of quality plugins : checkstyle, findbugs
    - exhaustive javadoc
-   - unit testing and android testing and Robotium testing
+   - unit testing and and Robotium testing and UI automator
    - continuous integration using Travis (https://travis-ci.org/nbossard/packlist)
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation ([see project plantuml doc](doc/plantuml.md))
@@ -49,7 +49,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 ### BUT a place for experimentation of up-to-date technology
 - mix of Groovy and Java
 - material design
-- android studio IDE 2 preview
+- android studio 2.2 preview
 - vector drawables, using asset studio
 - in-app indexing
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
@@ -64,6 +64,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.9 adding export, improved sorting, unpacking all, improved accessibility
 - 0.8.1 26th april 2016, adding crash reports, bug fixing and minor changes  
 - 0.8   9th april 2016, mass import and total weight
 - 0.7.1 22th march 2016,  bug-fixing
@@ -76,7 +77,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2.1 Preview 1
+- Android Studio 2.2 Preview 1
     - git ignore plugin
     - markdown plugin (Markdown Support)
     - Checkstyle-idea
