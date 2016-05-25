@@ -346,7 +346,8 @@ public class TripDetailFragment extends Fragment {
                 break;
             case R.id.action_trip__unpack_all:
                 mRetrievedTrip.unpackAll();
-                mListItemAdapter.notifyDataSetChanged();
+                mIHostingActivity.saveTrip(mRetrievedTrip);
+                // displayTrip(); automatically called back by saveTrip
                 break;
             case R.id.action_trip__sort:
                 SortModes curSortMode = mListItemAdapter.getSortMode();
@@ -363,14 +364,11 @@ public class TripDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Display provided trip.
-     * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
-     *
-     * @param parTrip trip to be displayed
+    /**
+     * Update display of current trip.
      */
-    public final void displayTrip(final Trip parTrip) {
-
-        mRetrievedTrip = parTrip;
+    @DebugLog
+    public final void displayTrip() {
 
         // Magic of binding
         // Do not use this syntax, it will overwrite activity (we are in a fragment)
@@ -379,6 +377,18 @@ public class TripDetailFragment extends Fragment {
         mBinding.setTrip(mRetrievedTrip);
         mBinding.setTripFormatter(new TripFormatter(getContext()));
         mBinding.executePendingBindings();
+    }
+
+    /** Display provided trip.
+     * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
+     *
+     * @param parTrip trip to be displayed
+     */
+    @DebugLog
+    public final void displayTrip(final Trip parTrip) {
+
+        mRetrievedTrip = parTrip;
+        displayTrip();
     }
 
     /**
