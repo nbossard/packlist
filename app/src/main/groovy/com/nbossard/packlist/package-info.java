@@ -52,6 +52,9 @@ package com.nbossard.packlist;
     com.nbossard.packlist.gui.ItemAdapter --> "*" com.nbossard.packlist.model.Item
 
     com.nbossard.packlist.gui.TripAdapter --> "*" com.nbossard.packlist.model.Trip
+
+    com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISavingModule
+    com.nbossard.packlist.PackListApp ..> com.nbossard.packlist.process.saving.SavingFactory
 @enduml
 
 */
