@@ -31,11 +31,13 @@ public class ItemTest extends TestCase {
     private static final String ITEM_TEST_NAME = "ItemTestName";
     private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private Item mTestItem;
+    private Trip mTestTrip;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestItem = new Item(new Trip(), ITEM_TEST_NAME);
+        mTestTrip = new Trip();
+        mTestItem = new Item(mTestTrip, ITEM_TEST_NAME);
     }
 
     public void testGetName() throws Exception {
@@ -70,6 +72,13 @@ public class ItemTest extends TestCase {
         Item clonedItem = mTestItem.clone();
         assertNotNull(clonedItem.getUUID());
         assertNotSame(mTestItem.getUUID(), clonedItem.getUUID());
+    }
+
+
+    public void testGetTripUUID() throws Exception {
+        assertNotNull(mTestItem.getTripUUID());
+        assertNotNull(mTestTrip.getUUID());
+        assertTrue(mTestItem.getTripUUID().compareTo(mTestTrip.getUUID()) == 0);
     }
 
     public void testToString() throws Exception {
