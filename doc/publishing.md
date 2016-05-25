@@ -4,6 +4,8 @@
  - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
  - run all tests
+    - in "test" folder with coverage, check coverage
+    - in "androidTest" folder
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle
  - close date in changelog.xml
