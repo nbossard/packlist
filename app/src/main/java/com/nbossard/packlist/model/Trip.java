@@ -274,12 +274,13 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
-     * unpack all items of this trip.
+     * unpack all items of this trip. Update packing weight.
      */
     public final void unpackAll() {
         for (Item oneItem : mListItem) {
             oneItem.setPacked(false);
         }
+        packingChange();
     }
 
     /**
