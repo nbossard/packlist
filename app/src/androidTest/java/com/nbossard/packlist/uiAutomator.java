@@ -23,6 +23,7 @@ package com.nbossard.packlist;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.annotation.Nullable;
 import android.support.test.filters.SdkSuppress;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiDevice;
@@ -137,24 +138,63 @@ public class uiAutomator {
         assertTrue(weightSumText.exists());
     }
 
+    /**
+     * This is not really a test, more a prefilling of a device with french data for making screenshots.
+     */
+    @Test
+    public void populateWithFrenchData() throws UiObjectNotFoundException {
+        deleteAllTrips();
+        addTripTo("Londres", "Visite chez Google");
+        addTripTo("Rome", "La ville éternelle");
+        addTripTo("Dublin", "En famille");
+
+        openFirstTripInList();
+        addAnItem("Chapeau");
+        addAnItem("PC");
+        addAnItem("Brosse à dents");
+        addAnItemWithWeight("Un bon roman", "150");
+    }
+
+    /**
+     * This is not really a test, more a prefilling of a device with english data for making screenshots.
+     */
+    @Test
+    public void populateWithEnglishData() throws UiObjectNotFoundException {
+        deleteAllTrips();
+        addTripTo("London", "Business trip");
+        addTripTo("Rome", "Eternal city");
+        addTripTo("Dublin", "In family");
+
+        openFirstTripInList();
+        addAnItem();
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     private void addAnItem() throws UiObjectNotFoundException {
+        addAnItem("Chapeau");
+    }
+
+    private void addAnItem(String parName) throws UiObjectNotFoundException {
 
         //fill item name
         UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
-        editTripName.setText("Chapeau");
+        editTripName.setText(parName);
 
         //add item
-        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("Add item"));
+        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).textMatches("(Add item|Ajouter)"));
         saveButton.clickAndWaitForNewWindow();
     }
 
     private void addAnItemWithWeight() throws UiObjectNotFoundException {
+        addAnItemWithWeight("Pantalon", "100");
+    }
+
+    private void addAnItemWithWeight(String parName, String parWeight) throws UiObjectNotFoundException {
 
         //fill item name
         UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
-        editTripName.setText("Pantalon");
+        editTripName.setText(parName);
 
         //add item with weight
         UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("More"));
@@ -162,25 +202,44 @@ public class uiAutomator {
 
         // type weight
         UiObject editWeight = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/item_detail__weight__edit"));
-        editWeight.setText("100");
+        editWeight.setText(parWeight);
 
         //close the window (update button)
-        UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).text("UPDATE"));
+        UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).textMatches("(UPDATE|MODIFIER)"));
         updateButton.clickAndWaitForNewWindow();
+    }
+    /**
+     * Open trip edit, fill with data and close.
+     */
+    private void addTripToRome() throws UiObjectNotFoundException {
+        addTripTo("Rome");
+    }
 
+
+    /**
+     * Open trip edit, fill with data and close.
+     */
+    private void addTripTo(String parTripName) throws UiObjectNotFoundException {
+        addTripTo(parTripName, null);
     }
 
     /**
      * Open trip edit, fill with data and close.
      */
-    private void addTripToRome() throws UiObjectNotFoundException {
+    private void addTripTo(String parTripName, @Nullable String parTripNote) throws UiObjectNotFoundException {
         // click on FAB
-        UiObject fab = mDevice.findObject(new UiSelector().descriptionContains("Add a new trip"));
+        UiObject fab = mDevice.findObject(new UiSelector().descriptionMatches("(Add a new trip|Ajouter un nouveau voyage)"));
         fab.clickAndWaitForNewWindow();
 
-        //fill trip
+        //fill trip name
         UiObject editTripName = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/new_trip__name__edit"));
-        editTripName.setText("ROME");
+        editTripName.setText(parTripName);
+
+        //fill comment
+        if (parTripNote != null) {
+            UiObject editTripNote = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/new_trip__note__edit"));
+            editTripNote.setText(parTripNote);
+        }
 
         //save trip
         UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class));
@@ -206,7 +265,7 @@ public class uiAutomator {
                     firstLineRect.centerY(), 300);
 
 
-            UiObject deleteButton = mDevice.findObject(new UiSelector().descriptionContains("Delete"));
+            UiObject deleteButton = mDevice.findObject(new UiSelector().descriptionMatches("(Delete|Supprimer)"));
             deleteButton.click();
         }
     }
