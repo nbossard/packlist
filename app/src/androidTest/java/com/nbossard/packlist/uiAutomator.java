@@ -166,7 +166,10 @@ public class uiAutomator {
         addTripTo("Dublin", "In family");
 
         openFirstTripInList();
-        addAnItem();
+        addAnItem("Hat");
+        addAnItem("Computer");
+        addAnItem("Toothbrush");
+        addAnItemWithWeight("A good book", "150");
     }
 
     // *********************** PRIVATE METHODS **************************************************************
