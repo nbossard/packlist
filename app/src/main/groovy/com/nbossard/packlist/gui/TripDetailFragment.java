@@ -348,6 +348,7 @@ public class TripDetailFragment extends Fragment {
                 mRetrievedTrip.unpackAll();
                 mIHostingActivity.saveTrip(mRetrievedTrip);
                 // displayTrip(); automatically called back by saveTrip
+                mListItemAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_trip__sort:
                 SortModes curSortMode = mListItemAdapter.getSortMode();
