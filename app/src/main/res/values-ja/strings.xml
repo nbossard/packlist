@@ -66,7 +66,9 @@
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
     <string name="new_trip__start_date">開始日</string>
+    <string name="new_trip__start_date_access__button">modify start date</string>
     <string name="new_trip__end_date">終了日</string>
+    <string name="new_trip__end_date_access__button">modify end date</string>
     <string name="new_trip__note">メモ</string>
     <string name="new_trip__submit">レッツゴー…</string>
 

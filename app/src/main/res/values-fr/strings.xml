@@ -68,7 +68,9 @@
     <!-- New trip fragment -->
     <string name="new_trip__name">Votre destination</string>
     <string name="new_trip__start_date">Date de début</string>
+    <string name="new_trip__start_date_access__button">Modifier la date de début</string>
     <string name="new_trip__end_date">Date de fin</string>
+    <string name="new_trip__end_date_access__button">Modifier la date de fin</string>
     <string name="new_trip__note">Notes</string>
     <string name="new_trip__submit">En voyage…</string>
 
