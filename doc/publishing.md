@@ -18,7 +18,7 @@
  - create or update multiple whats_new.md based on changelog.xml contents
  - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
- - change to branch mastergit 
+ - change to branch master
  - git pull origin master
  - git merge develop
  - change build Variants to release
