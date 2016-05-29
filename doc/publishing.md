@@ -23,13 +23,13 @@
  - git merge develop
  - change build Variants to release
  - rebuild project
- - menu "build/generate signed apk"
+ - menu "build/generate signed apk", dont forget updating path of generation to pub/res_pub folder vx.x
  - quick test apk
     - check about page
     - check what's new
     - add a new trip, add items, close and reopen
- - copy apk to pub/res_pub folder vx.x and latest
- - upload screenshots to android console    
+ - copy apk to latest folder
+ - upload updated screenshots to android console    
  - updload APK to android console
  - add apk and screenshots to git / commit / push
  - commit and push master
