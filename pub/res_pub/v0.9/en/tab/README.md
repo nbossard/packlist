@@ -1,4 +1,4 @@
-# English 7" tablets screenshots
+# English tablets screenshots
 
 ![Edition of a trip](trip_edit.png)
 ![Detail of a trip](trip_detail.png)
