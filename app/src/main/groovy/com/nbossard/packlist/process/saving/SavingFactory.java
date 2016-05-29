@@ -33,8 +33,21 @@ import android.content.Context;
  * Factory for generating a new best {@link ISavingModule}.
  * @author Created by nbossard on 01/01/16.
  */
-public class SavingFactory {
-    public static ISavingModule getNewSavingModule(Context parContext) {
+public final class SavingFactory {
+
+    /**
+     * Private constructor as this is an utilitary class.
+     */
+    private SavingFactory() {
+    }
+
+    /**
+     * Method to provide the best saving module implementation, actually only one.
+     *
+     * @param parContext context to be provided to saving module.
+     * @return the best saving module.
+     */
+    public static ISavingModule getNewSavingModule(final Context parContext) {
         return new PrefsSavingModule(parContext);
     }
 }

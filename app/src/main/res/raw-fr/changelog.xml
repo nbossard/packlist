@@ -25,6 +25,17 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate="26 mai 2016"
+        versionName="0.9">
+        <changelogtext>NEW : ISS#27 export d'un voyage</changelogtext>
+        <changelogtext>NEW : amélioration tri des items</changelogtext>
+        <changelogtext>NEW : ISS#31 un voyage cloné est par défaut décoché</changelogtext>
+        <changelogtext>NEW : ISS#32 possibilité de décocher tous les items d'un voyage</changelogtext>
+        <changelogtext>NEW : ajout d'illustrations pour les vues de listes vides</changelogtext>
+        <changelogtext>NEW : ajout du nom du voyage en cours dans la barre de titre</changelogtext>
+        <changelogtext>NEW : prise en compte suggestions de Google accessibility app scanner</changelogtext>
+    </changelogversion>
+    <changelogversion
         changeDate="26 avril 2016"
         versionName="0.8.1">
         <changelogtext>NEW : ISS#25 ajout de ACRA pour générer des rapports en cas de crash</changelogtext>

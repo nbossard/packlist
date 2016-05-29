@@ -201,12 +201,12 @@ public class MainActivityForTest
     }
 
     @Override
-    public void openNewTripFragment(UUID parTripId) {
+    public void openNewTripFragment(final UUID parTripId) {
         Log.d(TAG, "openNewTripFragment(...) faked");
     }
 
     @Override
-    public void openItemDetailFragment(Item parItem) {
+    public void openItemDetailFragment(final Item parItem) {
         Log.d(TAG, "openItemDetailFragment(...) faked");
     }
 
@@ -217,6 +217,11 @@ public class MainActivityForTest
         } else {
             mFab.hide();
         }
+    }
+
+    @Override
+    public void updateTitleBar(String parNewTitleInTitleBar) {
+
     }
     // ----------- end of implementing interface IMainActivity ------------
 

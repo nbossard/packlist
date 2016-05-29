@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,15 @@ import com.nbossard.packlist.model.Item;
 
 import hugo.weaving.DebugLog;
 
+import static java.lang.Integer.parseInt;
+
 /*
  * @startuml
  * class com.nbossard.packlist.gui.ItemDetailFragment {
  *  +setItem(Item)
  * }
+ *
+ * com.nbossard.packlist.gui.ItemDetailFragment --> com.nbossard.packlist.gui.IItemDetailFragmentActivity
  * @enduml
  */
 
@@ -67,7 +71,7 @@ public class ItemDetailFragment extends Fragment {
 
             // update item
             mItem.setName(mNameEdit.getText().toString());
-            mItem.setWeight(Integer.valueOf(mWeightEdit.getText().toString()));
+            mItem.setWeight(parseInt(mWeightEdit.getText().toString()));
 
             // asking supporting activity to update item
             mIHostingActivity.updateItem(mItem);
@@ -84,10 +88,8 @@ public class ItemDetailFragment extends Fragment {
     /** The root view, will be used to findViewById. */
     private View mRootView;
 
-
     /** Item object to be displayed and edited. */
     private Item mItem;
-
 
     /** Supporting activity, to save trip.*/
     private IItemDetailFragmentActivity mIHostingActivity;
@@ -105,7 +107,7 @@ public class ItemDetailFragment extends Fragment {
 
     /**
      * Method for creating a new DetailFragment and insuring that right bundle is provided.
-     * @param parItem item tp be displayed
+     * @param parItem item to be displayed
      * @return a new DetailFragment.
      */
     @DebugLog

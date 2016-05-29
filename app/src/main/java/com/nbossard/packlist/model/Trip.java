@@ -28,6 +28,8 @@ package com.nbossard.packlist.model;
         String mNote
 
         addItem()
+        deleteItem(UUID)
+        unpackAll()
     }
 @enduml
  */
@@ -54,6 +56,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     /**
      * Log tag.
      */
+    @SuppressWarnings("unused")
     private static final String TAG = Trip.class.getName();
 
     // For better code readability
@@ -61,12 +64,12 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     /**
      * Count weight of all items.
      */
-    public static final boolean PACKED_ITEMS_ONLY = true;
+    private static final boolean PACKED_ITEMS_ONLY = true;
 
     /**
      * Count weight of all packed items only.
      */
-    public static final boolean ALL_ITEMS = false;
+    private static final boolean ALL_ITEMS = false;
 
 
 // *********************** FIELDS *************************************************************************
@@ -221,8 +224,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     @SuppressWarnings("WeakerAccess")
     public final void addItem(final Item parItem) {
         mListItem.add(parItem);
-        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
 
     /**
@@ -251,13 +254,14 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Delete the item of provided UUID.<br>
-     *
+     * <p/>
      * Automatically updates total weight.
+     *
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
         Item toDeleteItem = null;
-        for (Item oneItem:mListItem) {
+        for (Item oneItem : mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
                 toDeleteItem = oneItem;
             }
@@ -265,9 +269,38 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         if (toDeleteItem != null) {
             mListItem.remove(toDeleteItem);
         }
-        mTotalWeight = recomputeTotalWeight(ALL_ITEMS);
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
+
+    /**
+     * unpack all items of this trip. Update packing weight.
+     */
+    public final void unpackAll() {
+        for (Item oneItem : mListItem) {
+            oneItem.setPacked(false);
+        }
+        packingChange();
+    }
+
+    /**
+     * Updating of total weight.
+     *
+     * @param parTotalWeight the new total weight in grams.
+     */
+    private void setTotalWeight(final int parTotalWeight) {
+        mTotalWeight = parTotalWeight;
+    }
+
+    /**
+     * Updating of packed weight.
+     *
+     * @param parPackedWeight the new packed weight in grams.
+     */
+    private void setPackedWeight(final int parPackedWeight) {
+        mPackedWeight = parPackedWeight;
+    }
+
 
     /**
      * @return Number of days before trip, can be a negative value if trip is in the past.
@@ -280,10 +313,10 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
             diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
         }
 
-        long res = TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
-        return res;
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
     }
 
+    //CHECKSTYLE : BEGIN GENERATED CODE
     @Override
     public final boolean equals(final Object parO) {
         if (this == parO) return true;
@@ -298,7 +331,6 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     }
 
-
     @Override
     public final int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
@@ -307,11 +339,20 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         return result;
     }
 
+    //CHECKSTYLE : END GENERATED CODE
+
     @Override
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
         return curRemainingDays - otherRemainingDays;
+    }
+
+    /**
+     * Notify this trip that one of its item has changed its packing state.
+     */
+    public final void packingChange() {
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
     }
 
     @Override
@@ -323,7 +364,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for(Item item: getListOfItems()) clonedTrip.addItem(item.clone());
+        for (Item item : getListOfItems()) {
+            clonedTrip.addItem(item.clone());
+        }
         return clonedTrip;
     }
 
@@ -338,13 +381,6 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
                 + '}';
     }
 
-    /**
-     * Notify this trip that one of its item has changed its packing state.
-     */
-    public final void packingChange() {
-        mPackedWeight = recomputeTotalWeight(PACKED_ITEMS_ONLY);
-    }
-
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
@@ -356,6 +392,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     private int recomputeTotalWeight(final boolean parPackedOnly) {
         int resTotalWeight = 0;
         for (Item item : mListItem) {
+            //noinspection ConstantConditions
             if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
                 resTotalWeight += item.getWeight();
             }

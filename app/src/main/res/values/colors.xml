@@ -25,6 +25,6 @@
 
     <!-- Color for lists -->
     <!-- Color for background of lists -->
-    <color name="packlist__list_background">#CCCCCC</color>
+    <color name="packlist__list_background">#EAEAEA</color>
     <color name="packlist__list_selected">#AAAAAA</color>
 </resources>

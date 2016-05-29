@@ -32,11 +32,11 @@ package com.nbossard.packlist.gui;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
-import com.nbossard.packlist.model.Trip;
 
 import java.util.UUID;
 
 /**
+ * The what fragments expects from main hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
 interface IMainActivity {
@@ -49,7 +49,7 @@ interface IMainActivity {
     void openNewTripFragment(@Nullable final UUID parTripId);
 
     /**
-     * Display provided Item to allow editing of details
+     * Display provided Item to allow editing of details.
      * @param parItem item to be edited
      */
     void openItemDetailFragment(final Item parItem);
@@ -59,4 +59,12 @@ interface IMainActivity {
      * @param parShow true to show, false to hide
      */
     void showFABIfAccurate(boolean parShow);
+
+    /**
+     * Ask activity to update title bar with provided new title.
+     * This will also display homeAsUp.
+     *
+     * @param parNewTitleInTitleBar new title to be displayed in title bar
+     */
+    void updateTitleBar(String parNewTitleInTitleBar);
 }

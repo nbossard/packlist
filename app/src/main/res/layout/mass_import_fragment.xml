@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dip"
         android:background="@color/packlist__list_background"
-        android:inputType="textMultiLine"/>
+        android:inputType="textMultiLine"
+        android:hint="@string/mass_import__items__hint"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/mass_import__import__button"

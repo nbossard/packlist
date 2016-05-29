@@ -1,7 +1,12 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
+ - update plantuml global schema
  - run all tests
+    - JUNIT tests in "test" folder with coverage, check coverage
+    - Robotium tests in "androidTest" folder
+    - UI Automator tests in "androidTest" folder
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle
  - close date in changelog.xml
@@ -10,6 +15,7 @@
  - create or update whats_new.md based on changelog.xml contents
  - delete "latest" folder
  - Rename "incoming" folder in pub/res_pub to "latest"
+ - create or update multiple whats_new.md based on changelog.xml contents
  - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
  - change to branch mastergit 
@@ -29,6 +35,8 @@
  - commit and push master
  - draft new release in github
  - [update f-droid metadata file](https://gitlab.com/fdroid/fdroiddata/blob/master/metadata/com.nbossard.packlist.txt)
+    - add "Build" block, do not remove old ones
+    - take care of trailing spaces
     - field "Current Version"
     - field "Current Version Code"
 

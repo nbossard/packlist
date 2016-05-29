@@ -38,8 +38,14 @@ package com.nbossard.packlist.model;
     package com.nbossard.packlist.model #LightBlue{
         !include Trip.java
         !include Item.java
+        !include ItemComparatorAdditionDate.java
+        !include ItemComparatorAlphabetical.java
+        !include ItemComparatorPacking.java
 
-        Item "1" --* "*" Trip
+        com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking
     }
 @enduml
 

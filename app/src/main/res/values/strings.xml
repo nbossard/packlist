@@ -36,6 +36,7 @@
     <string name="demo_changelog_title_standarddialog">Change log</string>
     <string name="about_ok">OK</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 
     <!-- Menu items -->
     <string name="action__whatsnew">What\'s new</string>
@@ -43,6 +44,7 @@
     <string name="action__about">About</string>
     <string name="action_trip__sort">Sort</string>
     <string name="action_trip__import">Import text file</string>
+    <string name="action_trip__unpack_all">unpack all items</string>
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
@@ -52,7 +54,7 @@
 
     <!-- Main page -->
     <string name="main__welcome">Here is the list of your trips, please click on one for details</string>
-    <string name="main__no_trip_yet__label">No trip planned yet, click + button below to add a new trip</string>
+    <string name="main__no_trip_yet__label">No trip planned yet,\nclick + button below to add a new trip</string>
     <string name="action_main_cab__clone">Clone</string>
     <string name="action_main_cab__delete">Delete</string>
     <string name="mainact__fab_add_a_trip">Add a new trip</string>
@@ -69,11 +71,14 @@
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>
+    <string name="new_trip__start_date_access__button">modify start date</string>
     <string name="new_trip__end_date">end date</string>
+    <string name="new_trip__end_date_access__button">modify end date</string>
     <string name="new_trip__note">note</string>
     <string name="new_trip__submit">let\'s go…</string>
 
     <!-- Detail of trip -->
+    <string name="trip_detail__main__titlebar">List for %1s</string>
     <string name="trip_detail__end_date__label">to</string>
     <string name="trip_detail__start_date__label">from</string>
     <string name="trip_detail__add_item___button">Add item</string>
@@ -81,8 +86,14 @@
     <string name="trip_detail__no_item_yet__label">No item yet, use add field below</string>
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
+    <string name="trip_detail__new_item__access">name&#8230;</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
+    <string name="action_trip__share">Share</string>
+    <string name="sorting_mode">Sorting mode is now %s.</string>
+    <string name="sorting_mode_default">default</string>
+    <string name="sorting_mode_unpacked_first">unpacked first</string>
+    <string name="sorting_mode_alphabetical">alphabetical order</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>
@@ -97,15 +108,15 @@
     <!-- Detail of item -->
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight (in grams)</string>
-    <string name="item_detail__submit">Update</string>
+    <string name="item_detail__submit">UPDATE</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below.\n\nOne item perline.</string>
+    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item perline.\n\ni.e.:\nGuide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
+    <string name="mass_import__items__hint">type or paste here...</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
-    <string name="toast_update_failed_incompatible_format">Update failed, this is probably due to an incompatibility between an old trip and current format, try deleting and recreating this item.</string>
 
 </resources>

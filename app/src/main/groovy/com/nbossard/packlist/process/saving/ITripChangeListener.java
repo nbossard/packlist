@@ -31,5 +31,9 @@ package com.nbossard.packlist.process.saving;
  * @author Created by nbossard on 09/03/16.
  */
 public interface ITripChangeListener {
+
+    /**
+     * The trip has changed.
+     */
     void onTripChange();
 }

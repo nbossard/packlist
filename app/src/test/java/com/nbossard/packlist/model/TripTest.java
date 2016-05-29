@@ -228,4 +228,43 @@ public class TripTest  {
         mTestTrip.deleteItem(newItem2.getUUID());
         assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
     }
+
+
+    @Test
+    public void testPackedWeight() {
+
+        // testing default weight
+        assertEquals(0, mTestTrip.getTotalWeight());
+
+        // adding an item with weight, checking total weight is updated
+        Item newItem = new Item(mTestTrip, NEW_ITEM_NAME);
+        newItem.setWeight(NEW_ITEM_WEIGHT);
+        mTestTrip.addItem(newItem);
+
+        // adding another item with weight, checking total weight is updated
+        Item newItem2 = new Item(mTestTrip, NEW_ITEM2_NAME);
+        newItem2.setWeight(NEW_ITEM2_WEIGHT);
+        mTestTrip.addItem(newItem2);
+
+        assertEquals(0, mTestTrip.getPackedWeight());
+
+        // packing items, checking packed weight is updated
+        newItem.setPacked(true);
+        mTestTrip.packingChange();
+        assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getPackedWeight());
+        newItem2.setPacked(true);
+        mTestTrip.packingChange();
+        assertEquals(NEW_ITEM_WEIGHT + NEW_ITEM2_WEIGHT, mTestTrip.getPackedWeight());
+
+        // unpack all, check packed weight is 0
+        mTestTrip.unpackAll();
+        assertEquals(0, mTestTrip.getPackedWeight());
+
+        // packing back, deleting items, ensuring packed weight is automatically updated
+        newItem.setPacked(true);
+        newItem2.setPacked(true);
+        mTestTrip.packingChange();
+        mTestTrip.deleteItem(newItem.getUUID());
+        assertEquals(NEW_ITEM2_WEIGHT, mTestTrip.getPackedWeight());
+    }
 }

@@ -47,7 +47,11 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
  */
 public class DialogStandardFrag extends DialogFragment {
 
+    /**
+     * Standard empty constructor.
+     */
     public DialogStandardFrag() {
+        super();
     }
 
     @NonNull

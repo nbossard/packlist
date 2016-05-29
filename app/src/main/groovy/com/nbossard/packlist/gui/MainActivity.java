@@ -29,6 +29,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -104,6 +105,32 @@ public class MainActivity
     /** The fragment trip detail if already opened. */
     private TripDetailFragment mTripDetailFragment;
 
+    /**
+     * Listener on back stack in order to set back title bar when back stack is empty.
+     */
+    private FragmentManager.OnBackStackChangedListener mOnBackStackChangeListener =
+            new FragmentManager.OnBackStackChangedListener() {
+                @Override
+                public void onBackStackChanged() {
+                    ActionBar supActionBar = getSupportActionBar();
+                    if (supActionBar != null) {
+                        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                            supActionBar.setTitle(getString(R.string.app_name));
+                            supActionBar.setDisplayHomeAsUpEnabled(false);
+                            supActionBar.setHomeButtonEnabled(false);
+                        } else {
+                            supActionBar.setDisplayHomeAsUpEnabled(true);
+                            supActionBar.setHomeButtonEnabled(true);
+                        }
+                    } else {
+                        Log.w(TAG, "onBackStackChanged: can't retrieve action bar, VERY STRANGE");
+                    }
+                }
+            };
+
+// *********************** LISTENERS**************************************************************************
+
+
 // *********************** METHODS **************************************************************************
 
     @DebugLog
@@ -116,6 +143,8 @@ public class MainActivity
         setSupportActionBar(toolbar);
 
         mFab = (FloatingActionButton) findViewById(R.id.mainact__fab);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(mOnBackStackChangeListener);
 
         // Handle deep-app indexing
         onNewIntent(getIntent());
@@ -179,6 +208,8 @@ public class MainActivity
             openAboutActivity();
         } else if (id == R.id.action__send_logs) {
             PackListApp.sendUserDebugReport();
+        } else if (id == android.R.id.home) {
+            getSupportFragmentManager().popBackStack();
         }
 
         return super.onOptionsItemSelected(item);
@@ -271,6 +302,12 @@ public class MainActivity
     @Override
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
+        // ensure we are not adding on top of not empty backstack
+        FragmentManager fm = getSupportFragmentManager();
+        while (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStackImmediate();
+        }
+
         // Create fragment and give it an argument specifying the article it should show
         mTripDetailFragment =  TripDetailFragment.newInstance(parTrip);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -283,8 +320,7 @@ public class MainActivity
         // Commit the transaction
         transaction.commit();
 
-        // updating FAB action
-        mFab.hide();
+        // No need of updating (hiding) FAB action as this is managed in onAttach
 
         return mTripDetailFragment;
     }
@@ -299,6 +335,14 @@ public class MainActivity
             mFab.show();
         } else {
             mFab.hide();
+        }
+    }
+
+    @Override
+    public final void updateTitleBar(final String parNewTitleInTitleBar) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(parNewTitleInTitleBar);
         }
     }
 

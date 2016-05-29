@@ -29,14 +29,23 @@ import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ItemComparatorAdditionDate;
+import com.nbossard.packlist.model.ItemComparatorAlphabetical;
+import com.nbossard.packlist.model.ItemComparatorPacking;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import hugo.weaving.DebugLog;
 
 /*
 @startuml
     class com.nbossard.packlist.gui.ItemAdapter {
     }
+
+    com.nbossard.packlist.gui.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
+
 @enduml
 */
 
@@ -72,7 +81,10 @@ class ItemAdapter extends BaseAdapter {
     }
     // ********************** FIELDS ************************************************************************
 
-    private SortModes mSortMode;
+    /**
+     * User selected item sort mode.
+     */
+    private SortModes mSortMode = SortModes.DEFAULT;
 
     /**
      * Items to be displayed in the list.
@@ -105,9 +117,15 @@ class ItemAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
 
-        if (mSortMode == SortModes.PACKED) {
-            Collections.sort(mItemList);
+        Comparator<? super Item> itemComparator = null;
+        if (mSortMode == SortModes.DEFAULT) {
+            itemComparator = new ItemComparatorAdditionDate();
+        } else if (mSortMode == SortModes.UNPACKED_FIRST) {
+            itemComparator = new ItemComparatorPacking();
+        } else if (mSortMode == SortModes.ALPHABETICAL) {
+            itemComparator = new ItemComparatorAlphabetical();
         }
+        Collections.sort(mItemList, itemComparator);
 
         super.notifyDataSetChanged();
     }
@@ -162,7 +180,22 @@ class ItemAdapter extends BaseAdapter {
         return parConvertView;
     }
 
-    public void setSortMode(SortModes parSortMode) {
+    /**
+     * Set current items sorting mode.
+     *
+     * @param parSortMode new sorting mode to use
+     */
+    @DebugLog
+    public void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
+
+    /**
+     * Get current items sorting mode.
+     * @return current sorting mode
+     */
+    public SortModes getSortMode() {
+        return mSortMode;
+    }
+
 }

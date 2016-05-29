@@ -34,6 +34,14 @@ import org.acra.annotation.ReportsCrashes;
 
 import hugo.weaving.DebugLog;
 
+/*
+@startuml
+    class com.nbossard.packlist.PackListApp {
+        + getSavingModule()
+    }
+@enduml
+*/
+
 /**
  * Application level initialisations :
  * <ul>

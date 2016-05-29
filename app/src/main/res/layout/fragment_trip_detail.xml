@@ -55,13 +55,13 @@
             android:layout_height="wrap_content">
 
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/trip_detail__edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:minHeight="@dimen/accessibility_button_min_height"
                 android:text="@string/trip_detail__edit_trip"/>
 
             <TextView
@@ -75,7 +75,8 @@
                 android:focusable="false"
                 android:labelFor="@+id/trip_detail__name__edit"
                 android:text="@{trip.name}"
-                tools:text="Verdun"/>
+                tools:text="Verdun"
+                tools:ignore="UnusedAttribute"/>
 
             <!-- for display of dates -->
             <LinearLayout
@@ -173,6 +174,7 @@
             android:id="@+id/trip_detail__new_item__button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_button_min_height"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/trip_detail__new_item_detail__button"
             android:layout_toStartOf="@+id/trip_detail__new_item_detail__button"
@@ -183,6 +185,7 @@
             android:id="@id/trip_detail__new_item_detail__button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_button_min_height"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -192,13 +195,15 @@
             android:id="@+id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@id/trip_detail__new_item__button"
             android:layout_toStartOf="@id/trip_detail__new_item__button"
             android:imeOptions="actionGo"
             android:inputType="text"
             android:lines="1"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:hint="@string/trip_detail__new_item__access"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
@@ -219,7 +224,16 @@
             android:background="@color/packlist__list_background"
             android:gravity="center"
             android:visibility="gone"
+            android:orientation="vertical"
             tools:visibility="visible">
+
+            <!-- Setting contentDescription to null as this is image should not be read -->
+            <!-- It is just an eye-candy and content description would preferentially be text below -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_plus_one_black_24dp"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:gravity="center"
