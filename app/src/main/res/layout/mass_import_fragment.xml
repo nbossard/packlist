@@ -23,7 +23,7 @@
 <!---->
 <!-- Resources and Ids for this page must start with "mass_import__" -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,24 +35,29 @@
     android:paddingTop="@dimen/margin_top">
 
     <TextView
+        android:id="@+id/mass_import__principle_explanation__label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:text="@string/mass_import__principle_explanation__label"/>
 
     <EditText
         android:id="@+id/mass_import__items__edit"
         android:layout_width="match_parent"
-        android:layout_height="300dip"
+        android:layout_below="@id/mass_import__principle_explanation__label"
+        android:layout_above="@id/mass_import__import__button"
         android:background="@color/packlist__list_background"
         android:inputType="textMultiLine"
-        android:hint="@string/mass_import__items__hint"/>
+        android:hint="@string/mass_import__items__hint"
+        android:layout_height="match_parent"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/mass_import__import__button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="end"
         android:minHeight="@dimen/accessibility_button_min_height"
         android:text="@string/mass_import__import__button"/>
 
-</LinearLayout>
+</RelativeLayout>
