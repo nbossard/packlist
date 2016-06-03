@@ -56,6 +56,11 @@ public class Item implements Serializable, Cloneable {
     /** The item weight. */
     private int mWeight;
 
+    /**
+     * The item category for grouping.
+     */
+    private String mCategory;
+
     /** Has this item been packed already. true=yes, false=no. */
     private boolean mIsPacked;
 
@@ -164,6 +169,14 @@ public class Item implements Serializable, Cloneable {
      */
     public final Date getAdditionDate() {
         return mAdditionDate;
+    }
+
+    public String getCategory() {
+        return mCategory;
+    }
+
+    public void setCategory(String parCategory) {
+        mCategory = parCategory;
     }
 
     @Override

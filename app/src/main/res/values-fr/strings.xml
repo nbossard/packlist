@@ -114,5 +114,6 @@
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
+    <string name="item_detail__category__label">Category</string>
 
 </resources>

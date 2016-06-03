@@ -118,5 +118,6 @@
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
+    <string name="item_detail__category__label">Category</string>
 
 </resources>
