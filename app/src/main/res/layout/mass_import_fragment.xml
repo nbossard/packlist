@@ -45,14 +45,14 @@
         android:id="@+id/mass_import__items__edit"
         android:layout_width="match_parent"
         android:layout_below="@id/mass_import__principle_explanation__label"
-        android:layout_above="@id/mass_import__import__button"
+        android:layout_above="@+id/mass_import__import__button"
         android:background="@color/packlist__list_background"
         android:inputType="textMultiLine"
         android:hint="@string/mass_import__items__hint"
         android:layout_height="match_parent"/>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/mass_import__import__button"
+        android:id="@id/mass_import__import__button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
