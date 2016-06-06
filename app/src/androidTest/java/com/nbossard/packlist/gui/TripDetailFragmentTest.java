@@ -44,7 +44,7 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011, 1, 1);
     private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012, 2, 2);
     private static final String TEST_NOTE = "Have fun";
-    private static final SortModes TEST_SORTMODE = SortModes.DEFAULT;
+    private static final SortModes TEST_SORT_MODE = SortModes.DEFAULT;
     private static final String TEST_ITEM_NAME = "Socks";
 
     // ********************** FIELDS ************************************************************************
@@ -55,9 +55,9 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
     private Solo mSolo;
 
     private final Trip testEmptyItemSetTrip =
-            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE, TEST_SORTMODE);
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE, TEST_SORT_MODE);
     private final Trip testNonEmptyItemSetTrip =
-            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE, TEST_SORTMODE);
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE, TEST_SORT_MODE);
 
 
     // ********************** METHODS ***********************************************************************

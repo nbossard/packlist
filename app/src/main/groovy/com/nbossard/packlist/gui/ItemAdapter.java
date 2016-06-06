@@ -43,6 +43,8 @@ import hugo.weaving.DebugLog;
 /*
 @startuml
     class com.nbossard.packlist.gui.ItemAdapter {
+        mItemList
+        mSortMode
     }
 
     com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
@@ -189,14 +191,6 @@ class ItemAdapter extends BaseAdapter {
     @DebugLog
     public void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
-    }
-
-    /**
-     * Get current items sorting mode.
-     * @return current sorting mode
-     */
-    public SortModes getSortMode() {
-        return mSortMode;
     }
 
 }
