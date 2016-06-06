@@ -50,6 +50,7 @@ import android.widget.Toast;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.ImportExport;
@@ -354,6 +355,8 @@ public class TripDetailFragment extends Fragment {
                 SortModes curSortMode = mListItemAdapter.getSortMode();
                 SortModes newSortMode = curSortMode.next();
                 mListItemAdapter.setSortMode(newSortMode);
+                mRetrievedTrip.setSortMode(newSortMode);
+                mIHostingActivity.saveTrip(mRetrievedTrip);
                 mListItemAdapter.notifyDataSetChanged();
                 Toast.makeText(TripDetailFragment.this.getActivity(),
                         String.format(getString(R.string.sorting_mode), getReadableName(newSortMode)),
