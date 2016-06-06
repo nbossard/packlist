@@ -217,7 +217,7 @@ public class TripDetailFragment extends Fragment {
 
 
     @Override
-    public void onAttach(final Context context) {
+    public final void onAttach(final Context context) {
         super.onAttach(context);
         // Management of FAB, forcing hiding of FAB, see also onDetach
         mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
@@ -352,7 +352,7 @@ public class TripDetailFragment extends Fragment {
                 mListItemAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_trip__sort:
-                SortModes curSortMode = mListItemAdapter.getSortMode();
+                SortModes curSortMode = mRetrievedTrip.getSortMode();
                 SortModes newSortMode = curSortMode.next();
                 mListItemAdapter.setSortMode(newSortMode);
                 mRetrievedTrip.setSortMode(newSortMode);
@@ -536,6 +536,8 @@ public class TripDetailFragment extends Fragment {
         mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
         mListItemAdapter = new ItemAdapter(mRetrievedTrip.getListOfItems(), this.getActivity());
+        mListItemAdapter.setSortMode(mRetrievedTrip.getSortMode());
+        mListItemAdapter.notifyDataSetChanged();
         mItemListView.setAdapter(mListItemAdapter);
         mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mItemListView.setOnItemClickListener(mItemClickListener);

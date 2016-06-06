@@ -300,7 +300,18 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parSortMode the new current sort mode.
      */
     public final void setSortMode(final SortModes parSortMode) {
-        mSortMode = parSortMode;
+        if (parSortMode == null) {
+            mSortMode = SortModes.DEFAULT;
+        } else {
+            mSortMode = parSortMode;
+        }
+    }
+
+    /**
+     * @return current sort mode
+     */
+    public final SortModes getSortMode() {
+        return mSortMode;
     }
 
     /**
