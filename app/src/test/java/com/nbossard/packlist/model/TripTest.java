@@ -42,6 +42,7 @@ public class TripTest  {
     private static final GregorianCalendar TRIP_END = new GregorianCalendar(2015,3,30);
     private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
+    private static final SortModes TRIP_SORT_MODE = SortModes.DEFAULT;
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
 
     private static final String NEW_ITEM_NAME = "newItemName";
@@ -49,7 +50,6 @@ public class TripTest  {
     private static final String NEW_ITEM2_NAME = "newItemName2";
     private static final int NEW_ITEM2_WEIGHT = 50;
     private static final String NEW_ITEM3_NAME = "newItemName3";
-    private static final int NEW_ITEM3_WEIGHT = 100;
     private static final String NEW_ITEM4_NAME = "newItemName4";
 
 
@@ -57,6 +57,8 @@ public class TripTest  {
     private static final String TRIP2_NOTE = "City of LOVE";
     private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
     private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
+    private static final SortModes TRIP2_SORT_MODE = SortModes.DEFAULT;
+
 
     private static final String TRIP3_NAME = "Toronto";
 
@@ -66,8 +68,8 @@ public class TripTest  {
 
     @Before
     public void setUp() {
-        mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
-        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
+        mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE, TRIP_SORT_MODE);
+        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE, TRIP2_SORT_MODE);
         mTestTrip3NoDate = new Trip();
         mTestTrip3NoDate.setName(TRIP3_NAME);
 

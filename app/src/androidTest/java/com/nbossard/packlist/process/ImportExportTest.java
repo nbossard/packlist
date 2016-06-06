@@ -22,6 +22,7 @@ package com.nbossard.packlist.process;
 import android.test.InstrumentationTestCase;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.GregorianCalendar;
@@ -58,7 +59,8 @@ public class ImportExportTest extends InstrumentationTestCase {
         mTestTrip = new Trip("Dublin",
                 new GregorianCalendar(2016, 20, 10),
                 new GregorianCalendar(2016, 25, 10),
-                "Gonna be cold");
+                "Gonna be cold",
+                SortModes.DEFAULT);
         mTestPort = new ImportExport();
 
         // line to be ignored cause starting by ignoresymbol

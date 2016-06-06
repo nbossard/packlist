@@ -50,6 +50,7 @@ import android.widget.Toast;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.ImportExport;
@@ -216,7 +217,7 @@ public class TripDetailFragment extends Fragment {
 
 
     @Override
-    public void onAttach(final Context context) {
+    public final void onAttach(final Context context) {
         super.onAttach(context);
         // Management of FAB, forcing hiding of FAB, see also onDetach
         mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
@@ -351,9 +352,11 @@ public class TripDetailFragment extends Fragment {
                 mListItemAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_trip__sort:
-                SortModes curSortMode = mListItemAdapter.getSortMode();
+                SortModes curSortMode = mRetrievedTrip.getSortMode();
                 SortModes newSortMode = curSortMode.next();
                 mListItemAdapter.setSortMode(newSortMode);
+                mRetrievedTrip.setSortMode(newSortMode);
+                mIHostingActivity.saveTrip(mRetrievedTrip);
                 mListItemAdapter.notifyDataSetChanged();
                 Toast.makeText(TripDetailFragment.this.getActivity(),
                         String.format(getString(R.string.sorting_mode), getReadableName(newSortMode)),
@@ -533,6 +536,8 @@ public class TripDetailFragment extends Fragment {
         mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
         mListItemAdapter = new ItemAdapter(mRetrievedTrip.getListOfItems(), this.getActivity());
+        mListItemAdapter.setSortMode(mRetrievedTrip.getSortMode());
+        mListItemAdapter.notifyDataSetChanged();
         mItemListView.setAdapter(mListItemAdapter);
         mItemListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         mItemListView.setOnItemClickListener(mItemClickListener);

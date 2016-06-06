@@ -32,6 +32,7 @@ import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ItemComparatorAdditionDate;
 import com.nbossard.packlist.model.ItemComparatorAlphabetical;
 import com.nbossard.packlist.model.ItemComparatorPacking;
+import com.nbossard.packlist.model.SortModes;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,9 +43,11 @@ import hugo.weaving.DebugLog;
 /*
 @startuml
     class com.nbossard.packlist.gui.ItemAdapter {
+        mItemList
+        mSortMode
     }
 
-    com.nbossard.packlist.gui.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
+    com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
 
 @enduml
 */
@@ -188,14 +191,6 @@ class ItemAdapter extends BaseAdapter {
     @DebugLog
     public void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
-    }
-
-    /**
-     * Get current items sorting mode.
-     * @return current sorting mode
-     */
-    public SortModes getSortMode() {
-        return mSortMode;
     }
 
 }
