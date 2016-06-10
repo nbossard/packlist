@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -22,77 +22,139 @@
 <!-- New trip main characteristics input page -->
 <!---->
 <!-- Resources and Ids for this page must start with "new_trip__" -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingTop="@dimen/margin_top"
-              android:paddingStart="@dimen/margin_start"
-              android:paddingEnd="@dimen/margin_end"
-              android:paddingLeft="@dimen/margin_start"
-              android:paddingRight="@dimen/margin_end">
+    <data>
 
-    <TextView
-        android:id="@+id/new_trip__name__label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@+id/new_trip__name__edit"
-        android:focusable="false"
-        android:text="@string/new_trip__name"/>
+        <variable
+            name="trip"
+            type="com.nbossard.packlist.model.Trip"/>
+        <variable
+            name="tripFormatter"
+            type="com.nbossard.packlist.model.TripFormatter"/>
 
-    <EditText
-        android:id="@id/new_trip__name__edit"
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/margin_end"
+        android:paddingLeft="@dimen/margin_start"
+        android:paddingRight="@dimen/margin_end"
+        android:paddingStart="@dimen/margin_start"
+        android:paddingTop="@dimen/margin_top">
 
-    <TextView
-        android:id="@+id/new_trip__start_date__label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@+id/new_trip__start_date__edit"
-        android:focusable="false"
-        android:text="@string/new_trip__start_date"/>
+        <TextView
+            android:id="@+id/new_trip__name__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/new_trip__name__edit"
+            android:text="@string/new_trip__name"/>
 
-    <EditText
-        android:id="@id/new_trip__start_date__edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"/>
+        <EditText
+            android:id="@id/new_trip__name__edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
+            android:inputType="text"
+            android:text="@{trip.name}"
+            tools:text="Brest"/>
 
-    <TextView
-        android:id="@+id/new_trip__end_date__label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@+id/new_trip__end_date__edit"
-        android:focusable="false"
-        android:text="@string/new_trip__end_date"/>
+        <TextView
+            android:id="@+id/new_trip__start_date__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/new_trip__start_date__edit"
+            android:text="@string/new_trip__start_date"/>
 
-    <EditText
-        android:id="@id/new_trip__end_date__edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"/>
-	
-	<TextView
-        android:id="@+id/new_trip__note__label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@+id/new_trip__note__edit"
-        android:focusable="false"
-        android:text="@string/new_trip__note"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@id/new_trip__note__edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"/>
-	
-    <Button
-        android:id="@+id/new_trip__submit__button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_trip__submit"/>
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/new_trip__start_date__button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:contentDescription="@string/new_trip__start_date_access__button"/>
 
-</LinearLayout>
+            <TextView
+                android:id="@id/new_trip__start_date__edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/accessibility_edit_text_min_height"
+                android:layout_toLeftOf="@id/new_trip__start_date__button"
+                android:layout_toStartOf="@id/new_trip__start_date__button"
+                android:gravity="center_vertical"
+                android:text="@{tripFormatter.getFormattedDate(trip.startDate)}"
+                android:textColor="@color/chglib_material_color_text_1"
+                tools:text="22/03/2016"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/new_trip__end_date__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/new_trip__end_date__edit"
+            android:text="@string/new_trip__end_date"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/new_trip__end_date__button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_date_range_black_24dp"
+                android:contentDescription="@string/new_trip__end_date_access__button"/>
+
+            <TextView
+                android:id="@id/new_trip__end_date__edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/accessibility_edit_text_min_height"
+                android:layout_toLeftOf="@id/new_trip__end_date__button"
+                android:layout_toStartOf="@id/new_trip__end_date__button"
+                android:gravity="center_vertical"
+                android:text="@{tripFormatter.getFormattedDate(trip.endDate)}"
+                android:textColor="@color/chglib_material_color_text_1"
+                tools:text="27/03/2016"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/new_trip__note__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/new_trip__note__edit"
+            android:text="@string/new_trip__note"/>
+
+        <EditText
+            android:id="@id/new_trip__note__edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
+            android:inputType="text"
+            android:text="@{trip.note}"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/new_trip__submit__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:minHeight="@dimen/accessibility_button_min_height"
+            android:text="@string/new_trip__submit"/>
+
+    </LinearLayout>
+</layout>

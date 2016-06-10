@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -31,8 +31,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".gui.MainActivityFragment"
-                tools:showIn="@layout/activity_main">
+                tools:context=".gui.TripListFragment">
 
     <TextView
         android:id="@+id/main__welcome_text"
@@ -51,17 +50,28 @@
         android:layout_below="@id/main__space"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/trip_adapter">
-    </ListView>
+        tools:listitem="@layout/trip_adapter"
+        android:background="@color/packlist__list_background"/>
 
     <!-- View that will be displayed if list is empty only -->
     <LinearLayout android:id="@+id/main__trip_list_empty"
-                  android:layout_width="fill_parent" android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
                   android:gravity="center"
-                  android:visibility="gone">
+                  android:visibility="gone"
+                  android:background="@color/packlist__list_background"
+                  android:orientation="vertical"
+                  tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_work_black_24dp"/>
 
         <TextView android:text="@string/main__no_trip_yet__label"
-                  android:layout_width="wrap_content" android:layout_height="wrap_content">
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="center">
         </TextView>
 
     </LinearLayout>

@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +18,65 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'groovyx.grooid.groovy-android'
 // For hugo advanced automatic logging
 apply plugin: 'com.jakewharton.hugo'
 // For Google Analytics
 apply plugin: 'com.google.gms.google-services'
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
 
-    // version Code :
-    // 1 --> v0.1
-    // 2 --> v0.2
+android {
+    // This is now required cause we are using a JDK8
+    targetCompatibility = '1.7'
+    sourceCompatibility = '1.7'
+
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    // Reminder
+    // API level 14 ===> Android 4.0
+    // history of version code
+    // 1 --> 0.1
+    // 2 --> 0.2
+    // 3 --> 0.3
+    // 4 --> 0.3.4
+    // 5 --> 0.4
+    // 6 --> 0.5
+    // 7 --> 0.6
+    // 8 --> 0.7 (published 19th march 2016)
+    // 9 --> 0.7.1 (published 22nd march 2016)
+    // 10 --> 0.7.2 (published 24nd march 2016)
+    // 11 --> 0.8 (published 9th april 2016)
+    // 12 --> 0.8.1 (published 26th april 2016)
+    // 13 --> 0.9 (published 26th may 2016)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
-        // 14 because of use of setTag in list
+        // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2
-        versionName "0.2 alpha"
+        versionCode 14
+        versionName "0.10"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            // setting minifyEnabled to false will disable proguard
+            // and consequently allow easy crash report understanding
+            minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // Note : added in version 0.7.1 the date using versionNameSuffix
+            // this caused version to be rejected on f-droid
+            // So removed it in release mode and moved to aboutAdditionalInfo only in debug mode
+            resValue "string", "about__additional__info", ""
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix " DEBUG "
+            resValue "string", "about__additional__info", getDate() + " " + getGitSha1() + " " + getWorkingBranch() + "\n"
         }
     }
 
@@ -52,19 +85,87 @@ android {
     dataBinding {
         enabled = true
     }
+
+    lintOptions {
+        disable 'InvalidPackage' // lint sees references in the grooid jar to unavailable java classes
+    }
+}
+
+androidGroovy {
+    options {
+        configure(groovyOptions) {
+            forkOptions.jvmArgs = ['-noverify']
+        }
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.0'
+    // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
+    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
+    compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
+    compile 'ch.acra:acra:4.8.5'
     // For Google Analytics
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
 
-
     testCompile 'junit:junit:4.12'
+
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
 
+    // added because of conflict with app and test app
+    androidTestCompile 'com.android.support:support-annotations:23.4.0'
+    // added because uiautomator needs it
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    // this addition of ui automator caused following build error :
+    // java.lang.RuntimeException: Manifest merger failed : uses-sdk:minSdkVersion 14
+    // cannot be smaller than version 18 declared in library
+    // Suggestion: use tools:overrideLibrary="android.support.test.uiautomator.v18" to force usage
+    // tools:overrideLibrary="android.support.test.uiautomator.v18"
 }
+
+// ----------------------- tool for getting build date --------
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy-MM-dd')
+    return formattedDate
+}
+
+// ----------------------- tool for getting git SHA1 --------
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getGitSha1() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short=7', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+// ----------------------- tool for getting git branch --------
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getWorkingBranch() {
+
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+// NBO : what for ??
+// configurations.all {
+//     resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+//}

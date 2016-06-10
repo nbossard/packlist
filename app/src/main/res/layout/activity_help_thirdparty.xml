@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@
 
 <ScrollView  
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -70,6 +69,26 @@
             android:layout_marginBottom="20dp"
             android:text="@string/help_legal__third_party_lib_changelog__label"
             android:autoLink="web"/>
-        
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/help_legal__third_party_lib_datetimepicker__label"
+            android:autoLink="web"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/help_legal__third_party_lib__groovy_android_gradle_plugin__label"
+            android:autoLink="web"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/help_legal__third_party_lib__acra__label"
+            android:autoLink="web"/>
     </LinearLayout>
 </ScrollView>

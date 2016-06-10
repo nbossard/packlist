@@ -1,7 +1,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -26,4 +26,11 @@
     <dimen name="margin_start">10dip</dimen>
     <dimen name="margin_end">10dip</dimen>
     <dimen name="space_label_value">4dip</dimen>
+
+    <!-- packlist specific dimensions -->
+    <dimen name="ia__row_margin">10dip</dimen>
+    <dimen name="ia__start_margin">10dip</dimen>
+    <dimen name="accessibility_button_min_height">48dip</dimen>
+    <dimen name="accessibility_row_min_height">48dip</dimen>
+    <dimen name="accessibility_edit_text_min_height">48dip</dimen>
 </resources>

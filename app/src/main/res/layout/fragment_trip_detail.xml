@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -31,6 +31,12 @@
             name="trip"
             type="com.nbossard.packlist.model.Trip"/>
 
+        <import type="android.view.View"/>
+
+        <variable
+            name="tripFormatter"
+            type="com.nbossard.packlist.model.TripFormatter"/>
+
     </data>
 
     <RelativeLayout
@@ -43,95 +49,198 @@
         android:paddingStart="@dimen/margin_start"
         android:paddingTop="@dimen/margin_top">
 
-        <TextView
-            android:id="@+id/trip_detail__name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:labelFor="@+id/trip_detail__name__edit"
-            android:text="@{trip.name}"
-            tools:text="Verdun"/>
-
-        <!-- for display of dates -->
-        <LinearLayout
-            android:id="@+id/trip_detail__date__layout"
+        <RelativeLayout
+            android:id="@+id/trip_detail__top_block"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/trip_detail__name"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/trip_detail__start_date__label"
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/trip_detail__edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_button_min_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/trip_detail__edit_trip"/>
+
+            <TextView
+                android:id="@+id/trip_detail__name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:focusable="false"
-                android:text="@string/trip_detail__start_date__label"/>
+                android:labelFor="@+id/trip_detail__name__edit"
+                android:text="@{trip.name}"
+                tools:text="Verdun"
+                tools:ignore="UnusedAttribute"/>
 
-            <android.support.v4.widget.Space
-                android:layout_width="@dimen/space_label_value"
-                android:layout_height="1dip"/>
+            <!-- for display of dates -->
+            <LinearLayout
+                android:id="@+id/trip_detail__date__layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/trip_detail__name"
+                android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/trip_detail__start_date__label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="@string/trip_detail__start_date__label"
+                    android:visibility="@{trip.startDate == null ? View.GONE : View.VISIBLE}"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/space_label_value"
+                    android:layout_height="1dip"/>
+
+                <TextView
+                    android:id="@+id/trip_detail__start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{tripFormatter.getFormattedDate(trip.startDate)}"
+                    tools:text="20 décembre 2015"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/space_label_value"
+                    android:layout_height="1dip"/>
+
+                <TextView
+                    android:id="@+id/trip_detail__end_date__label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="@string/trip_detail__end_date__label"
+                    android:visibility="@{trip.endDate == null ? View.GONE : View.VISIBLE}"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="@dimen/space_label_value"
+                    android:layout_height="1dip"/>
+
+                <TextView
+                    android:id="@+id/trip_detail__end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{tripFormatter.getFormattedDate(trip.endDate)}"
+                    tools:text="28 décembre 2015"/>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/trip_detail__start_date"
+                android:id="@+id/trip_detail__note__label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{trip.startDate}"
-                tools:text="20 décembre 2015"/>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/trip_detail__date__layout"
+                android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
+                android:text="@{trip.note}"
+                android:visibility="@{((trip.note != null) &amp;&amp; (trip.note.length()>0)) ? View.VISIBLE : View.GONE}"
+                tools:text="Un très beau voyage"/>
 
-            <android.support.v4.widget.Space
-                android:layout_width="@dimen/space_label_value"
-                android:layout_height="1dip"/>
-
-            <TextView
-                android:id="@+id/trip_detail__end_date__label"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:text="@string/trip_detail__end_date__label"/>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/trip_detail__note__label"
+                android:layout_toLeftOf="@id/trip_detail__edit_button"
+                android:layout_toStartOf="@id/trip_detail__edit_button"
+                android:orientation="horizontal"
+                android:visibility="@{trip.totalWeight >0 ? View.VISIBLE : View.GONE}">
 
-            <android.support.v4.widget.Space
-                android:layout_width="@dimen/space_label_value"
-                android:layout_height="1dip"/>
-
-            <TextView
-                android:id="@+id/trip_detail__end_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{trip.endDate}"
-                tools:text="28 décembre 2015"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/trip_detail__note__label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/trip_detail__date__layout"
-            android:text="@{trip.note}"
-            tools:text="Un très beau voyage"/>
+                <TextView
+                    android:id="@+id/trip_detail__weight__label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{tripFormatter.getFormattedWeight(trip.totalWeight, trip.packedWeight)}"
+                    tools:text="@string/trip_detail__before_weight__label"/>
+            </LinearLayout>
+        </RelativeLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/trip_detail__new_item__button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trip_detail__add_item___button"
+            android:minHeight="@dimen/accessibility_button_min_height"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/trip_detail__new_item_detail__button"
+            android:layout_toStartOf="@+id/trip_detail__new_item_detail__button"
+            android:text="@string/trip_detail__add_item___button"/>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@id/trip_detail__new_item_detail__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_button_min_height"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"/>
+            android:text="@string/trip_detail__add_item_detail___button"/>
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/trip_detail__new_item__button"
+            android:minHeight="@dimen/accessibility_edit_text_min_height"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/trip_detail__new_item__button"/>
+            android:layout_toLeftOf="@id/trip_detail__new_item__button"
+            android:layout_toStartOf="@id/trip_detail__new_item__button"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:hint="@string/trip_detail__new_item__access"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
-            android:layout_below="@id/trip_detail__note__label"
-            android:layout_above="@id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_above="@id/trip_detail__new_item__edit"
+            android:layout_below="@id/trip_detail__top_block"
+            android:background="@color/packlist__list_background"
+            tools:listitem="@layout/item_adapter"/>
 
+        <!-- View that will be displayed if list is empty only -->
+        <LinearLayout
+            android:id="@+id/trip_detail__list_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/trip_detail__new_item__edit"
+            android:layout_below="@id/trip_detail__top_block"
+            android:background="@color/packlist__list_background"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical"
+            tools:visibility="visible">
+
+            <!-- Setting contentDescription to null as this is image should not be read -->
+            <!-- It is just an eye-candy and content description would preferentially be text below -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_plus_one_black_24dp"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_detail__no_item_yet__label">
+            </TextView>
+
+        </LinearLayout>
     </RelativeLayout>
 </layout>

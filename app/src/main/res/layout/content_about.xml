@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -36,17 +36,39 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".gui.AboutActivity"
     tools:showIn="@layout/activity_about">
+
     <TextView
         android:id="@+id/help__general_info__label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about__main"
-        android:layout_marginBottom="20dip"/>
-    <Button
+        android:text="@string/about__main"/>
+
+    <android.support.v4.widget.Space
+        android:id="@+id/help__spacer1"
+        android:layout_width="match_parent"
+        android:layout_height="20dip"
+        android:layout_below="@+id/help__general_info__label"/>
+
+    <TextView
+        android:id="@+id/help__contributors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/help__spacer1"
+        android:text="@string/about__many_thanks_to_contributors"/>
+
+    <android.support.v4.widget.Space
+        android:id="@+id/help__spacer2"
+        android:layout_width="match_parent"
+        android:layout_height="20dip"
+        android:layout_below="@+id/help__contributors"/>
+
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/help__third_party__button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="@dimen/accessibility_button_min_height"
+        android:layout_below="@id/help__spacer2"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_below="@id/help__general_info__label"
-        android:text="@string/about__third_party__button" />
+        android:text="@string/about__third_party__button"/>
+
 </RelativeLayout>

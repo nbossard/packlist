@@ -2,7 +2,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,8 +38,14 @@ package com.nbossard.packlist.model;
     package com.nbossard.packlist.model #LightBlue{
         !include Trip.java
         !include Item.java
+        !include ItemComparatorAdditionDate.java
+        !include ItemComparatorAlphabetical.java
+        !include ItemComparatorPacking.java
 
         com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking
     }
 @enduml
 

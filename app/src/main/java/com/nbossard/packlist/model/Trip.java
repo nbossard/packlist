@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard.
+ * Copyright (c) 2016 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,26 +26,52 @@ package com.nbossard.packlist.model;
         String mStartDate
         String mEndDate
         String mNote
+        String mSortMode
 
         addItem()
+        deleteItem(UUID)
+        unpackAll()
     }
 @enduml
  */
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
-
-import hugo.weaving.DebugLog;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A trip data model.
+ * Note that this class has to be left in Java folder for data binding.
  *
  * @author Created by nbossard on 25/12/15.
  */
-public class Trip {
+public class Trip implements Serializable, Comparable<Trip>, Cloneable {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    @SuppressWarnings("unused")
+    private static final String TAG = Trip.class.getName();
+
+    // For better code readability
+
+    /**
+     * Count weight of all items.
+     */
+    private static final boolean PACKED_ITEMS_ONLY = true;
+
+    /**
+     * Count weight of all packed items only.
+     */
+    private static final boolean ALL_ITEMS = false;
+
 
 // *********************** FIELDS *************************************************************************
 
@@ -56,40 +82,62 @@ public class Trip {
     private String mName;
 
     /** Trip start date. */
-    private String mStartDate;
+    private GregorianCalendar mStartDate;
 
     /** Trip return date. */
-    private String mEndDate;
+    private GregorianCalendar mEndDate;
 
     /** Additional notes, free text. */
     private String mNote;
 
-
     /** List of items to bring in this trip. */
     private List<Item> mListItem;
 
-    //
+    /** The total weight of all items in this trip. */
+    private int mTotalWeight;
+
+    /**
+     * The total weight of all items in this trip... that are packed
+     */
+    private int mPackedWeight;
+
+    /**
+     * The trip saved sort mode.
+     */
+    private SortModes mSortMode;
+
 // *********************** METHODS **************************************************************************
 
     /**
+     * No parameter Constructor.
+     */
+    public Trip() {
+        mUUID = UUID.randomUUID();
+        mListItem = new ArrayList<>();
+        setSortMode(SortModes.DEFAULT);
+    }
+
+    /**
      * Full parameters constructor.
-     * @param parName trip name, usually destination. i.e. : "Dublin"
+     *
+     * @param parName      trip name, usually destination. i.e. : "Dublin"
      * @param parStartDate trip start date
-     * @param parEndDate trip return date
-     * @param parNote additional notes, free text
+     * @param parEndDate   trip return date
+     * @param parNote      additional notes, free text
+     * @param parSortMode sort mode (alphabetical, packed...)
      */
     public Trip(final String parName,
-                final String parStartDate,
-                final String parEndDate,
-                final String parNote) {
-
-        mUUID = UUID.randomUUID();
+                final GregorianCalendar parStartDate,
+                final GregorianCalendar parEndDate,
+                final String parNote,
+                final SortModes parSortMode) {
+        this();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
-
-        mListItem = new ArrayList<>();
+        setSortMode(parSortMode);
+        mTotalWeight = 0;
     }
 
     /**
@@ -129,7 +177,7 @@ public class Trip {
      * Getter for trip start date.
      * @return trip start date
      */
-    public final String getStartDate() {
+    public final GregorianCalendar getStartDate() {
         return mStartDate;
     }
 
@@ -138,7 +186,7 @@ public class Trip {
      * @param parStartDate trip start date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setStartDate(final String parStartDate) {
+    public final void setStartDate(final GregorianCalendar parStartDate) {
         mStartDate = parStartDate;
     }
 
@@ -146,7 +194,7 @@ public class Trip {
      * Getter for trip return date.
      * @return trip return date
      */
-    public final String getEndDate() {
+    public final GregorianCalendar getEndDate() {
         return mEndDate;
     }
 
@@ -155,14 +203,14 @@ public class Trip {
      * @param parEndDate trip return date
      */
     @SuppressWarnings("WeakerAccess")
-    public final void setEndDate(final String parEndDate) {
+    public final void setEndDate(final GregorianCalendar parEndDate) {
         mEndDate = parEndDate;
     }
 
     /**
-     *
      * @return automatically set UUID
      */
+    @NonNull
     public final UUID getUUID() {
         return mUUID;
     }
@@ -170,25 +218,138 @@ public class Trip {
     /**
      * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
+     * @return UUID of newly created item
      */
-    public final void addItem(final String parName) {
-        Item newItem = new Item(parName);
+    public final UUID addItem(final String parName) {
+        Item newItem = new Item(this, parName);
         mListItem.add(newItem);
+        return newItem.getUUID();
     }
 
+    /**
+     * Add a new item in the list of items to bring with this trip.<br>
+     *
+     * Automatically updates total weight.
+     * @param parItem new item
+     */
+    @SuppressWarnings("WeakerAccess")
+    public final void addItem(final Item parItem) {
+        mListItem.add(parItem);
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
+    }
+
+    /**
+     * @return total weight of all items that have a weight.
+     */
+    public final int getTotalWeight() {
+        return mTotalWeight;
+    }
+
+    /**
+     * @return total weight of all items that have a weight and that are packed.
+     */
+    public final int getPackedWeight() {
+        return mPackedWeight;
+    }
 
     /**
      * Get the full list of items to bring for this trip.
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListItem() {
+    public final List<Item> getListOfItems() {
         return mListItem;
     }
 
 
+    /**
+     * Delete the item of provided UUID.<br>
+     * <p/>
+     * Automatically updates total weight.
+     *
+     * @param parUUID unique identifier of item to be deleted
+     */
+    public final void deleteItem(final UUID parUUID) {
+        Item toDeleteItem = null;
+        for (Item oneItem : mListItem) {
+            if (oneItem.getUUID().compareTo(parUUID) == 0) {
+                toDeleteItem = oneItem;
+            }
+        }
+        if (toDeleteItem != null) {
+            mListItem.remove(toDeleteItem);
+        }
+        setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
+    }
+
+    /**
+     * unpack all items of this trip. Update packing weight.
+     */
+    public final void unpackAll() {
+        for (Item oneItem : mListItem) {
+            oneItem.setPacked(false);
+        }
+        packingChange();
+    }
+
+    /**
+     * Set the current sort mode.
+     *
+     * @param parSortMode the new current sort mode.
+     */
+    public final void setSortMode(final SortModes parSortMode) {
+        if (parSortMode == null) {
+            mSortMode = SortModes.DEFAULT;
+        } else {
+            mSortMode = parSortMode;
+        }
+    }
+
+    /**
+     * @return current sort mode
+     */
+    public final SortModes getSortMode() {
+        return mSortMode;
+    }
+
+    /**
+     * Updating of total weight.
+     *
+     * @param parTotalWeight the new total weight in grams.
+     */
+    private void setTotalWeight(final int parTotalWeight) {
+        mTotalWeight = parTotalWeight;
+    }
+
+    /**
+     * Updating of packed weight.
+     *
+     * @param parPackedWeight the new packed weight in grams.
+     */
+    private void setPackedWeight(final int parPackedWeight) {
+        mPackedWeight = parPackedWeight;
+    }
+
+
+    /**
+     * @return Number of days before trip, can be a negative value if trip is in the past.
+     * 0, default value if no startDate defined.
+     */
+    public final long getRemainingDays() {
+
+        long diffInMilliSeconds = 0;
+        if (mStartDate != null) {
+            diffInMilliSeconds = (mStartDate.getTimeInMillis() - System.currentTimeMillis());
+        }
+
+        return TimeUnit.MILLISECONDS.toDays(diffInMilliSeconds);
+    }
+
+    //CHECKSTYLE : BEGIN GENERATED CODE
     @Override
-    public final boolean equals(Object parO) {
+    public final boolean equals(final Object parO) {
         if (this == parO) return true;
         if (parO == null || getClass() != parO.getClass()) return false;
 
@@ -209,6 +370,37 @@ public class Trip {
         return result;
     }
 
+    //CHECKSTYLE : END GENERATED CODE
+
+    @Override
+    public final int compareTo(@NonNull final Trip parAnotherTrip) {
+        int curRemainingDays = ((Long) getRemainingDays()).intValue();
+        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
+        return curRemainingDays - otherRemainingDays;
+    }
+
+    /**
+     * Notify this trip that one of its item has changed its packing state.
+     */
+    public final void packingChange() {
+        setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
+    }
+
+    @Override
+    public final Trip clone() throws CloneNotSupportedException {
+        Trip clonedTrip = (Trip) super.clone();
+
+        // setting another UUID
+        clonedTrip.mUUID = UUID.randomUUID();
+
+        // cloning also trip list
+        clonedTrip.mListItem = new ArrayList<>();
+        for (Item item : getListOfItems()) {
+            clonedTrip.addItem(item.clone());
+        }
+        return clonedTrip;
+    }
+
     @Override
     public final String toString() {
         return "Trip{" + "mUUID=" + mUUID
@@ -218,5 +410,24 @@ public class Trip {
                 + ", mNote=" + mNote
                 + ", mListItem=" + mListItem
                 + '}';
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Recomputes the total weight by adding all weight of all items.
+     *
+     * @param parPackedOnly if true, count only the packed items
+     * @return a weight or 0 if no item at all has a weight.
+     */
+    private int recomputeTotalWeight(final boolean parPackedOnly) {
+        int resTotalWeight = 0;
+        for (Item item : mListItem) {
+            //noinspection ConstantConditions
+            if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
+                resTotalWeight += item.getWeight();
+            }
+        }
+        return resTotalWeight;
     }
 }

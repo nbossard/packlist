@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard.
+  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -23,15 +23,41 @@
 <!---->
 <!-- Resources and Ids for this page must start with "ia__" -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/month_day_label_text_size"
+                android:background="@drawable/list_bgd"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/ia__row_margin"
+                android:paddingEnd="@dimen/ia__start_margin"
+                android:paddingLeft="@dimen/ia__start_margin"
+                android:paddingRight="@dimen/ia__start_margin"
+                android:paddingStart="@dimen/ia__start_margin"
+                android:paddingTop="@dimen/ia__row_margin">
+
+    <!-- using margin right instead of Space as it is linked to this string-->
+    <!--focusable and focusableInTouchMode are set to allow click on full row and not only checkbox -->
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/ia__packed"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dip"
+        android:layout_marginRight="10dip"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical"
+        android:clickable="false"/>
+
     <TextView
         android:id="@+id/ia__name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Verdun"/>
+        android:layout_toEndOf="@id/ia__packed"
+        android:layout_toRightOf="@id/ia__packed"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
 
-</LinearLayout>
+</RelativeLayout>
