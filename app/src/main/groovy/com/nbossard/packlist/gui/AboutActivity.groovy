@@ -33,9 +33,9 @@ import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.nbossard.packlist.PackListApp;
 
-import com.nbossard.packlist.BuildConfig;
+import com.nbossard.packlist.BuildConfig
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
@@ -56,7 +56,7 @@ import hugo.weaving.DebugLog;
  *
  * @author nicolas Bossard
  */
-public class AboutActivity extends AppCompatActivity  implements View.OnClickListener {
+public class AboutActivity extends AppCompatActivity {
 
     // *********************** CONSTANTS**********************************************************************
 
@@ -119,7 +119,7 @@ public class AboutActivity extends AppCompatActivity  implements View.OnClickLis
         def intent = new Intent(this, HelpThirdPartyActivity.class)
         startActivity intent
     }
-//
+
     /**
      * Send report to tracker, currently Google Analytics, this could change.
      */

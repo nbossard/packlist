@@ -27,6 +27,9 @@ import android.util.Log;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 import org.acra.ACRA;
 import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
@@ -87,7 +90,9 @@ public class PackListApp extends Application {
 
     /** Saving module singleton. */
     private ISavingModule mSavingModule;
-//
+
+    /** Tracker object, a part of Google Analytics. */
+    private Tracker mTracker;
 
 // *********************** METHODS **************************************************************************
 
@@ -124,6 +129,20 @@ public class PackListApp extends Application {
             mSavingModule = SavingFactory.getNewSavingModule(this);
         }
         return mSavingModule;
+    }
+
+
+    /**
+     * Gets the default {@link Tracker} for this {@link Application}.
+     * @return tracker
+     */
+    public final synchronized  Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker("UA-47815384-2");
+        }
+        return mTracker;
     }
 //
 

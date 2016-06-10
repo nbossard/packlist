@@ -19,7 +19,6 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
-// For hugo advanced automatic logging
 apply plugin: 'com.jakewharton.hugo'
 // For Google Analytics
 apply plugin: 'com.google.gms.google-services'
@@ -112,7 +111,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
     compile 'ch.acra:acra:4.8.5'
     // For Google Analytics
-    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+    compile 'com.google.android.gms:play-services-analytics:8.3.0'
 
     testCompile 'junit:junit:4.12'
 
