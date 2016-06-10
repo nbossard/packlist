@@ -66,6 +66,16 @@ public class ImportExport {
     private static final String IGNORE_SYMBOL = "# ";
 
     /**
+     * The "checked" char ☑ , to indicate it is packed.
+     */
+    public static final String CHECKED_CHAR = "\u2611";
+
+    /**
+     * The "unchecked" char ☐ , to indicate it is packed.
+     */
+    public static final String UNCHECKED_CHAR = "\u2610";
+
+    /**
      * Mass import items into an existing provided trip parTrip.
      *
      * @param parTrip         trip in which to be added items
@@ -73,6 +83,7 @@ public class ImportExport {
      */
     public final void massImportItems(final Trip parTrip, final String parTextToImport) {
         String[] lines = parTextToImport.split("\n");
+        boolean checked = false;
         String name;
         String weightStr;
 
@@ -86,7 +97,22 @@ public class ImportExport {
             } else {
                 // normal case, it is an item to be added
 
+                // splitting in packed and rest using a regex
+                // This regex has been tested using : https://regex101.com/
+                // and test lists in androidTest folder
+                Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+                Matcher m0 = p0.matcher(oneLine);
+                if (m0.find()) {
+                    String checkbox = m0.group(1).trim();
+                    checked = checkbox.contentEquals(CHECKED_CHAR);
+                    oneLine = m0.group(2);
+                } else {
+                    checked = false;
+                }
+
+                //working on the rest
                 // splitting in name and weight using a regex
+
                 Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
                 Matcher m = p.matcher(oneLine);
                 if (m.find()) {
@@ -100,6 +126,7 @@ public class ImportExport {
                 }
 
                 Item newItem = new Item(parTrip, name);
+                newItem.setPacked(checked);
                 newItem.setWeight(parseInt(weightStr));
                 parTrip.addItem(newItem);
             }
@@ -148,9 +175,9 @@ public class ImportExport {
         res.append("\n");
         for (Item oneItem : parRetrievedTrip.getListOfItems()) {
             if (oneItem.isPacked()) {
-                res.append("\u2611"); // checked
+                res.append(CHECKED_CHAR); // checked
             } else {
-                res.append("\u2610"); // unchecked
+                res.append(UNCHECKED_CHAR); // unchecked
             }
             res.append(" ");
             res.append(oneItem.getName());

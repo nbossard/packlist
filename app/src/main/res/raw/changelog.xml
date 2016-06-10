@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xxth june 2016"
         versionName="0.10">
+        <changelogtext>BUGFIX : ISS#38 Importing text file, checkboxes are incorrectly managed</changelogtext>
         <changelogtext>BUGFIX : ISS#36 Mass import submit button not visible on some phones or landscape
         </changelogtext>
         <changelogtext>BUGFIX : ISS#35 Remember last used sort mode</changelogtext>
