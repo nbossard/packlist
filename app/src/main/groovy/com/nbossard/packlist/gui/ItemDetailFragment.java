@@ -30,6 +30,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.databinding.FragmentItemDetailBinding;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
@@ -55,6 +58,9 @@ import static java.lang.Integer.parseInt;
 public class ItemDetailFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = ItemDetailFragment.class.getName();
 
     /** Bundle parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_ITEM = "bundleParItem";
@@ -103,6 +109,9 @@ public class ItemDetailFragment extends Fragment {
     /** Button to save and close. */
     private Button mSubmitButton;
 
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -124,6 +133,9 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
 
         Bundle args = getArguments();
         if (args != null) {
@@ -182,5 +194,13 @@ public class ItemDetailFragment extends Fragment {
     @DebugLog
     public final void setItem(final Item parRetrievedItem) {
         mItem = parRetrievedItem;
+    }
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

@@ -56,6 +56,9 @@ public class HelpThirdPartyActivity extends AppCompatActivity
 
     // ********************** FIELDS ************************************************************************
 
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
+
     // ********************** METHODS ***********************************************************************
 
     @DebugLog
@@ -64,7 +67,8 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     {
         super.onCreate(savedInstState);
 
-        sendReportToTracker();
+        mTracker = ((PackListApp) getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
 
         setContentView(R.layout.activity_help_thirdparty);
     }
@@ -74,11 +78,9 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     /**
      * Send report to tracker, currently Google Analytics, this could change.
      */
-    private void sendReportToTracker() {
-        PackListApp application = (PackListApp) getApplication();
-        Tracker tracker = application.getDefaultTracker();
-        tracker.setScreenName(TAG);
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
 }

@@ -47,6 +47,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
@@ -74,6 +77,9 @@ import hugo.weaving.DebugLog;
 public class TripDetailFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = TripDetailFragment.class.getName();
 
     /** Bundle mandatory parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
@@ -109,6 +115,9 @@ public class TripDetailFragment extends Fragment {
     /** Add detailed item button. */
     @SuppressWarnings("FieldCanBeLocal")
     private Button mAddDetailedItemButton;
+
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -232,6 +241,9 @@ public class TripDetailFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
+
         Bundle args = getArguments();
         if (args != null) {
             mRetrievedTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP_ID);
@@ -332,6 +344,12 @@ public class TripDetailFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_trip__share:
+
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("action_trip__share")
+                        .build());
+
                 ImportExport port = new ImportExport();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
@@ -343,15 +361,33 @@ public class TripDetailFragment extends Fragment {
                 }
                 break;
             case R.id.action_trip__import_txt:
+
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("action_trip__import_txt")
+                        .build());
+
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__unpack_all:
+
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("action_trip__unpack_all")
+                        .build());
+
                 mRetrievedTrip.unpackAll();
                 mIHostingActivity.saveTrip(mRetrievedTrip);
                 // displayTrip(); automatically called back by saveTrip
                 mListItemAdapter.notifyDataSetChanged();
                 break;
             case R.id.action_trip__sort:
+
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction("action_trip__sort")
+                        .build());
+
                 SortModes curSortMode = mRetrievedTrip.getSortMode();
                 SortModes newSortMode = curSortMode.next();
                 mListItemAdapter.setSortMode(newSortMode);
@@ -402,7 +438,16 @@ public class TripDetailFragment extends Fragment {
         return mRetrievedTrip;
     }
 
+
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
     /**
      * Get a human readable and localized name of sorting.
@@ -432,6 +477,12 @@ public class TripDetailFragment extends Fragment {
      * Handle click on edit trip button.
      */
     private void onClickEditTrip() {
+
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("EditTrip")
+                .build());
+
         ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
     }
 
@@ -440,6 +491,12 @@ public class TripDetailFragment extends Fragment {
      * Will add a new item.
      */
     private void onClickAddItem() {
+
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("AddItem")
+                .build());
+
         String tmpStr = mNewItemEditText.getText().toString();
         mRetrievedTrip.addItem(tmpStr);
         mIHostingActivity.saveTrip(mRetrievedTrip);
@@ -453,6 +510,12 @@ public class TripDetailFragment extends Fragment {
      * Will add a new item with additional details.
      */
     public final void onClickAddDetailedItem() {
+
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("AddDetailedItem")
+                .build());
+
         String tmpStr = mNewItemEditText.getText().toString();
         mNewItemEditText.setText("");
         Item newItem = new Item(mRetrievedTrip, tmpStr);

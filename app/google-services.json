@@ -8,7 +8,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:386340785269:android:3b4d439304e73c7a",
         "android_client_info": {
-          "package_name": "com.nbossard.packlist"
+          "package_name": "com.nbossard.packlist.debug"
         }
       },
       "oauth_client": [],

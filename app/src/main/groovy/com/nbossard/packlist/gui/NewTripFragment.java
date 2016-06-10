@@ -35,6 +35,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentNewTripBinding;
@@ -66,6 +68,9 @@ import hugo.weaving.DebugLog;
 public class NewTripFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = NewTripFragment.class.getName();
 
     /** Bundle mandatory parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
@@ -200,6 +205,9 @@ public class NewTripFragment extends Fragment {
     /** Trip object to be displayed and added item. */
     private Trip mTrip;
 
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -231,6 +239,8 @@ public class NewTripFragment extends Fragment {
 
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
         mIHostingActivity = (INewTripFragmentActivity) getActivity();
+        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
 
         Bundle args = getArguments();
         mTripId = null;
@@ -392,5 +402,14 @@ public class NewTripFragment extends Fragment {
         });
     }
 
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
 }

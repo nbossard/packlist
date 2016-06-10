@@ -30,6 +30,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.ImportExport;
@@ -80,6 +83,9 @@ public class MassImportFragment extends Fragment {
 
     /** Trip onto which mass import items. */
     private Trip mTrip;
+
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -134,6 +140,8 @@ public class MassImportFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIHostingActivity = (IMassImportFragmentActivity) getActivity();
+        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
 
         Bundle args = getArguments();
         mTrip = null;
@@ -179,6 +187,16 @@ public class MassImportFragment extends Fragment {
     public final void onDetach() {
         super.onDetach();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     /**

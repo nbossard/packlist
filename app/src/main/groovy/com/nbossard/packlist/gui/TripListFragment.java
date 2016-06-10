@@ -34,6 +34,8 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
@@ -87,6 +89,9 @@ public class TripListFragment extends Fragment {
      * Hosting activity interface.
      */
     private ITripListFragmentActivity mIHostingActivity;
+
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -180,6 +185,8 @@ public class TripListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mIHostingActivity = (ITripListFragmentActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
+        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
     }
 
     @Override
@@ -203,6 +210,14 @@ public class TripListFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Send report to tracker, currently Google Analytics, this could change.
+     */
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 
     /**
      * Populate list with data in {@link ISavingModule}.

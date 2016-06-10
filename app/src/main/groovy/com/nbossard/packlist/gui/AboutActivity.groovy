@@ -63,6 +63,9 @@ public class AboutActivity extends AppCompatActivity {
     /** Log tag. */
     private static final String TAG = AboutActivity.class.getName();
 
+    /** Google Analytics tracker. */
+    private Tracker mTracker;
+
     // *********************** METHODS **********************************************************************
 
     @Override
@@ -70,7 +73,8 @@ public class AboutActivity extends AppCompatActivity {
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sendReportToTracker();
+        mTracker = ((PackListApp) getApplication()).getDefaultTracker();
+        sendScreenDisplayedReportToTracker();
 
         setContentView(R.layout.activity_about);
 
@@ -123,11 +127,8 @@ public class AboutActivity extends AppCompatActivity {
     /**
      * Send report to tracker, currently Google Analytics, this could change.
      */
-    private void sendReportToTracker() {
-        PackListApp application = (PackListApp) getApplication();
-        Tracker tracker = application.getDefaultTracker();
-        tracker.setScreenName(TAG);
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    private void sendScreenDisplayedReportToTracker() {
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
 
