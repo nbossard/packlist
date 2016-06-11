@@ -20,6 +20,8 @@
 package com.nbossard.packlist.process;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
 import com.nbossard.packlist.model.Item;
@@ -75,6 +77,8 @@ public class ImportExport {
      */
     public static final String UNCHECKED_CHAR = "\u2610";
 
+    // *********************** METHODS **********************************************************************
+
     /**
      * Mass import items into an existing provided trip parTrip.
      *
@@ -97,42 +101,11 @@ public class ImportExport {
             } else {
                 // normal case, it is an item to be added
 
-                // splitting in packed and rest using a regex
-                // This regex has been tested using : https://regex101.com/
-                // and test lists in androidTest folder
-                Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
-                Matcher m0 = p0.matcher(oneLine);
-                if (m0.find()) {
-                    String checkbox = m0.group(1).trim();
-                    checked = checkbox.contentEquals(CHECKED_CHAR);
-                    oneLine = m0.group(2);
-                } else {
-                    checked = false;
-                }
-
-                //working on the rest
-                // splitting in name and weight using a regex
-
-                Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
-                Matcher m = p.matcher(oneLine);
-                if (m.find()) {
-                    // Trying to use a regex
-                    name = m.group(1).trim();
-                    weightStr = m.group(2);
-                } else {
-                    // 2nd try, the whole block is considered as name without weight
-                    name = oneLine.trim();
-                    weightStr = "0";
-                }
-
-                Item newItem = new Item(parTrip, name);
-                newItem.setPacked(checked);
-                newItem.setWeight(parseInt(weightStr));
+                Item newItem = parseOneItemLine(parTrip, oneLine);
                 parTrip.addItem(newItem);
             }
         }
     }
-
 
     /**
      * Make a pretty plaintext presentation of trip so we can share it.
@@ -190,5 +163,59 @@ public class ImportExport {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    // *********************** PRIVATE METHODS ***************************************************************
+
+    /**
+     * Parse one line, that is supposed to be an item.
+     *
+     * @param parTrip    will be used to create item.
+     * @param parOneLine line to be parsed, non empty
+     * @return an item ready to be added to trip
+     */
+    @NonNull
+    @VisibleForTesting
+    public Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+
+        String yetToBeParsed;
+        boolean checked;
+        String name;
+        String weightStr;
+
+        // splitting in packed and rest using a regex
+        // This regex has been tested using : https://regex101.com/
+        // and test lists in androidTest folder
+        yetToBeParsed = parOneLine;
+        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+        Matcher m0 = p0.matcher(yetToBeParsed);
+        if (m0.find()) {
+            String checkbox = m0.group(1).trim();
+            checked = checkbox.contentEquals(CHECKED_CHAR);
+            yetToBeParsed = m0.group(2);
+        } else {
+            checked = false;
+        }
+
+        //working on the rest
+        // splitting in name and weight using a regex
+
+        Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
+        Matcher m = p.matcher(yetToBeParsed);
+        if (m.find()) {
+            // Trying to use a regex
+            name = m.group(1).trim();
+            weightStr = m.group(2);
+        } else {
+            // 2nd try, the whole block is considered as name without weight
+            name = parOneLine.trim();
+            weightStr = "0";
+        }
+
+        // Building item to be parsed
+        Item newItem = new Item(parTrip, name);
+        newItem.setPacked(checked);
+        newItem.setWeight(parseInt(weightStr));
+        return newItem;
     }
 }
