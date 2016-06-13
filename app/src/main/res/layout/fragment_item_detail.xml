@@ -82,13 +82,13 @@
             android:labelFor="@+id/item_detail__category__edit"
             android:text="@string/item_detail__category__label"/>
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@id/item_detail__category__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="@{String.valueOf(item.category)}"
-            tools:text="Enfants"/>
+            android:inputType="text"
+            android:text="@{item.category}"
+            tools:text="Chaussettes"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/item_detail__submit__button"

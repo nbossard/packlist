@@ -27,6 +27,8 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -69,9 +71,10 @@ public class ItemDetailFragment extends Fragment {
         @Override
         public void onClick(final View v) {
 
-            // update item
+            // update item with values
             mItem.setName(mNameEdit.getText().toString());
             mItem.setWeight(parseInt(mWeightEdit.getText().toString()));
+            mItem.setCategory(mCategoryEdit.getText().toString());
 
             // asking supporting activity to update item
             mIHostingActivity.updateItem(mItem);
@@ -99,6 +102,11 @@ public class ItemDetailFragment extends Fragment {
 
     /** Edit text for item weight. */
     private EditText mWeightEdit;
+
+    /**
+     * Edit text for item category.
+     */
+    private AutoCompleteTextView mCategoryEdit;
 
     /** Button to save and close. */
     private Button mSubmitButton;
@@ -160,7 +168,16 @@ public class ItemDetailFragment extends Fragment {
         mNameEdit = (EditText) mRootView.findViewById(R.id.item_detail__name__edit);
         mWeightEdit = (EditText) mRootView.findViewById(R.id.item_detail__weight__edit);
         mSubmitButton = (Button) mRootView.findViewById(R.id.item_detail__submit__button);
+        mCategoryEdit = (AutoCompleteTextView) mRootView.findViewById(R.id.item_detail__category__edit);
 
+
+        // TODO improve this hard coded list
+        final String[] CATEGORIES = new String[]{
+                "Vetements", "Outils", "Divers"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, CATEGORIES);
+        mCategoryEdit.setAdapter(adapter);
 
         // Adding listeners
         addListenerOnSubmitButton();
