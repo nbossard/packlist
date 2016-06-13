@@ -77,6 +77,10 @@ public class ImportExportTest extends InstrumentationTestCase {
         mTestPort.massImportItems(mTestTrip, testStr);
     }
 
+    /**
+     * @throws Exception
+     * @see ImportExport#massImportItems(Trip, String)
+     */
     public void testMassImportItems() throws Exception {
 
         Item importedItem0 = mTestTrip.getListOfItems().get(0);
@@ -94,6 +98,10 @@ public class ImportExportTest extends InstrumentationTestCase {
         assertEquals(THIRD_LINE_WEIGHT, importedItem2.getWeight());
     }
 
+    /**
+     * @throws Exception
+     * @see ImportExport#parseOneItemLine(Trip, String)
+     */
     public void testParseOneItemLine() {
 
         // stupide line

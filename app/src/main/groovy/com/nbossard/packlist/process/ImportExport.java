@@ -87,9 +87,6 @@ public class ImportExport {
      */
     public final void massImportItems(final Trip parTrip, final String parTextToImport) {
         String[] lines = parTextToImport.split("\n");
-        boolean checked = false;
-        String name;
-        String weightStr;
 
         for (String oneLine : lines) {
 
@@ -176,7 +173,7 @@ public class ImportExport {
      */
     @NonNull
     @VisibleForTesting
-    public Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
 
         String yetToBeParsed;
         boolean checked;
