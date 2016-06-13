@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.test.InstrumentationTestCase;
 
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.GregorianCalendar;
@@ -49,17 +50,20 @@ public class ISavingModuleTest extends InstrumentationTestCase {
                 new Trip("Rennes",
                         new GregorianCalendar(2015,12,12),
                         new GregorianCalendar(2015,12,14),
-                        "pas trop loin");
+                        "pas trop loin",
+                        SortModes.DEFAULT);
         mTestTrip2 =
                 new Trip("Dublin",
                         new GregorianCalendar(2015,5,1),
                         new GregorianCalendar(2015,5,8),
-                        "Bèèèèè");
+                        "Bèèèèè",
+                        SortModes.DEFAULT);
         mTestTrip3 =
                 new Trip("Londres",
                         new GregorianCalendar(2015,6,4),
                         new GregorianCalendar(2015,6,9),
-                        "beurk");
+                        "beurk",
+                        SortModes.DEFAULT);
         mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
         mTestedSavingModule.deleteAllTrips();
     }

@@ -23,6 +23,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.TestValues;
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.robotium.solo.Solo;
 
@@ -41,9 +42,10 @@ public class MassImportFragmentTest  extends ActivityInstrumentationTestCase2<Ma
     private static final GregorianCalendar TEST_START_DATE = new GregorianCalendar(2011, 1, 1);
     private static final GregorianCalendar TEST_END_DATE = new GregorianCalendar(2012, 2, 2);
     private static final String TEST_NOTE = "Have fun";
+    private static final SortModes TEST_SORT_MODE = SortModes.DEFAULT;
 
     private final Trip testEmptyItemSetTrip =
-            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE);
+            new Trip(TEST_TRIP_NAME, TEST_START_DATE, TEST_END_DATE, TEST_NOTE, TEST_SORT_MODE);
 
     // ********************** FIELDS ************************************************************************
 

@@ -17,11 +17,15 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.model;
 
 /*
 @startuml
-    enum com.nbossard.packlist.gui.SortModes {
+    enum com.nbossard.packlist.model.SortModes {
+        DEFAULT
+        UNPACKED_FIRST
+        ALPHABETICAL
+        next()
     }
 @enduml
  */
