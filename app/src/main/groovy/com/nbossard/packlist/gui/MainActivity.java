@@ -257,6 +257,11 @@ public class MainActivity
         }
     }
 
+    @Override
+    public String[] getListOfCategories() {
+        return mSavingModule.getListOfCategories();
+    }
+
     // ----------- implementing interface ITripDetailFragmentActivity -------------------
 
     @Override

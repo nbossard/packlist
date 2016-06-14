@@ -170,13 +170,10 @@ public class ItemDetailFragment extends Fragment {
         mSubmitButton = (Button) mRootView.findViewById(R.id.item_detail__submit__button);
         mCategoryEdit = (AutoCompleteTextView) mRootView.findViewById(R.id.item_detail__category__edit);
 
-
-        // TODO improve this hard coded list
-        final String[] CATEGORIES = new String[]{
-                "Vetements", "Outils", "Divers"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, CATEGORIES);
+        // pre-filling list of already existing categories that may match
+        String[] alreadyExistCat = mIHostingActivity.getListOfCategories();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, alreadyExistCat);
         mCategoryEdit.setAdapter(adapter);
 
         // Adding listeners

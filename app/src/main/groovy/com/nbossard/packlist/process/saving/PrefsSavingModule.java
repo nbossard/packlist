@@ -32,7 +32,9 @@ import com.nbossard.packlist.model.Trip;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -220,6 +222,27 @@ public class PrefsSavingModule implements ISavingModule {
             res = false;
         }
         return res;
+    }
+
+    @Override
+    public String[] getListOfCategories() {
+
+        Set<String> resSet = new HashSet<>();
+
+        List<Trip> tripList = loadSavedTrips();
+        for (Trip oneTrip : tripList) {
+            List<Item> tripItems = oneTrip.getListOfItems();
+            for (Item oneItem : tripItems) {
+                if (oneItem.getCategory() != null && oneItem.getCategory().length() > 0) {
+                    resSet.add(oneItem.getCategory());
+                }
+            }
+        }
+
+        // converting set to array
+        String[] resArray = new String[resSet.size()];
+        resSet.toArray(resArray);
+        return resArray;
     }
 
     // *********************** PRIVATE METHODS **************************************************************

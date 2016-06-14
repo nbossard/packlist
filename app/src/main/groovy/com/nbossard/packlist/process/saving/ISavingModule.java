@@ -86,4 +86,11 @@ public interface ISavingModule {
      * @return true if update succeeded, false otherwise
      */
     @CheckResult boolean updateItem(Item parItem);
+
+    /**
+     * Retrieve the list of previously created categories.
+     *
+     * @return a list of categories
+     */
+    String[] getListOfCategories();
 }
