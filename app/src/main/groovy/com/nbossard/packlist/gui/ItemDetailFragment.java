@@ -72,9 +72,9 @@ public class ItemDetailFragment extends Fragment {
         public void onClick(final View v) {
 
             // update item with values
-            mItem.setName(mNameEdit.getText().toString());
-            mItem.setWeight(parseInt(mWeightEdit.getText().toString()));
-            mItem.setCategory(mCategoryEdit.getText().toString());
+            mItem.setName(mNameEdit.getText().toString().trim());
+            mItem.setWeight(parseInt(mWeightEdit.getText().toString().trim()));
+            mItem.setCategory(mCategoryEdit.getText().toString().trim());
 
             // asking supporting activity to update item
             mIHostingActivity.updateItem(mItem);
@@ -178,7 +178,6 @@ public class ItemDetailFragment extends Fragment {
 
         // Adding listeners
         addListenerOnSubmitButton();
-
     }
 
     /**
