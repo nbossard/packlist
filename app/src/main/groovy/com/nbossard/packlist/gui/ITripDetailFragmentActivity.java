@@ -49,4 +49,9 @@ interface ITripDetailFragmentActivity extends IMainActivity {
      * @param parTrip trip on which mass import will be done
      */
     void openMassImportFragment(Trip parTrip);
+
+    /**
+     * @return retrieve all previously created item names.
+     */
+    String[] getListOfItemNames();
 }

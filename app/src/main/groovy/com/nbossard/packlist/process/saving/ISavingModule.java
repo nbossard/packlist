@@ -93,4 +93,11 @@ public interface ISavingModule {
      * @return a list of categories
      */
     String[] getListOfCategories();
+
+    /**
+     * Retrieve the list of previously created item names.
+     *
+     * @return a list of categories
+     */
+    String[] getListOfItemNames();
 }

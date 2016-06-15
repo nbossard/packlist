@@ -27,6 +27,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,6 +42,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -101,7 +103,7 @@ public class TripDetailFragment extends Fragment {
     private ItemAdapter mListItemAdapter;
 
     /** Edit text. */
-    private EditText mNewItemEditText;
+    private AppCompatAutoCompleteTextView mNewItemEditText;
 
     /** Add item button. */
     private Button mAddItemButton;
@@ -265,7 +267,13 @@ public class TripDetailFragment extends Fragment {
         setHasOptionsMenu(true);
 
         // TODO old style, improve this
-        mNewItemEditText = (AppCompatEditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        mNewItemEditText = (AppCompatAutoCompleteTextView) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+
+        // pre-filling list of already existing categories that may match
+        String[] alreadyExistCat = mIHostingActivity.getListOfItemNames();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, alreadyExistCat);
+        mNewItemEditText.setAdapter(adapter);
 
         mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
         mAddItemButton.setOnClickListener(new View.OnClickListener() {

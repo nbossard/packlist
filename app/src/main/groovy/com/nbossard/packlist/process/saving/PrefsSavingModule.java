@@ -245,6 +245,27 @@ public class PrefsSavingModule implements ISavingModule {
         return resArray;
     }
 
+    @Override
+    public String[] getListOfItemNames() {
+
+        Set<String> resSet = new HashSet<>();
+
+        List<Trip> tripList = loadSavedTrips();
+        for (Trip oneTrip : tripList) {
+            List<Item> tripItems = oneTrip.getListOfItems();
+            for (Item oneItem : tripItems) {
+                if (oneItem.getName() != null && oneItem.getName().length() > 0) {
+                    resSet.add(oneItem.getName());
+                }
+            }
+        }
+
+        // converting set to array
+        String[] resArray = new String[resSet.size()];
+        resSet.toArray(resArray);
+        return resArray;
+    }
+
     // *********************** PRIVATE METHODS **************************************************************
 
     /**

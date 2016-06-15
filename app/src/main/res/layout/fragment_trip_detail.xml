@@ -191,7 +191,7 @@
             android:layout_alignParentRight="true"
             android:text="@string/trip_detail__add_item_detail___button"/>
 
-        <android.support.v7.widget.AppCompatEditText
+        <android.support.v7.widget.AppCompatAutoCompleteTextView
             android:id="@+id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
