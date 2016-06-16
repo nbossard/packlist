@@ -69,9 +69,10 @@ class ItemAdapter extends BaseAdapter {
      */
     private class InnerMyViewHolder
     {
-
-        // getting views
-
+        /**
+         * Reference (result of findviewbyid) to the item category.
+         */
+        private TextView tvCategory;
         /**
          * Reference (result of findviewbyid) to the item name.
          */
@@ -161,6 +162,7 @@ class ItemAdapter extends BaseAdapter {
             parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
 
             // getting views
+            vHolderRecycle.tvCategory = (TextView) parConvertView.findViewById(R.id.ia__category);
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
             vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
         } else
@@ -175,6 +177,7 @@ class ItemAdapter extends BaseAdapter {
         if (curItem.getWeight() > 0) {
             nameAndWeight += "(" + curItem.getWeight() + "g)";
         }
+        vHolderRecycle.tvCategory.setText(curItem.getCategory());
         vHolderRecycle.tvName.setText(nameAndWeight);
         vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
 
