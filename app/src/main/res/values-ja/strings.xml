@@ -88,6 +88,7 @@
     <string name="sorting_mode_default">デフォルト</string>
     <string name="sorting_mode_unpacked_first">荷物から出したものが最初</string>
     <string name="sorting_mode_alphabetical">アルファベット順</string>
+    <string name="sorting_mode_category">category</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>

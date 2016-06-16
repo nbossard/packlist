@@ -27,9 +27,12 @@
     <changelogversion
         changeDate="xx juin 2016"
         versionName="0.10">
+        <changelogtext>NEW : gestion des catégories</changelogtext>
+        <changelogtext>NEW : suggestion d'items et de catégories pendant la saisie</changelogtext>
         <changelogtext>BUGFIX : ISS#38 import des fichiers textes, les cases à cocher ne sont pas gérées
         </changelogtext>
-        <changelogtext>BUGFIX : ISS#36 Mass import , bouton non visible sur ceratins équipements ou en mode
+        <changelogtext>BUGFIX : ISS#36 Import de fichiers texte, bouton non visible sur ceratins équipements
+            ou en mode
             paysage
         </changelogtext>
         <changelogtext>BUGFIX : ISS#35 Sauvegarde du mode de tri pour chaque voyage</changelogtext>

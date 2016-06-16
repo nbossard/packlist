@@ -91,6 +91,7 @@
     <string name="sorting_mode_default">défaut</string>
     <string name="sorting_mode_unpacked_first">empaquetés ou non</string>
     <string name="sorting_mode_alphabetical">ordre alphabetique</string>
+    <string name="sorting_mode_category">catégorie</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>

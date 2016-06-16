@@ -427,6 +427,9 @@ public class TripDetailFragment extends Fragment {
             case ALPHABETICAL:
                 res = getString(R.string.sorting_mode_alphabetical);
                 break;
+            case CATEGORY:
+                res = getString(R.string.sorting_mode_category);
+                break;
             case DEFAULT:
             default:
                 res = getString(R.string.sorting_mode_default);

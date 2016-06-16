@@ -31,6 +31,7 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ItemComparatorAdditionDate;
 import com.nbossard.packlist.model.ItemComparatorAlphabetical;
+import com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical;
 import com.nbossard.packlist.model.ItemComparatorPacking;
 import com.nbossard.packlist.model.SortModes;
 
@@ -128,6 +129,8 @@ class ItemAdapter extends BaseAdapter {
             itemComparator = new ItemComparatorPacking();
         } else if (mSortMode == SortModes.ALPHABETICAL) {
             itemComparator = new ItemComparatorAlphabetical();
+        } else if (mSortMode == SortModes.CATEGORY) {
+            itemComparator = new ItemComparatorCategoryAlphabetical();
         }
         Collections.sort(mItemList, itemComparator);
 
@@ -177,7 +180,12 @@ class ItemAdapter extends BaseAdapter {
         if (curItem.getWeight() > 0) {
             nameAndWeight += "(" + curItem.getWeight() + "g)";
         }
-        vHolderRecycle.tvCategory.setText(curItem.getCategory());
+        if (curItem.getCategory() != null && curItem.getCategory().length() > 0) {
+            vHolderRecycle.tvCategory.setVisibility(View.VISIBLE);
+            vHolderRecycle.tvCategory.setText(curItem.getCategory());
+        } else {
+            vHolderRecycle.tvCategory.setVisibility(View.GONE);
+        }
         vHolderRecycle.tvName.setText(nameAndWeight);
         vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());
 
