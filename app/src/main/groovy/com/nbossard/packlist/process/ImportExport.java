@@ -143,6 +143,8 @@ public class ImportExport {
         boolean checked;
         String name;
         String weightStr;
+        Item newItem = new Item(parTrip, "");
+
 
         // splitting in packed and rest using a regex
         // This regex has been tested using : https://regex101.com/
@@ -159,6 +161,15 @@ public class ImportExport {
         }
 
         //working on the rest
+        // searching for a category
+        Pattern pCat = Pattern.compile("(.*):(.*)");
+        Matcher mCat = pCat.matcher(yetToBeParsed);
+        if (mCat.find()) {
+            String category = mCat.group(1).trim();
+            yetToBeParsed = mCat.group(2);
+            newItem.setCategory(category);
+        }
+
         // splitting in name and weight using a regex
 
         Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
@@ -174,7 +185,7 @@ public class ImportExport {
         }
 
         // Building item to be parsed
-        Item newItem = new Item(parTrip, name);
+        newItem.setName(name);
         newItem.setPacked(checked);
         newItem.setWeight(parseInt(weightStr));
         return newItem;
