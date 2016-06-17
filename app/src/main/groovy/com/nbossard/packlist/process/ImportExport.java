@@ -77,6 +77,11 @@ public class ImportExport {
      */
     public static final String UNCHECKED_CHAR = "\u2610";
 
+    /**
+     * The char used to separate category and item name.
+     */
+    public static final String CAT_NAME_SEPARATOR = ":";
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -113,56 +118,15 @@ public class ImportExport {
      */
     public final String toSharableString(final Context parContext, final Trip parRetrievedTrip) {
         StringBuilder res = new StringBuilder();
-        TripFormatter tripFormatter = new TripFormatter(parContext);
 
-        if (parRetrievedTrip.getName() != null) {
-            res.append(IGNORE_SYMBOL);
-            res.append(parRetrievedTrip.getName());
-            res.append("\n");
-        }
-        if ((parRetrievedTrip.getStartDate() != null) && (parRetrievedTrip.getStartDate() != null)) {
-            res.append(IGNORE_SYMBOL);
-            if (parRetrievedTrip.getStartDate() != null) {
-                res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
-            }
-            res.append("\u2192"); // Arrow right
-            if (parRetrievedTrip.getEndDate() != null) {
-                res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
-            }
-            res.append("\n");
-        }
-        if (parRetrievedTrip.getNote() != null && parRetrievedTrip.getNote().length() > 0) {
-            res.append(IGNORE_SYMBOL);
-            res.append(parRetrievedTrip.getNote());
-            res.append("\n");
-        }
-        if (parRetrievedTrip.getTotalWeight() > 0) {
-            res.append(IGNORE_SYMBOL);
-            res.append(tripFormatter.getFormattedWeight(parRetrievedTrip.getTotalWeight(),
-                    parRetrievedTrip.getPackedWeight()));
-            res.append("\n");
-        }
+        res.append(exportHeader(parContext, parRetrievedTrip));
+
         res.append("\n");
         for (Item oneItem : parRetrievedTrip.getListOfItems()) {
-            if (oneItem.isPacked()) {
-                res.append(CHECKED_CHAR); // checked
-            } else {
-                res.append(UNCHECKED_CHAR); // unchecked
-            }
-            res.append(" ");
-            res.append(oneItem.getName());
-            res.append(" ");
-            if (oneItem.getWeight() > 0) {
-                res.append("(");
-                res.append(oneItem.getWeight());
-                res.append("g)");
-            }
-            res.append("\n");
+            exportOneItem(res, oneItem);
         }
         return res.toString();
     }
-
-    // *********************** PRIVATE METHODS ***************************************************************
 
     /**
      * Parse one line, that is supposed to be an item.
@@ -214,5 +178,77 @@ public class ImportExport {
         newItem.setPacked(checked);
         newItem.setWeight(parseInt(weightStr));
         return newItem;
+    }
+
+    // *********************** PRIVATE METHODS ***************************************************************
+
+    /**
+     * export trip info as a human readable.
+     *
+     * @param parContext       will be used to create a trip formatter.
+     * @param parRetrievedTrip trip to be exported and appended to result
+     */
+    @NonNull
+    private String exportHeader(final Context parContext, final Trip parRetrievedTrip) {
+        StringBuilder res = new StringBuilder();
+        TripFormatter tripFormatter = new TripFormatter(parContext);
+
+        if (parRetrievedTrip.getName() != null) {
+            res.append(IGNORE_SYMBOL);
+            res.append(parRetrievedTrip.getName());
+            res.append("\n");
+        }
+        if ((parRetrievedTrip.getStartDate() != null) && (parRetrievedTrip.getStartDate() != null)) {
+            res.append(IGNORE_SYMBOL);
+            if (parRetrievedTrip.getStartDate() != null) {
+                res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
+            }
+            res.append("\u2192"); // Arrow right
+            if (parRetrievedTrip.getEndDate() != null) {
+                res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
+            }
+            res.append("\n");
+        }
+        if (parRetrievedTrip.getNote() != null && parRetrievedTrip.getNote().length() > 0) {
+            res.append(IGNORE_SYMBOL);
+            res.append(parRetrievedTrip.getNote());
+            res.append("\n");
+        }
+        if (parRetrievedTrip.getTotalWeight() > 0) {
+            res.append(IGNORE_SYMBOL);
+            res.append(tripFormatter.getFormattedWeight(parRetrievedTrip.getTotalWeight(),
+                    parRetrievedTrip.getPackedWeight()));
+            res.append("\n");
+        }
+        return res.toString();
+    }
+
+    /**
+     * export one item as a human readable line.
+     *
+     * @param parRes     result to be appended
+     * @param parOneItem item to be exported and appended to result
+     */
+    private void exportOneItem(final StringBuilder parRes, final Item parOneItem) {
+        if (parOneItem.isPacked()) {
+            parRes.append(CHECKED_CHAR); // checked
+        } else {
+            parRes.append(UNCHECKED_CHAR); // unchecked
+        }
+        parRes.append(' ');
+        if (parOneItem.getCategory() != null && parOneItem.getCategory().length() > 0) {
+            parRes.append(parOneItem.getCategory());
+            parRes.append(' ');
+            parRes.append(CAT_NAME_SEPARATOR);
+            parRes.append(' ');
+        }
+        parRes.append(parOneItem.getName());
+        parRes.append(' ');
+        if (parOneItem.getWeight() > 0) {
+            parRes.append("(");
+            parRes.append(parOneItem.getWeight());
+            parRes.append("g)");
+        }
+        parRes.append("\n");
     }
 }
