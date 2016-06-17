@@ -87,6 +87,7 @@
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
     <string name="trip_detail__new_item__access">name&#8230;</string>
+    <string name="trip_detail__already_existing_item">This item already exists in the trip.</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip__share">Share</string>
@@ -110,6 +111,7 @@
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight (in grams)</string>
     <string name="item_detail__submit">UPDATE</string>
+    <string name="item_detail__category__label">Category</string>
 
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item per line.\n\ni.e.:\nGuide book (100g).</string>
@@ -119,6 +121,5 @@
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
-    <string name="item_detail__category__label">Category</string>
 
 </resources>

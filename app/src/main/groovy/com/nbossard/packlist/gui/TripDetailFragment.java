@@ -451,12 +451,19 @@ public class TripDetailFragment extends Fragment {
      * Will add a new item.
      */
     private void onClickAddItem() {
-        String tmpStr = mNewItemEditText.getText().toString();
-        mRetrievedTrip.addItem(tmpStr);
-        mIHostingActivity.saveTrip(mRetrievedTrip);
-        mNewItemEditText.setText("");
-        populateList();
-        scrollMyListViewToBottom();
+        String tmpStr = mNewItemEditText.getText().toString().trim();
+        if (mRetrievedTrip.alreadyContainsItemOfName(tmpStr)) {
+            Toast.makeText(TripDetailFragment.this.getActivity(),
+                    getString(R.string.trip_detail__already_existing_item),
+                    Toast.LENGTH_LONG).show();
+        } else {
+            //normal case, addition and refresh of display
+            mRetrievedTrip.addItem(tmpStr);
+            mIHostingActivity.saveTrip(mRetrievedTrip);
+            mNewItemEditText.setText("");
+            populateList();
+            scrollMyListViewToBottom();
+        }
     }
 
     /**
