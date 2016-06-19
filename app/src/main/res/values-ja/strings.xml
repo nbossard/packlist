@@ -109,7 +109,7 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">このダイアログ ボックスは、アイテムを大量にインポートするのを助けます。下に既存のアイテムのリストを貼り付けてください。一行ごとに一つのアイテムです。\n\n例:\nガイドブック (100g)。</string>
     <string name="mass_import__import__button">インポート</string>
-    <string name="mass_import__items__hint">ここに入力または貼り付け...</string>
+    <string name="mass_import__items__hint">ここに入力または貼り付け&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">OK をクリックすると、アプリケーション ログを送信します。</string>

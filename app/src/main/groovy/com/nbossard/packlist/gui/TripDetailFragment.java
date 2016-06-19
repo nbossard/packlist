@@ -448,10 +448,12 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Handle click on "Add item" button.
-     * Will add a new item.
+     * Will add a new item, if not already in the list
      */
     private void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString().trim();
+
+        // checking item not already in the trip list
         if (mRetrievedTrip.alreadyContainsItemOfName(tmpStr)) {
             Toast.makeText(TripDetailFragment.this.getActivity(),
                     getString(R.string.trip_detail__already_existing_item),

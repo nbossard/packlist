@@ -136,7 +136,7 @@ public class ImportExportTest extends InstrumentationTestCase {
         assertEquals(SECOND_LINE_NAME, resItem.getName());
         assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
 
-        //line with categorey and weight and packed symbol
+        //line with category and weight and packed symbol
         resItem = mTestPort.parseOneItemLine(mTestTrip,
                 ImportExport.CHECKED_CHAR + " " + SECOND_LINE_CATEGORY + " : "
                         + SECOND_LINE_NAME + " (" + SECOND_LINE_WEIGHT + "g)");
@@ -144,7 +144,6 @@ public class ImportExportTest extends InstrumentationTestCase {
         assertEquals(SECOND_LINE_CATEGORY, resItem.getCategory());
         assertEquals(SECOND_LINE_NAME, resItem.getName());
         assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
-
     }
 
     public void testToSharableString() {

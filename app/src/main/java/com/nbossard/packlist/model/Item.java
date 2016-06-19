@@ -24,6 +24,8 @@ package com.nbossard.packlist.model;
     class com.nbossard.packlist.model.Item {
         UUID mUUID
         String mName
+        String mWeight
+        String mCategory
         boolean mIsPacked
     }
 @enduml
@@ -171,10 +173,18 @@ public class Item implements Serializable, Cloneable {
         return mAdditionDate;
     }
 
+    /**
+     * Getter for category, an optional characteristic.
+     *
+     * @return category or null if never set
+     */
     public String getCategory() {
         return mCategory;
     }
 
+    /**
+     * @param parCategory new category name.
+     */
     public void setCategory(String parCategory) {
         mCategory = parCategory;
     }
@@ -194,6 +204,7 @@ public class Item implements Serializable, Cloneable {
     public final String toString() {
         final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mUUID=").append(mUUID);
+        sb.append(", mCategory='").append(mCategory).append('\'');
         sb.append(", mName='").append(mName).append('\'');
         sb.append(", mWeight='").append(mWeight).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');

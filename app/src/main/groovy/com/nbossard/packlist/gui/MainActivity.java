@@ -262,6 +262,7 @@ public class MainActivity
         return mSavingModule.getListOfCategories();
     }
 
+    @Override
     public final String[] getListOfItemNames() {
         return mSavingModule.getListOfItemNames();
     }
@@ -339,11 +340,17 @@ public class MainActivity
     public final void showFABIfAccurate(final boolean parShow) {
         Log.d(TAG, "showFABIfAccurate() called with: " + "parShow = [" + parShow + "]");
 
-        FragmentManager fragMgr = getSupportFragmentManager();
-        if (parShow && fragMgr.getBackStackEntryCount() == 0) {
-            mFab.show();
+        // It happens that mFab is null when called from fragments and returning from background,
+        // under investigation...
+        if (mFab != null) {
+            FragmentManager fragMgr = getSupportFragmentManager();
+            if (parShow && fragMgr.getBackStackEntryCount() == 0) {
+                mFab.show();
+            } else {
+                mFab.hide();
+            }
         } else {
-            mFab.hide();
+            Log.w(TAG, "mFab is null, this is very strange");
         }
     }
 
