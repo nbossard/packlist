@@ -81,6 +81,7 @@
     <string name="trip_detail__edit_trip">旅行を編集</string>
     <string name="trip_detail__before_weight__label">バッグの重量: %1$dg 以上 (%2$dg 梱包)。</string>
     <string name="trip_detail__new_item__access">名前…</string>
+    <string name="trip_detail__already_existing_item">This item already exists in the trip.</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">編集</string>
     <string name="action_trip__share">共有</string>
@@ -88,6 +89,7 @@
     <string name="sorting_mode_default">デフォルト</string>
     <string name="sorting_mode_unpacked_first">荷物から出したものが最初</string>
     <string name="sorting_mode_alphabetical">アルファベット順</string>
+    <string name="sorting_mode_category">category</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
@@ -107,7 +109,7 @@
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">このダイアログ ボックスは、アイテムを大量にインポートするのを助けます。下に既存のアイテムのリストを貼り付けてください。一行ごとに一つのアイテムです。\n\n例:\nガイドブック (100g)。</string>
     <string name="mass_import__import__button">インポート</string>
-    <string name="mass_import__items__hint">ここに入力または貼り付け...</string>
+    <string name="mass_import__items__hint">ここに入力または貼り付け&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">OK をクリックすると、アプリケーション ログを送信します。</string>

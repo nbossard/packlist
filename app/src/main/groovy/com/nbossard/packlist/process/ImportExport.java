@@ -77,6 +77,11 @@ public class ImportExport {
      */
     public static final String UNCHECKED_CHAR = "\u2610";
 
+    /**
+     * The char used to separate category and item name.
+     */
+    public static final String CAT_NAME_SEPARATOR = ":";
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -113,6 +118,90 @@ public class ImportExport {
      */
     public final String toSharableString(final Context parContext, final Trip parRetrievedTrip) {
         StringBuilder res = new StringBuilder();
+
+        res.append(exportHeader(parContext, parRetrievedTrip));
+
+        res.append("\n");
+        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
+            exportOneItem(res, oneItem);
+        }
+        return res.toString();
+    }
+
+    /**
+     * Parse one line, that is supposed to be an item.
+     *
+     * @param parTrip    will be used to create item.
+     * @param parOneLine line to be parsed, non empty
+     * @return an item ready to be added to trip
+     */
+    @NonNull
+    @VisibleForTesting
+    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+
+        String yetToBeParsed;
+        boolean checked;
+        String name;
+        String weightStr;
+        Item newItem = new Item(parTrip, "");
+
+
+        // splitting in packed and rest using a regex
+        // This regex has been tested using : https://regex101.com/
+        // and test lists in androidTest folder
+        yetToBeParsed = parOneLine;
+        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+        Matcher m0 = p0.matcher(yetToBeParsed);
+        if (m0.find()) {
+            String checkbox = m0.group(1).trim();
+            checked = checkbox.contentEquals(CHECKED_CHAR);
+            yetToBeParsed = m0.group(2);
+        } else {
+            checked = false;
+        }
+
+        //working on the rest
+        // searching for a category
+        Pattern pCat = Pattern.compile("(.*):(.*)");
+        Matcher mCat = pCat.matcher(yetToBeParsed);
+        if (mCat.find()) {
+            String category = mCat.group(1).trim();
+            yetToBeParsed = mCat.group(2);
+            newItem.setCategory(category);
+        }
+
+        // splitting in name and weight using a regex
+
+        Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
+        Matcher m = p.matcher(yetToBeParsed);
+        if (m.find()) {
+            // Trying to use a regex
+            name = m.group(1).trim();
+            weightStr = m.group(2);
+        } else {
+            // 2nd try, the whole block is considered as name without weight
+            name = parOneLine.trim();
+            weightStr = "0";
+        }
+
+        // Building item to be parsed
+        newItem.setName(name);
+        newItem.setPacked(checked);
+        newItem.setWeight(parseInt(weightStr));
+        return newItem;
+    }
+
+    // *********************** PRIVATE METHODS ***************************************************************
+
+    /**
+     * export trip info as a human readable.
+     *
+     * @param parContext       will be used to create a trip formatter.
+     * @param parRetrievedTrip trip to be exported and appended to result
+     */
+    @NonNull
+    private String exportHeader(final Context parContext, final Trip parRetrievedTrip) {
+        StringBuilder res = new StringBuilder();
         TripFormatter tripFormatter = new TripFormatter(parContext);
 
         if (parRetrievedTrip.getName() != null) {
@@ -142,77 +231,35 @@ public class ImportExport {
                     parRetrievedTrip.getPackedWeight()));
             res.append("\n");
         }
-        res.append("\n");
-        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
-            if (oneItem.isPacked()) {
-                res.append(CHECKED_CHAR); // checked
-            } else {
-                res.append(UNCHECKED_CHAR); // unchecked
-            }
-            res.append(" ");
-            res.append(oneItem.getName());
-            res.append(" ");
-            if (oneItem.getWeight() > 0) {
-                res.append("(");
-                res.append(oneItem.getWeight());
-                res.append("g)");
-            }
-            res.append("\n");
-        }
         return res.toString();
     }
 
-    // *********************** PRIVATE METHODS ***************************************************************
-
     /**
-     * Parse one line, that is supposed to be an item.
+     * export one item as a human readable line.
      *
-     * @param parTrip    will be used to create item.
-     * @param parOneLine line to be parsed, non empty
-     * @return an item ready to be added to trip
+     * @param parRes     result to be appended
+     * @param parOneItem item to be exported and appended to result
      */
-    @NonNull
-    @VisibleForTesting
-    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
-
-        String yetToBeParsed;
-        boolean checked;
-        String name;
-        String weightStr;
-
-        // splitting in packed and rest using a regex
-        // This regex has been tested using : https://regex101.com/
-        // and test lists in androidTest folder
-        yetToBeParsed = parOneLine;
-        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
-        Matcher m0 = p0.matcher(yetToBeParsed);
-        if (m0.find()) {
-            String checkbox = m0.group(1).trim();
-            checked = checkbox.contentEquals(CHECKED_CHAR);
-            yetToBeParsed = m0.group(2);
+    private void exportOneItem(final StringBuilder parRes, final Item parOneItem) {
+        if (parOneItem.isPacked()) {
+            parRes.append(CHECKED_CHAR); // checked
         } else {
-            checked = false;
+            parRes.append(UNCHECKED_CHAR); // unchecked
         }
-
-        //working on the rest
-        // splitting in name and weight using a regex
-
-        Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
-        Matcher m = p.matcher(yetToBeParsed);
-        if (m.find()) {
-            // Trying to use a regex
-            name = m.group(1).trim();
-            weightStr = m.group(2);
-        } else {
-            // 2nd try, the whole block is considered as name without weight
-            name = parOneLine.trim();
-            weightStr = "0";
+        parRes.append(' ');
+        if (parOneItem.getCategory() != null && parOneItem.getCategory().length() > 0) {
+            parRes.append(parOneItem.getCategory());
+            parRes.append(' ');
+            parRes.append(CAT_NAME_SEPARATOR);
+            parRes.append(' ');
         }
-
-        // Building item to be parsed
-        Item newItem = new Item(parTrip, name);
-        newItem.setPacked(checked);
-        newItem.setWeight(parseInt(weightStr));
-        return newItem;
+        parRes.append(parOneItem.getName());
+        parRes.append(' ');
+        if (parOneItem.getWeight() > 0) {
+            parRes.append("(");
+            parRes.append(parOneItem.getWeight());
+            parRes.append("g)");
+        }
+        parRes.append("\n");
     }
 }

@@ -84,6 +84,7 @@
     <string name="trip_detail__add_item_detail___button">+ détails</string>
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;empaqueté).</string>
     <string name="trip_detail__new_item__access">nom&#8230;</string>
+    <string name="trip_detail__already_existing_item">Cet article est déjà dans la liste</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Partager</string>
@@ -91,6 +92,7 @@
     <string name="sorting_mode_default">défaut</string>
     <string name="sorting_mode_unpacked_first">empaquetés ou non</string>
     <string name="sorting_mode_alphabetical">ordre alphabetique</string>
+    <string name="sorting_mode_category">catégorie</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
@@ -106,6 +108,7 @@
     <string name="item_detail__name__label">nom</string>
     <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">MODIFIER</string>
+    <string name="item_detail__category__label">Category</string>
 
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>

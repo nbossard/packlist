@@ -50,14 +50,29 @@
         android:gravity="center_vertical"
         android:clickable="false"/>
 
-    <TextView
-        android:id="@+id/ia__name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/ia__packed"
-        android:layout_toRightOf="@id/ia__packed"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:gravity="center_vertical"
-        tools:text="Some beautiful big red socks very warm and very red which smell good"/>
+        android:layout_toEndOf="@id/ia__packed"
+        android:layout_toRightOf="@id/ia__packed">
 
+        <TextView
+            android:id="@+id/ia__category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            tools:text="Clothes"
+            />
+
+        <TextView
+            android:id="@+id/ia__name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dip"
+            android:layout_marginLeft="10dip"
+            android:gravity="center_vertical"
+            tools:text="Some beautiful big red socks very warm and very red which smell good"/>
+    </LinearLayout>
 </RelativeLayout>

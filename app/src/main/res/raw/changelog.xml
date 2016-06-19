@@ -27,6 +27,8 @@
     <changelogversion
         changeDate="xxth june 2016"
         versionName="0.10">
+        <changelogtext>NEW : adding categories in list of items</changelogtext>
+        <changelogtext>NEW : automatic suggestion of items and categories while typing</changelogtext>
         <changelogtext>BUGFIX : ISS#38 Importing text file, checkboxes are incorrectly managed</changelogtext>
         <changelogtext>BUGFIX : ISS#36 Mass import submit button not visible on some phones or landscape
         </changelogtext>

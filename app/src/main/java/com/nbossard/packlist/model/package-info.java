@@ -40,12 +40,14 @@ package com.nbossard.packlist.model;
         !include Item.java
         !include ItemComparatorAdditionDate.java
         !include ItemComparatorAlphabetical.java
+        !include ItemComparatorCategoryAlphabetical.java
         !include ItemComparatorPacking.java
 
         com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical
     }
 @enduml
 

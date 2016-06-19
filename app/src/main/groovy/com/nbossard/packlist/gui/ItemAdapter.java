@@ -31,6 +31,7 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ItemComparatorAdditionDate;
 import com.nbossard.packlist.model.ItemComparatorAlphabetical;
+import com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical;
 import com.nbossard.packlist.model.ItemComparatorPacking;
 import com.nbossard.packlist.model.SortModes;
 
@@ -69,9 +70,10 @@ class ItemAdapter extends BaseAdapter {
      */
     private class InnerMyViewHolder
     {
-
-        // getting views
-
+        /**
+         * Reference (result of findviewbyid) to the item category.
+         */
+        private TextView tvCategory;
         /**
          * Reference (result of findviewbyid) to the item name.
          */
@@ -127,6 +129,8 @@ class ItemAdapter extends BaseAdapter {
             itemComparator = new ItemComparatorPacking();
         } else if (mSortMode == SortModes.ALPHABETICAL) {
             itemComparator = new ItemComparatorAlphabetical();
+        } else if (mSortMode == SortModes.CATEGORY) {
+            itemComparator = new ItemComparatorCategoryAlphabetical();
         }
         Collections.sort(mItemList, itemComparator);
 
@@ -161,6 +165,7 @@ class ItemAdapter extends BaseAdapter {
             parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
 
             // getting views
+            vHolderRecycle.tvCategory = (TextView) parConvertView.findViewById(R.id.ia__category);
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
             vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
         } else
@@ -174,6 +179,12 @@ class ItemAdapter extends BaseAdapter {
         String nameAndWeight = curItem.getName();
         if (curItem.getWeight() > 0) {
             nameAndWeight += "(" + curItem.getWeight() + "g)";
+        }
+        if (curItem.getCategory() != null && curItem.getCategory().length() > 0) {
+            vHolderRecycle.tvCategory.setVisibility(View.VISIBLE);
+            vHolderRecycle.tvCategory.setText(curItem.getCategory());
+        } else {
+            vHolderRecycle.tvCategory.setVisibility(View.GONE);
         }
         vHolderRecycle.tvName.setText(nameAndWeight);
         vHolderRecycle.tvIsPacked.setChecked(curItem.isPacked());

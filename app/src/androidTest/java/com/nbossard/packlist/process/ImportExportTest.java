@@ -37,6 +37,7 @@ public class ImportExportTest extends InstrumentationTestCase {
     // ********************** CONSTANTS *********************************************************************
 
     private static final String FIRST_LINE_NAME = "Chapeau";
+    private static final String SECOND_LINE_CATEGORY = "Ludique";
     private static final String SECOND_LINE_NAME = "Livres";
     private static final int SECOND_LINE_WEIGHT = 50;
     private static final int DEFAULT_WEIGHT = 0;
@@ -104,9 +105,10 @@ public class ImportExportTest extends InstrumentationTestCase {
      */
     public void testParseOneItemLine() {
 
-        // stupide line
+        // stupid line
         Item resItem = mTestPort.parseOneItemLine(mTestTrip, FIRST_LINE_NAME);
         assertFalse(resItem.isPacked());
+        assertEquals(null, resItem.getCategory());
         assertEquals(FIRST_LINE_NAME, resItem.getName());
         assertEquals(0, resItem.getWeight());
 
@@ -114,20 +116,32 @@ public class ImportExportTest extends InstrumentationTestCase {
         resItem = mTestPort.parseOneItemLine(mTestTrip,
                 SECOND_LINE_NAME + " (" + SECOND_LINE_WEIGHT + "g)");
         assertFalse(resItem.isPacked());
+        assertEquals(null, resItem.getCategory());
         assertEquals(SECOND_LINE_NAME, resItem.getName());
         assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
 
-        // line with packed symbol
+        // line with weight and packed symbol
         resItem = mTestPort.parseOneItemLine(mTestTrip,
                 ImportExport.CHECKED_CHAR + " " + SECOND_LINE_NAME + " (" + SECOND_LINE_WEIGHT + "g)");
         assertTrue(resItem.isPacked());
+        assertEquals(null, resItem.getCategory());
         assertEquals(SECOND_LINE_NAME, resItem.getName());
         assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
 
-        // line with unpacked symbol
+        // line with weight and unpacked symbol
         resItem = mTestPort.parseOneItemLine(mTestTrip,
                 ImportExport.UNCHECKED_CHAR + " " + SECOND_LINE_NAME + " (" + SECOND_LINE_WEIGHT + "g)");
         assertFalse(resItem.isPacked());
+        assertEquals(null, resItem.getCategory());
+        assertEquals(SECOND_LINE_NAME, resItem.getName());
+        assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
+
+        //line with category and weight and packed symbol
+        resItem = mTestPort.parseOneItemLine(mTestTrip,
+                ImportExport.CHECKED_CHAR + " " + SECOND_LINE_CATEGORY + " : "
+                        + SECOND_LINE_NAME + " (" + SECOND_LINE_WEIGHT + "g)");
+        assertTrue(resItem.isPacked());
+        assertEquals(SECOND_LINE_CATEGORY, resItem.getCategory());
         assertEquals(SECOND_LINE_NAME, resItem.getName());
         assertEquals(SECOND_LINE_WEIGHT, resItem.getWeight());
     }

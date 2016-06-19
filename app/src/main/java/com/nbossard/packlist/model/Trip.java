@@ -315,6 +315,23 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
+     * Check if an article of same name is already in the list.
+     *
+     * @param parItemName name of new article
+     * @return true if an article of exactly same name is in the list
+     */
+    public boolean alreadyContainsItemOfName(final String parItemName) {
+        boolean res = false;
+        for (Item oneItem : getListOfItems()) {
+            if (oneItem.getName().contentEquals(parItemName)) {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
+    /**
      * Updating of total weight.
      *
      * @param parTotalWeight the new total weight in grams.
