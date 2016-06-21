@@ -45,6 +45,7 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
 
+import java.util.List;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -265,6 +266,11 @@ public class MainActivity
     @Override
     public final String[] getListOfItemNames() {
         return mSavingModule.getListOfItemNames();
+    }
+
+    @Override
+    public List<String> getProbableItemsList() {
+        return mSavingModule.getProbableItemsList();
     }
 
     // ----------- implementing interface ITripDetailFragmentActivity -------------------

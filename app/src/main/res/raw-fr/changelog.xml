@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xx juin 2016"
         versionName="0.10">
+        <changelogtext>NEW : ajout bouton pour suggérer un item manquant</changelogtext>
         <changelogtext>NEW : gestion des catégories</changelogtext>
         <changelogtext>NEW : suggestion d'items et de catégories pendant la saisie</changelogtext>
         <changelogtext>BUGFIX : ISS#38 import des fichiers textes, les cases à cocher ne sont pas gérées

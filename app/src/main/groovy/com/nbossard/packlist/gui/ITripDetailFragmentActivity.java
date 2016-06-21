@@ -31,6 +31,8 @@ package com.nbossard.packlist.gui;
 
 import com.nbossard.packlist.model.Trip;
 
+import java.util.List;
+
 /**
  * The what {@link TripDetailFragment} expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
@@ -54,4 +56,9 @@ interface ITripDetailFragmentActivity extends IMainActivity {
      * @return retrieve all previously created item names.
      */
     String[] getListOfItemNames();
+
+    /**
+     * Get a list of missing items by decreasing order of probability.
+     */
+    List<String> getProbableItemsList();
 }

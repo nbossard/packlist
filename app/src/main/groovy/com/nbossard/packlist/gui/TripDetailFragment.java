@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
@@ -57,6 +58,8 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
+
+import java.util.List;
 
 import hugo.weaving.DebugLog;
 /*
@@ -112,8 +115,22 @@ public class TripDetailFragment extends Fragment {
     @SuppressWarnings("FieldCanBeLocal")
     private Button mAddDetailedItemButton;
 
-    // *********************** LISTENERS ********************************************************************
+    /**
+     * Add magic item button.
+     */
+    private AppCompatImageButton mAddMagicItemButton;
 
+    /**
+     * List of items that may probably be added to this list, based on previous trips.
+     */
+    private List<String> mProbableItemsList;
+
+    /**
+     * Index of last suggestion in {@link #mProbableItemsList}.
+     */
+    private int mSuggestionIndex;
+
+    // *********************** LISTENERS ********************************************************************
     /**
      * Listener for click on one item of the list.
      * Opens a new fragment displaying detail on item.
@@ -132,7 +149,6 @@ public class TripDetailFragment extends Fragment {
             mListItemAdapter.notifyDataSetChanged();
         }
     };
-
     /**
      * Listener for long click on one item of the list.
      * Opens the contextual action bar.
@@ -294,6 +310,14 @@ public class TripDetailFragment extends Fragment {
         });
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
+
+        mAddMagicItemButton = (AppCompatImageButton) mRootView.findViewById(R.id.trip_detail__new_item_magic__button);
+        mAddMagicItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onClickAddDMagicItem();
+            }
+        });
 
         // auto click on button if keyboard "enter" pressed
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
@@ -477,7 +501,25 @@ public class TripDetailFragment extends Fragment {
         mNewItemEditText.setText("");
         Item newItem = new Item(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
+    }
 
+    /**
+     * Handle click on "Add magic item" button.
+     * Will fill item name field.
+     */
+    public final void onClickAddDMagicItem() {
+        // retireving list of probable items
+        if (mProbableItemsList == null) {
+            mProbableItemsList = mIHostingActivity.getProbableItemsList();
+            mSuggestionIndex = 0;
+        }
+
+        // skipping already added
+        while (mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
+            mSuggestionIndex++;
+        }
+
+        mNewItemEditText.setText(mProbableItemsList.get(mSuggestionIndex++));
     }
 
     /**

@@ -148,7 +148,7 @@
                 android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.note}"
                 android:visibility="@{((trip.note != null) &amp;&amp; (trip.note.length()>0)) ? View.VISIBLE : View.GONE}"
-                tools:text="Un très beau voyage"/>
+                tools:text="A very nice trip"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -187,9 +187,20 @@
             android:layout_height="wrap_content"
             android:minHeight="@dimen/accessibility_button_min_height"
             android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/trip_detail__new_item_magic__button"
+            android:layout_toStartOf="@+id/trip_detail__new_item_magic__button"
+            android:text="@string/trip_detail__add_item_detail___button"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@id/trip_detail__new_item_magic__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/accessibility_button_min_height"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="@string/trip_detail__add_item_detail___button"/>
+            android:contentDescription="@string/trip_detail__new_item_magic___access"
+            android:src="@drawable/ic_stars_black_24dp"/>
 
         <android.support.v7.widget.AppCompatAutoCompleteTextView
             android:id="@+id/trip_detail__new_item__edit"

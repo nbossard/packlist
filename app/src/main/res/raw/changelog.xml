@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xxth june 2016"
         versionName="0.10">
+        <changelogtext>NEW : adding button for automatic suggestion of missing items</changelogtext>
         <changelogtext>NEW : adding categories in list of items</changelogtext>
         <changelogtext>NEW : automatic suggestion of items and categories while typing</changelogtext>
         <changelogtext>BUGFIX : ISS#38 Importing text file, checkboxes are incorrectly managed</changelogtext>

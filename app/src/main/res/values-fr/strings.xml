@@ -85,6 +85,7 @@
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;empaqueté).</string>
     <string name="trip_detail__new_item__access">nom&#8230;</string>
     <string name="trip_detail__already_existing_item">Cet article est déjà dans la liste</string>
+    <string name="trip_detail__new_item_magic___access">Button. Suggest an item</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Partager</string>
