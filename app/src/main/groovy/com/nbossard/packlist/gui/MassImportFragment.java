@@ -139,6 +139,9 @@ public class MassImportFragment extends Fragment {
         mTrip = null;
         if (args != null) {
             mTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP);
+            if (mTrip == null) {
+                mTrip = new Trip();
+            }
         } else {
             Log.e(TAG, "onCreate() : This should never occur");
         }

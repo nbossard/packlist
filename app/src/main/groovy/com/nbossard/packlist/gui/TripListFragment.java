@@ -19,10 +19,12 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,10 +35,13 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
@@ -200,6 +205,26 @@ public class TripListFragment extends Fragment {
         super.onResume();
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+
+    @Override
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_detail, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_trip__import_txt:
+                mIHostingActivity.openMassImportFragment(null);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // *********************** PRIVATE METHODS **************************************************************

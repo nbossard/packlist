@@ -276,7 +276,7 @@ public class MainActivity
     // ----------- implementing interface ITripDetailFragmentActivity -------------------
 
     @Override
-    public final void openMassImportFragment(final Trip parTrip) {
+    public final void openMassImportFragment(@Nullable final Trip parTrip) {
 
         // Create fragment and give it an argument specifying the article it should show
         MassImportFragment newFragment = MassImportFragment.newInstance(parTrip);
