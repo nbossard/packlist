@@ -197,6 +197,10 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // custom menu for this fragment
+        setHasOptionsMenu(true);
+
         populateList();
     }
 
@@ -210,7 +214,7 @@ public class TripListFragment extends Fragment {
 
     @Override
     public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_trip_detail, menu);
+        inflater.inflate(R.menu.menu_trip_list, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

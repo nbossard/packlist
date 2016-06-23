@@ -70,17 +70,20 @@ public class ImportExport {
     /**
      * line part of trip header. Trip name.
      */
-    private static final String TRIPNAME_SYMBOL = "NAME: ";
+    @VisibleForTesting
+    protected static final String TRIPNAME_SYMBOL = "NAME: ";
 
     /**
      * line part of trip header. Trip dates.
      */
-    private static final String TRIPDATE_SYMBOL = "DATE: ";
+    @VisibleForTesting
+    protected static final String TRIPDATE_SYMBOL = "DATE: ";
 
     /**
      * line part of trip header. Trip notes.
      */
-    private static final String TRIPNOTE_SYMBOL = "NOTE: ";
+    @VisibleForTesting
+    protected static final String TRIPNOTE_SYMBOL = "NOTE: ";
 
     /**
      * The "checked" char ☑ , to indicate it is packed.
@@ -113,7 +116,9 @@ public class ImportExport {
             oneLine = oneLine.trim();
 
             // Testing if line should be ignored
-            if (oneLine.startsWith(IGNORE_SYMBOL) || oneLine.length() == 0) {
+            if (oneLine.length() == 0) {
+                Log.d(TAG, "massImportItems: empty line, ignoring it");
+            } else if (oneLine.startsWith(IGNORE_SYMBOL)) {
                 Log.d(TAG, "massImportItems: line starts with " + IGNORE_SYMBOL);
                 oneLine = oneLine.substring(IGNORE_SYMBOL.length());
 
@@ -151,15 +156,15 @@ public class ImportExport {
     }
 
     @NonNull
-    private String parseTripNote(String oneLine) {
-        oneLine = oneLine.substring(TRIPNOTE_SYMBOL.length());
-        return oneLine;
+    private String parseTripNote(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNOTE_SYMBOL.length());
+        return res;
     }
 
     @NonNull
-    private String parseTripNameLine(String oneLine) {
-        oneLine = oneLine.substring(TRIPNAME_SYMBOL.length());
-        return oneLine;
+    private String parseTripNameLine(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNAME_SYMBOL.length());
+        return res;
     }
 
     /**
@@ -233,7 +238,7 @@ public class ImportExport {
             weightStr = m.group(2);
         } else {
             // 2nd try, the whole block is considered as name without weight
-            name = parOneLine.trim();
+            name = yetToBeParsed.trim();
             weightStr = "0";
         }
 
