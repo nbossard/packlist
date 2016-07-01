@@ -65,7 +65,25 @@ public class ImportExport {
      * Char to be added at start of line when sharing to mark this is not an item
      * but a line part of trip header.
      */
-    private static final String IGNORE_SYMBOL = "# ";
+    private static final String IGNORE_SYMBOL = "#";
+
+    /**
+     * line part of trip header. Trip name.
+     */
+    @VisibleForTesting
+    protected static final String TRIPNAME_SYMBOL = "NAME: ";
+
+    /**
+     * line part of trip header. Trip dates.
+     */
+    @VisibleForTesting
+    protected static final String TRIPDATE_SYMBOL = "DATE: ";
+
+    /**
+     * line part of trip header. Trip notes.
+     */
+    @VisibleForTesting
+    protected static final String TRIPNOTE_SYMBOL = "NOTE: ";
 
     /**
      * The "checked" char ☑ , to indicate it is packed.
@@ -98,8 +116,36 @@ public class ImportExport {
             oneLine = oneLine.trim();
 
             // Testing if line should be ignored
-            if (oneLine.startsWith(IGNORE_SYMBOL) || oneLine.length() == 0) {
-                Log.d(TAG, "massImportItems: ignoring this line, because starts with " + IGNORE_SYMBOL);
+            if (oneLine.length() == 0) {
+                Log.d(TAG, "massImportItems: empty line, ignoring it");
+            } else if (oneLine.startsWith(IGNORE_SYMBOL)) {
+                Log.d(TAG, "massImportItems: line starts with " + IGNORE_SYMBOL);
+                oneLine = oneLine.substring(IGNORE_SYMBOL.length());
+
+                if (oneLine.startsWith(TRIPNAME_SYMBOL)) {
+                    if (parTrip.getName() == null) {
+                        String tripName = parseTripNameLine(oneLine);
+                        parTrip.setName(tripName);
+                    }
+                }
+
+                if (oneLine.startsWith(TRIPDATE_SYMBOL)) {
+                    if (parTrip.getNote() == null) {
+                        oneLine = oneLine.substring(TRIPDATE_SYMBOL.length());
+                        /*
+                        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+                        Matcher m0 = p0.matcher(yetToBeParsed);
+                        */
+                    }
+                }
+
+                if (oneLine.startsWith(TRIPNOTE_SYMBOL)) {
+                    if (parTrip.getNote() == null) {
+                        oneLine = parseTripNote(oneLine);
+                        parTrip.setNote(oneLine);
+                    }
+                }
+
             } else {
                 // normal case, it is an item to be added
 
@@ -107,6 +153,18 @@ public class ImportExport {
                 parTrip.addItem(newItem);
             }
         }
+    }
+
+    @NonNull
+    private String parseTripNote(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNOTE_SYMBOL.length());
+        return res;
+    }
+
+    @NonNull
+    private String parseTripNameLine(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNAME_SYMBOL.length());
+        return res;
     }
 
     /**
@@ -180,7 +238,7 @@ public class ImportExport {
             weightStr = m.group(2);
         } else {
             // 2nd try, the whole block is considered as name without weight
-            name = parOneLine.trim();
+            name = yetToBeParsed.trim();
             weightStr = "0";
         }
 
@@ -206,15 +264,17 @@ public class ImportExport {
 
         if (parRetrievedTrip.getName() != null) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPNAME_SYMBOL);
             res.append(parRetrievedTrip.getName());
             res.append("\n");
         }
         if ((parRetrievedTrip.getStartDate() != null) && (parRetrievedTrip.getStartDate() != null)) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPDATE_SYMBOL);
             if (parRetrievedTrip.getStartDate() != null) {
                 res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
             }
-            res.append("\u2192"); // Arrow right
+            res.append("\u2192"); // Arrow right : →
             if (parRetrievedTrip.getEndDate() != null) {
                 res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
             }
@@ -222,6 +282,7 @@ public class ImportExport {
         }
         if (parRetrievedTrip.getNote() != null && parRetrievedTrip.getNote().length() > 0) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPNOTE_SYMBOL);
             res.append(parRetrievedTrip.getNote());
             res.append("\n");
         }
