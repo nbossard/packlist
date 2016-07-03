@@ -228,7 +228,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public String[] getListOfCategories() {
+    public final String[] getListOfCategories() {
 
         Set<String> resSet = new HashSet<>();
 
@@ -249,7 +249,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public String[] getListOfItemNames() {
+    public final String[] getListOfItemNames() {
 
         Set<String> resSet = new HashSet<>();
 
@@ -270,7 +270,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public List<String> getProbableItemsList() {
+    public final List<String> getProbableItemsList() {
 
         Map<String, Integer> resMap = new TreeMap<>();
         ValueComparator bvc = new ValueComparator(resMap);
@@ -305,7 +305,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     /**
-     * Comparator used to sort probable item lists. See {@link #getProbableItemsList()}.
+     * Comparator used to sort the probable item lists. See {@link #getProbableItemsList()}.
      */
     class ValueComparator implements Comparator<String> {
         Map<String, Integer> base;
