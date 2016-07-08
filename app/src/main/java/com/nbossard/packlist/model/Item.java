@@ -178,6 +178,7 @@ public class Item implements Serializable, Cloneable {
      *
      * @return category or null if never set
      */
+    @Nullable
     public String getCategory() {
         return mCategory;
     }

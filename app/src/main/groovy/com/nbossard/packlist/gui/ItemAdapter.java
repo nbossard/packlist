@@ -21,6 +21,7 @@ package com.nbossard.packlist.gui;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,13 @@ import hugo.weaving.DebugLog;
  */
 class ItemAdapter extends BaseAdapter {
 
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = ItemAdapter.class.getName();
+
     // *********************** INNER CLASS *****************************************************************
 
     /**
@@ -70,6 +78,10 @@ class ItemAdapter extends BaseAdapter {
      */
     private class InnerMyViewHolder
     {
+        /**
+         * The whole row.
+         */
+        private View global;
         /**
          * Reference (result of findviewbyid) to the item category.
          */
@@ -132,6 +144,7 @@ class ItemAdapter extends BaseAdapter {
         } else if (mSortMode == SortModes.CATEGORY) {
             itemComparator = new ItemComparatorCategoryAlphabetical();
         }
+        Log.d(TAG, "sorting mode is : " + mSortMode);
         Collections.sort(mItemList, itemComparator);
 
         super.notifyDataSetChanged();
@@ -165,6 +178,7 @@ class ItemAdapter extends BaseAdapter {
             parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
 
             // getting views
+            vHolderRecycle.global = parConvertView.findViewById(R.id.ia__global);
             vHolderRecycle.tvCategory = (TextView) parConvertView.findViewById(R.id.ia__category);
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
             vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
@@ -176,6 +190,11 @@ class ItemAdapter extends BaseAdapter {
         final Item curItem = mItemList.get(parPosition);
 
         // updating views
+        if (curItem.getCategory() != null) {
+            vHolderRecycle.global.setBackgroundColor(curItem.getCategory().hashCode());
+        } else {
+            vHolderRecycle.global.setBackgroundColor(0);
+        }
         String nameAndWeight = curItem.getName();
         if (curItem.getWeight() > 0) {
             nameAndWeight += "(" + curItem.getWeight() + "g)";
