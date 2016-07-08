@@ -19,7 +19,11 @@
 
 package com.nbossard.packlist.model;
 
+import android.util.Log;
+
+
 import java.util.Comparator;
+
 /*
 @startuml
     class com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical {
@@ -33,17 +37,38 @@ import java.util.Comparator;
  * @author Created by nbossard on 02/05/16.
  */
 public class ItemComparatorCategoryAlphabetical implements Comparator<Item> {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = ItemComparatorCategoryAlphabetical.class.getName();
+
+    // *********************** METHODS **********************************************************************
+
     @Override
     public final int compare(final Item parItem, final Item parAnother) {
-
+        Log.v(TAG, "Entering, parItem = " + parItem + ", parAnother = " + parAnother);
         int res;
-        if (parItem == null || parItem.getCategory() == null) {
+        if (parItem.getCategory() == null && parAnother.getCategory() == null) {
+            // no category for both, comparing on names
+            res = parItem.getName().compareTo(parAnother.getName());
+        } else if (parItem.getCategory() == null && parAnother.getCategory() != null) {
             res = 1;
-        } else if (parAnother == null || parAnother.getCategory() == null) {
+        } else if (parAnother.getCategory() == null && parItem.getCategory() != null) {
             res = -1;
         } else {
-            res = parItem.getCategory().compareTo(parAnother.getCategory());
+            // both categories are non null
+
+            if (!parItem.getCategory().contentEquals(parAnother.getCategory())) {
+                res = parItem.getCategory().compareTo(parAnother.getCategory());
+            } else {
+                // non null but the same category, comparing on names
+                res = parItem.getName().compareTo(parAnother.getName());
+            }
         }
+        Log.v(TAG, "returning = " + res);
         return res;
     }
 }
