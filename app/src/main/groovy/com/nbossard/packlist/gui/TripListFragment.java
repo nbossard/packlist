@@ -35,13 +35,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
