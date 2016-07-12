@@ -109,6 +109,7 @@ dependencies {
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
     compile 'ch.acra:acra:4.8.5'
+    compile 'com.github.ivbaranov:materiallettericon:0.2.2'
 
     testCompile 'junit:junit:4.12'
 

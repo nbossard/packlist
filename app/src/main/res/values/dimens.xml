@@ -33,4 +33,5 @@
     <dimen name="accessibility_button_min_height">48dip</dimen>
     <dimen name="accessibility_row_min_height">48dip</dimen>
     <dimen name="accessibility_edit_text_min_height">48dip</dimen>
+    <dimen name="letter_icon_size">40dip</dimen>
 </resources>

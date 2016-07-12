@@ -20,6 +20,8 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
@@ -68,6 +71,12 @@ class TripAdapter extends BaseAdapter {
     {
 
         // getting views
+
+        /**
+         * Reference (result of findviewbyid) to the trip name.
+         */
+        private MaterialLetterIcon letterIcon;
+
         /**
          * Reference (result of findviewbyid) to the trip name.
          */
@@ -153,6 +162,7 @@ class TripAdapter extends BaseAdapter {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
         // getting views
+        vHolderRecycle.letterIcon = (MaterialLetterIcon) parConvertView.findViewById(R.id.ta__lettericon);
         vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
         vHolderRecycle.tvInXDays = (TextView) parConvertView.findViewById(R.id.ta__in_x_days);
         vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
@@ -162,6 +172,8 @@ class TripAdapter extends BaseAdapter {
         final Trip oneTrip = mTripsList.get(parPosition);
 
         // updating views
+        vHolderRecycle.letterIcon.setLetter(oneTrip.getName().substring(0, 1));
+        vHolderRecycle.letterIcon.setShapeColor(getMatColor(oneTrip.getName(), "500"));
         vHolderRecycle.tvName.setText(oneTrip.getName());
         if (oneTrip.getStartDate() != null) {
             vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
@@ -202,5 +214,18 @@ class TripAdapter extends BaseAdapter {
 
         Log.d(TAG, "getFormattedRemainingDays() returned: " + res);
         return res;
+    }
+
+    private int getMatColor(final String parTripName, final String typeColor) {
+        int returnColor = Color.BLACK;
+        int arrayId = mContext.getResources().getIdentifier("mdcolor_" + typeColor, "array", mContext.getPackageName());
+
+        if (arrayId != 0) {
+            TypedArray colors = mContext.getResources().obtainTypedArray(arrayId);
+            int index = Math.abs((parTripName.hashCode() % colors.length()));
+            returnColor = colors.getColor(index, Color.BLACK);
+            colors.recycle();
+        }
+        return returnColor;
     }
 }

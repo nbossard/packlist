@@ -22,59 +22,72 @@
 <!-- Trip adapter -->
 <!---->
 <!-- Resources and Ids for this page must start with "ta__" -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:minHeight="@dimen/accessibility_row_min_height"
-              android:background="@drawable/list_bgd"
-              android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/ta__name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Verdun"/>
+    <com.github.ivbaranov.mli.MaterialLetterIcon
+        android:id="@+id/ta__lettericon"
+        android:layout_width="@dimen/letter_icon_size"
+        android:layout_height="@dimen/letter_icon_size"
+        android:layout_marginEnd="10dip"
+        android:layout_marginRight="10dip"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/ta__lettericon"
+        android:layout_toRightOf="@id/ta__lettericon"
+        android:background="@drawable/list_bgd"
         android:gravity="center_vertical"
-        android:paddingStart="20dip"
-        android:paddingEnd="0dip"
-        android:paddingLeft="20dip"
-        android:paddingRight="0dip">
+        android:minHeight="@dimen/accessibility_row_min_height"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/ta__in_x_days"
+            android:id="@+id/ta__name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="In 10 days"/>
+            tools:text="Verdun"/>
 
-        <Space
-            android:layout_width="10dip"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/ta__start_date"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="23/12/2015"/>
+            android:gravity="center_vertical"
+            android:paddingEnd="0dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="0dip"
+            android:paddingStart="10dip">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/ta__arrow_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_trending_flat_black_24dp"/>
+            <TextView
+                android:id="@+id/ta__in_x_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="In 10 days"/>
 
-        <TextView
-            android:id="@+id/ta__end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="28/12/2015"/>
+            <Space
+                android:layout_width="5dip"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/ta__start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="23/12/2015"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ta__arrow_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_trending_flat_black_24dp"/>
+
+            <TextView
+                android:id="@+id/ta__end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="28/12/2015"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
