@@ -27,7 +27,7 @@
     <changelogversion
         changeDate="xx juin 2016"
         versionName="0.10">
-        <changelogtext>NEW : ajout icone letter material sur la liste des voyages</changelogtext>
+        <changelogtext>NEW : ajout icone lettre sur la liste des voyages</changelogtext>
         <changelogtext>NEW : ajout bouton pour suggérer un item manquant</changelogtext>
         <changelogtext>NEW : gestion des catégories</changelogtext>
         <changelogtext>NEW : suggestion d'items et de catégories pendant la saisie</changelogtext>

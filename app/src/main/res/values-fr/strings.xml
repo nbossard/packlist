@@ -110,7 +110,7 @@
     <string name="item_detail__name__label">nom</string>
     <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">MODIFIER</string>
-    <string name="item_detail__category__label">Category</string>
+    <string name="item_detail__category__label">Catégorie</string>
 
     <!-- Mass import -->
     <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>

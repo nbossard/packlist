@@ -172,8 +172,8 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.letterIcon.setLetter(oneTrip.getName().substring(0, 1));
-        MaterialColor colorRetriver = new MaterialColor(mContext);
-        vHolderRecycle.letterIcon.setShapeColor(colorRetriver.getMatColor(oneTrip.getName()));
+        MaterialColor colorRetriever = new MaterialColor(mContext);
+        vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColor(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());
         if (oneTrip.getStartDate() != null) {
             vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));

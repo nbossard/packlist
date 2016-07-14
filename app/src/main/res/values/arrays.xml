@@ -18,6 +18,7 @@
   ~ under the License.
   -->
 
+<!-- material colors with different level of "opacity" -->
 <resources>
 
     <array name="mdcolor_50">
