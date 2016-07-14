@@ -20,8 +20,6 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,6 +144,7 @@ class TripAdapter extends BaseAdapter {
         return parPosition;
     }
 
+    @SuppressWarnings("CheckStyle")
     @Override
     public View getView(final int parPosition, View parConvertView, final ViewGroup parParentView) {
         InnerMyViewHolder vHolderRecycle;
@@ -173,7 +172,8 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         vHolderRecycle.letterIcon.setLetter(oneTrip.getName().substring(0, 1));
-        vHolderRecycle.letterIcon.setShapeColor(getMatColor(oneTrip.getName(), "500"));
+        MaterialColor colorRetriver = new MaterialColor(mContext);
+        vHolderRecycle.letterIcon.setShapeColor(colorRetriver.getMatColor(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());
         if (oneTrip.getStartDate() != null) {
             vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
@@ -216,16 +216,4 @@ class TripAdapter extends BaseAdapter {
         return res;
     }
 
-    private int getMatColor(final String parTripName, final String typeColor) {
-        int returnColor = Color.BLACK;
-        int arrayId = mContext.getResources().getIdentifier("mdcolor_" + typeColor, "array", mContext.getPackageName());
-
-        if (arrayId != 0) {
-            TypedArray colors = mContext.getResources().obtainTypedArray(arrayId);
-            int index = Math.abs((parTripName.hashCode() % colors.length()));
-            returnColor = colors.getColor(index, Color.BLACK);
-            colors.recycle();
-        }
-        return returnColor;
-    }
 }
