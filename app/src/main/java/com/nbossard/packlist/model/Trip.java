@@ -320,7 +320,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parItemName name of new article
      * @return true if an article of exactly same name is in the list
      */
-    public boolean alreadyContainsItemOfName(final String parItemName) {
+    public final boolean alreadyContainsItemOfName(final String parItemName) {
         boolean res = false;
         for (Item oneItem : getListOfItems()) {
             if (oneItem.getName().contentEquals(parItemName)) {

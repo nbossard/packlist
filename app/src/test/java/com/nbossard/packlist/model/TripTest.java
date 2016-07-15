@@ -26,6 +26,7 @@ import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -169,8 +170,8 @@ public class TripTest  {
 
     @Test
     public void testCompareTo() throws Exception {
-        assertTrue(mTestTrip.compareTo(mTestTrip2) < 0);
-        assertTrue(mTestTrip2.compareTo(mTestTrip) > 0);
+        assertTrue(mTestTrip.compareTo(mTestTrip2) > 0);
+        assertTrue(mTestTrip2.compareTo(mTestTrip) < 0);
         assertTrue(mTestTrip.compareTo(mTestTrip) == 0);
     }
 
@@ -268,5 +269,22 @@ public class TripTest  {
         mTestTrip.packingChange();
         mTestTrip.deleteItem(newItem.getUUID());
         assertEquals(NEW_ITEM2_WEIGHT, mTestTrip.getPackedWeight());
+    }
+
+    @Test
+    public void testAlreadyContainsItemOfName() {
+        assertFalse(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
+        mTestTrip.addItem(NEW_ITEM2_NAME);
+        mTestTrip.addItem(NEW_ITEM3_NAME);
+        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM3_NAME));
+    }
+
+    @Test
+    public void testGetSortMode() {
+        assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
+        mTestTrip.setSortMode(null);
+        assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
     }
 }
