@@ -32,6 +32,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageButton;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -79,6 +80,11 @@ import hugo.weaving.DebugLog;
 public class TripDetailFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = TripDetailFragment.class.getName();
 
     /** Bundle mandatory parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_TRIP_ID = "bundleParTripId";
@@ -508,18 +514,23 @@ public class TripDetailFragment extends Fragment {
      * Will fill item name field.
      */
     public final void onClickAddDMagicItem() {
-        // retireving list of probable items
+        // retrieving list of probable items
         if (mProbableItemsList == null) {
             mProbableItemsList = mIHostingActivity.getProbableItemsList();
             mSuggestionIndex = 0;
         }
 
         // skipping already added
-        while (mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
+        while (mSuggestionIndex < mProbableItemsList.size() && mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
             mSuggestionIndex++;
         }
 
-        mNewItemEditText.setText(mProbableItemsList.get(mSuggestionIndex++));
+        if (mSuggestionIndex < mProbableItemsList.size()) {
+            mNewItemEditText.setText(mProbableItemsList.get(mSuggestionIndex++));
+        } else {
+            mNewItemEditText.setText("");
+            Log.d(TAG, "No more suggestion");
+        }
     }
 
     /**
