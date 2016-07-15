@@ -22,7 +22,16 @@ package com.nbossard.packlist.gui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+/*
+@startuml
+    class com.nbossard.packlist.gui.MaterialColor {
+        getMatColor(...)
+    }
 
+    com.nbossard.packlist.gui.MaterialColor <.. com.nbossard.packlist.gui.TripAdapter
+
+@enduml
+ */
 /**
  * Utilitary class to compute a random material color.
  *

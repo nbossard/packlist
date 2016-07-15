@@ -28,6 +28,15 @@ import com.nbossard.packlist.R;
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
 
+/*
+@startuml
+    class com.nbossard.packlist.model.TripFormatter {
+        + getFormattedDate(...)
+        + getFormattedWeight(...)
+    }
+@enduml
+ */
+
 /**
  * Formatter for {@link Trip}, used in data binding for presentation.
  *

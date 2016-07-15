@@ -49,8 +49,6 @@ import hugo.weaving.DebugLog;
         mSortMode
     }
 
-    com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
-
 @enduml
 */
 
