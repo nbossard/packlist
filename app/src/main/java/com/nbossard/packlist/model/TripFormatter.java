@@ -74,7 +74,14 @@ public class TripFormatter
 
         //S3 : works fine on recent android (without date format)
         // and takes into account date format on old android
-        dateFormat = android.text.format.DateFormat.getDateFormat(mContext);
+        if (mContext != null) {
+            dateFormat = android.text.format.DateFormat.getDateFormat(mContext);
+        } else {
+            // seen this case is crash mails received...
+            // Using a fallback
+            Log.w(TAG, "Very strange context is null");
+            dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+        }
 
         /*
         //S2 : the whole block
