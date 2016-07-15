@@ -124,6 +124,7 @@ public class TripDetailFragment extends Fragment {
     /**
      * Add magic item button.
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private AppCompatImageButton mAddMagicItemButton;
 
     /**
