@@ -25,7 +25,7 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xxth june 2016"
+        changeDate="16th july 2016"
         versionName="0.10">
         <changelogtext>NEW : adding material letter icon on trip list</changelogtext>
         <changelogtext>NEW : adding button for automatic suggestion of missing items</changelogtext>
