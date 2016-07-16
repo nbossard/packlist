@@ -41,6 +41,7 @@ import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+import java.util.List;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -52,6 +53,7 @@ import hugo.weaving.DebugLog;
 public class MainActivityForTest
         extends AppCompatActivity
         implements
+        ITripDetailFragmentActivity,
         ITripListFragmentActivity,
         INewTripFragmentActivity,
         IMassImportFragmentActivity {
@@ -299,6 +301,16 @@ public class MainActivityForTest
 
         // updating FAB action
         mFab.hide();
+    }
+
+    @Override
+    public String[] getListOfItemNames() {
+        return new String[0];
+    }
+
+    @Override
+    public List<String> getProbableItemsList() {
+        return null;
     }
 //
 }
