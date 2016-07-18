@@ -92,6 +92,11 @@ public class MainActivity
     /** Log tag. */
     private static final String TAG = MainActivity.class.getName();
 
+    /**
+     * The key used to save currently displayed fragment name in saved instance state.
+     */
+    private static final String CUR_FRAGMENT_KEY = "CUR_FRAGMENT_KEY";
+
 // *********************** FIELDS ***************************************************************************
 
     /** The saving module to retrieve and update data (trips).*/
@@ -106,6 +111,12 @@ public class MainActivity
     /** The fragment trip detail if already opened. */
     private TripDetailFragment mTripDetailFragment;
 
+    /**
+     * The currently displayed fragment class name.
+     */
+    private String mCurFragment;
+
+// *********************** LISTENERS**************************************************************************
     /**
      * Listener on back stack in order to set back title bar when back stack is empty.
      */
@@ -129,14 +140,11 @@ public class MainActivity
                 }
             };
 
-// *********************** LISTENERS**************************************************************************
-
-
 // *********************** METHODS **************************************************************************
 
     @DebugLog
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
+    protected final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -149,6 +157,19 @@ public class MainActivity
 
         // Handle deep-app indexing
         onNewIntent(getIntent());
+
+        // retrieving from saved instance state currently displayed fragment
+        if (savedInstanceState != null) {
+            Log.d(TAG, "non null savedinstancestate");
+            mCurFragment = savedInstanceState.getString(CUR_FRAGMENT_KEY);
+            Log.d(TAG, "mcurFragment = " + mCurFragment);
+        } else {
+            Log.d(TAG, "null savedinstancestate");
+        }
+
+        // Moved from onStart, however mSavingModule is null when fragments need it for restore
+        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
+        mSavingModule.addListener(this);
     }
 
 
@@ -156,10 +177,16 @@ public class MainActivity
     @Override
     protected final void onStart() {
         super.onStart();
-        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
-        mSavingModule.addListener(this);
+        if (mCurFragment == null) {
+            Log.d(TAG, "no previous fragment, displaying default");
+            mTripListFragment = openMainActivityFragment();
+        }
+    }
 
-        mTripListFragment = openMainActivityFragment();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CUR_FRAGMENT_KEY, mCurFragment);
     }
 
     @Override
@@ -289,6 +316,7 @@ public class MainActivity
 
         // Commit the transaction
         transaction.commit();
+        mCurFragment = TripDetailFragment.class.getSimpleName();
 
         // updating FAB action
         mFab.hide();
@@ -335,6 +363,7 @@ public class MainActivity
 
         // Commit the transaction
         transaction.commit();
+        mCurFragment = TripDetailFragment.class.getSimpleName();
 
         // No need of updating (hiding) FAB action as this is managed in onAttach
 
@@ -388,6 +417,7 @@ public class MainActivity
 
         // Commit the transaction
         transaction.commit();
+        mCurFragment = NewTripFragment.class.getSimpleName();
 
         // updating FAB action
         mFab.hide();
@@ -407,6 +437,7 @@ public class MainActivity
 
         // Commit the transaction
         transaction.commit();
+        mCurFragment = TripDetailFragment.class.getSimpleName();
 
         // updating FAB action
         mFab.hide();
@@ -457,6 +488,7 @@ public class MainActivity
 
         // Commit the transaction
         transaction.commit();
+        mCurFragment = TripDetailFragment.class.getSimpleName();
 
         // updating FAB action
         mFab.show();
