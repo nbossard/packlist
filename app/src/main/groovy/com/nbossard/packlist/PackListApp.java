@@ -102,7 +102,7 @@ public class PackListApp extends Application {
 
         // The following line triggers the initialization of ACRA
         // Except if currently debugging
-        if (Debug.isDebuggerConnected()) {
+        if (BuildConfig.DEBUG) {
             Log.d(LOG_TAG, "NOT Initialising ACRA as debugger is currently connected");
         } else {
             Log.d(LOG_TAG, "Initialising ACRA");
