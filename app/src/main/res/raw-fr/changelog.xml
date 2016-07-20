@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xx juin 2016"
         versionName="0.10">
+        <changelogtext>NEW : traductions allemandes, merci à Christophe Paccolat</changelogtext>
         <changelogtext>NEW : ajout icone lettre sur la liste des voyages</changelogtext>
         <changelogtext>NEW : ajout bouton pour suggérer un item manquant</changelogtext>
         <changelogtext>NEW : gestion des catégories</changelogtext>
