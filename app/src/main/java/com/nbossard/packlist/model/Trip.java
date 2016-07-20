@@ -36,6 +36,7 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -160,7 +161,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * Getter for name.
      * @return i.e. : "Dublin"
      */
-    public final String getName() {
+    public final
+    @Nullable
+    String getName() {
         return mName;
     }
 

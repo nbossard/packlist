@@ -102,7 +102,8 @@
     <string name="item_detail__weight__label">Gewicht (in Gramm)</string>
     <string name="item_detail__submit">Anpassen</string>
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">Diese Zone hilft dabei mehrere Objekte die Sie mitnehmen wollen auf einmal zu importieren. Ein Objekt per Linie.\n\n.i.e.:\n Reiseführer (100g).</string>
+    <string name="mass_import__principle_explanation_new_trip__label">This dialog is for help of mass import of items into a new trip, paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
+    <string name="mass_import__principle_explanation_with_name__label">This dialog is for help of mass import of items into trip \"%1$s\", paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
     <string name="mass_import__import__button">Importieren</string>
     <string name="mass_import__items__hint">hier eingeben oder einfügen...</string>
     <!-- for ACRA (Application CRash Reports) reports -->

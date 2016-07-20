@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="@string/mass_import__principle_explanation__label"/>
+        android:text="@string/mass_import__principle_explanation_new_trip__label"/>
 
     <EditText
         android:id="@+id/mass_import__items__edit"
