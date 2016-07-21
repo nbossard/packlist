@@ -45,7 +45,7 @@
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises</string>
+    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes</string>
     <string name="about__third_party__button">Librairies tierces</string>
     <string name="about_act__fab_go_to_website">Open website</string>
 
@@ -84,6 +84,8 @@
     <string name="trip_detail__add_item_detail___button">+ détails</string>
     <string name="trip_detail__before_weight__label">poids du sac : plus de %1$dg (%2$dg&#160;empaqueté).</string>
     <string name="trip_detail__new_item__access">nom&#8230;</string>
+    <string name="trip_detail__already_existing_item">Cet article est déjà dans la liste.</string>
+    <string name="trip_detail__new_item_magic___access">Bouton. Suggérer un item</string>
     <string name="action_trip_cab__edit">Modifier</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip__share">Partager</string>
@@ -91,6 +93,7 @@
     <string name="sorting_mode_default">défaut</string>
     <string name="sorting_mode_unpacked_first">empaquetés ou non</string>
     <string name="sorting_mode_alphabetical">ordre alphabetique</string>
+    <string name="sorting_mode_category">catégorie</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Librairies tierces</string>
@@ -101,14 +104,17 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__mli__label">ft<b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
     <!-- Item detail -->
     <string name="item_detail__name__label">nom</string>
     <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">MODIFIER</string>
+    <string name="item_detail__category__label">Catégorie</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse. Un objet par ligne.\n\nExemple :\nGuide touristique (50g)</string>
+    <string name="mass_import__principle_explanation_new_trip__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans un nouveau voyage. Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
+    <string name="mass_import__principle_explanation_with_name__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans le voyage \"%1$s\". Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
     <string name="mass_import__import__button">Importer</string>
     <string name="mass_import__items__hint">saisissez ou collez ici&#8230;</string>
 

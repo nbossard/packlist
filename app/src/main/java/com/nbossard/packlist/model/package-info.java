@@ -35,17 +35,21 @@ package com.nbossard.packlist.model;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.model #LightBlue{
-        !include Trip.java
+    package com.nbossard.packlist.model #LightBlue {
         !include Item.java
         !include ItemComparatorAdditionDate.java
         !include ItemComparatorAlphabetical.java
+        !include ItemComparatorCategoryAlphabetical.java
         !include ItemComparatorPacking.java
+        !include SortModes.java
+        !include Trip.java
+        !include TripFormatter.java
 
         com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking
+        Comparator <|.. com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical
     }
 @enduml
 

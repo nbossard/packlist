@@ -26,6 +26,7 @@ package com.nbossard.packlist.model;
         String mStartDate
         String mEndDate
         String mNote
+        String mSortMode
 
         addItem()
         deleteItem(UUID)
@@ -35,6 +36,7 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -100,6 +102,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      */
     private int mPackedWeight;
 
+    /**
+     * The trip saved sort mode.
+     */
+    private SortModes mSortMode;
+
 // *********************** METHODS **************************************************************************
 
     /**
@@ -108,24 +115,29 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     public Trip() {
         mUUID = UUID.randomUUID();
         mListItem = new ArrayList<>();
+        setSortMode(SortModes.DEFAULT);
     }
 
     /**
      * Full parameters constructor.
-     * @param parName trip name, usually destination. i.e. : "Dublin"
+     *
+     * @param parName      trip name, usually destination. i.e. : "Dublin"
      * @param parStartDate trip start date
-     * @param parEndDate trip return date
-     * @param parNote additional notes, free text
+     * @param parEndDate   trip return date
+     * @param parNote      additional notes, free text
+     * @param parSortMode sort mode (alphabetical, packed...)
      */
     public Trip(final String parName,
                 final GregorianCalendar parStartDate,
                 final GregorianCalendar parEndDate,
-                final String parNote) {
+                final String parNote,
+                final SortModes parSortMode) {
         this();
         setName(parName);
         setStartDate(parStartDate);
         setEndDate(parEndDate);
         setNote(parNote);
+        setSortMode(parSortMode);
         mTotalWeight = 0;
     }
 
@@ -149,7 +161,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * Getter for name.
      * @return i.e. : "Dublin"
      */
-    public final String getName() {
+    public final
+    @Nullable
+    String getName() {
         return mName;
     }
 
@@ -284,6 +298,43 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
+     * Set the current sort mode.
+     *
+     * @param parSortMode the new current sort mode.
+     */
+    public final void setSortMode(final SortModes parSortMode) {
+        if (parSortMode == null) {
+            mSortMode = SortModes.DEFAULT;
+        } else {
+            mSortMode = parSortMode;
+        }
+    }
+
+    /**
+     * @return current sort mode
+     */
+    public final SortModes getSortMode() {
+        return mSortMode;
+    }
+
+    /**
+     * Check if an article of same name is already in the list.
+     *
+     * @param parItemName name of new article
+     * @return true if an article of exactly same name is in the list
+     */
+    public final boolean alreadyContainsItemOfName(final String parItemName) {
+        boolean res = false;
+        for (Item oneItem : getListOfItems()) {
+            if (oneItem.getName().contentEquals(parItemName)) {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
+    /**
      * Updating of total weight.
      *
      * @param parTotalWeight the new total weight in grams.
@@ -345,7 +396,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
-        return curRemainingDays - otherRemainingDays;
+        return otherRemainingDays - curRemainingDays;
     }
 
     /**

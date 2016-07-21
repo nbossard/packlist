@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
@@ -48,7 +49,7 @@ import hugo.weaving.DebugLog;
  */
 
 /**
- * Mass item import fragment.
+ * Mass item import fragment in a new trip or in an existing trip.
  *
  * @author Created by naub7473 on 19/01/2016.
  */
@@ -74,6 +75,11 @@ public class MassImportFragment extends Fragment {
 
     /** Button to launch mass import. */
     private Button mMassImportButton;
+
+    /**
+     * The explanation text above the edit area, including trip name if available.
+     */
+    private TextView mItemsExplainText;
 
     /** Text edit area to input text. */
     private EditText mItemsEditText;
@@ -107,10 +113,10 @@ public class MassImportFragment extends Fragment {
     /**
      * Create a new instance of MassImportFragment that will be initialized
      * with the given arguments.
-     * @param parTrip trip to be added items
+     * @param parTrip trip to be added items, can be null if a new trip should be created.
      * @return fragment to be displayed
      */
-    public static MassImportFragment newInstance(final Trip parTrip) {
+    public static MassImportFragment newInstance(@Nullable final Trip parTrip) {
         MassImportFragment f = new MassImportFragment();
         if (parTrip != null) {
             Bundle b = new Bundle();
@@ -139,8 +145,12 @@ public class MassImportFragment extends Fragment {
         mTrip = null;
         if (args != null) {
             mTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP);
+
         } else {
             Log.e(TAG, "onCreate() : This should never occur");
+        }
+        if (mTrip == null) {
+            mTrip = new Trip();
         }
     }
 
@@ -158,8 +168,16 @@ public class MassImportFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Getting views
+        mItemsExplainText = (TextView) mRootView.findViewById(R.id.mass_import__principle_explanation__label);
         mItemsEditText = (EditText) mRootView.findViewById(R.id.mass_import__items__edit);
         mMassImportButton = (Button) mRootView.findViewById(R.id.mass_import__import__button);
+
+        // updating display
+        if (mTrip.getName() != null) {
+            mItemsExplainText.setText(String.format(getString(R.string.mass_import__principle_explanation_with_name__label), mTrip.getName()));
+        }
+
+        // adding listeners
         mMassImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {

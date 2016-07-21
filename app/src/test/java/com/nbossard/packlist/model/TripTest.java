@@ -26,6 +26,7 @@ import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -42,6 +43,7 @@ public class TripTest  {
     private static final GregorianCalendar TRIP_END = new GregorianCalendar(2015,3,30);
     private static final GregorianCalendar UPDATED_TRIP_END = new GregorianCalendar(2015,4,30);
     private static final String TRIP_NOTE = "A nice trip";
+    private static final SortModes TRIP_SORT_MODE = SortModes.DEFAULT;
     private static final String UPDATED_TRIP_NOTE = "A REALLY nice trip";
 
     private static final String NEW_ITEM_NAME = "newItemName";
@@ -49,7 +51,6 @@ public class TripTest  {
     private static final String NEW_ITEM2_NAME = "newItemName2";
     private static final int NEW_ITEM2_WEIGHT = 50;
     private static final String NEW_ITEM3_NAME = "newItemName3";
-    private static final int NEW_ITEM3_WEIGHT = 100;
     private static final String NEW_ITEM4_NAME = "newItemName4";
 
 
@@ -57,6 +58,8 @@ public class TripTest  {
     private static final String TRIP2_NOTE = "City of LOVE";
     private static final GregorianCalendar TRIP2_DATE = new GregorianCalendar(2015,8,25);
     private static final GregorianCalendar TRIP2_END = new GregorianCalendar(2015,8,25);
+    private static final SortModes TRIP2_SORT_MODE = SortModes.DEFAULT;
+
 
     private static final String TRIP3_NAME = "Toronto";
 
@@ -66,8 +69,8 @@ public class TripTest  {
 
     @Before
     public void setUp() {
-        mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE);
-        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE);
+        mTestTrip = new Trip(TRIP_NAME, TRIP_DATE, TRIP_END, TRIP_NOTE, TRIP_SORT_MODE);
+        mTestTrip2 = new Trip(TRIP2_NAME, TRIP2_DATE, TRIP2_END, TRIP2_NOTE, TRIP2_SORT_MODE);
         mTestTrip3NoDate = new Trip();
         mTestTrip3NoDate.setName(TRIP3_NAME);
 
@@ -167,8 +170,8 @@ public class TripTest  {
 
     @Test
     public void testCompareTo() throws Exception {
-        assertTrue(mTestTrip.compareTo(mTestTrip2) < 0);
-        assertTrue(mTestTrip2.compareTo(mTestTrip) > 0);
+        assertTrue(mTestTrip.compareTo(mTestTrip2) > 0);
+        assertTrue(mTestTrip2.compareTo(mTestTrip) < 0);
         assertTrue(mTestTrip.compareTo(mTestTrip) == 0);
     }
 
@@ -266,5 +269,22 @@ public class TripTest  {
         mTestTrip.packingChange();
         mTestTrip.deleteItem(newItem.getUUID());
         assertEquals(NEW_ITEM2_WEIGHT, mTestTrip.getPackedWeight());
+    }
+
+    @Test
+    public void testAlreadyContainsItemOfName() {
+        assertFalse(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
+        mTestTrip.addItem(NEW_ITEM_NAME);
+        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
+        mTestTrip.addItem(NEW_ITEM2_NAME);
+        mTestTrip.addItem(NEW_ITEM3_NAME);
+        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM3_NAME));
+    }
+
+    @Test
+    public void testGetSortMode() {
+        assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
+        mTestTrip.setSortMode(null);
+        assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
     }
 }

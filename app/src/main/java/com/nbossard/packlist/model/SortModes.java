@@ -17,11 +17,15 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.model;
 
 /*
 @startuml
-    enum com.nbossard.packlist.gui.SortModes {
+    enum com.nbossard.packlist.model.SortModes {
+        DEFAULT
+        UNPACKED_FIRST
+        ALPHABETICAL
+        next()
     }
 @enduml
  */
@@ -43,7 +47,11 @@ public enum SortModes {
     /**
      * first all unpacked then all packed items.
      */
-    ALPHABETICAL;
+    ALPHABETICAL,
+    /**
+     * by category.
+     */
+    CATEGORY;
 
     /**
      * Used for computing next sorting mode.

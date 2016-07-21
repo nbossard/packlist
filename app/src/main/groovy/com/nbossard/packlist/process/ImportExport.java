@@ -20,6 +20,8 @@
 package com.nbossard.packlist.process;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
 import com.nbossard.packlist.model.Item;
@@ -63,7 +65,42 @@ public class ImportExport {
      * Char to be added at start of line when sharing to mark this is not an item
      * but a line part of trip header.
      */
-    private static final String IGNORE_SYMBOL = "# ";
+    private static final String IGNORE_SYMBOL = "#";
+
+    /**
+     * line part of trip header. Trip name.
+     */
+    @VisibleForTesting
+    protected static final String TRIPNAME_SYMBOL = "NAME: ";
+
+    /**
+     * line part of trip header. Trip dates.
+     */
+    @VisibleForTesting
+    protected static final String TRIPDATE_SYMBOL = "DATE: ";
+
+    /**
+     * line part of trip header. Trip notes.
+     */
+    @VisibleForTesting
+    protected static final String TRIPNOTE_SYMBOL = "NOTE: ";
+
+    /**
+     * The "checked" char ☑ , to indicate it is packed.
+     */
+    public static final String CHECKED_CHAR = "\u2611";
+
+    /**
+     * The "unchecked" char ☐ , to indicate it is packed.
+     */
+    public static final String UNCHECKED_CHAR = "\u2610";
+
+    /**
+     * The char used to separate category and item name.
+     */
+    public static final String CAT_NAME_SEPARATOR = ":";
+
+    // *********************** METHODS **********************************************************************
 
     /**
      * Mass import items into an existing provided trip parTrip.
@@ -73,39 +110,62 @@ public class ImportExport {
      */
     public final void massImportItems(final Trip parTrip, final String parTextToImport) {
         String[] lines = parTextToImport.split("\n");
-        String name;
-        String weightStr;
 
         for (String oneLine : lines) {
 
             oneLine = oneLine.trim();
 
             // Testing if line should be ignored
-            if (oneLine.startsWith(IGNORE_SYMBOL) || oneLine.length() == 0) {
-                Log.d(TAG, "massImportItems: ignoring this line, because starts with " + IGNORE_SYMBOL);
+            if (oneLine.length() == 0) {
+                Log.d(TAG, "massImportItems: empty line, ignoring it");
+            } else if (oneLine.startsWith(IGNORE_SYMBOL)) {
+                Log.d(TAG, "massImportItems: line starts with " + IGNORE_SYMBOL);
+                oneLine = oneLine.substring(IGNORE_SYMBOL.length());
+
+                if (oneLine.startsWith(TRIPNAME_SYMBOL)) {
+                    if (parTrip.getName() == null) {
+                        String tripName = parseTripNameLine(oneLine);
+                        parTrip.setName(tripName);
+                    }
+                }
+
+                if (oneLine.startsWith(TRIPDATE_SYMBOL)) {
+                    if (parTrip.getNote() == null) {
+                        oneLine = oneLine.substring(TRIPDATE_SYMBOL.length());
+                        /*
+                        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+                        Matcher m0 = p0.matcher(yetToBeParsed);
+                        */
+                    }
+                }
+
+                if (oneLine.startsWith(TRIPNOTE_SYMBOL)) {
+                    if (parTrip.getNote() == null) {
+                        oneLine = parseTripNote(oneLine);
+                        parTrip.setNote(oneLine);
+                    }
+                }
+
             } else {
                 // normal case, it is an item to be added
 
-                // splitting in name and weight using a regex
-                Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
-                Matcher m = p.matcher(oneLine);
-                if (m.find()) {
-                    // Trying to use a regex
-                    name = m.group(1).trim();
-                    weightStr = m.group(2);
-                } else {
-                    // 2nd try, the whole block is considered as name without weight
-                    name = oneLine.trim();
-                    weightStr = "0";
-                }
-
-                Item newItem = new Item(parTrip, name);
-                newItem.setWeight(parseInt(weightStr));
+                Item newItem = parseOneItemLine(parTrip, oneLine);
                 parTrip.addItem(newItem);
             }
         }
     }
 
+    @NonNull
+    private String parseTripNote(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNOTE_SYMBOL.length());
+        return res;
+    }
+
+    @NonNull
+    private String parseTripNameLine(final String parOneLine) {
+        String res = parOneLine.substring(TRIPNAME_SYMBOL.length());
+        return res;
+    }
 
     /**
      * Make a pretty plaintext presentation of trip so we can share it.
@@ -116,19 +176,105 @@ public class ImportExport {
      */
     public final String toSharableString(final Context parContext, final Trip parRetrievedTrip) {
         StringBuilder res = new StringBuilder();
+
+        res.append(exportHeader(parContext, parRetrievedTrip));
+
+        res.append("\n");
+        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
+            exportOneItem(res, oneItem);
+        }
+        return res.toString();
+    }
+
+    /**
+     * Parse one line, that is supposed to be an item.
+     *
+     * @param parTrip    will be used to create item.
+     * @param parOneLine line to be parsed, non empty
+     * @return an item ready to be added to trip
+     */
+    @NonNull
+    @VisibleForTesting
+    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+
+        String yetToBeParsed;
+        boolean checked;
+        String name;
+        String weightStr;
+        Item newItem = new Item(parTrip, "");
+
+
+        // splitting in packed and rest using a regex
+        // This regex has been tested using : https://regex101.com/
+        // and test lists in androidTest folder
+        yetToBeParsed = parOneLine;
+        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+        Matcher m0 = p0.matcher(yetToBeParsed);
+        if (m0.find()) {
+            String checkbox = m0.group(1).trim();
+            checked = checkbox.contentEquals(CHECKED_CHAR);
+            yetToBeParsed = m0.group(2);
+        } else {
+            checked = false;
+        }
+
+        //working on the rest
+        // searching for a category
+        Pattern pCat = Pattern.compile("(.*):(.*)");
+        Matcher mCat = pCat.matcher(yetToBeParsed);
+        if (mCat.find()) {
+            String category = mCat.group(1).trim();
+            yetToBeParsed = mCat.group(2);
+            newItem.setCategory(category);
+        }
+
+        // splitting in name and weight using a regex
+
+        Pattern p = Pattern.compile("\\s*(.*) ?[(]([0-9]+)g?[)]");
+        Matcher m = p.matcher(yetToBeParsed);
+        if (m.find()) {
+            // Trying to use a regex
+            name = m.group(1).trim();
+            weightStr = m.group(2);
+        } else {
+            // 2nd try, the whole block is considered as name without weight
+            name = yetToBeParsed.trim();
+            weightStr = "0";
+        }
+
+        // Building item to be parsed
+        newItem.setName(name);
+        newItem.setPacked(checked);
+        newItem.setWeight(parseInt(weightStr));
+        return newItem;
+    }
+
+    // *********************** PRIVATE METHODS ***************************************************************
+
+    /**
+     * export trip info as a human readable.
+     *
+     * @param parContext       will be used to create a trip formatter.
+     * @param parRetrievedTrip trip to be exported and appended to result
+     */
+    @NonNull
+    private String exportHeader(final Context parContext, final Trip parRetrievedTrip) {
+        StringBuilder res = new StringBuilder();
         TripFormatter tripFormatter = new TripFormatter(parContext);
 
         if (parRetrievedTrip.getName() != null) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPNAME_SYMBOL);
             res.append(parRetrievedTrip.getName());
             res.append("\n");
         }
         if ((parRetrievedTrip.getStartDate() != null) && (parRetrievedTrip.getStartDate() != null)) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPDATE_SYMBOL);
             if (parRetrievedTrip.getStartDate() != null) {
                 res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getStartDate()));
             }
-            res.append("\u2192"); // Arrow right
+            res.append("\u2192"); // Arrow right : →
             if (parRetrievedTrip.getEndDate() != null) {
                 res.append(tripFormatter.getFormattedDate(parRetrievedTrip.getEndDate()));
             }
@@ -136,6 +282,7 @@ public class ImportExport {
         }
         if (parRetrievedTrip.getNote() != null && parRetrievedTrip.getNote().length() > 0) {
             res.append(IGNORE_SYMBOL);
+            res.append(TRIPNOTE_SYMBOL);
             res.append(parRetrievedTrip.getNote());
             res.append("\n");
         }
@@ -145,23 +292,35 @@ public class ImportExport {
                     parRetrievedTrip.getPackedWeight()));
             res.append("\n");
         }
-        res.append("\n");
-        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
-            if (oneItem.isPacked()) {
-                res.append("\u2611"); // checked
-            } else {
-                res.append("\u2610"); // unchecked
-            }
-            res.append(" ");
-            res.append(oneItem.getName());
-            res.append(" ");
-            if (oneItem.getWeight() > 0) {
-                res.append("(");
-                res.append(oneItem.getWeight());
-                res.append("g)");
-            }
-            res.append("\n");
-        }
         return res.toString();
+    }
+
+    /**
+     * export one item as a human readable line.
+     *
+     * @param parRes     result to be appended
+     * @param parOneItem item to be exported and appended to result
+     */
+    private void exportOneItem(final StringBuilder parRes, final Item parOneItem) {
+        if (parOneItem.isPacked()) {
+            parRes.append(CHECKED_CHAR); // checked
+        } else {
+            parRes.append(UNCHECKED_CHAR); // unchecked
+        }
+        parRes.append(' ');
+        if (parOneItem.getCategory() != null && parOneItem.getCategory().length() > 0) {
+            parRes.append(parOneItem.getCategory());
+            parRes.append(' ');
+            parRes.append(CAT_NAME_SEPARATOR);
+            parRes.append(' ');
+        }
+        parRes.append(parOneItem.getName());
+        parRes.append(' ');
+        if (parOneItem.getWeight() > 0) {
+            parRes.append("(");
+            parRes.append(parOneItem.getWeight());
+            parRes.append("g)");
+        }
+        parRes.append("\n");
     }
 }

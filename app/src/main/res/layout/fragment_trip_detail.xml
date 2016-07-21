@@ -49,6 +49,7 @@
         android:paddingStart="@dimen/margin_start"
         android:paddingTop="@dimen/margin_top">
 
+        <!-- Top block : general trip information -->
         <RelativeLayout
             android:id="@+id/trip_detail__top_block"
             android:layout_width="match_parent"
@@ -148,7 +149,7 @@
                 android:layout_toStartOf="@id/trip_detail__edit_button"
                 android:text="@{trip.note}"
                 android:visibility="@{((trip.note != null) &amp;&amp; (trip.note.length()>0)) ? View.VISIBLE : View.GONE}"
-                tools:text="Un très beau voyage"/>
+                tools:text="A very nice trip"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -170,46 +171,20 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/trip_detail__new_item__button"
-            android:layout_width="wrap_content"
+        <!-- Lowest block : input text and various buttons. -->
+        <!-- Included because different designs according to available space. -->
+        <include
+            android:id="@+id/trip_detail__add_item_block"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/accessibility_button_min_height"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/trip_detail__new_item_detail__button"
-            android:layout_toStartOf="@+id/trip_detail__new_item_detail__button"
-            android:text="@string/trip_detail__add_item___button"/>
-
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@id/trip_detail__new_item_detail__button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="@dimen/accessibility_button_min_height"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/trip_detail__add_item_detail___button"/>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/trip_detail__new_item__edit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="@dimen/accessibility_edit_text_min_height"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/trip_detail__new_item__button"
-            android:layout_toStartOf="@id/trip_detail__new_item__button"
-            android:imeOptions="actionGo"
-            android:inputType="text"
-            android:lines="1"
-            android:maxLines="1"
-            android:hint="@string/trip_detail__new_item__access"/>
+            layout="@layout/fragment_trip_detail_add_itemblock"/>
 
         <ListView
             android:id="@+id/trip_detail__list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/trip_detail__new_item__edit"
+            android:layout_above="@id/trip_detail__add_item_block"
             android:layout_below="@id/trip_detail__top_block"
             android:background="@color/packlist__list_background"
             tools:listitem="@layout/item_adapter"/>
@@ -219,7 +194,7 @@
             android:id="@+id/trip_detail__list_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/trip_detail__new_item__edit"
+            android:layout_above="@id/trip_detail__add_item_block"
             android:layout_below="@id/trip_detail__top_block"
             android:background="@color/packlist__list_background"
             android:gravity="center"

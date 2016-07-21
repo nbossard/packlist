@@ -21,6 +21,8 @@ package com.nbossard.packlist.model;
 
 import junit.framework.TestCase;
 
+import java.util.Date;
+
 /**
  * Test class for {@link Item} class.
  *
@@ -29,6 +31,7 @@ import junit.framework.TestCase;
 public class ItemTest extends TestCase {
 
     private static final String ITEM_TEST_NAME = "ItemTestName";
+    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
     private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private Item mTestItem;
     private Trip mTestTrip;
@@ -79,6 +82,17 @@ public class ItemTest extends TestCase {
         assertNotNull(mTestItem.getTripUUID());
         assertNotNull(mTestTrip.getUUID());
         assertTrue(mTestItem.getTripUUID().compareTo(mTestTrip.getUUID()) == 0);
+    }
+
+    public void testGetAdditionDate() throws Exception {
+        Date curDate = new Date();
+        assertTrue(mTestItem.getAdditionDate().getTime() - curDate.getTime() < 100);
+    }
+
+    public void testGetCategory() throws Exception {
+        assertNull(mTestItem.getCategory());
+        mTestItem.setCategory(ITEM_TEST_CATEGORY);
+        assertEquals(ITEM_TEST_CATEGORY, mTestItem.getCategory());
     }
 
     public void testToString() throws Exception {

@@ -1,6 +1,6 @@
 **short description**
 
-Créez une liste  d'objets à mettre dans votre valise semi-automatiquement.
+Créez une liste d'objets à mettre dans votre valise semi-automatiquement.
 
 **long description**
 

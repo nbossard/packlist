@@ -86,4 +86,23 @@ public interface ISavingModule {
      * @return true if update succeeded, false otherwise
      */
     @CheckResult boolean updateItem(Item parItem);
+
+    /**
+     * Retrieve the list of previously created categories.
+     *
+     * @return a list of categories
+     */
+    String[] getListOfCategories();
+
+    /**
+     * Retrieve the list of previously created item names.
+     *
+     * @return a list of categories
+     */
+    String[] getListOfItemNames();
+
+    /**
+     * Get a list of missing items names by decreasing order of probability.
+     */
+    List<String> getProbableItemsList();
 }

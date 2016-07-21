@@ -19,10 +19,12 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -192,6 +194,10 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // custom menu for this fragment
+        setHasOptionsMenu(true);
+
         populateList();
     }
 
@@ -200,6 +206,26 @@ public class TripListFragment extends Fragment {
         super.onResume();
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+
+    @Override
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_trip__import_txt:
+                mIHostingActivity.openMassImportFragment(null);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // *********************** PRIVATE METHODS **************************************************************

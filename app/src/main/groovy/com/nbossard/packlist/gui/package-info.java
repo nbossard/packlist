@@ -46,12 +46,12 @@ package com.nbossard.packlist.gui;
         !include ITripListFragmentActivity.java
         !include ItemAdapter.java
         !include ItemDetailFragment.java
-        !include MainActivity.java
-        !include TripDetailFragment.java
         !include ITripDetailFragmentActivity.java
+        !include MainActivity.java
         !include MassImportFragment.java
+        !include MaterialColor.java
         !include NewTripFragment.java
-        !include SortModes.java
+        !include TripDetailFragment.java
         !include TripAdapter.java
         !include TripListFragment.java
     }

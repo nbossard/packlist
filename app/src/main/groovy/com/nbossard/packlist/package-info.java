@@ -55,6 +55,8 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISavingModule
     com.nbossard.packlist.PackListApp ..> com.nbossard.packlist.process.saving.SavingFactory
+
+    com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
 @enduml
 
 */

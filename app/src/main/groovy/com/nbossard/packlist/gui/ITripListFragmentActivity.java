@@ -39,6 +39,14 @@ import com.nbossard.packlist.model.Trip;
  */
 interface ITripListFragmentActivity extends IMainActivity {
 
+
+    /**
+     * Ask activity to open a mass import fragment.
+     *
+     * @param parTrip trip on which mass import will be done
+     */
+    void openMassImportFragment(Trip parTrip);
+
     /**
      * Ask Main activity to open detail fragment to display Trip of provided UUID.
      *
