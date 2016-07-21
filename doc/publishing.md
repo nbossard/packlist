@@ -13,7 +13,7 @@
  - update readme.md
  - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
  - delete "latest" folder
- - Rename "incoming" folder in pub/res_pub to "latest"
+ - duplicate "incoming" folder in pub/res_pub to "latest"
  - create or update multiple whats_new.md based on changelog.xml contents
  - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
