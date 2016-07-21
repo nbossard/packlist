@@ -1,11 +1,11 @@
-**short description**
+**簡単な説明**
 
-Manage a list of items to bring with your for your incoming trip.
+旅行の予定で、持ち物の一覧を管理します。
 
-**long description**
+**詳細な説明**
 
-This application will help you create a packing list (a list  of items to bring to your trip).
+このアプリケーションを使用すると、パッキング リスト (あなたが旅行に持参する持ち物の一覧) を作成できます。
 
-This application is open-source Apache 2 (sources are available on github),  no add, no tracking.
+このアプリケーションは、オープンソースの Apache 2 ライセンスです (ソースは github で利用可能です)、広告なし、トラッキングなしです。
 
-Your suggestions and help is welcome.
+あなたの提案やヘルプは歓迎です。
