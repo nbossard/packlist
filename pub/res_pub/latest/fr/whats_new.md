@@ -1,7 +1,8 @@
-NEW : ISS#27 export d'un voyage
-NEW : amélioration tri des items
-NEW : ISS#31 un voyage cloné est par défaut décoché
-NEW : ISS#32 possibilité de décocher tous les items d'un voyage
-NEW : ajout d'illustrations pour les vues de listes vides
-NEW : ajout du nom du voyage en cours dans la barre de titre
-NEW : prise en compte suggestions de Google accessibility app scanner
+NEW : ajout icone lettre sur la liste des voyages
+NEW : ajout bouton pour suggérer un item manquant
+NEW : gestion des catégories
+NEW : traductions allemandes, merci à Christophe Paccolat
+NEW : suggestion d'items et de catégories pendant la saisie
+BUGFIX : ISS#38 import des fichiers textes, les cases à cocher ne sont pas gérées
+BUGFIX : ISS#36 Import de fichiers texte, bouton non visible sur ceratins équipements ou en mode paysage
+BUGFIX : ISS#35 Sauvegarde du mode de tri pour chaque voyage
