@@ -21,7 +21,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 ![One tab screenshot](./pub/res_pub/latest/en/tab/trip_detail.png)
 
 ### Objectives in term of functionality : 
- * multi-language (currently English , Japanese and French but please help for others)
+ * multi-language (currently English , Japanese and French but please help for others using [crowdin](https://crowdin.com/project/packlist) tool
  * pre-filling of list through questions on what you are planning to do during your trip
  
 ### Objectives : 
