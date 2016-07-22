@@ -20,6 +20,7 @@
 package com.nbossard.packlist.process.saving;
 
 import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
@@ -49,6 +50,7 @@ public interface ISavingModule {
 
     /** Retrieve an ordered list of saved trips, ordered by departure date.
      * @return a list filled with the current trips or an empty list if was never saved. */
+    @NonNull
     List<Trip> loadSavedTrips();
 
     /** Retrieve trip of provided UUID.

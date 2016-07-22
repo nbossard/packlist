@@ -171,7 +171,11 @@ class TripAdapter extends BaseAdapter {
         final Trip oneTrip = mTripsList.get(parPosition);
 
         // updating views
-        vHolderRecycle.letterIcon.setLetter(oneTrip.getName().substring(0, 1));
+        String firstLetter = " ";
+        if (oneTrip.getName() != null) {
+            firstLetter = oneTrip.getName().substring(0, 1);
+        }
+        vHolderRecycle.letterIcon.setLetter(firstLetter);
         MaterialColor colorRetriever = new MaterialColor(mContext);
         vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColor(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());

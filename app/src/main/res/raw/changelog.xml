@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xxst july 2016"
         versionName="0.10.1">
+        <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name)</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="21st july 2016"

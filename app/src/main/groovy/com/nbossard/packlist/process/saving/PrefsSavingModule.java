@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -96,7 +97,9 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final List<Trip> loadSavedTrips() {
+    public final
+    @NonNull
+    List<Trip> loadSavedTrips() {
         List<Trip> savedTripsList;
         String listTrips = mSharedPreferences.getString(LIST_TRIPS_KEY, "");
 
