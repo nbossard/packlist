@@ -55,8 +55,8 @@ android {
         // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 15
-        versionName "0.10.1"
+        versionCode 16
+        versionName "0.x"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
