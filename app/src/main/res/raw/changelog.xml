@@ -25,7 +25,12 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="16th july 2016"
+        changeDate="23rd july 2016"
+        versionName="0.10.1">
+        <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name)</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="21st july 2016"
         versionName="0.10">
         <changelogtext>NEW : german translations thanks to Christophe Paccolat</changelogtext>
         <changelogtext>NEW : adding material letter icon on trip list</changelogtext>

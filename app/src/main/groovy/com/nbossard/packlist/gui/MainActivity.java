@@ -184,7 +184,7 @@ public class MainActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected final void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(CUR_FRAGMENT_KEY, mCurFragment);
     }
@@ -296,7 +296,7 @@ public class MainActivity
     }
 
     @Override
-    public List<String> getProbableItemsList() {
+    public final List<String> getProbableItemsList() {
         return mSavingModule.getProbableItemsList();
     }
 

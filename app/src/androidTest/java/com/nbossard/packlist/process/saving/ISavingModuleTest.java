@@ -78,9 +78,9 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertEquals(2,loadedTrips.size());
         assertTrue(loadedTrips.contains(mTestTrip1));
         assertTrue(loadedTrips.contains(mTestTrip2));
-        // ensuring it is in right order, not the addition one
-        assertTrue(loadedTrips.get(0).getUUID().compareTo(mTestTrip2.getUUID())==0);
-        assertTrue(loadedTrips.get(1).getUUID().compareTo(mTestTrip1.getUUID())==0);
+        // ensuring it is in right order (incoming trip first, then passed), not the addition one
+        assertTrue(loadedTrips.get(0).getUUID().compareTo(mTestTrip1.getUUID()) == 0);
+        assertTrue(loadedTrips.get(1).getUUID().compareTo(mTestTrip2.getUUID()) == 0);
     }
 
     public void testDeleteTrip() {
