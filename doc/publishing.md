@@ -9,10 +9,10 @@
     - UI Automator tests in "androidTest" folder
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle
- - close date in changelog.xml
+ - close date in all changelog.xml
  - update readme.md
  - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
- - update playstore_description.md files 
+ - update pub/res_pub/incoming/**/playstore_description.md files 
  - create or update whats_new.md based on changelog.xml contents
  - delete "latest" folder
  - duplicate "incoming" folder in pub/res_pub to "latest"

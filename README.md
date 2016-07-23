@@ -65,6 +65,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)
 - 0.10 adding categories and item suggestions
 - 0.9 adding export, improved sorting, unpacking all, improved accessibility
 - 0.8.1 26th april 2016, adding crash reports, bug fixing and minor changes  
