@@ -44,6 +44,19 @@ import java.util.UUID;
  */
 public class Item implements Serializable, Cloneable {
 
+
+    // ********************** CONSTANTS *********************************************************************
+
+    // These constants are for better code readability
+    /**
+     * An unpacked item.
+     */
+    public static final boolean UNPACKED = false;
+    /**
+     * A packed item.
+     */
+    public static final boolean PACKED = true;
+
 // *********************** FIELDS *************************************************************************
 
     /** A unique identifier for this item. */

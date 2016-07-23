@@ -49,11 +49,14 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<Item> {
 
     @Override
     public final int compare(final Item parItem, final Item parAnother) {
-        Log.v(TAG, "Entering, parItem = " + parItem + ", parAnother = " + parAnother);
+        // Disabling log for unit test
+        //Log.v(TAG, "Entering, parItem = " + parItem + ", parAnother = " + parAnother);
         int res;
         if (parItem.getCategory() == null && parAnother.getCategory() == null) {
             // no category for both, comparing on names
             res = parItem.getName().compareTo(parAnother.getName());
+
+            // only one have category
         } else if (parItem.getCategory() == null && parAnother.getCategory() != null) {
             res = 1;
         } else if (parAnother.getCategory() == null && parItem.getCategory() != null) {
@@ -68,7 +71,7 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<Item> {
                 res = parItem.getName().compareTo(parAnother.getName());
             }
         }
-        Log.v(TAG, "returning = " + res);
+        //Log.v(TAG, "returning = " + res);
         return res;
     }
 }
