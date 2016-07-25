@@ -19,12 +19,12 @@
 
 package com.nbossard.packlist.gui;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.ShareCompat;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -233,6 +233,7 @@ public class TripListFragment extends Fragment {
     /**
      * Populate list with data in {@link ISavingModule}.
      */
+    @SuppressWarnings("WeakerAccess")
     public final void populateList() {
         mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
@@ -250,11 +251,29 @@ public class TripListFragment extends Fragment {
 
 
     /**
-     * Effectively delete selected trip then refresh the list.
+     * Ask user to confirm deletion of selected trip then call {@link #effectivelyDeleteTrip(int)}.
      *
      * @param parPosition position in list of trip to be deleted
      */
     private void deleteTripClicked(final int parPosition) {
+        // make user confirm, as this is not a good idea to delete old trip :
+        // they serve as a database for new trips
+        TripDeletionConfirmDialogFragment dialogFragment = new TripDeletionConfirmDialogFragment();
+        dialogFragment.setConfirmedListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface parDialogInterface, final int parI) {
+                effectivelyDeleteTrip(parPosition);
+            }
+        });
+        dialogFragment.show(getActivity().getSupportFragmentManager(), DialogFragment.class.getSimpleName());
+    }
+
+    /**
+     * Effectively delete selected trip then refresh the list.
+     *
+     * @param parPosition position in list of trip to be deleted
+     */
+    private void effectivelyDeleteTrip(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();

@@ -68,6 +68,9 @@
         <item quantity="other">%d days ago.</item>
     </plurals>
 
+    <string name="trip_deletion_confirm__title">Sounds like a bad idea…</string>
+    <string name="trip_deletion_confirm__body">Old trips are used as a base of knowdlege for suggesting you items and categories, you should keep them if possible.\n\nReally delete?</string>
+
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>
     <string name="new_trip__start_date">start date</string>

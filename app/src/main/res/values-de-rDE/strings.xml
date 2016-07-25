@@ -45,7 +45,7 @@
     <string name="action_trip__import">Text-Datei importieren</string>
     <string name="action_trip__unpack_all">alle Gegenstände auspacken</string>
     <!-- About page -->
-    <string name="about__main">Liste %1$s.\n%2$s\nCopyright Verpackung © 2015-2016\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier Willkommen \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">Liste %1$s.\n%2$s\nCopyright Verpackung © 2015&#8211;2016\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier Willkommen \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Vielen Dank an\n - Naofum für die japanische Übersetzung</string>
     <string name="about__third_party__button">Bibliotheken von Drittanbietern</string>
     <string name="about_act__fab_go_to_website">Webseite öffnen</string>
@@ -63,6 +63,8 @@
         <item quantity="one">Vor %d Tag.</item>
         <item quantity="other">Vor %d Tagen.</item>
     </plurals>
+    <string name="trip_deletion_confirm__title">Sounds like a bad idea…</string>
+    <string name="trip_deletion_confirm__body">Old trips serve as a base for suggesting you items, you should keep them if possible. Really delete ?</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">Name der Reise</string>
     <string name="new_trip__start_date">Startdatum</string>
