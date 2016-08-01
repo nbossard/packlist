@@ -61,4 +61,4 @@ script:
   - ./gradlew assembleDebug
   - ./gradlew assembleDebugAndroidTest
   - adb install app/build/outputs/apk/app-debug.apk
-  - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+  - adb install app/build/outputs/apk/app-debug-androidTest.apk
