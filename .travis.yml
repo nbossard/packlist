@@ -1,6 +1,7 @@
 sudo: false
 language: android
-jdk: openjdk7
+# NBO : note that openjdk8 is not supported
+jdk: oraclejdk8
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
