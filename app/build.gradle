@@ -49,6 +49,7 @@ android {
     // 13 --> 0.9 (published 26th may 2016)
     // 14 --> 0.10 (published 21st july 2016)
     // 15 --> 0.10.1 (published 23rd july 2016)
+    // 16 --> 0.10.2 (published 3rd august 2016)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
@@ -56,7 +57,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 16
-        versionName "0.x"
+        versionName "0.10.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
