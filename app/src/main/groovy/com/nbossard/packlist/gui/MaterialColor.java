@@ -22,6 +22,8 @@ package com.nbossard.packlist.gui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
+import android.util.Log;
 /*
 @startuml
     class com.nbossard.packlist.gui.MaterialColor {
@@ -40,6 +42,18 @@ import android.graphics.Color;
 
 @SuppressWarnings("WeakerAccess")
 public class MaterialColor {
+
+    // ********************** CONSTANTS *********************************************************************
+
+    /**
+     * Log tag.
+     */
+    private static final String TAG = MassImportFragment.class.getName();
+
+    /**
+     * Fallback color that will be used if anything goes wrong.
+     */
+    public static final int DEFAULT_COLOR = Color.BLACK;
 
     // ********************** FIELDS ************************************************************************
 
@@ -63,11 +77,11 @@ public class MaterialColor {
      * Return a material color number, kind of random but always the same for string parString.
      * It is one of arrays.xml.
      *
-     * @param parString the string to retrieve corresponding color.
+     * @param parString the string to retrieve corresponding color. Can be null, but this is stupid.
      * @return a color number
      */
     @SuppressWarnings("WeakerAccess")
-    public final int getMatColor(final String parString) {
+    public final int getMatColor(@Nullable final String parString) {
         return getMatColor(parString, "500");
     }
 
@@ -75,23 +89,32 @@ public class MaterialColor {
      * Return a material color number, kind of random but always the same for string parString.
      * It is one of arrays.xml.
      *
-     * @param parString       the string to retrieve corresponding color.
-     * @param parOpacityRange the opacity range, a string, i.e. "500'
+     * @param parString       the string to retrieve corresponding color. Can be null, but this is stupid.
+     * @param parOpacityRange the opacity range, a string, i.e. "500'. Can be null, but this is stupid.
      * @return a color number
      */
     @SuppressWarnings("WeakerAccess")
     public final int getMatColor(
-            final String parString,
-            final String parOpacityRange) {
-        int returnColor = Color.BLACK;
+            @Nullable final String parString,
+            @Nullable final String parOpacityRange) {
+        int returnColor = DEFAULT_COLOR;
+        String ressourceName = "mdcolor_" + parOpacityRange;
         int arrayId = mContext.getResources().
-                getIdentifier("mdcolor_" + parOpacityRange, "array", mContext.getPackageName());
+                getIdentifier(ressourceName, "array", mContext.getPackageName());
 
         if (arrayId != 0) {
             TypedArray colors = mContext.getResources().obtainTypedArray(arrayId);
-            int index = Math.abs((parString.hashCode() % colors.length()));
-            returnColor = colors.getColor(index, Color.BLACK);
+            if (parString != null) {
+                int index = Math.abs((parString.hashCode() % colors.length()));
+                returnColor = colors.getColor(index, Color.BLACK);
+            } else {
+                Log.w(TAG, "Null parString, this is a bad usage"
+                        + ". Using fallback default color = " + DEFAULT_COLOR);
+            }
             colors.recycle();
+        } else {
+            Log.w(TAG, "Could not find array id of name = " + ressourceName
+                    + ". Using fallback default color = " + DEFAULT_COLOR);
         }
         return returnColor;
     }

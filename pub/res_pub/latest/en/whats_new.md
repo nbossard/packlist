@@ -1,4 +1,4 @@
-BUGFIX : ISS#42 crash at start on fresh install of v0.10 (empty trip name)
+BUGFIX : ISS#42 crash at start on fresh install of v0.10 and v01.10.1 (empty trip name)
 NEW : german translations thanks to Christophe Paccolat
 NEW : adding material letter icon on trip list
 NEW : adding button for automatic suggestion of missing items

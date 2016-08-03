@@ -65,6 +65,9 @@
         <item quantity="other">Il y a %d jours.</item>
     </plurals>
 
+    <string name="trip_deletion_confirm__title">Opération déconseillée…</string>
+    <string name="trip_deletion_confirm__body">Les voyages passés servent de base de connaissance pour vous suggérer des items ou les catégorises, vous devriez les garder si possible. \\n\\nVoulez-vous vraiment le détruire ?</string>
+
     <!-- New trip fragment -->
     <string name="new_trip__name">Votre destination</string>
     <string name="new_trip__start_date">Date de début</string>

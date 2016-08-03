@@ -25,6 +25,14 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate="3rd august 2016"
+        versionName="0.10.2">
+        <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name), 2nd try
+            MaterialColor
+        </changelogtext>
+        <changelogtext>NEW : adding confirmation dialog on trip deletion</changelogtext>
+    </changelogversion>
+    <changelogversion
         changeDate="23rd july 2016"
         versionName="0.10.1">
         <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name)</changelogtext>

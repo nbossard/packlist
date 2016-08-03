@@ -51,6 +51,7 @@ package com.nbossard.packlist.gui;
         !include MassImportFragment.java
         !include MaterialColor.java
         !include NewTripFragment.java
+        !include TripDeletionConfirmDialogFragment.java
         !include TripDetailFragment.java
         !include TripAdapter.java
         !include TripListFragment.java

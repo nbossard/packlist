@@ -65,6 +65,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
 - 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)
 - 0.10 adding categories and item suggestions
 - 0.9 adding export, improved sorting, unpacking all, improved accessibility
@@ -80,9 +81,10 @@ Basic functionality are fresh but working, advanced functionality are being adde
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2.2 Preview 5
+- Android Studio 2.2 Preview 7
     - git ignore plugin
     - markdown plugin (Markdown Support)
+    - plantuml plugin
     - Checkstyle-idea
     - Findbugs-idea
 
