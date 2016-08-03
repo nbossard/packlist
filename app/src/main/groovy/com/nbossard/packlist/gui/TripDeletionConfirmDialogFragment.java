@@ -28,6 +28,14 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import com.nbossard.packlist.R;
+/*
+@startuml
+    class com.nbossard.packlist.gui.TripDeletionConfirmDialogFragment {
+    }
+
+    com.nbossard.packlist.gui.TripDeletionConfirmDialogFragment <-- com.nbossard.packlist.gui.TripListFragment
+@enduml
+ */
 
 /**
  * Dialog to ask user to confirm deletion of trip, as this is not a good idea we incite him not to do it.
