@@ -264,10 +264,11 @@ public class ImportExport {
     // *********************** PRIVATE METHODS ***************************************************************
 
     /**
-     * export trip info as a human readable.
+     * Export trip info to a human-readable format, but that format can be parsed back later.
      *
      * @param parContext       will be used to create a trip formatter.
      * @param parRetrievedTrip trip to be exported and appended to result
+     * @return trip in a human readable text format ready to be shared.
      */
     @NonNull
     private String exportHeader(final Context parContext, final Trip parRetrievedTrip) {
