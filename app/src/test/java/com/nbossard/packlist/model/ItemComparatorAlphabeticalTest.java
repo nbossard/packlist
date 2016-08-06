@@ -21,8 +21,6 @@ package com.nbossard.packlist.model;
 
 import junit.framework.TestCase;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Test class for {@link ItemComparatorAlphabetical} class.
  *
@@ -32,18 +30,15 @@ public class ItemComparatorAlphabeticalTest extends TestCase {
 
     private static final String ITEM_TEST_NAME_A = "AItemTestName";
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
-    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
-    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private Item mTestItemBefore;
     private Item mTestItemAfter;
-    private Trip mTestTrip;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip = new Trip();
-        mTestItemBefore = new Item(mTestTrip, ITEM_TEST_NAME_A);
-        mTestItemAfter = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        Trip testTrip = new Trip();
+        mTestItemBefore = new Item(testTrip, ITEM_TEST_NAME_A);
+        mTestItemAfter = new Item(testTrip, ITEM_TEST_NAME_B);
     }
 
     public void testCompare() throws Exception {
