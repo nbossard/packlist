@@ -104,7 +104,7 @@ public interface ISavingModule {
     String[] getListOfItemNames();
 
     /**
-     * Get a list of missing items names by decreasing order of probability.
+     * @return a list of missing items names by decreasing order of probability.
      */
     List<String> getProbableItemsList();
 }
