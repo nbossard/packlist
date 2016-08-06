@@ -30,19 +30,16 @@ public class ItemComparatorPackingTest extends TestCase {
 
     private static final String ITEM_TEST_NAME_A = "AItemTestName";
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
-    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
-    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private Item mTestItemBeforeUnpacked;
     private Item mTestItemAfterPacked;
-    private Trip mTestTrip;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip = new Trip();
-        mTestItemBeforeUnpacked = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        Trip testTrip = new Trip();
+        mTestItemBeforeUnpacked = new Item(testTrip, ITEM_TEST_NAME_A);
         mTestItemBeforeUnpacked.setPacked(Item.UNPACKED);
-        mTestItemAfterPacked = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        mTestItemAfterPacked = new Item(testTrip, ITEM_TEST_NAME_B);
         mTestItemAfterPacked.setPacked(Item.PACKED);
     }
 
