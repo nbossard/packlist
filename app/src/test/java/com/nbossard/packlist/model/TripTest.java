@@ -187,6 +187,8 @@ public class TripTest  {
         assertTrue(mTestTrip.getListOfItems().size()==clonedTrip.getListOfItems().size());
 
         assertTrue(mTestTrip.getListOfItems().get(0).getUUID() != clonedTrip.getListOfItems().get(0).getUUID());
+        assertNotNull(mTestTrip.getName());
+        assertNotNull(clonedTrip.getName());
         assertTrue(mTestTrip.getName().contentEquals(clonedTrip.getName()));
         assertTrue(mTestTrip.getUUID()!=clonedTrip.getUUID());
     }
