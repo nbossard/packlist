@@ -155,16 +155,28 @@ public class ImportExport {
         }
     }
 
+    /**
+     * Parses provided content removes the marker it is a note and returns cleaned content.
+     *
+     * @param parOneLine string to be parsed. i.e. : "NOTE: With friends."
+     * @return the content of parOneline but with removed start corresponding to the marker that it is note.
+     * i.e. : "With friends"
+     */
     @NonNull
     private String parseTripNote(final String parOneLine) {
-        String res = parOneLine.substring(TRIPNOTE_SYMBOL.length());
-        return res;
+        return parOneLine.substring(TRIPNOTE_SYMBOL.length());
     }
 
+    /**
+     * Parses provided content removes the marker that it is the trip name and returns cleaned content.
+     *
+     * @param parOneLine string to be parsed. i.e. : "NAMEE: Business trip to London"
+     * @return the content of parOneline but with removed start corresponding to the marker that it is
+     * the trip name. i.e. : "Business trip to London"
+     */
     @NonNull
     private String parseTripNameLine(final String parOneLine) {
-        String res = parOneLine.substring(TRIPNAME_SYMBOL.length());
-        return res;
+        return parOneLine.substring(TRIPNAME_SYMBOL.length());
     }
 
     /**
