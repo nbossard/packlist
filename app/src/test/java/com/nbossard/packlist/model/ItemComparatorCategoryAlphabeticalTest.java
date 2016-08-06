@@ -30,13 +30,10 @@ public class ItemComparatorCategoryAlphabeticalTest extends TestCase {
 
     private static final String ITEM_TEST_NAME_A = "AItemTestName";
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
-    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
-    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private static final String CAT_NAME_A = "Acat";
     private static final String CAT_NAME_B = "Bcat";
     private Item mTestItemBefore;
     private Item mTestItemAfter;
-    private Trip mTestTrip;
     private Item mTestItemBeforeWithCatA;
     private Item mTestItemBeforeWithCatB;
     private Item mTestSameCatDiffNameBefore;
@@ -45,17 +42,17 @@ public class ItemComparatorCategoryAlphabeticalTest extends TestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip = new Trip();
-        mTestItemBefore = new Item(mTestTrip, ITEM_TEST_NAME_A);
-        mTestItemBeforeWithCatA = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        Trip testTrip = new Trip();
+        mTestItemBefore = new Item(testTrip, ITEM_TEST_NAME_A);
+        mTestItemBeforeWithCatA = new Item(testTrip, ITEM_TEST_NAME_A);
         mTestItemBeforeWithCatA.setCategory(CAT_NAME_A);
-        mTestItemBeforeWithCatB = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        mTestItemBeforeWithCatB = new Item(testTrip, ITEM_TEST_NAME_A);
         mTestItemBeforeWithCatB.setCategory(CAT_NAME_B);
-        mTestItemAfter = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        mTestItemAfter = new Item(testTrip, ITEM_TEST_NAME_B);
 
-        mTestSameCatDiffNameBefore = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        mTestSameCatDiffNameBefore = new Item(testTrip, ITEM_TEST_NAME_A);
         mTestSameCatDiffNameBefore.setCategory(CAT_NAME_A);
-        mTestSameCatDiffNameAfter = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        mTestSameCatDiffNameAfter = new Item(testTrip, ITEM_TEST_NAME_B);
         mTestSameCatDiffNameBefore.setCategory(CAT_NAME_A);
     }
 
