@@ -192,14 +192,14 @@ public class Item implements Serializable, Cloneable {
      * @return category or null if never set
      */
     @Nullable
-    public String getCategory() {
+    public final String getCategory() {
         return mCategory;
     }
 
     /**
      * @param parCategory new category name.
      */
-    public void setCategory(String parCategory) {
+    public final void setCategory(final String parCategory) {
         mCategory = parCategory;
     }
 
