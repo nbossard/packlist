@@ -23,6 +23,9 @@ Dans l'écran détail d'un voyage
 - click sur le bouton action_trip__unpack_all (décocher tous les items)
 - click sur le bouton action_trip__sort (changement du mode de tri)
 
+# consulation des analytics
+https://analytics.google.com/analytics/web/
+
 # remarques
 
 Vu sur leur site web :
