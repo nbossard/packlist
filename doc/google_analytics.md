@@ -1,10 +1,10 @@
-# Notes about Google analytics
+# Notes about analytics
 
-Followed process at :
-https://developers.google.com/analytics/devguides/collection/android/v4/start?configured=true
-https://developers.google.com/analytics/devguides/collection/android/v4/#send-an-event
+# reste à faire :
 
-# marqueurs mis en place
+créer une interface pour les analytics pour pouvoir changer facilement de providers
+
+## marqueurs mis en place
 
 - ouverture de l'écran TripListFragment (liste des voyages)
 - ouverture de l'écran NewTripFragment (saisie des infos d'un voyage)
@@ -23,10 +23,24 @@ Dans l'écran détail d'un voyage
 - click sur le bouton action_trip__unpack_all (décocher tous les items)
 - click sur le bouton action_trip__sort (changement du mode de tri)
 
-# consulation des analytics
+# Amazon analytics
+
+Compte : nicolas.bossard@orange.com / t...4
+Doc setup :
+https://console.aws.amazon.com/mobileanalytics/home/#/overview?consoleState=integrationSteps&appId=c5f75d79bb4f4eb59c73c89615ca1645
+
+
+
+# Notes about Google analytics
+
+Followed process at :
+https://developers.google.com/analytics/devguides/collection/android/v4/start?configured=true
+https://developers.google.com/analytics/devguides/collection/android/v4/#send-an-event
+
+## consulation des analytics
 https://analytics.google.com/analytics/web/
 
-# remarques
+## remarques
 
 Vu sur leur site web :
 

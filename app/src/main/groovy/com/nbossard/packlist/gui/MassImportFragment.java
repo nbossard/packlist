@@ -31,10 +31,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.ImportExport;
 
@@ -91,7 +90,7 @@ public class MassImportFragment extends Fragment {
     private Trip mTrip;
 
     /** Google Analytics tracker. */
-    private Tracker mTracker;
+    private IAnalytic mAnalytic;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -146,8 +145,8 @@ public class MassImportFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIHostingActivity = (IMassImportFragmentActivity) getActivity();
-        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mAnalytic = ((PackListApp) getActivity().getApplication()).getTracker();
+        mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         Bundle args = getArguments();
         mTrip = null;
@@ -194,11 +193,19 @@ public class MassImportFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mAnalytic.sendScreenPausedReportToTracker(TAG);
+    }
+
     @DebugLog
     @Override
     public final void onResume() {
         super.onResume();
         mIHostingActivity.showFABIfAccurate(false);
+        mAnalytic.sendScreenResumedReportToTracker(TAG);
     }
 
     @Override
@@ -208,14 +215,6 @@ public class MassImportFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
-
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
 
     /**
      * Enable to disable GUI, to prevent user interactions when processing.

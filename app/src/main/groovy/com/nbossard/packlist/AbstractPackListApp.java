@@ -21,14 +21,11 @@ package com.nbossard.packlist;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Debug;
 import android.util.Log;
 
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
-
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -77,22 +74,22 @@ import hugo.weaving.DebugLog;
                 ReportField.USER_CRASH_DATE,
                 ReportField.STACK_TRACE,
                 ReportField.LOGCAT})
-public class PackListApp extends Application {
+public abstract class AbstractPackListApp extends Application {
 
 // ********************** CONSTANTS *********************************************************************
 
     /**
      * Log tag.
      */
-    private static final String LOG_TAG = PackListApp.class.getName();
+    private static final String LOG_TAG = AbstractPackListApp.class.getName();
 
 // *********************** FIELDS *************************************************************************
 
     /** Saving module singleton. */
     private ISavingModule mSavingModule;
 
-    /** Tracker object, a part of Google Analytics. */
-    private Tracker mTracker;
+    /** Tracker object, in example a part of Google Analytics. */
+    private IAnalytic mTracker;
 
 // *********************** METHODS **************************************************************************
 
@@ -131,19 +128,6 @@ public class PackListApp extends Application {
         return mSavingModule;
     }
 
-
-    /**
-     * Gets the default {@link Tracker} for this {@link Application}.
-     * @return tracker
-     */
-    public final synchronized  Tracker getDefaultTracker() {
-        if (mTracker == null) {
-            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
-            mTracker = analytics.newTracker("UA-47815384-2");
-        }
-        return mTracker;
-    }
-//
+    public abstract IAnalytic getTracker();
 
 }

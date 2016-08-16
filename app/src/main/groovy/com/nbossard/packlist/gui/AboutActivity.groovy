@@ -31,13 +31,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-
 import com.nbossard.packlist.BuildConfig
 import com.nbossard.packlist.PackListApp;
-import com.nbossard.packlist.R;
-
+import com.nbossard.packlist.R
+import com.nbossard.packlist.analytics.IAnalytic;
 import hugo.weaving.DebugLog;
 
 //CHECKSTYLE:OFF: LineLength
@@ -64,7 +61,7 @@ public class AboutActivity extends AppCompatActivity {
     private static final String TAG = AboutActivity.class.getName();
 
     /** Google Analytics tracker. */
-    private Tracker mTracker;
+    private IAnalytic mAnalytic;
 
     // *********************** METHODS **********************************************************************
 
@@ -73,8 +70,8 @@ public class AboutActivity extends AppCompatActivity {
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mTracker = ((PackListApp) getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mAnalytic = ((PackListApp) getApplication()).getDefaultTracker();
+        mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         setContentView(R.layout.activity_about);
 
@@ -99,7 +96,17 @@ public class AboutActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause()
+        mAnalytic.sendScreenPausedReportToTracker(TAG);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume()
+        mAnalytic.sendScreenResumedReportToTracker(TAG);
+    }
 // *********************** PRIVATE METHODS ******************************************************************
 
     /**
@@ -123,13 +130,5 @@ public class AboutActivity extends AppCompatActivity {
         def intent = new Intent(this, HelpThirdPartyActivity.class)
         startActivity intent
     }
-
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
 
 }

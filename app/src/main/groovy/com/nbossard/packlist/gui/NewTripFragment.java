@@ -35,10 +35,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.databinding.FragmentNewTripBinding;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
@@ -206,7 +205,7 @@ public class NewTripFragment extends Fragment {
     private Trip mTrip;
 
     /** Google Analytics tracker. */
-    private Tracker mTracker;
+    private IAnalytic mAnalytic;
 
     // *********************** METHODS **********************************************************************
 
@@ -239,8 +238,8 @@ public class NewTripFragment extends Fragment {
 
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
         mIHostingActivity = (INewTripFragmentActivity) getActivity();
-        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mAnalytic = ((PackListApp) getActivity().getApplication()).getTracker();
+        mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         Bundle args = getArguments();
         mTripId = null;
@@ -303,10 +302,18 @@ public class NewTripFragment extends Fragment {
         disableSubmitButtonIfEmptyText();
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mAnalytic.sendScreenPausedReportToTracker(TAG);
+    }
+
     @DebugLog
     @Override
     public final void onResume() {
         super.onResume();
+        mAnalytic.sendScreenResumedReportToTracker(TAG);
         mIHostingActivity.showFABIfAccurate(false);
     }
 
@@ -404,12 +411,5 @@ public class NewTripFragment extends Fragment {
 
     // *********************** PRIVATE METHODS **************************************************************
 
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
 
 }

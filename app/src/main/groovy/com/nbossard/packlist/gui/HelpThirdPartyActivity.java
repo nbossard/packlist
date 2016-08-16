@@ -22,10 +22,9 @@ package com.nbossard.packlist.gui;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.analytics.IAnalytic;
 
 import hugo.weaving.DebugLog;
 
@@ -56,8 +55,8 @@ public class HelpThirdPartyActivity extends AppCompatActivity
 
     // ********************** FIELDS ************************************************************************
 
-    /** Google Analytics tracker. */
-    private Tracker mTracker;
+    /** Tracker. */
+    private IAnalytic mAnalytic;
 
     // ********************** METHODS ***********************************************************************
 
@@ -67,20 +66,27 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     {
         super.onCreate(savedInstState);
 
-        mTracker = ((PackListApp) getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mAnalytic = ((PackListApp) getApplication()).getTracker();
+        mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         setContentView(R.layout.activity_help_thirdparty);
     }
 
-    // *********************** PRIVATE METHODS **************************************************************
-
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        mAnalytic.sendScreenPausedReportToTracker(TAG);
     }
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mAnalytic.sendScreenResumedReportToTracker(TAG);
+    }
+
+    // *********************** PRIVATE METHODS **************************************************************
 
 }

@@ -36,10 +36,9 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
@@ -93,7 +92,7 @@ public class TripListFragment extends Fragment {
     private ITripListFragmentActivity mIHostingActivity;
 
     /** Google Analytics tracker. */
-    private Tracker mTracker;
+    private IAnalytic mTracker;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -187,8 +186,8 @@ public class TripListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mIHostingActivity = (ITripListFragmentActivity) getActivity();
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
-        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mTracker = ((PackListApp) getActivity().getApplication()).getTracker();
+        mTracker.sendScreenDisplayedReportToTracker(TAG);
     }
 
     @Override
@@ -211,10 +210,18 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onResume() {
         super.onResume();
+        mTracker.sendScreenResumedReportToTracker(TAG);
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
     }
 
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mTracker.sendScreenPausedReportToTracker(TAG);
+    }
 
     @Override
     public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
@@ -236,14 +243,6 @@ public class TripListFragment extends Fragment {
     }
 
     // *********************** PRIVATE METHODS **************************************************************
-
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
 
     /**
      * Populate list with data in {@link ISavingModule}.

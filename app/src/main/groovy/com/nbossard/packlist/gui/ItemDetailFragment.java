@@ -32,9 +32,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.databinding.FragmentItemDetailBinding;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
@@ -117,8 +116,8 @@ public class ItemDetailFragment extends Fragment {
     /** Button to save and close. */
     private Button mSubmitButton;
 
-    /** Google Analytics tracker. */
-    private Tracker mTracker;
+    /** Analytics tracker. */
+    private IAnalytic mAnalytic;
 
     // *********************** METHODS **********************************************************************
 
@@ -142,8 +141,8 @@ public class ItemDetailFragment extends Fragment {
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mAnalytic = ((PackListApp) getActivity().getApplication()).getTracker();
+        mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -192,6 +191,21 @@ public class ItemDetailFragment extends Fragment {
         addListenerOnSubmitButton();
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mAnalytic.sendScreenPausedReportToTracker(TAG);
+    }
+
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mAnalytic.sendScreenResumedReportToTracker(TAG);
+    }
+
     /**
      * Add a listener on "submit" button.
      */
@@ -209,11 +223,4 @@ public class ItemDetailFragment extends Fragment {
         mItem = parRetrievedItem;
     }
 
-    /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
 }

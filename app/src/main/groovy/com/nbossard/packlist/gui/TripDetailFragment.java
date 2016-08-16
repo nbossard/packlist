@@ -51,10 +51,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
+import com.nbossard.packlist.analytics.AnalyticsEventList;
+import com.nbossard.packlist.analytics.IAnalytic;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.SortModes;
@@ -140,7 +140,7 @@ public class TripDetailFragment extends Fragment {
 
 
     /** Google Analytics tracker. */
-    private Tracker mTracker;
+    private IAnalytic mTracker;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -264,8 +264,8 @@ public class TripDetailFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mTracker = ((PackListApp) getActivity().getApplication()).getDefaultTracker();
-        sendScreenDisplayedReportToTracker();
+        mTracker = ((PackListApp) getActivity().getApplication()).getTracker();
+        mTracker.sendScreenDisplayedReportToTracker(TAG);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -362,6 +362,20 @@ public class TripDetailFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mTracker.sendScreenResumedReportToTracker(TAG);
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mTracker.sendScreenPausedReportToTracker(TAG);
+    }
+
     @DebugLog
     @Override
     public final void onDetach() {
@@ -382,10 +396,7 @@ public class TripDetailFragment extends Fragment {
         {
             case R.id.action_trip__share:
 
-                mTracker.send(new HitBuilders.EventBuilder()
-                        .setCategory("Action")
-                        .setAction("action_trip__share")
-                        .build());
+                mTracker.sendEvent(AnalyticsEventList.action_trip_share);
 
                 ImportExport port = new ImportExport();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
@@ -399,19 +410,13 @@ public class TripDetailFragment extends Fragment {
                 break;
             case R.id.action_trip__import_txt:
 
-                mTracker.send(new HitBuilders.EventBuilder()
-                        .setCategory("Action")
-                        .setAction("action_trip__import_txt")
-                        .build());
+                mTracker.sendEvent(AnalyticsEventList.action_trip__import_txt);
 
                 mIHostingActivity.openMassImportFragment(mRetrievedTrip);
                 break;
             case R.id.action_trip__unpack_all:
 
-                mTracker.send(new HitBuilders.EventBuilder()
-                        .setCategory("Action")
-                        .setAction("action_trip__unpack_all")
-                        .build());
+                mTracker.sendEvent(AnalyticsEventList.action_trip__unpack_all);
 
                 mRetrievedTrip.unpackAll();
                 mIHostingActivity.saveTrip(mRetrievedTrip);
@@ -420,10 +425,7 @@ public class TripDetailFragment extends Fragment {
                 break;
             case R.id.action_trip__sort:
 
-                mTracker.send(new HitBuilders.EventBuilder()
-                        .setCategory("Action")
-                        .setAction("action_trip__sort")
-                        .build());
+                mTracker.sendEvent(AnalyticsEventList.action_trip__sort);
 
                 SortModes curSortMode = mRetrievedTrip.getSortMode();
                 SortModes newSortMode = curSortMode.next();
@@ -479,14 +481,6 @@ public class TripDetailFragment extends Fragment {
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
-     * Send report to tracker, currently Google Analytics, this could change.
-     */
-    private void sendScreenDisplayedReportToTracker() {
-        mTracker.setScreenName(TAG);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
-    /**
      * Get a human readable and localized name of sorting.
      *
      * @param parNewSortMode sorting mode to provide corresponding string
@@ -518,10 +512,7 @@ public class TripDetailFragment extends Fragment {
      */
     private void onClickEditTrip() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("EditTrip")
-                .build());
+        mTracker.sendEvent(AnalyticsEventList.onClickEditTripButton);
 
         ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
     }
@@ -532,10 +523,7 @@ public class TripDetailFragment extends Fragment {
      */
     private void onClickAddItem() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("AddItem")
-                .build());
+        mTracker.sendEvent(AnalyticsEventList.onClickAddItemButton);
 
         String tmpStr = mNewItemEditText.getText().toString().trim();
 
@@ -560,10 +548,7 @@ public class TripDetailFragment extends Fragment {
      */
     public final void onClickAddDetailedItem() {
 
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("AddDetailedItem")
-                .build());
+        mTracker.sendEvent(AnalyticsEventList.onClickAddDetailedButton);
 
         String tmpStr = mNewItemEditText.getText().toString();
         mNewItemEditText.setText("");

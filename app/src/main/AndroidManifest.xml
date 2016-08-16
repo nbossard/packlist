@@ -31,8 +31,10 @@
     <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
 
     <!-- For Google Analytics -->
+    <!-- For AmazonAnalytics -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- For Google Analytics -->
+    <!-- For AmazonAnalytics -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
