@@ -133,7 +133,7 @@ public class uiAutomator {
 
         addAnItemWithWeight();
 
-        //ensure wight is now displayed
+        //ensure weight is now displayed
         UiObject weightSumText = mDevice.findObject(new UiSelector().textContains("more than 100g"));
         assertTrue(weightSumText.exists());
     }
