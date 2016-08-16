@@ -27,9 +27,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageButton;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -41,6 +44,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -58,6 +62,8 @@ import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
+
+import java.util.List;
 
 import hugo.weaving.DebugLog;
 /*
@@ -107,7 +113,7 @@ public class TripDetailFragment extends Fragment {
     private ItemAdapter mListItemAdapter;
 
     /** Edit text. */
-    private EditText mNewItemEditText;
+    private AppCompatAutoCompleteTextView mNewItemEditText;
 
     /** Add item button. */
     private Button mAddItemButton;
@@ -115,6 +121,23 @@ public class TripDetailFragment extends Fragment {
     /** Add detailed item button. */
     @SuppressWarnings("FieldCanBeLocal")
     private Button mAddDetailedItemButton;
+
+    /**
+     * Add magic item button.
+     */
+    @SuppressWarnings("FieldCanBeLocal")
+    private AppCompatImageButton mAddMagicItemButton;
+
+    /**
+     * List of items that may probably be added to this list, based on previous trips.
+     */
+    private List<String> mProbableItemsList;
+
+    /**
+     * Index of last suggestion in {@link #mProbableItemsList}.
+     */
+    private int mSuggestionIndex;
+
 
     /** Google Analytics tracker. */
     private Tracker mTracker;
@@ -277,7 +300,13 @@ public class TripDetailFragment extends Fragment {
         setHasOptionsMenu(true);
 
         // TODO old style, improve this
-        mNewItemEditText = (AppCompatEditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        mNewItemEditText = (AppCompatAutoCompleteTextView) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+
+        // pre-filling list of already existing categories that may match
+        String[] alreadyExistCat = mIHostingActivity.getListOfItemNames();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, alreadyExistCat);
+        mNewItemEditText.setAdapter(adapter);
 
         mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
         mAddItemButton.setOnClickListener(new View.OnClickListener() {
@@ -298,6 +327,14 @@ public class TripDetailFragment extends Fragment {
         });
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
+
+        mAddMagicItemButton = (AppCompatImageButton) mRootView.findViewById(R.id.trip_detail__new_item_magic__button);
+        mAddMagicItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onClickAddDMagicItem();
+            }
+        });
 
         // auto click on button if keyboard "enter" pressed
         mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
@@ -464,6 +501,9 @@ public class TripDetailFragment extends Fragment {
             case ALPHABETICAL:
                 res = getString(R.string.sorting_mode_alphabetical);
                 break;
+            case CATEGORY:
+                res = getString(R.string.sorting_mode_category);
+                break;
             case DEFAULT:
             default:
                 res = getString(R.string.sorting_mode_default);
@@ -488,7 +528,7 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Handle click on "Add item" button.
-     * Will add a new item.
+     * Will add a new item, if not already in the list
      */
     private void onClickAddItem() {
 
@@ -497,12 +537,21 @@ public class TripDetailFragment extends Fragment {
                 .setAction("AddItem")
                 .build());
 
-        String tmpStr = mNewItemEditText.getText().toString();
-        mRetrievedTrip.addItem(tmpStr);
-        mIHostingActivity.saveTrip(mRetrievedTrip);
-        mNewItemEditText.setText("");
-        populateList();
-        scrollMyListViewToBottom();
+        String tmpStr = mNewItemEditText.getText().toString().trim();
+
+        // checking item not already in the trip list
+        if (mRetrievedTrip.alreadyContainsItemOfName(tmpStr)) {
+            Toast.makeText(TripDetailFragment.this.getActivity(),
+                    getString(R.string.trip_detail__already_existing_item),
+                    Toast.LENGTH_LONG).show();
+        } else {
+            //normal case, addition and refresh of display
+            mRetrievedTrip.addItem(tmpStr);
+            mIHostingActivity.saveTrip(mRetrievedTrip);
+            mNewItemEditText.setText("");
+            populateList();
+            scrollMyListViewToBottom();
+        }
     }
 
     /**
@@ -520,7 +569,30 @@ public class TripDetailFragment extends Fragment {
         mNewItemEditText.setText("");
         Item newItem = new Item(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
+    }
 
+    /**
+     * Handle click on "Add magic item" button.
+     * Will fill item name field.
+     */
+    public final void onClickAddDMagicItem() {
+        // retrieving list of probable items
+        if (mProbableItemsList == null) {
+            mProbableItemsList = mIHostingActivity.getProbableItemsList();
+            mSuggestionIndex = 0;
+        }
+
+        // skipping already added
+        while (mSuggestionIndex < mProbableItemsList.size() && mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
+            mSuggestionIndex++;
+        }
+
+        if (mSuggestionIndex < mProbableItemsList.size()) {
+            mNewItemEditText.setText(mProbableItemsList.get(mSuggestionIndex++));
+        } else {
+            mNewItemEditText.setText("");
+            Log.d(TAG, "No more suggestion");
+        }
     }
 
     /**

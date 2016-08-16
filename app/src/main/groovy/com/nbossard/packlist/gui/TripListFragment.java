@@ -19,8 +19,10 @@
 
 package com.nbossard.packlist.gui;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.ActionMode;
@@ -199,6 +201,10 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // custom menu for this fragment
+        setHasOptionsMenu(true);
+
         populateList();
     }
 
@@ -207,6 +213,26 @@ public class TripListFragment extends Fragment {
         super.onResume();
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+
+    @Override
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_trip__import_txt:
+                mIHostingActivity.openMassImportFragment(null);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // *********************** PRIVATE METHODS **************************************************************
@@ -222,6 +248,7 @@ public class TripListFragment extends Fragment {
     /**
      * Populate list with data in {@link ISavingModule}.
      */
+    @SuppressWarnings("WeakerAccess")
     public final void populateList() {
         mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
         List<Trip> tripList;
@@ -239,11 +266,29 @@ public class TripListFragment extends Fragment {
 
 
     /**
-     * Effectively delete selected trip then refresh the list.
+     * Ask user to confirm deletion of selected trip then call {@link #effectivelyDeleteTrip(int)}.
      *
      * @param parPosition position in list of trip to be deleted
      */
     private void deleteTripClicked(final int parPosition) {
+        // make user confirm, as this is not a good idea to delete old trip :
+        // they serve as a database for new trips
+        TripDeletionConfirmDialogFragment dialogFragment = new TripDeletionConfirmDialogFragment();
+        dialogFragment.setConfirmedListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface parDialogInterface, final int parI) {
+                effectivelyDeleteTrip(parPosition);
+            }
+        });
+        dialogFragment.show(getActivity().getSupportFragmentManager(), DialogFragment.class.getSimpleName());
+    }
+
+    /**
+     * Effectively delete selected trip then refresh the list.
+     *
+     * @param parPosition position in list of trip to be deleted
+     */
+    private void effectivelyDeleteTrip(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
         mSavingModule.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();

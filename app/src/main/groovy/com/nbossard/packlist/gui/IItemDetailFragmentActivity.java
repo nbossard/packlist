@@ -23,6 +23,7 @@ package com.nbossard.packlist.gui;
 @startuml
     interface com.nbossard.packlist.gui.IItemDetailFragmentActivity {
         + updateItem(...)
+        getListOfCategories()
     }
 
     com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.IItemDetailFragmentActivity
@@ -43,5 +44,10 @@ interface IItemDetailFragmentActivity extends IMainActivity {
      * @param parItem Trip to be updated
      */
     void updateItem(Item parItem);
+
+    /**
+     * @return retrieve all previously created item categories.
+     */
+    String[] getListOfCategories();
 
 }

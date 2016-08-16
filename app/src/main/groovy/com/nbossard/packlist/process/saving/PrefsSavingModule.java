@@ -21,6 +21,7 @@ package com.nbossard.packlist.process.saving;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -32,7 +33,12 @@ import com.nbossard.packlist.model.Trip;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -91,7 +97,9 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final List<Trip> loadSavedTrips() {
+    public final
+    @NonNull
+    List<Trip> loadSavedTrips() {
         List<Trip> savedTripsList;
         String listTrips = mSharedPreferences.getString(LIST_TRIPS_KEY, "");
 
@@ -220,6 +228,104 @@ public class PrefsSavingModule implements ISavingModule {
             res = false;
         }
         return res;
+    }
+
+    @Override
+    public final String[] getListOfCategories() {
+
+        Set<String> resSet = new HashSet<>();
+
+        List<Trip> tripList = loadSavedTrips();
+        for (Trip oneTrip : tripList) {
+            List<Item> tripItems = oneTrip.getListOfItems();
+            for (Item oneItem : tripItems) {
+                if (oneItem.getCategory() != null && oneItem.getCategory().length() > 0) {
+                    resSet.add(oneItem.getCategory());
+                }
+            }
+        }
+
+        // converting set to array
+        String[] resArray = new String[resSet.size()];
+        resSet.toArray(resArray);
+        return resArray;
+    }
+
+    @Override
+    public final String[] getListOfItemNames() {
+
+        Set<String> resSet = new HashSet<>();
+
+        List<Trip> tripList = loadSavedTrips();
+        for (Trip oneTrip : tripList) {
+            List<Item> tripItems = oneTrip.getListOfItems();
+            for (Item oneItem : tripItems) {
+                if (oneItem.getName() != null && oneItem.getName().length() > 0) {
+                    resSet.add(oneItem.getName());
+                }
+            }
+        }
+
+        // converting set to array
+        String[] resArray = new String[resSet.size()];
+        resSet.toArray(resArray);
+        return resArray;
+    }
+
+    @Override
+    public final List<String> getProbableItemsList() {
+
+        Map<String, Integer> resMap = new TreeMap<>();
+        ValueComparator bvc = new ValueComparator(resMap);
+        Map<String, Integer> resMapSorted = new TreeMap<>(bvc);
+        List<String> resList = new ArrayList<>();
+
+        // simple version : counting number of occurences of each item name
+        List<Trip> tripList = loadSavedTrips();
+        for (Trip oneTrip : tripList) {
+            List<Item> tripItems = oneTrip.getListOfItems();
+            for (Item oneItem : tripItems) {
+                if (oneItem.getName() != null && oneItem.getName().length() > 0) {
+                    if (resMap.containsKey(oneItem.getName())) {
+                        Integer value = resMap.get(oneItem.getName());
+                        resMap.put(oneItem.getName(), value + 1);
+                    } else {
+                        resMap.put(oneItem.getName(), 1);
+                    }
+                }
+            }
+        }
+        // sorting by number of occurences
+        resMapSorted.putAll(resMap);
+
+        // converting to (ordered) list
+
+        for (String oneEntry : resMapSorted.keySet()) {
+
+            resList.add(oneEntry);
+        }
+        return resList;
+    }
+
+    /**
+     * Comparator used to sort the probable item lists. See {@link #getProbableItemsList()}.
+     */
+    class ValueComparator implements Comparator<String> {
+        Map<String, Integer> base;
+
+        public ValueComparator(Map<String, Integer> base) {
+            this.base = base;
+        }
+
+        // Note: this comparator imposes orderings that are inconsistent with
+        // equals.
+        public int compare(String a, String b) {
+            if (base.get(a) >= base.get(b)) {
+                return -1;
+            } else {
+                return 1;
+            } // returning 0 would merge keys
+        }
     }
 
     // *********************** PRIVATE METHODS **************************************************************

@@ -36,6 +36,7 @@ package com.nbossard.packlist.model;
  */
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -160,7 +161,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * Getter for name.
      * @return i.e. : "Dublin"
      */
-    public final String getName() {
+    public final
+    @Nullable
+    String getName() {
         return mName;
     }
 
@@ -315,6 +318,23 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
+     * Check if an article of same name is already in the list.
+     *
+     * @param parItemName name of new article
+     * @return true if an article of exactly same name is in the list
+     */
+    public final boolean alreadyContainsItemOfName(final String parItemName) {
+        boolean res = false;
+        for (Item oneItem : getListOfItems()) {
+            if (oneItem.getName().contentEquals(parItemName)) {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
+    /**
      * Updating of total weight.
      *
      * @param parTotalWeight the new total weight in grams.
@@ -376,7 +396,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
         int curRemainingDays = ((Long) getRemainingDays()).intValue();
         int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
-        return curRemainingDays - otherRemainingDays;
+        return otherRemainingDays - curRemainingDays;
     }
 
     /**

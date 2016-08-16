@@ -25,8 +25,31 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xxth june 2016"
+        changeDate="xx august 2016"
+        versionName="0.x">
+    </changelogversion>
+    <changelogversion
+        changeDate="3rd august 2016"
+        versionName="0.10.2">
+        <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name), 2nd try
+            MaterialColor
+        </changelogtext>
+        <changelogtext>NEW : adding confirmation dialog on trip deletion</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="23rd july 2016"
+        versionName="0.10.1">
+        <changelogtext>BUGFIX : ISS#42 crash at start on a new install (empty trip name)</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="21st july 2016"
         versionName="0.10">
+        <changelogtext>NEW : german translations thanks to Christophe Paccolat</changelogtext>
+        <changelogtext>NEW : adding material letter icon on trip list</changelogtext>
+        <changelogtext>NEW : adding button for automatic suggestion of missing items</changelogtext>
+        <changelogtext>NEW : adding categories in list of items</changelogtext>
+        <changelogtext>NEW : automatic suggestion of items and categories while typing</changelogtext>
+        <changelogtext>BUGFIX : ISS#38 Importing text file, checkboxes are incorrectly managed</changelogtext>
         <changelogtext>BUGFIX : ISS#36 Mass import submit button not visible on some phones or landscape
         </changelogtext>
         <changelogtext>BUGFIX : ISS#35 Remember last used sort mode</changelogtext>

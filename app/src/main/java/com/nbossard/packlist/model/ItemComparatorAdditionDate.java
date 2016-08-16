@@ -39,6 +39,8 @@ public class ItemComparatorAdditionDate implements Comparator<Item> {
         int res;
         if (parItem.getAdditionDate() == null || parAnother.getAdditionDate() == null) {
             res = 0;
+        } else if (parItem.getAdditionDate() == parAnother.getAdditionDate()) {
+            res = 0;
         } else if (parItem.getAdditionDate().before(parAnother.getAdditionDate())) {
             res = -1;
         } else {

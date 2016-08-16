@@ -24,6 +24,8 @@ package com.nbossard.packlist.model;
     class com.nbossard.packlist.model.Item {
         UUID mUUID
         String mName
+        String mWeight
+        String mCategory
         boolean mIsPacked
     }
 @enduml
@@ -42,6 +44,19 @@ import java.util.UUID;
  */
 public class Item implements Serializable, Cloneable {
 
+
+    // ********************** CONSTANTS *********************************************************************
+
+    // These constants are for better code readability
+    /**
+     * An unpacked item.
+     */
+    public static final boolean UNPACKED = false;
+    /**
+     * A packed item.
+     */
+    public static final boolean PACKED = true;
+
 // *********************** FIELDS *************************************************************************
 
     /** A unique identifier for this item. */
@@ -55,6 +70,11 @@ public class Item implements Serializable, Cloneable {
 
     /** The item weight. */
     private int mWeight;
+
+    /**
+     * The item category for grouping.
+     */
+    private String mCategory;
 
     /** Has this item been packed already. true=yes, false=no. */
     private boolean mIsPacked;
@@ -166,6 +186,23 @@ public class Item implements Serializable, Cloneable {
         return mAdditionDate;
     }
 
+    /**
+     * Getter for category, an optional characteristic.
+     *
+     * @return category or null if never set
+     */
+    @Nullable
+    public final String getCategory() {
+        return mCategory;
+    }
+
+    /**
+     * @param parCategory new category name.
+     */
+    public final void setCategory(final String parCategory) {
+        mCategory = parCategory;
+    }
+
     @Override
     protected final Item clone() throws CloneNotSupportedException {
         Item res = (Item) super.clone();
@@ -181,6 +218,7 @@ public class Item implements Serializable, Cloneable {
     public final String toString() {
         final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mUUID=").append(mUUID);
+        sb.append(", mCategory='").append(mCategory).append('\'');
         sb.append(", mName='").append(mName).append('\'');
         sb.append(", mWeight='").append(mWeight).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');

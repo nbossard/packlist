@@ -48,8 +48,7 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:labelFor="@+id/item_detail__name__edit"
-            android:text="@string/item_detail__name__label"
-            tools:text="Brest"/>
+            android:text="@string/item_detail__name__label"/>
 
         <EditText
             android:id="@id/item_detail__name__edit"
@@ -65,8 +64,7 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:labelFor="@+id/item_detail__weight__edit"
-            android:text="@string/item_detail__weight__label"
-            tools:text="Brest"/>
+            android:text="@string/item_detail__weight__label"/>
 
         <EditText
             android:id="@id/item_detail__weight__edit"
@@ -75,6 +73,22 @@
             android:inputType="number"
             android:text="@{String.valueOf(item.weight)}"
             tools:text="100"/>
+
+        <TextView
+            android:id="@+id/item_detail__category__label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:labelFor="@+id/item_detail__category__edit"
+            android:text="@string/item_detail__category__label"/>
+
+        <AutoCompleteTextView
+            android:id="@id/item_detail__category__edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@{item.category}"
+            tools:text="Chaussettes"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/item_detail__submit__button"

@@ -47,7 +47,11 @@ public enum SortModes {
     /**
      * first all unpacked then all packed items.
      */
-    ALPHABETICAL;
+    ALPHABETICAL,
+    /**
+     * by category.
+     */
+    CATEGORY;
 
     /**
      * Used for computing next sorting mode.

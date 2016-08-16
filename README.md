@@ -43,6 +43,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
  - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
    - datetimepicker (https://github.com/flavienlaurent/datetimepicker)
+   - Material Letter Icon (https://github.com/IvBaranov/MaterialLetterIcon)
 - effort on accessibility ([see detailed doc](doc/accessibility.md))
 
 
@@ -64,6 +65,9 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
+- 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)
+- 0.10 adding categories and item suggestions
 - 0.9 adding export, improved sorting, unpacking all, improved accessibility
 - 0.8.1 26th april 2016, adding crash reports, bug fixing and minor changes  
 - 0.8   9th april 2016, mass import and total weight
@@ -77,10 +81,12 @@ Basic functionality are fresh but working, advanced functionality are being adde
 - 0.1 alpha 6th january 2016
 
 ### Current IDE suggested configuration :
-- Android Studio 2.2 Preview 1
+- Android Studio 2.2 Preview 7
     - git ignore plugin
     - markdown plugin (Markdown Support)
+    - plantuml plugin
     - Checkstyle-idea
+    - Findbugs-idea
 
 ### Coding conventions (WIP)
 - fields should start with "m" (enforced in codeStyleSettings.xml)

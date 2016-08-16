@@ -45,6 +45,8 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.process.ImportExport <-- com.nbossard.packlist.gui.MassImportFragment
+    com.nbossard.packlist.process.ImportExport <-- com.nbossard.packlist.gui.TripDetailFragment
 
     com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAdditionDate
     com.nbossard.packlist.gui.ItemAdapter ..> com.nbossard.packlist.model.ItemComparatorAlphabetical
@@ -55,6 +57,9 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISavingModule
     com.nbossard.packlist.PackListApp ..> com.nbossard.packlist.process.saving.SavingFactory
+
+    com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
+
 @enduml
 
 */

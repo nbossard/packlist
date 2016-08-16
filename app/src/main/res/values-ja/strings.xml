@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
@@ -25,6 +25,7 @@
 <!-- Strings should be grouped by activity / fragment -->
 <!-- -->
 <!-- Remember : -->
+<!--   No space before ":" (in english) -->
 <!--   "fab" stands for Floating Action Button -->
 <!--   "cab" stands for Contextual Action Bar-->
 <resources>
@@ -35,7 +36,6 @@
     <string name="about_ok">OK</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="toast_update_failed_incompatible_format">更新に失敗しました。これはおそらく古い旅行と現在のフォーマットとの間に互換性がないためです。このアイテムまたは旅行を削除して再作成してください。</string>
-
     <!-- Menu items -->
     <string name="action__whatsnew">最新情報</string>
     <string name="action__send_logs">レポートを送信</string>
@@ -43,10 +43,9 @@
     <string name="action_trip__sort">並べ替え</string>
     <string name="action_trip__import">テキスト ファイルのインポート</string>
     <string name="action_trip__unpack_all">すべてのアイテムを荷物から出す</string>
-
     <!-- About page -->
     <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
+    <string name="about__many_thanks_to_contributors">大変感謝します\n -naofum 日本語翻訳\n -Christophe Paccolat  ドイツ語翻訳</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
     <string name="about_act__fab_go_to_website">ウェブサイトを開く</string>
     <!-- Main page -->
@@ -61,7 +60,8 @@
     <plurals name="ta__x_days_ago">
         <item quantity="other">%d 日前。</item>
     </plurals>
-
+    <string name="trip_deletion_confirm__title">Sounds like a bad idea…</string>
+    <string name="trip_deletion_confirm__body">Old trips are used as a base of knowledge for suggesting you items and categories, you should keep them if possible.\n\nReally delete ?</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
     <string name="new_trip__start_date">開始日</string>
@@ -69,8 +69,7 @@
     <string name="new_trip__end_date">終了日</string>
     <string name="new_trip__end_date_access__button">終了日を変更</string>
     <string name="new_trip__note">メモ</string>
-    <string name="new_trip__submit">レッツゴー…</string>
-
+    <string name="new_trip__submit">レッツゴー&#8230;</string>
     <!-- Detail of trip -->
     <string name="trip_detail__main__titlebar">%1s のリスト</string>
     <string name="trip_detail__end_date__label">終了</string>
@@ -80,7 +79,9 @@
     <string name="trip_detail__no_item_yet__label">アイテムはありません。下の追加を使用してください</string>
     <string name="trip_detail__edit_trip">旅行を編集</string>
     <string name="trip_detail__before_weight__label">バッグの重量: %1$dg 以上 (%2$dg 梱包)。</string>
-    <string name="trip_detail__new_item__access">名前…</string>
+    <string name="trip_detail__new_item__access">名前&#8230;</string>
+    <string name="trip_detail__new_item_magic___access">ボタン。アイテムの提案</string>
+    <string name="trip_detail__already_existing_item">このアイテムは既に持ち物にあります。</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">編集</string>
     <string name="action_trip__share">共有</string>
@@ -88,7 +89,7 @@
     <string name="sorting_mode_default">デフォルト</string>
     <string name="sorting_mode_unpacked_first">荷物から出したものが最初</string>
     <string name="sorting_mode_alphabetical">アルファベット順</string>
-
+    <string name="sorting_mode_category">カテゴリー</string>
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">サードパーティ ライブラリー</string>
     <string name="help_legal__third_party__label"><u>サードパーティ ライブラリー</u></string>
@@ -98,16 +99,17 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
-
+    <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <!-- Detail of item -->
     <string name="item_detail__name__label">アイテム名</string>
     <string name="item_detail__weight__label">重量 (グラム)</string>
     <string name="item_detail__submit">更新</string>
-
+    <string name="item_detail__category__label">カテゴリー</string>
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">このダイアログ ボックスは、アイテムを大量にインポートするのを助けます。下に既存のアイテムのリストを貼り付けてください。一行ごとに一つのアイテムです。\n\n例:\nガイドブック (100g)。</string>
+    <string name="mass_import__principle_explanation_new_trip__label">このダイアログは、新しい旅行にアイテムを大量にインポートするのに役立ちます。下に既存のアイテムのリストを貼り付けてください。一行ごとに一つのアイテムです。\n\n例:\n雑品:ガイドブック (100g)。</string>
+    <string name="mass_import__principle_explanation_with_name__label">このダイアログは、旅行 \"%1$s\" にアイテムを大量にインポートするのに役立ちます。下に既存のアイテムのリストを貼り付けてください。一行ごとに一つのアイテムです。\n\n例:\n雑品:ガイドブック (100g)。</string>
     <string name="mass_import__import__button">インポート</string>
-    <string name="mass_import__items__hint">ここに入力または貼り付け...</string>
+    <string name="mass_import__items__hint">ここに入力または貼り付け&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">OK をクリックすると、アプリケーション ログを送信します。</string>

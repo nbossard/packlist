@@ -48,7 +48,7 @@
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation</string>
+    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations</string>
     <string name="about__third_party__button">third party libraries</string>
     <string name="about_act__fab_go_to_website">Open website</string>
 
@@ -67,6 +67,9 @@
         <item quantity="one">%d day ago.</item>
         <item quantity="other">%d days ago.</item>
     </plurals>
+
+    <string name="trip_deletion_confirm__title">Sounds like a bad idea…</string>
+    <string name="trip_deletion_confirm__body">Old trips are used as a base of knowdlege for suggesting you items and categories, you should keep them if possible.\n\nReally delete?</string>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">trip name</string>
@@ -87,6 +90,8 @@
     <string name="trip_detail__edit_trip">edit trip</string>
     <string name="trip_detail__before_weight__label">weight of bag: more than %1$dg (%2$dg&#160;packed).</string>
     <string name="trip_detail__new_item__access">name&#8230;</string>
+    <string name="trip_detail__new_item_magic___access">Button. Suggest an item</string>
+    <string name="trip_detail__already_existing_item">This item already exists in the trip.</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip__share">Share</string>
@@ -94,6 +99,7 @@
     <string name="sorting_mode_default">default</string>
     <string name="sorting_mode_unpacked_first">unpacked first</string>
     <string name="sorting_mode_alphabetical">alphabetical order</string>
+    <string name="sorting_mode_category">category</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>
@@ -104,14 +110,17 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 the original author or authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon is licensed under the Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
     <!-- Detail of item -->
     <string name="item_detail__name__label">item name</string>
     <string name="item_detail__weight__label">weight (in grams)</string>
     <string name="item_detail__submit">UPDATE</string>
+    <string name="item_detail__category__label">Category</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation__label">This dialog is for help of mass import of items, paste your existing list of items below. One item per line.\n\ni.e.:\nGuide book (100g).</string>
+    <string name="mass_import__principle_explanation_new_trip__label">This dialog is for help of mass import of items into a new trip, paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
+    <string name="mass_import__principle_explanation_with_name__label">This dialog is for help of mass import of items into trip \"%1$s\", paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
     <string name="mass_import__import__button">Import</string>
     <string name="mass_import__items__hint">type or paste here&#8230;</string>
 

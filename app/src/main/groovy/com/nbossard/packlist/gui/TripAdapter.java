@@ -28,6 +28,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
@@ -68,6 +69,12 @@ class TripAdapter extends BaseAdapter {
     {
 
         // getting views
+
+        /**
+         * Reference (result of findviewbyid) to the trip name.
+         */
+        private MaterialLetterIcon letterIcon;
+
         /**
          * Reference (result of findviewbyid) to the trip name.
          */
@@ -137,6 +144,7 @@ class TripAdapter extends BaseAdapter {
         return parPosition;
     }
 
+    @SuppressWarnings("CheckStyle")
     @Override
     public View getView(final int parPosition, View parConvertView, final ViewGroup parParentView) {
         InnerMyViewHolder vHolderRecycle;
@@ -153,6 +161,7 @@ class TripAdapter extends BaseAdapter {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
         // getting views
+        vHolderRecycle.letterIcon = (MaterialLetterIcon) parConvertView.findViewById(R.id.ta__lettericon);
         vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
         vHolderRecycle.tvInXDays = (TextView) parConvertView.findViewById(R.id.ta__in_x_days);
         vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
@@ -162,6 +171,13 @@ class TripAdapter extends BaseAdapter {
         final Trip oneTrip = mTripsList.get(parPosition);
 
         // updating views
+        String firstLetter = " ";
+        if (oneTrip.getName() != null) {
+            firstLetter = oneTrip.getName().substring(0, 1);
+        }
+        vHolderRecycle.letterIcon.setLetter(firstLetter);
+        MaterialColor colorRetriever = new MaterialColor(mContext);
+        vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColor(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());
         if (oneTrip.getStartDate() != null) {
             vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
@@ -203,4 +219,5 @@ class TripAdapter extends BaseAdapter {
         Log.d(TAG, "getFormattedRemainingDays() returned: " + res);
         return res;
     }
+
 }

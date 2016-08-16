@@ -7,6 +7,7 @@
 * [publishing.md](publishing.md): the new release publication process checklist
 * [screenshots.md](screenshots.md): how-to take smart screenshots
 * [plantuml_global.png](plantuml_global.png): UML class diagram for all app
+* [tests.md](tests.md): tests used in project
 
 
 

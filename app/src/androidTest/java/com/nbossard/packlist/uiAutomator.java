@@ -51,9 +51,12 @@ public class uiAutomator {
     private static final String BASIC_SAMPLE_PACKAGE = "com.nbossard.packlist.debug";
     private static final int LAUNCH_TIMEOUT = 5000;
     private UiDevice mDevice;
+    private Context mTargetContext;
 
     @Before
     public void startMainActivityFromHomeScreen() {
+
+        mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         // Initialize UiDevice instance
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
@@ -104,9 +107,10 @@ public class uiAutomator {
 
         deleteAllTrips();
 
-        mDevice.wait(Until.findObject(By.textContains("No trip planned")), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
-
-        UiObject emptyListText = mDevice.findObject(new UiSelector().textContains("No trip planned"));
+        // typically : "No trip planned"
+        String noTripPlannedStr = mTargetContext.getString(R.string.main__no_trip_yet__label);
+        mDevice.wait(Until.findObject(By.textContains(noTripPlannedStr)), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+        UiObject emptyListText = mDevice.findObject(new UiSelector().textContains(noTripPlannedStr));
         assertTrue(emptyListText.exists());
     }
 
@@ -133,8 +137,8 @@ public class uiAutomator {
 
         addAnItemWithWeight();
 
-        //ensure weight is now displayed
-        UiObject weightSumText = mDevice.findObject(new UiSelector().textContains("more than 100g"));
+        //ensure total weight is now displayed
+        UiObject weightSumText = mDevice.findObject(new UiSelector().textMatches(".*plus de 100g.*|.*more than 100g.*"));
         assertTrue(weightSumText.exists());
     }
 
@@ -200,7 +204,7 @@ public class uiAutomator {
         editTripName.setText(parName);
 
         //add item with weight
-        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).text("More"));
+        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).resourceId("com.nbossard.packlist.debug:id/trip_detail__new_item_detail__button"));
         saveButton.clickAndWaitForNewWindow();
 
         // type weight

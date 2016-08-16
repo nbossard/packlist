@@ -1,6 +1,7 @@
 sudo: false
 language: android
-jdk: oraclejdk7
+# NBO : note that openjdk8 is not supported
+jdk: oraclejdk8
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -17,10 +18,10 @@ android:
     - tools
 
     # The BuildTools version used by your project
-    - build-tools-23.0.2
+    - build-tools-23.0.3
 
     # The SDK version used to compile your project
-    - android-23
+    - android-24
 
     # Additional components
     # - extra-android-support
@@ -60,4 +61,4 @@ script:
   - ./gradlew assembleDebug
   - ./gradlew assembleDebugAndroidTest
   - adb install app/build/outputs/apk/app-debug.apk
-  - adb install app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+  - adb install app/build/outputs/apk/app-debug-androidTest.apk

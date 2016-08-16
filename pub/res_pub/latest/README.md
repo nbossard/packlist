@@ -5,5 +5,6 @@
 screenshots: 
  * [In English](./en)
  * [In French](./fr)
+ * [In German](./de)
  * [In Japanese](./ja)
 
