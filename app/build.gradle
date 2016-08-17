@@ -98,6 +98,10 @@ android {
         amazonAnalytics {
 
         }
+
+        noAnalytics {
+
+        }
     }
 
     // see :
