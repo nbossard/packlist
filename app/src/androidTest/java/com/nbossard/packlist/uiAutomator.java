@@ -117,7 +117,7 @@ public class uiAutomator {
     // Removed @Test as fully included in testOpenTrip
     public void testAddTrip() throws UiObjectNotFoundException, InterruptedException {
         deleteAllTrips();
-        addTripToRome();
+        addTripTo("Rome", null);
     }
 
     // Removed @Test as fully included in testAddItem
@@ -215,20 +215,7 @@ public class uiAutomator {
         UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).textMatches("(UPDATE|MODIFIER)"));
         updateButton.clickAndWaitForNewWindow();
     }
-    /**
-     * Open trip edit, fill with data and close.
-     */
-    private void addTripToRome() throws UiObjectNotFoundException {
-        addTripTo("Rome");
-    }
 
-
-    /**
-     * Open trip edit, fill with data and close.
-     */
-    private void addTripTo(String parTripName) throws UiObjectNotFoundException {
-        addTripTo(parTripName, null);
-    }
 
     /**
      * Open trip edit, fill with data and close.
@@ -274,6 +261,10 @@ public class uiAutomator {
 
             UiObject deleteButton = mDevice.findObject(new UiSelector().descriptionMatches("(Delete|Supprimer)"));
             deleteButton.click();
+
+            // confirm deletion dialog, click on OK
+            UiObject confirmDialogOk = mDevice.findObject(new UiSelector().textMatches("OK"));
+            confirmDialogOk.click();
         }
     }
 }
