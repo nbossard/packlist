@@ -98,8 +98,9 @@ public abstract class AbstractPackListApp extends Application {
         Log.d(LOG_TAG, "onCreate(...)  Entering");
         super.onCreate();
     }
+
     @Override
-    protected final void attachBaseContext(final Context base) {
+    protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
 
         // The following line triggers the initialization of ACRA

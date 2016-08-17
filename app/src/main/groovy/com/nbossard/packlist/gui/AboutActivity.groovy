@@ -70,7 +70,7 @@ public class AboutActivity extends AppCompatActivity {
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAnalytic = ((PackListApp) getApplication()).getDefaultTracker();
+        mAnalytic = ((PackListApp) getApplication()).getTracker();
         mAnalytic.sendScreenDisplayedReportToTracker(TAG);
 
         setContentView(R.layout.activity_about);
@@ -92,7 +92,8 @@ public class AboutActivity extends AppCompatActivity {
         mGeneralInfo.setText(
                 String.format(getString(R.string.about__main),
                             BuildConfig.VERSION_NAME,
-                            getString(R.string.about__additional__info)))
+                            getString(R.string.about__additional__info),
+                            getString(R.string.analytic_name)))
 
     }
 

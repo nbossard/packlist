@@ -21,7 +21,7 @@ package com.nbossard.packlist;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
+import android.support.multidex.MultiDex;
 
 import com.nbossard.packlist.analytics.AmazonAnalyticsWrapper;
 import com.nbossard.packlist.analytics.IAnalytic;
@@ -59,6 +59,13 @@ public class PackListApp extends AbstractPackListApp {
 
 // *********************** METHODS **************************************************************************
 
+    @Override
+    protected final void attachBaseContext(final Context base) {
+        super.attachBaseContext(base);
+
+        // required by amazon analytics, makes pass the 64k method limits
+        MultiDex.install(this);
+    }
 
 
     public IAnalytic getTracker()

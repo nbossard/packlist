@@ -55,8 +55,6 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
     @Override
     public final void sendScreenDisplayedReportToTracker(final String parTag)
     {
-
-
         try {
             mMobileAnalyticsManager = MobileAnalyticsManager.getOrCreateInstance(
                     mApplicationContext,

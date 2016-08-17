@@ -28,11 +28,30 @@ import java.util.Map;
  */
 public interface IAnalytic
 {
+    /**
+     * This method should be called in the activity onCreate method.
+     *
+     * @param tag
+     */
     void sendScreenDisplayedReportToTracker(String tag);
 
+    /**
+     * This method should be called in the activity onPause method.
+     *
+     * @param tag
+     */
     void sendScreenPausedReportToTracker(String tag);
 
+    /**
+     * This method should be called in the activity onResume method.
+     *
+     * @param tag
+     */
     void sendScreenResumedReportToTracker(String tag);
 
+    /**
+     *
+     * @param parEvent event to be sent to analytic server
+     */
     void sendEvent(AnalyticsEventList parEvent);
 }
