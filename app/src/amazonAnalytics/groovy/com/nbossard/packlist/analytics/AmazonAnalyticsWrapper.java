@@ -21,11 +21,10 @@ package com.nbossard.packlist.analytics;
 
 import android.content.Context;
 
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.InitializationException;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.MobileAnalyticsManager;
 import android.util.Log;
-
-import java.util.Map;
 
 /**
  * Implementation of generic analytics by Amazon Analytics
@@ -34,26 +33,37 @@ import java.util.Map;
  */
 public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.IAnalytic
 {
-    private static MobileAnalyticsManager mTracker;
+    /**
+     * The amazon main object to deal with analytics.
+     */
+    private static MobileAnalyticsManager mMobileAnalyticsManager;
+
+    /**
+     * Application context, provided in constructor, to inialize amazon analytics.
+     */
     private final Context mApplicationContext;
 
+    /**
+     * Standard constructor.
+     * @param parApplicationContext application context useful to configure analytic
+     */
     public AmazonAnalyticsWrapper(final Context parApplicationContext)
     {
         mApplicationContext = parApplicationContext;
     }
 
     @Override
-    public void sendScreenDisplayedReportToTracker(final String parTag)
+    public final void sendScreenDisplayedReportToTracker(final String parTag)
     {
 
 
         try {
-            mTracker = MobileAnalyticsManager.getOrCreateInstance(
+            mMobileAnalyticsManager = MobileAnalyticsManager.getOrCreateInstance(
                     mApplicationContext,
                     "c5f75d79bb4f4eb59c73c89615ca1645", //Amazon Mobile Analytics App ID
                     "us-east-1:322075f7-ca72-48f9-9730-2f85aae8a3a5" //Amazon Cognito Identity Pool ID
             );
-        } catch(InitializationException ex) {
+        } catch (InitializationException ex) {
             Log.e(this.getClass().getName(), "Failed to initialize Amazon Mobile Analytics", ex);
         }
 
@@ -62,26 +72,65 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
     }
 
     @Override
-    public void sendScreenPausedReportToTracker(final String parTag)
+    public final void sendScreenPausedReportToTracker(final String parTag)
     {
-        if(mTracker != null) {
-            mTracker.getSessionClient().pauseSession();
-            mTracker.getEventClient().submitEvents();
+        if (mMobileAnalyticsManager != null) {
+            mMobileAnalyticsManager.getSessionClient().pauseSession();
+            mMobileAnalyticsManager.getEventClient().submitEvents();
         }
     }
 
     @Override
-    public void sendScreenResumedReportToTracker(final String parTag)
+    public final void sendScreenResumedReportToTracker(final String parTag)
     {
-        if(mTracker != null) {
-            mTracker.getSessionClient().resumeSession();
+        if (mMobileAnalyticsManager != null) {
+            mMobileAnalyticsManager.getSessionClient().resumeSession();
         }
     }
 
     @Override
-    public void sendEvent(AnalyticsEventList parEvent)
+    public final void sendEvent(final AnalyticsEventList parEvent)
     {
+        switch (parEvent) {
+        case action_trip_share:
+            AnalyticsEvent event =
+                    mMobileAnalyticsManager.getEventClient().createEvent("action_trip__share");
+            mMobileAnalyticsManager.getEventClient().recordEvent(event);
 
+            break;
+        case action_trip__import_txt:
+            AnalyticsEvent eventImport =
+                    mMobileAnalyticsManager.getEventClient().createEvent("action_trip__import_txt");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventImport);
+            break;
+        case action_trip__sort:
+            AnalyticsEvent eventSort =
+                    mMobileAnalyticsManager.getEventClient().createEvent("action_trip__sort");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventSort);
+            break;
+        case action_trip__unpack_all:
+            AnalyticsEvent eventUnpack =
+                    mMobileAnalyticsManager.getEventClient().createEvent("action_trip__unpack_all");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventUnpack);
+            break;
+        case onClickEditTripButton:
+            AnalyticsEvent eventEdit =
+                    mMobileAnalyticsManager.getEventClient().createEvent("onClickEditTripButton");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventEdit);
+            break;
+        case onClickAddItemButton:
+            AnalyticsEvent eventAdd =
+                    mMobileAnalyticsManager.getEventClient().createEvent("onClickAddItemButton");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventAdd);
+            break;
+        case onClickAddDetailedButton:
+            AnalyticsEvent eventAddDetailed =
+                    mMobileAnalyticsManager.getEventClient().createEvent("onClickAddDetailedButton");
+            mMobileAnalyticsManager.getEventClient().recordEvent(eventAddDetailed);
+            break;
+        default:
+            break;
+        }
     }
 
 }
