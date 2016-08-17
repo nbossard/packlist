@@ -275,31 +275,32 @@ public class PrefsSavingModule implements ISavingModule {
     @Override
     public final List<String> getProbableItemsList() {
 
-        Map<String, Integer> resMap = new TreeMap<>();
-        ValueComparator bvc = new ValueComparator(resMap);
-        Map<String, Integer> resMapSorted = new TreeMap<>(bvc);
+        // Assigning a score to each previously seen item
+        Map<String, Integer> resMapNameScore = new TreeMap<>();
         List<String> resList = new ArrayList<>();
 
-        // simple version : counting number of occurences of each item name
+        // simple version : score is the counting number of occurrences of each item name
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
             List<Item> tripItems = oneTrip.getListOfItems();
             for (Item oneItem : tripItems) {
                 if (oneItem.getName() != null && oneItem.getName().length() > 0) {
-                    if (resMap.containsKey(oneItem.getName())) {
-                        Integer value = resMap.get(oneItem.getName());
-                        resMap.put(oneItem.getName(), value + 1);
+                    if (resMapNameScore.containsKey(oneItem.getName())) {
+                        Integer value = resMapNameScore.get(oneItem.getName());
+                        resMapNameScore.put(oneItem.getName(), value + 1);
                     } else {
-                        resMap.put(oneItem.getName(), 1);
+                        resMapNameScore.put(oneItem.getName(), 1);
                     }
                 }
             }
         }
-        // sorting by number of occurences
-        resMapSorted.putAll(resMap);
 
-        // converting to (ordered) list
+        // sorting according to score assigned to each item
+        ValueComparator bvc = new ValueComparator(resMapNameScore);
+        Map<String, Integer> resMapSorted = new TreeMap<>(bvc);
+        resMapSorted.putAll(resMapNameScore);
 
+        // converting to expected result type, a (ordered) list
         for (String oneEntry : resMapSorted.keySet()) {
 
             resList.add(oneEntry);
@@ -310,17 +311,27 @@ public class PrefsSavingModule implements ISavingModule {
     /**
      * Comparator used to sort the probable item lists. See {@link #getProbableItemsList()}.
      */
-    class ValueComparator implements Comparator<String> {
-        Map<String, Integer> base;
+    private class ValueComparator implements Comparator<String> {
 
-        public ValueComparator(Map<String, Integer> base) {
-            this.base = base;
+        /**
+         * Map to be sorted, will be used to retrieve score assigned to each name.
+         */
+        private final Map<String, Integer> mBase;
+
+        /**
+         * Standard constructor.
+         *
+         * @param parBase map to be sorted
+         */
+        ValueComparator(final Map<String, Integer> parBase) {
+            this.mBase = parBase;
         }
 
         // Note: this comparator imposes orderings that are inconsistent with
         // equals.
-        public int compare(String a, String b) {
-            if (base.get(a) >= base.get(b)) {
+        @Override
+        public int compare(final String parA, final String parB) {
+            if (mBase.get(parA) >= mBase.get(parB)) {
                 return -1;
             } else {
                 return 1;

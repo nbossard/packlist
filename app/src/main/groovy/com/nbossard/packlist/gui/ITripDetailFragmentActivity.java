@@ -58,7 +58,7 @@ interface ITripDetailFragmentActivity extends IMainActivity {
     String[] getListOfItemNames();
 
     /**
-     * Get a list of missing items by decreasing order of probability.
+     * @return A list of missing items in this trip by decreasing order of probability.
      */
     List<String> getProbableItemsList();
 }
