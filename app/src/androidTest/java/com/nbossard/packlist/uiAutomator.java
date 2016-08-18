@@ -203,13 +203,37 @@ public class uiAutomator {
         UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
         editTripName.setText(parName);
 
-        //add item with weight
-        UiObject saveButton = mDevice.findObject(new UiSelector().className(Button.class).resourceId("com.nbossard.packlist.debug:id/trip_detail__new_item_detail__button"));
-        saveButton.clickAndWaitForNewWindow();
+        //add item with weight, using "More" button
+        UiObject moreButton = mDevice.findObject(new UiSelector().className(Button.class).resourceId("com.nbossard.packlist.debug:id/trip_detail__new_item_detail__button"));
+        moreButton.clickAndWaitForNewWindow();
 
         // type weight
         UiObject editWeight = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/item_detail__weight__edit"));
         editWeight.setText(parWeight);
+
+        //close the window (update button)
+        UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).textMatches("(UPDATE|MODIFIER)"));
+        updateButton.clickAndWaitForNewWindow();
+    }
+
+    private void addAnItemWithWeightAndCategory(String parName, String parWeight, String parCategory)
+            throws UiObjectNotFoundException {
+
+        //fill item name
+        UiObject editTripName = mDevice.findObject(new UiSelector().className(EditText.class));
+        editTripName.setText(parName);
+
+        //add item with weight, using "More" button
+        UiObject moreButton = mDevice.findObject(new UiSelector().className(Button.class).resourceId("com.nbossard.packlist.debug:id/trip_detail__new_item_detail__button"));
+        moreButton.clickAndWaitForNewWindow();
+
+        // type weight
+        UiObject editWeight = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/item_detail__weight__edit"));
+        editWeight.setText(parWeight);
+
+        // type category
+        UiObject cat = mDevice.findObject(new UiSelector().resourceId("com.nbossard.packlist.debug:id/item_detail__category__edit"));
+        cat.setText(parCategory);
 
         //close the window (update button)
         UiObject updateButton = mDevice.findObject(new UiSelector().className(Button.class).textMatches("(UPDATE|MODIFIER)"));
