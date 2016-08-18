@@ -213,6 +213,11 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
+    public final void removeListener(final ITripChangeListener parListener) {
+        mChangeListeners.remove(parListener);
+    }
+
+    @Override
     public final boolean updateItem(final Item parItem) {
         // retrieve trip of item
         Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
