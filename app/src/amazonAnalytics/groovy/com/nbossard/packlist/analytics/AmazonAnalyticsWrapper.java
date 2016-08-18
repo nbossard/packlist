@@ -50,11 +50,7 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
     public AmazonAnalyticsWrapper(final Context parApplicationContext)
     {
         mApplicationContext = parApplicationContext;
-    }
 
-    @Override
-    public final void sendScreenDisplayedReportToTracker(final String parTag)
-    {
         try {
             mMobileAnalyticsManager = MobileAnalyticsManager.getOrCreateInstance(
                     mApplicationContext,
@@ -64,8 +60,11 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
         } catch (InitializationException ex) {
             Log.e(this.getClass().getName(), "Failed to initialize Amazon Mobile Analytics", ex);
         }
+    }
 
-
+    @Override
+    public final void sendScreenDisplayedReportToTracker(final String parTag)
+    {
 
     }
 
