@@ -306,14 +306,14 @@ public class NewTripFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        mAnalytic.sendScreenPausedReportToTracker(TAG);
+        mAnalytic.sendScreenPausedReportToTracker(getActivity(), TAG);
     }
 
     @DebugLog
     @Override
     public final void onResume() {
         super.onResume();
-        mAnalytic.sendScreenResumedReportToTracker(TAG);
+        mAnalytic.sendScreenResumedReportToTracker(getActivity(), TAG);
         mIHostingActivity.showFABIfAccurate(false);
     }
 

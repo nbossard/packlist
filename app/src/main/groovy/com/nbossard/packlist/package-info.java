@@ -40,7 +40,7 @@ package com.nbossard.packlist;
         !include ../../../../java/com/nbossard/packlist/model/package-info.java
         !include process/package-info.java
 
-        !include PackListApp.java
+        !include AbstractPackListApp.java
     }
 
     com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
@@ -57,6 +57,8 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISavingModule
     com.nbossard.packlist.PackListApp ..> com.nbossard.packlist.process.saving.SavingFactory
+    com.nbossard.packlist.PackListApp --|> com.nbossard.packlist.AbstractPackListApp
+
 
     com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter
 

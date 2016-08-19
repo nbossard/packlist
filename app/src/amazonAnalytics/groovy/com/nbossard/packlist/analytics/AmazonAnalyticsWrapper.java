@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.analytics;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
@@ -33,6 +34,13 @@ import android.util.Log;
  */
 public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.IAnalytic
 {
+    // *********************** CONSTANTS**********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = AmazonAnalyticsWrapper.class.getName();
+
+    // ********************** FIELDS ************************************************************************
+
     /**
      * The amazon main object to deal with analytics.
      */
@@ -42,6 +50,8 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
      * Application context, provided in constructor, to inialize amazon analytics.
      */
     private final Context mApplicationContext;
+
+    // *********************** METHODS **********************************************************************
 
     /**
      * Standard constructor.
@@ -69,7 +79,7 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
     }
 
     @Override
-    public final void sendScreenPausedReportToTracker(final String parTag)
+    public void sendScreenPausedReportToTracker(final Activity parActivity, final String parTag)
     {
         if (mMobileAnalyticsManager != null) {
             mMobileAnalyticsManager.getSessionClient().pauseSession();
@@ -78,7 +88,7 @@ public class AmazonAnalyticsWrapper implements com.nbossard.packlist.analytics.I
     }
 
     @Override
-    public final void sendScreenResumedReportToTracker(final String parTag)
+    public void sendScreenResumedReportToTracker(final Activity parActivity, final String parTag)
     {
         if (mMobileAnalyticsManager != null) {
             mMobileAnalyticsManager.getSessionClient().resumeSession();

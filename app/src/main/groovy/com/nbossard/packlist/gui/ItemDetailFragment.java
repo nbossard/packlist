@@ -195,7 +195,7 @@ public class ItemDetailFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        mAnalytic.sendScreenPausedReportToTracker(TAG);
+        mAnalytic.sendScreenPausedReportToTracker(getActivity(), TAG);
     }
 
 
@@ -203,7 +203,7 @@ public class ItemDetailFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        mAnalytic.sendScreenResumedReportToTracker(TAG);
+        mAnalytic.sendScreenResumedReportToTracker(getActivity(), TAG);
     }
 
     /**

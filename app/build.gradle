@@ -99,6 +99,10 @@ android {
 
         }
 
+        azmeAnalytics {
+
+        }
+
         noAnalytics {
 
         }
@@ -144,6 +148,9 @@ dependencies {
     googleAnalyticsCompile 'com.google.android.gms:play-services-analytics:9.0.0'
     // For Amazon Analytics
     amazonAnalyticsCompile 'com.amazonaws:aws-android-sdk-mobileanalytics:2.2.+'
+    // For Microsoft Azure Mobile Engagement (azme)
+    azmeAnalyticsCompile files('libs/mobile-engagement-4.2.2.jar')
+
 
     testCompile 'junit:junit:4.12'
 

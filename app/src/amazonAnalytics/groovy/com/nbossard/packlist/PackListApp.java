@@ -60,15 +60,15 @@ public class PackListApp extends AbstractPackListApp {
 // *********************** METHODS **************************************************************************
 
     @Override
-    protected final void attachBaseContext(final Context base) {
-        super.attachBaseContext(base);
+    protected final void attachBaseContext(final Context parApplicationContext) {
+        super.attachBaseContext(parApplicationContext);
 
         // required by amazon analytics, makes pass the 64k method limits
         MultiDex.install(this);
     }
 
-
-    public IAnalytic getTracker()
+    @Override
+    public final IAnalytic getTracker()
     {
         return getAmazonAnalyticsTracker();
     }
@@ -77,7 +77,7 @@ public class PackListApp extends AbstractPackListApp {
      * Gets the default analytics for this {@link Application}.
      * @return an analytic wrapped
      */
-    private final synchronized  IAnalytic getAmazonAnalyticsTracker() {
+    private  synchronized  IAnalytic getAmazonAnalyticsTracker() {
         if (mTracker == null) {
             mTracker = new AmazonAnalyticsWrapper(this);
         }

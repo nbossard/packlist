@@ -60,6 +60,8 @@ public class AboutActivity extends AppCompatActivity {
     /** Log tag. */
     private static final String TAG = AboutActivity.class.getName();
 
+    // ********************** FIELDS ************************************************************************
+
     /** Google Analytics tracker. */
     private IAnalytic mAnalytic;
 
@@ -100,13 +102,13 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause()
-        mAnalytic.sendScreenPausedReportToTracker(TAG);
+        mAnalytic.sendScreenPausedReportToTracker(this, TAG);
     }
 
     @Override
     protected void onResume() {
         super.onResume()
-        mAnalytic.sendScreenResumedReportToTracker(TAG);
+        mAnalytic.sendScreenResumedReportToTracker(this, TAG);
     }
 // *********************** PRIVATE METHODS ******************************************************************
 

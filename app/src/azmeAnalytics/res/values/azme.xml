@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Azure Mobile Engagement (previously known as Capptain) Ids -->
+<!-- Values provided by Edouard Marques (IMT TECHNO) by mail on 18th august 2016 -->
+<resources>
+    <string name="ENGAGEMENT_APP_ID" translatable="false">nep000174</string>
+    <string name="ENGAGEMENT_NAME" translatable="false">Packlist-Android-test</string>
+    <string name="ENGAGEMENT_END_POINT" translatable="false">anticipation.device.mobileengagement.windows.net</string>
+    <string name="ENGAGEMENT_SDK_KEY" translatable="false">80656df2c51770d5b1d0061a425824af</string>
+
+    <!-- API related identifiers, currently unused -->
+    <string name="ENGAGEMENT_API_URL" translatable="false">https://anticipation.api.mobileengagement.windows.net</string>
+    <string name="ENGAGEMENT_API_KEY" translatable="false">cb70944aee5319039ca7a8802ba6a5dd</string>
+
+</resources>

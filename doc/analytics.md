@@ -99,3 +99,8 @@ Vu sur leur site web :
 
 > Note: Unlike web tracking, the Analytics Mobile SDK uploads activity signals in batches, both to conserve the device's radio and to handle periods of offline user activity.
 
+# Azure Analytics
+
+console access :
+https://france.portal.mobileengagement.windows.net?hint=nicolas.bossard%40orange.com#project/1813/details
+

@@ -36,7 +36,7 @@ import hugo.weaving.DebugLog;
 
 /*
 @startuml
-    class com.nbossard.packlist.PackListApp {
+    abstract class com.nbossard.packlist.AbstractPackListApp {
         + getSavingModule()
     }
 @enduml

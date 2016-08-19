@@ -21,8 +21,8 @@ package com.nbossard.packlist;
 
 import android.app.Application;
 
+import com.nbossard.packlist.analytics.AzmeAnalyticsWrapper;
 import com.nbossard.packlist.analytics.IAnalytic;
-import com.nbossard.packlist.analytics.NoAnalyticsWrapper;
 
 
 /*
@@ -33,11 +33,7 @@ import com.nbossard.packlist.analytics.NoAnalyticsWrapper;
 */
 
 /**
- * Application level initialisations :
- * <ul>
- *     <li>Singletons</li>
- *     <li>crash reporter (ACRA)</li>
- * </ul>.
+ * Application level initialisations specific to Azure Mobile Enagement Analytics.
  *
  * @author Created by nbossard on 31/12/15.
  */
@@ -58,19 +54,19 @@ public class PackListApp extends AbstractPackListApp {
 // *********************** METHODS **************************************************************************
 
 
-
-    public IAnalytic getTracker()
+    @Override
+    public final IAnalytic getTracker()
     {
-        return getGoogleAnalyticsTracker();
+        return getAzmeAnalyticsTracker();
     }
 
     /**
      * Gets the default analytics for this {@link Application}.
      * @return an analytic wrapped
      */
-    private final synchronized  IAnalytic getGoogleAnalyticsTracker() {
+    private synchronized  IAnalytic getAzmeAnalyticsTracker() {
         if (mTracker == null) {
-            mTracker = new NoAnalyticsWrapper(this);
+            mTracker = new AzmeAnalyticsWrapper(this);
         }
         return mTracker;
     }

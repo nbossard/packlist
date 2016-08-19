@@ -76,7 +76,7 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     protected void onPause()
     {
         super.onPause();
-        mAnalytic.sendScreenPausedReportToTracker(TAG);
+        mAnalytic.sendScreenPausedReportToTracker(this, TAG);
     }
 
 
@@ -84,7 +84,7 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-        mAnalytic.sendScreenResumedReportToTracker(TAG);
+        mAnalytic.sendScreenResumedReportToTracker(this, TAG);
     }
 
     // *********************** PRIVATE METHODS **************************************************************

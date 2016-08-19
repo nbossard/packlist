@@ -366,14 +366,14 @@ public class TripDetailFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        mTracker.sendScreenResumedReportToTracker(TAG);
+        mTracker.sendScreenResumedReportToTracker(getActivity(), TAG);
     }
 
     @Override
     public void onPause()
     {
         super.onPause();
-        mTracker.sendScreenPausedReportToTracker(TAG);
+        mTracker.sendScreenPausedReportToTracker(getActivity(), TAG);
     }
 
     @DebugLog

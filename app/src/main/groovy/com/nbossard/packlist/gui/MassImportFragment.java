@@ -197,7 +197,7 @@ public class MassImportFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        mAnalytic.sendScreenPausedReportToTracker(TAG);
+        mAnalytic.sendScreenPausedReportToTracker(getActivity(), TAG);
     }
 
     @DebugLog
@@ -205,7 +205,7 @@ public class MassImportFragment extends Fragment {
     public final void onResume() {
         super.onResume();
         mIHostingActivity.showFABIfAccurate(false);
-        mAnalytic.sendScreenResumedReportToTracker(TAG);
+        mAnalytic.sendScreenResumedReportToTracker(getActivity(), TAG);
     }
 
     @Override

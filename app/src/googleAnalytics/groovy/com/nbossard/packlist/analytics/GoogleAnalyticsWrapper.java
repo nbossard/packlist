@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.analytics;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -32,8 +33,19 @@ import com.google.android.gms.analytics.Tracker;
  */
 public class GoogleAnalyticsWrapper implements IAnalytic
 {
+    // *********************** CONSTANTS**********************************************************************
+
+    /** Log tag. */
+    private static final String TAG = GoogleAnalyticsWrapper.class.getName();
+
+    // ********************** FIELDS ************************************************************************
+
+    /** Google analytics main component. */
     private final Tracker mTracker;
 
+    // *********************** METHODS **********************************************************************
+
+    /** standard constructor, initialises Google analytics component. */
     public GoogleAnalyticsWrapper(final Context parContext)
     {
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(parContext);
@@ -48,14 +60,15 @@ public class GoogleAnalyticsWrapper implements IAnalytic
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
+
     @Override
-    public void sendScreenPausedReportToTracker(final String tag)
+    public void sendScreenPausedReportToTracker(final Activity parActivity, final String parTag)
     {
         // unused by Google Analytics
     }
 
     @Override
-    public void sendScreenResumedReportToTracker(final String tag)
+    public void sendScreenResumedReportToTracker(final Activity parActivity, final String parTag)
     {
         // unused by Google Analytics
     }

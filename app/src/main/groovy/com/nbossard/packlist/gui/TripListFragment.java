@@ -206,7 +206,7 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onResume() {
         super.onResume();
-        mTracker.sendScreenResumedReportToTracker(TAG);
+        mTracker.sendScreenResumedReportToTracker(getActivity(), TAG);
         populateList();
         mIHostingActivity.showFABIfAccurate(true);
     }
@@ -216,7 +216,7 @@ public class TripListFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        mTracker.sendScreenPausedReportToTracker(TAG);
+        mTracker.sendScreenPausedReportToTracker(getActivity(), TAG);
     }
 
     @Override

@@ -19,7 +19,7 @@
 
 package com.nbossard.packlist.analytics;
 
-import java.util.Map;
+import android.app.Activity;
 
 /**
  * Interface to be implemented by all analytics, to allow easy change.
@@ -31,23 +31,25 @@ public interface IAnalytic
     /**
      * This method should be called in the activity onCreate method.
      *
-     * @param tag
+     * @param parTag name (of fragment)
      */
-    void sendScreenDisplayedReportToTracker(String tag);
+    void sendScreenDisplayedReportToTracker(String parTag);
 
     /**
-     * This method should be called in the activity onPause method.
+     * This method should be called in the activity / fragment onPause method.
      *
-     * @param tag
+     * @param parActivity hosting activity
+     * @param parTag name (of fragment)
      */
-    void sendScreenPausedReportToTracker(String tag);
+    void sendScreenPausedReportToTracker(Activity parActivity, final String parTag);
 
     /**
-     * This method should be called in the activity onResume method.
+     * This method should be called in the activity / fragment onResume method.
      *
-     * @param tag
+     * @param parActivity hosting activity
+     * @param parTag name (of fragment)
      */
-    void sendScreenResumedReportToTracker(String tag);
+    void sendScreenResumedReportToTracker(Activity parActivity, final String parTag);
 
     /**
      *

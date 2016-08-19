@@ -19,38 +19,38 @@
 
 package com.nbossard.packlist.analytics;
 
+import android.app.Activity;
 import android.content.Context;
 
 /**
- * Implementation of generic analytics when we don't want any analytics
+ * Implementation of generic analytics when we don't want any analytics.
  *
  * @author Created by naub7473 on 16/08/16.
  */
-public class noAnalyticsWrapper implements IAnalytic
+public class NoAnalyticsWrapper implements IAnalytic
 {
 
-    public noAnalyticsWrapper(final Context parContext)
-    {
+    /**
+     * Standard constructor.
+     * @param parContext application context
+     */
+    public NoAnalyticsWrapper(final Context parContext) {
     }
 
     @Override
-    public final void sendScreenDisplayedReportToTracker(final String parTag)
-    {
+    public final void sendScreenDisplayedReportToTracker(final String parTag) {
     }
 
     @Override
-    public void sendScreenPausedReportToTracker(final String tag)
-    {
+    public void sendScreenPausedReportToTracker(final Activity parActivity, final String parTag) {
     }
 
     @Override
-    public void sendScreenResumedReportToTracker(final String tag)
-    {
+    public void sendScreenResumedReportToTracker(final Activity parActivity, final String parTag) {
     }
 
     @Override
-    public final void sendEvent(final AnalyticsEventList parEvent)
-    {
+    public final void sendEvent(final AnalyticsEventList parEvent) {
     }
 
 }
