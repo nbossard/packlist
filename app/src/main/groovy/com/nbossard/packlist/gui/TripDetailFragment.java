@@ -407,21 +407,6 @@ public class TripDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Update display of current trip.
-     */
-    @DebugLog
-    public final void displayTrip() {
-
-        // Magic of binding
-        // Do not use this syntax, it will overwrite activity (we are in a fragment)
-        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
-        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setTrip(mRetrievedTrip);
-        mBinding.setTripFormatter(new TripFormatter(getContext()));
-        mBinding.executePendingBindings();
-    }
-
     /** Display provided trip.
      * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
      *
@@ -437,11 +422,28 @@ public class TripDetailFragment extends Fragment {
     /**
      * @return the {@link Trip} being currently displayed.
      */
-    public final Trip getCurrentTrip() {
+    public final
+    @Nullable
+    Trip getCurrentTrip() {
         return mRetrievedTrip;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Update display of current trip.
+     */
+    @DebugLog
+    private final void displayTrip() {
+
+        // Magic of binding
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
+        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
+        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
+        mBinding.setTrip(mRetrievedTrip);
+        mBinding.setTripFormatter(new TripFormatter(getContext()));
+        mBinding.executePendingBindings();
+    }
 
     /**
      * Get a human readable and localized name of sorting.
