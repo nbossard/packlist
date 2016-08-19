@@ -177,9 +177,14 @@ public class MainActivity
     @Override
     protected final void onStart() {
         super.onStart();
-        if (mCurFragment == null) {
-            Log.d(TAG, "no previous fragment, displaying default");
+        // activity is launched first time
+        if ((mCurFragment == null)) {
+            Log.d(TAG, "onStart() : no previous fragment, displaying default");
             mTripListFragment = openMainActivityFragment();
+        } else if (mTripListFragment  == null) {
+            // activity is returned
+            mTripListFragment = (TripListFragment) getSupportFragmentManager().findFragmentByTag(TripListFragment.class.getSimpleName());
+            Log.d(TAG, "onStart() : found a fragment by tag : " + mTripListFragment);
         }
     }
 
@@ -193,6 +198,13 @@ public class MainActivity
     public final void onConfigurationChanged(final Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mSavingModule.removeListener(this);
     }
 
     /**
@@ -342,9 +354,10 @@ public class MainActivity
      * Characteristics.
      * @param parTrip unique
      */
-    @DebugLog
     @Override
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
+
+        Log.d(TAG, "openTripDetailFragment(...) Entering");
 
         // ensure we are not adding on top of not empty backstack
         FragmentManager fm = getSupportFragmentManager();
@@ -477,13 +490,15 @@ public class MainActivity
     @DebugLog
     private TripListFragment openMainActivityFragment() {
 
+        Log.d(TAG, "openMainActivityFragment() Entering");
+
         // Create fragment and give it an argument specifying the article it should show
         TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.replace(R.id.mainactcont__fragment, newFragment, newFragment.getClass().getSimpleName());
         // NO add to back stack, this is lowest level fragment
 
         // Commit the transaction

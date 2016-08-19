@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -74,10 +75,6 @@ public class TripListFragment extends Fragment {
      * The saving module to retrieve and update data (trips).
      */
     private ISavingModule mSavingModule;
-    /**
-     * The root view, will be used to findViewById.
-     */
-    private View mRootView;
     /**
      * The trip list view.
      */
@@ -193,8 +190,7 @@ public class TripListFragment extends Fragment {
     @Override
     public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                                    final Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_main, container, false);
-        return mRootView;
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -249,18 +245,25 @@ public class TripListFragment extends Fragment {
      */
     @SuppressWarnings("WeakerAccess")
     public final void populateList() {
-        mTripListView = (ListView) mRootView.findViewById(R.id.main__trip_list);
-        List<Trip> tripList;
+        if (getView() != null)
+        {
+            Log.d(TAG, "populateList() : getView() not null, updating");
 
-        tripList = mSavingModule.loadSavedTrips();
+            mTripListView = (ListView) getView().findViewById(R.id.main__trip_list);
+            List<Trip> tripList;
 
-        TripAdapter tripAdapter = new TripAdapter(tripList, this.getActivity());
-        mTripListView.setEmptyView(mRootView.findViewById(R.id.main__trip_list_empty));
-        mTripListView.setAdapter(tripAdapter);
-        mTripListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        mTripListView.setOnItemClickListener(mClickListener);
-        mTripListView.setOnItemLongClickListener(mLongClickListener);
-        mTripListView.invalidate();
+            tripList = mSavingModule.loadSavedTrips();
+
+            TripAdapter tripAdapter = new TripAdapter(tripList, this.getActivity());
+            mTripListView.setEmptyView(getView().findViewById(R.id.main__trip_list_empty));
+            mTripListView.setAdapter(tripAdapter);
+            mTripListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+            mTripListView.setOnItemClickListener(mClickListener);
+            mTripListView.setOnItemLongClickListener(mLongClickListener);
+            mTripListView.invalidate();
+        } else {
+            Log.d(TAG, "populateList() : getView() returned null, probably the fragment is not attached");
+        }
     }
 
 
