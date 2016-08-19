@@ -83,6 +83,12 @@ public interface ISavingModule {
     void addListener(ITripChangeListener parListener);
 
     /**
+     * Listener wishing to be no more informed of Trip change.
+     * @param parListener listener to be added
+     */
+    void removeListener(ITripChangeListener parListener);
+
+    /**
      * Update an existing Item of a trip.
      * @param parItem item to be updated
      * @return true if update succeeded, false otherwise
