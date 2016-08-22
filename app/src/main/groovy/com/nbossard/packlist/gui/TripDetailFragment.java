@@ -244,6 +244,8 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onAttach(final Context context) {
         super.onAttach(context);
+        Log.d(TAG, "onAttach() : Entering");
+
         // Management of FAB, forcing hiding of FAB, see also onDetach
         mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
         mIHostingActivity.showFABIfAccurate(false);
@@ -256,12 +258,22 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate() : Entering");
 
         Bundle args = getArguments();
         if (args != null) {
             mRetrievedTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP_ID);
         }
+    }
 
+    @Override
+    public final void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() : Entering");
+
+        // Should normally be enough to do following in onattach...
+        // but when activity is resumed and has been killed by system, onattach is not called.
+        mIHostingActivity.showFABIfAccurate(false);
     }
 
     /**
@@ -271,6 +283,8 @@ public class TripDetailFragment extends Fragment {
     public final View onCreateView(final LayoutInflater inflater,
                                        final ViewGroup container,
                                        final Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView() : Entering");
+
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
 
         displayTrip(mRetrievedTrip);
@@ -285,6 +299,7 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated() : Entering");
 
         // custom menu for this fragment
         setHasOptionsMenu(true);
@@ -356,7 +371,15 @@ public class TripDetailFragment extends Fragment {
     @Override
     public final void onDetach() {
         super.onDetach();
+        Log.d(TAG, "onDetach() : Entering");
+
         mIHostingActivity.showFABIfAccurate(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() : Entering");
     }
 
     @Override
@@ -407,21 +430,6 @@ public class TripDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Update display of current trip.
-     */
-    @DebugLog
-    public final void displayTrip() {
-
-        // Magic of binding
-        // Do not use this syntax, it will overwrite activity (we are in a fragment)
-        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
-        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setTrip(mRetrievedTrip);
-        mBinding.setTripFormatter(new TripFormatter(getContext()));
-        mBinding.executePendingBindings();
-    }
-
     /** Display provided trip.
      * Save it in {@link #mRetrievedTrip} as the trip currently being displayed.
      *
@@ -437,11 +445,28 @@ public class TripDetailFragment extends Fragment {
     /**
      * @return the {@link Trip} being currently displayed.
      */
-    public final Trip getCurrentTrip() {
+    public final
+    @Nullable
+    Trip getCurrentTrip() {
         return mRetrievedTrip;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
+
+    /**
+     * Update display of current trip.
+     */
+    @DebugLog
+    private final void displayTrip() {
+
+        // Magic of binding
+        // Do not use this syntax, it will overwrite activity (we are in a fragment)
+        //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
+        FragmentTripDetailBinding mBinding = DataBindingUtil.bind(mRootView);
+        mBinding.setTrip(mRetrievedTrip);
+        mBinding.setTripFormatter(new TripFormatter(getContext()));
+        mBinding.executePendingBindings();
+    }
 
     /**
      * Get a human readable and localized name of sorting.
