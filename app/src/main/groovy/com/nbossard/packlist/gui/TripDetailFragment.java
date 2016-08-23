@@ -520,7 +520,7 @@ public class TripDetailFragment extends Fragment {
             mIHostingActivity.saveTrip(mRetrievedTrip);
             mNewItemEditText.setText("");
             populateList();
-            scrollMyListViewToBottom();
+            scrollMyListViewToItem(tmpStr);
         }
     }
 
@@ -570,6 +570,32 @@ public class TripDetailFragment extends Fragment {
             public void run() {
                 // Select the last row so it will scroll into view...
                 mItemListView.smoothScrollToPosition(mListItemAdapter.getCount());
+            }
+        });
+    }
+
+    /**
+     * Scroll list view to item of provided name... so that user can see the just added item.<br>
+     *
+     * Asked by user snelltheta in issue https://github.com/nbossard/packlist/issues/16
+     */
+    private void scrollMyListViewToItem(final String parItemName)
+    {
+        mItemListView.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                // searching for item position (various sorting can be used) so full scanning... sic
+                Item item;
+                int curPos = -1;
+                do
+                {
+                    curPos++;
+                    item = (Item) mListItemAdapter.getItem(curPos);
+                } while (!item.getName().contentEquals(parItemName) || curPos >= mListItemAdapter.getCount());
+
+                mItemListView.smoothScrollToPosition(curPos);
             }
         });
     }
