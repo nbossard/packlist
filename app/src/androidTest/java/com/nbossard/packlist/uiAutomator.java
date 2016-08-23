@@ -142,6 +142,41 @@ public class uiAutomator {
         assertTrue(weightSumText.exists());
     }
 
+    @Test
+    public void testLongUsage() throws UiObjectNotFoundException, InterruptedException
+    {
+        deleteAllTrips();
+        addTripTo("Rome", null);
+        openFirstTripInList();
+
+        for (int i=0; i<100; i++)
+        {
+            addAnItem("test_" + i);
+
+            synchronized (mDevice)
+            {
+                mDevice.wait(500);
+            }
+            addAnItemWithWeight("testWeight_" + i , "100");
+            synchronized (mDevice)
+            {
+                mDevice.wait(500);
+            }
+            checkItem("test_" + i);
+            synchronized (mDevice)
+            {
+                mDevice.wait(1000);
+            }
+
+        }
+    }
+
+    private void checkItem(String parItemName) throws UiObjectNotFoundException
+    {
+        UiObject objectToBeChecked = mDevice.findObject(new UiSelector().textMatches(parItemName));
+        objectToBeChecked.click();
+    }
+
     /**
      * This is not really a test, more a prefilling of a device with french data for making screenshots.
      */
