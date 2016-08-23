@@ -104,3 +104,26 @@ Vu sur leur site web :
 console access :
 https://france.portal.mobileengagement.windows.net?hint=nicolas.bossard%40orange.com#project/1813/details
 
+# Etude consommations
+## utilisation de battery historian
+
+suivre la procédure :
+https://github.com/google/battery-historian
+
+installation de paquet golang
+création du dossier de workspace
+ajout de GOPATH à .bashrc
+
+> NBO ADDITION : go workspace
+> export GOPATH=$HOME/gowork
+> export GOBIN=$GOPATH/bin
+> export PATH=${PATH}:$HOME/gowork/bin
+
+lancement
+>cd $GOPATH/src/github.com/google/battery-historian
+>go run cmd/battery-historian/battery-historian.go [--port <default:9999>]
+
+faire un reset préalable :
+> adb shell dumpsys batterystats --reset
+
+utiliser la méthode uiAutomator#testLongUsage
