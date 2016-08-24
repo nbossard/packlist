@@ -111,6 +111,9 @@ public class TripDetailFragment extends Fragment {
     /** Adapter for list view. */
     private ItemAdapter mListItemAdapter;
 
+    /** Current hot item, the one to scroll to if list is refreshed. */
+    private Item mHotItem;
+
     /** Edit text. */
     private AppCompatAutoCompleteTextView mNewItemEditText;
 
@@ -223,6 +226,7 @@ public class TripDetailFragment extends Fragment {
         }
 
     };
+
 
     // *********************** METHODS **********************************************************************
 
@@ -457,7 +461,7 @@ public class TripDetailFragment extends Fragment {
      * Update display of current trip.
      */
     @DebugLog
-    private final void displayTrip() {
+    private void displayTrip() {
 
         // Magic of binding
         // Do not use this syntax, it will overwrite activity (we are in a fragment)
@@ -516,11 +520,12 @@ public class TripDetailFragment extends Fragment {
                     Toast.LENGTH_LONG).show();
         } else {
             //normal case, addition and refresh of display
-            mRetrievedTrip.addItem(tmpStr);
+            Item newItem = mRetrievedTrip.addItem(tmpStr);
             mIHostingActivity.saveTrip(mRetrievedTrip);
             mNewItemEditText.setText("");
             populateList();
-            scrollMyListViewToItem(tmpStr);
+            setHotItem(newItem);
+            scrollMyListViewToHotItem();
         }
     }
 
@@ -533,6 +538,7 @@ public class TripDetailFragment extends Fragment {
         mNewItemEditText.setText("");
         Item newItem = new Item(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
+        setHotItem(newItem);
     }
 
     /**
@@ -547,7 +553,8 @@ public class TripDetailFragment extends Fragment {
         }
 
         // skipping already added
-        while (mSuggestionIndex < mProbableItemsList.size() && mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
+        while (mSuggestionIndex < mProbableItemsList.size()
+                && mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
             mSuggestionIndex++;
         }
 
@@ -576,28 +583,74 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Scroll list view to item of provided name... so that user can see the just added item.<br>
-     *
      * Asked by user snelltheta in issue https://github.com/nbossard/packlist/issues/16
      */
-    private void scrollMyListViewToItem(final String parItemName)
+    private void scrollMyListViewToHotItem()
     {
-        mItemListView.post(new Runnable()
+        if (mHotItem == null) {
+            scrollMyListViewToBottom();
+        } else
         {
-            @Override
-            public void run()
+            mItemListView.post(new Runnable()
             {
-                // searching for item position (various sorting can be used) so full scanning... sic
-                Item item;
-                int curPos = -1;
-                do
+                @Override
+                public void run()
                 {
-                    curPos++;
-                    item = (Item) mListItemAdapter.getItem(curPos);
-                } while (!item.getName().contentEquals(parItemName) || curPos >= mListItemAdapter.getCount());
+                    int curPos = searchHotItemPos();
+                    mItemListView.smoothScrollToPosition(curPos);
+                }
+            });
+        }
+    }
 
-                mItemListView.smoothScrollToPosition(curPos);
+    /**
+     * Search position of item in current dispalyed list.
+     *
+     * @return found position or size-1 if not found.
+     */
+    private int searchHotItemPos() {
+        // searching for item position (various sorting can be used) so full scanning... sic
+        Item item;
+        int curPos;
+        boolean found = false;
+
+        if (mHotItem == null) {
+            Log.d(TAG, "searchHotItemPos() No hot item, giving up");
+            curPos = mListItemAdapter.getCount() - 1;
+        } else
+        {
+            Log.d(TAG, "searchHotItemPos() Searching for item by UUID" + mHotItem);
+            for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++)
+            {
+                item = (Item) mListItemAdapter.getItem(curPos);
+                if (item.getUUID() == mHotItem.getUUID())
+                {
+                    Log.d(TAG, "searchHotItemPos() Found item of same UUID at position : " + curPos);
+                    found = true;
+                    break;
+                }
             }
-        });
+            if (!found)
+            {
+                Log.d(TAG, "searchHotItemPos() Not found, searching for item by Name" + mHotItem);
+                // searching item with similar name
+                for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++)
+                {
+                    item = (Item) mListItemAdapter.getItem(curPos);
+                    if (item.getName().contentEquals(mHotItem.getName()))
+                    {
+                        Log.d(TAG, "searchHotItemPos() Found item of same name at position : " + curPos);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (!found) {
+            Log.d(TAG, "searchHotItemPos() Not found, giving up ");
+        }
+        Log.d(TAG, "searchHotItemPos() returning " + curPos);
+        return curPos;
     }
 
     /**
@@ -620,6 +673,7 @@ public class TripDetailFragment extends Fragment {
      */
     private void editItemClicked(final int parPosition) {
         Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        setHotItem(selectedItem);
         mIHostingActivity.openItemDetailFragment(selectedItem);
         mActionMode.finish();
     }
@@ -668,6 +722,15 @@ public class TripDetailFragment extends Fragment {
         mItemListView.setOnItemClickListener(mItemClickListener);
         mItemListView.setOnItemLongClickListener(mLongClickListener);
         mItemListView.invalidate();
+        scrollMyListViewToHotItem();
     }
 
+    /**
+     * Mark the hot item, the one we want to keep visible in the list, such as when refreshed or reordered.
+     * @param parHotItem
+     */
+    private void setHotItem(Item parHotItem)
+    {
+        mHotItem = parHotItem;
+    }
 }

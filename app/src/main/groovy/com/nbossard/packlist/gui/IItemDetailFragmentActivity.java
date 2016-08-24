@@ -39,7 +39,7 @@ import com.nbossard.packlist.model.Item;
 interface IItemDetailFragmentActivity extends IMainActivity {
 
     /**
-     * Updating of an item.
+     * Called when an item has been updated and needs to be saved and its displays to be updated.
      *
      * @param parItem Trip to be updated
      */
