@@ -126,4 +126,15 @@ lancement
 faire un reset préalable :
 > adb shell dumpsys batterystats --reset
 
-utiliser la méthode uiAutomator#testLongUsage
+## tests réalisés
+En utilisant la méthode uiAutomator#testLongUsage avec 50 boucles
+
+conditions de test :
+- devices : nexus 5X, android 6
+- wifi éteint, carte sim présente
+- utilisation de usage timelines pour détecter les applis perturbatrices, désinstallation notamment de :
+  - keep
+  - désactivation de drive
+
+
+
