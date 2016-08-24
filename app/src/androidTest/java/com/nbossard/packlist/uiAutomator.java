@@ -149,7 +149,7 @@ public class uiAutomator {
         addTripTo("Rome", null);
         openFirstTripInList();
 
-        for (int i=0; i<100; i++)
+        for (int i=0; i<50; i++)
         {
             addAnItem("test_" + i);
 
