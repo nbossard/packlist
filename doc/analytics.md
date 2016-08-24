@@ -68,11 +68,13 @@ https://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/analytics.html#r
 solution :
 modify "federated identities" in cognito service, default is created with a configuration error :-()
 
-# Notes about Google analytics
+## consulation des analytics
 
-Followed process at :
-https://developers.google.com/analytics/devguides/collection/android/v4/start?configured=true
-https://developers.google.com/analytics/devguides/collection/android/v4/#send-an-event
+https://605071407153.signin.aws.amazon.com/console
+login : pcrepieux
+pwd : <demander à nicolas>
+
+puis choisir le service "mobile analytics"
 
 ARN utilisé dans IAM manager:
 arn:partition:service:region:account-id:resource
@@ -83,15 +85,11 @@ arn:aws:mobileanalytics:us-east-1:605071407153:c5f75d79bb4f4eb59c73c89615ca1645
 
 créé policy : policygen-201608181406
 
+# Notes about Google analytics
 
-## consulation des analytics
-
-https://605071407153.signin.aws.amazon.com/console
-login : pcrepieux
-pwd : <demander à nicolas>
-
-puis choisir le service "mobile analytics"
-
+Followed process at :
+https://developers.google.com/analytics/devguides/collection/android/v4/start?configured=true
+https://developers.google.com/analytics/devguides/collection/android/v4/#send-an-event
 
 ## remarques
 
@@ -129,12 +127,57 @@ faire un reset préalable :
 ## tests réalisés
 En utilisant la méthode uiAutomator#testLongUsage avec 50 boucles
 
+ ### 1er test
 conditions de test :
+- mercrei 24 aout 15h20, 15h38
 - devices : nexus 5X, android 6
+- version avec Google Analytics
 - wifi éteint, carte sim présente
 - utilisation de usage timelines pour détecter les applis perturbatrices, désinstallation notamment de :
   - keep
   - désactivation de drive
+
+Bilan 1er run :
+- durée 18 minutes
+- penser à mettre à jour les applications avant pour éviter du traffic lié au play store en bgd
+- présence de perturbation liées à la synchro de google calendar
+
+ ### Test checklist
+- devices : nexus 5X, android 6
+- version avec
+- wifi éteint, carte sim présente
+- synchronisation des comptes désactivée
+- resetter battery historian
+> adb shell dumpsys batterystats --reset
+- Faire croire au système que la charge par USB n'est pas effective (https://stanfy.com/blog/android-shell-part-1-mocking-battery-status/)
+> adb shell dumpsys battery unplug
+
+
+ ### 2eme test
+conditions de test :
+- mercrei 24 aout 16h09, 15h38
+- devices : nexus 5X, android 6
+- version sans Analytics
+- wifi éteint, carte sim présente
+
+Bilan  run :
+- durée > 18 minutes car mauvaise commande de reset
+- présence de perturbation liées à la synchro de google calendar et play kiosque ==> désactivation de toutes les synchros du compte google
+
+
+ ### 3ème test
+- devices : nexus 5X, android 6
+- version avec no analytics
+- wifi éteint, carte sim présente
+- synchronisation des comptes désactivée
+- resetter battery historian
+> adb shell dumpsys batterystats --reset
+- Faire croire au système que la charge par USB n'est pas effective (https://stanfy.com/blog/android-shell-part-1-mocking-battery-status/)
+> adb shell dumpsys battery unplug
+
+Bilan :
+- présence de connections radio toutes les minutes :-( nombreux trafic lié à  Google quick search box ==> remplacement du launcher google par KISS launcher
+
 
 
 
