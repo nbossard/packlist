@@ -276,15 +276,6 @@ public class TripDetailFragment extends Fragment {
         }
     }
 
-    @Override
-    public final void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() : Entering");
-
-        // Should normally be enough to do following in onattach...
-        // but when activity is resumed and has been killed by system, onattach is not called.
-        mIHostingActivity.showFABIfAccurate(false);
-    }
 
     /**
     * Create the view for this fragment, using the arguments given to it.
@@ -381,7 +372,13 @@ public class TripDetailFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
+        Log.d(TAG, "onResume() : Entering");
+
         mTracker.sendScreenResumedReportToTracker(getActivity(), TAG);
+
+        // Should normally be enough to do following in onattach...
+        // but when activity is resumed and has been killed by system, onattach is not called.
+        mIHostingActivity.showFABIfAccurate(false);
     }
 
     @Override
