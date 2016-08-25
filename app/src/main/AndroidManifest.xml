@@ -53,12 +53,6 @@
         android:fullBackupContent="@xml/mybackupscheme"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name="com.microsoft.azure.engagement.service.EngagementService"
-            android:exported="false"
-            android:label="packlist"
-            android:process=":Engagement"/>
-
         <activity
             android:name=".gui.MainActivity"
             android:label="@string/app_name"
