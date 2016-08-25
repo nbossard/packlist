@@ -91,6 +91,8 @@ Followed process at :
 https://developers.google.com/analytics/devguides/collection/android/v4/start?configured=true
 https://developers.google.com/analytics/devguides/collection/android/v4/#send-an-event
 
+console :
+https://analytics.google.com/analytics/web/?hl=fr&pli=1#realtime/rt-app-overview/a47815384w110622418p115389926/
 ## remarques
 
 Vu sur leur site web :
@@ -244,13 +246,58 @@ Bilan pas mal : bien que temps déborde, qques perturbations de usage timeline
 - vérification avec usage timelines
 - tuer toutes les apps dans l'historique'
 
+### 8ème test (jeudi 25 aout 2016) début 15:41
+
+- devices : nexus 5X, android 6
+- installation version avec google analytics
+- reboot
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- vérification avec usage timelines
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- tuer toutes les apps dans l'historique'
+
+bilan : oublié de faire le reset battery, inutilisable. etrangment peu de data ==> relancer en surveillant la console
+
+### 9ème test (jeudi 25 aout 2016) début 16:10 fin 16:21
+
+- devices : nexus 5X, android 6
+- installation version avec google analytics
+- reboot
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- vérification avec usage timelines
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- tuer toutes les apps dans l'historique'
+
+**bilan : vu dans la console les evts toutes les 2 minutes, pourtant quasiment pas de données est compté pour l'application, en fait les données sont comptees dans les google play services.**
+
+### 10ème test (jeudi 25 aout 2016) début 16:10 fin 16:21
+
+- devices : nexus 5X, android 6
+- installation version avec azure analytics
+- reboot
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- vérification avec usage timelines
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- tuer toutes les apps dans l'historique'
+
+
+bilan : **vu dans la console mise à jour toutes les minutes. Mais gros prb la connection est maintenue en permanence :-( ==> discuté avec Pierre, c'est problématique mais attendu.**
 
 # Bilan
 
-| analytic | CPU user time    | Mobile active time | Mobile active count |
-| ---------|---------|-------------|-------------|
-| no       | 1mn 58s | 0mn 6s  | 1|
-| google   |         |         |  |
-| amazon   | 1mn51s  | 2mn 23s |15|
-| azure    |         |         |  |
+| analytic | CPU user time    | Mobile active time | Mobile active count | Mobile data |
+| ---------|------------------|--------------------|---------------------|-------------|
+| no       | 1mn 58s          | 0mn 6s             | 1                   |   2ko       |
+| google   |                  | 2mn 34             | 15                  | 138ko       |
+| amazon   | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
+| azure    | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
 
