@@ -23,9 +23,17 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <!-- For azure Mobile Engagement-->
+    <!-- For Google Analytics -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- For azure Mobile Engagement-->
+    <!-- For Google Analytics -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application>
+
+        <service android:name="com.google.android.gms.analytics.AnalyticsService"
+                 android:enabled="true"
+                 android:exported="false"/>
+
+    </application>
 
 </manifest>
