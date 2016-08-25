@@ -179,5 +179,78 @@ Bilan :
 - présence de connections radio toutes les minutes :-( nombreux trafic lié à  Google quick search box ==> remplacement du launcher google par KISS launcher
 
 
+### 4ème test (jeudi 25 aout 2016)
+- devices : nexus 5X, android 6
+- version avec no analytics
+- wifi éteint, carte sim présente
+- synchronisation des comptes désactivée
+- reboot
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher
 
+Bilan :
+mieux, mais toujours du traffic lié à googlequicksearchbox ==> forcer arrêt et limitation des données en arrière plan de "Appli google"
+
+### 5ème test (jeudi 25 aout 2016) fin 11h46
+- devices : nexus 5X, android 6
+- version avec no analytics
+- wifi éteint, carte sim présente
+- synchronisation des comptes désactivée
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher
+- désactivation agenda
+- f-droid pas de mise à jour
+- désactivation google cloud print
+- désactivation appli photo
+- désactivation google maps
+- désinstallation google +
+- désactivation google play music
+- désactivation hangout
+- désactivation messenger
+- uninstall f-droid
+- désactivation youtube
+- désactivation données en arrière plan play store
+- désactivation chrome
+- tuer toutes les apps dans l'historique'
+
+### 6ème test (jeudi 25 aout 2016) début 12:00 fin 13:00
+
+- devices : nexus 5X, android 6
+- reboot
+- version avec no analytics
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- vérification avec usage timelines
+- tuer toutes les apps dans l'historique'
+
+Bilan pas mal : bien que temps déborde, qques perturbations de usage timeline
+
+
+### 7ème test (jeudi 25 aout 2016) début 14:20 fin 14:36
+
+- devices : nexus 5X, android 6
+- reboot
+- version avec amazon analytics
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- vérification avec usage timelines
+- tuer toutes les apps dans l'historique'
+
+
+# Bilan
+
+| analytic | CPU user time    | Mobile active time | Mobile active count |
+| ---------|---------|-------------|-------------|
+| no       | 1mn 58s | 0mn 6s  | 1|
+| google   |         |         |  |
+| amazon   | 1mn51s  | 2mn 23s |15|
+| azure    |         |         |  |
 
