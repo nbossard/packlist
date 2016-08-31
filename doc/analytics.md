@@ -287,17 +287,34 @@ bilan : oublié de faire le reset battery, inutilisable. etrangment peu de data 
 - reset battery historian
 - désactivation de la charge par USB
 - kiss launcher activé
-- tuer toutes les apps dans l'historique'
+- tuer toutes les apps dans l'historique
 
 
 bilan : **vu dans la console mise à jour toutes les minutes. Mais gros prb la connection est maintenue en permanence :-( ==> discuté avec Pierre, c'est problématique mais attendu.**
 
 # Bilan
 
+Résumé des conditions de tests :
+- Tests réalisés sur un Nexus 5x sous android 6
+- Toutes applications désinstallées ou désactivées.
+- wifi éteint, carte sim présente, 4G activé
+- battery historian resetté avant chaque éxécution
+- désactivation de la charge par USB
+- synchronisation des comptes désactivée
+- remplacement du launcher google par kiss launcher
+- apps dans l'historique tuées
+
+Résumé des consommations :
+
 | analytic | CPU user time    | Mobile active time | Mobile active count | Mobile data |
 | ---------|------------------|--------------------|---------------------|-------------|
-| no       | 1mn 58s          | 0mn 6s             | 1                   |   2ko       |
+| no       | 1mn 58s          | **0mn 6s**         | 1                   |   2ko       |
 | google   |                  | 2mn 34             | 15                  | 138ko       |
 | amazon   | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
 | azure    | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
 
+Questions :
+- google, pics de 2 minutes mutualisées entre applis ? Faisons de même avec Orange et Moi pour mutualiser ?
+- quel est le cout des analytics ?
+
+remarques : regarder le SDK sur github
