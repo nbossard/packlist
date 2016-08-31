@@ -313,6 +313,9 @@ Résumé des consommations :
 | amazon   | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
 | azure    | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
 
+A noter :
+Dans battery historian les consos liées à google ne sont pas rattachées à l'appli mais aux play services.
+
 Questions :
 - google, pics de 2 minutes mutualisées entre applis ? Faisons de même avec Orange et Moi pour mutualiser ?
 - quel est le cout des analytics ?
