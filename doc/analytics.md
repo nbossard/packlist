@@ -290,9 +290,28 @@ bilan : oublié de faire le reset battery, inutilisable. etrangment peu de data 
 - tuer toutes les apps dans l'historique
 
 
-bilan : **vu dans la console mise à jour toutes les minutes. Mais gros prb la connection est maintenue en permanence :-( ==> discuté avec Pierre, c'est problématique mais attendu.**
+bilan test : **vu dans la console mise à jour toutes les minutes. Mais gros prb la connection est maintenue en permanence :-( ==> discuté avec Pierre, c'est problématique mais attendu.**
 
-# Bilan
+### 11ème test (mercredi 31 aout 2016)
+
+En utilisant le Burst treshold
+https://azure.microsoft.com/en-us/documentation/articles/mobile-engagement-android-advanced-configuration/
+rem :  Your burst threshold should be no longer than 30000 (30s).
+
+
+- devices : nexus 5X, android 6
+- installation version avec azure analytics et burst treshold
+- reboot
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- reset battery historian
+- désactivation de la charge par USB
+- kiss launcher activé
+- tuer toutes les apps dans l'historique
+
+bilan test : **La fonction de burst treshold provoque bien une coupure du signal radio, même si on obtient 10s de radio, suivi de 20 s de non radio.**
+
+# Bilan global
 
 Résumé des conditions de tests :
 - Tests réalisés sur un Nexus 5x sous android 6
@@ -306,12 +325,13 @@ Résumé des conditions de tests :
 
 Résumé des consommations :
 
-| analytic | CPU user time    | Mobile active time | Mobile active count | Mobile data |
-| ---------|------------------|--------------------|---------------------|-------------|
-| no       | 1mn 58s          | **0mn 6s**         | 1                   |   2ko       |
-| google   |                  | 2mn 34             | 15                  | 138ko       |
-| amazon   | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
-| azure    | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
+| analytic      | CPU user time    | Mobile active time | Mobile active count | Mobile data |
+| --------------|------------------|--------------------|---------------------|-------------|
+| no            | 1mn 58s          | **0mn 6s**         | 1                   |   2ko       |
+| google        |                  | 2mn 34             | 15                  | 138ko       |
+| amazon        | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
+| azure         | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
+| azure + burst | 1mn 20s          | **5mn34s**         | 34                  |  75ko       |
 
 A noter :
 Dans battery historian les consos liées à google ne sont pas rattachées à l'appli mais aux play services.

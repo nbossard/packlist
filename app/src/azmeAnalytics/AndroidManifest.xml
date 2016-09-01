@@ -38,6 +38,8 @@
 
     <application>
 
+        <meta-data android:name="engagement:burstThreshold" android:value="30000"/>
+
         <service
             android:name="com.microsoft.azure.engagement.service.EngagementService"
             android:exported="false"
