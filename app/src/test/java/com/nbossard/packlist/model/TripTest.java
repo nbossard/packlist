@@ -151,13 +151,13 @@ public class TripTest  {
     public void testDeleteItem() throws Exception {
 
         mTestTrip.addItem(NEW_ITEM_NAME);
-        UUID delUUID = mTestTrip.addItem(NEW_ITEM2_NAME);
+        Item delItem= mTestTrip.addItem(NEW_ITEM2_NAME);
         mTestTrip.addItem(NEW_ITEM3_NAME);
         mTestTrip.addItem(NEW_ITEM4_NAME);
 
         assertTrue(mTestTrip.getListOfItems().size()==4);
 
-        mTestTrip.deleteItem(delUUID);
+        mTestTrip.deleteItem(delItem.getUUID());
     }
 
     @Test
