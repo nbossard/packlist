@@ -182,8 +182,13 @@ public class Item implements Serializable, Cloneable {
      * Getter for addition date of this item.
      * @return the addition date of this item, will be used by default sorting mode
      */
+    @Nullable
     public final Date getAdditionDate() {
-        return mAdditionDate;
+        Date res = null;
+        if (mAdditionDate != null) {
+            res = (Date) mAdditionDate.clone();
+        }
+        return res;
     }
 
     /**
