@@ -51,10 +51,12 @@ public class Item implements Serializable, Cloneable {
     /**
      * An unpacked item.
      */
+    @SuppressWarnings("WeakerAccess")
     public static final boolean UNPACKED = false;
     /**
      * A packed item.
      */
+    @SuppressWarnings("WeakerAccess")
     public static final boolean PACKED = true;
 
 // *********************** FIELDS *************************************************************************
@@ -167,6 +169,7 @@ public class Item implements Serializable, Cloneable {
     /**
      * @param parTripUUID The UUID of the {@link Trip} this item belongs to.
      */
+    @SuppressWarnings("WeakerAccess")
     public final void setTripUUID(final UUID parTripUUID) {
         mTripUUID = parTripUUID;
     }
@@ -182,8 +185,10 @@ public class Item implements Serializable, Cloneable {
      * Getter for addition date of this item.
      * @return the addition date of this item, will be used by default sorting mode
      */
+    @SuppressWarnings("WeakerAccess")
     public final Date getAdditionDate() {
-        return mAdditionDate;
+        // Findbugs suggests cloning for security reasons
+        return (Date) mAdditionDate.clone();
     }
 
     /**

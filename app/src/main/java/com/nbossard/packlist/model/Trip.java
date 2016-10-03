@@ -55,6 +55,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Strongly suggested by interface Serializable. */
+    private static final long serialVersionUID = 1235897515L;
+
     /**
      * Log tag.
      */
@@ -143,7 +146,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * setter for note.
-     * @param parNote new value for note. i.e. : "un chouette coin"
+     * @param parNote new value for note. i.e. : "a nice place to rest"
      */
     public final void setNote(final String parNote) {
         this.mNote = parNote;
@@ -151,7 +154,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Getter for note.
-     * @return i.e. : "un chouette coin"
+     * @return i.e. : "a nice place to rest"
      */
     public final String getNote() {
         return mNote;
@@ -415,7 +418,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         clonedTrip.mListItem = new ArrayList<>();
 
         // using a "classic for" as this is supposed to be more
-        // efficient for arraylist according to greenspector
+        // efficient for ArrayList according to greenspector
         for (int i = 0; i < mListItem.size(); i++) {
             clonedTrip.addItem(mListItem.get(i).clone());
         }
