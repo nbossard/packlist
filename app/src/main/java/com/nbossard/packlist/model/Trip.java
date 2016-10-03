@@ -55,6 +55,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Strongly suggested by interface Serializable. */
+    private static final long serialVersionUID = 1235897515L;
+
     /**
      * Log tag.
      */
@@ -143,7 +146,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * setter for note.
-     * @param parNote new value for note. i.e. : "un chouette coin"
+     * @param parNote new value for note. i.e. : "a nice place to rest"
      */
     public final void setNote(final String parNote) {
         this.mNote = parNote;
@@ -151,7 +154,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Getter for note.
-     * @return i.e. : "un chouette coin"
+     * @return i.e. : "a nice place to rest"
      */
     public final String getNote() {
         return mNote;
@@ -223,10 +226,10 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parName name of new item
      * @return UUID of newly created item
      */
-    public final UUID addItem(final String parName) {
+    public final Item addItem(final String parName) {
         Item newItem = new Item(this, parName);
         mListItem.add(newItem);
-        return newItem.getUUID();
+        return newItem;
     }
 
     /**
@@ -394,9 +397,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     @Override
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
-        int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
-        return otherRemainingDays - curRemainingDays;
+        return (int) (parAnotherTrip.getRemainingDays() - getRemainingDays());
     }
 
     /**
@@ -415,8 +416,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for (Item item : getListOfItems()) {
-            clonedTrip.addItem(item.clone());
+
+        // using a "classic for" as this is supposed to be more
+        // efficient for ArrayList according to greenspector
+        for (int i = 0; i < mListItem.size(); i++) {
+            clonedTrip.addItem(mListItem.get(i).clone());
         }
         return clonedTrip;
     }
