@@ -42,53 +42,56 @@
         android:paddingStart="@dimen/margin_start"
         android:paddingTop="@dimen/margin_top">
 
-        <TextView
-            android:id="@+id/item_detail__name__label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:labelFor="@+id/item_detail__name__edit"
-            android:text="@string/item_detail__name__label"/>
-
-        <EditText
-            android:id="@id/item_detail__name__edit"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="@{item.name}"
-            tools:text="Chapeau"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item_detail__weight__label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:labelFor="@+id/item_detail__weight__edit"
-            android:text="@string/item_detail__weight__label"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/item_detail__name__edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_edit_text_min_height"
+                android:hint="@string/item_detail__name__label"
+                android:text="@{item.name}"
+                android:inputType="text"
+                tools:text="Chapeau"/>
 
-        <EditText
-            android:id="@id/item_detail__weight__edit"
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="@{String.valueOf(item.weight)}"
-            tools:text="100"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item_detail__category__label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:labelFor="@+id/item_detail__category__edit"
-            android:text="@string/item_detail__category__label"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/item_detail__weight__edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_edit_text_min_height"
+                android:hint="@string/item_detail__weight__label"
+                android:text="@{String.valueOf(item.weight)}"
+                android:inputType="text"
+                tools:text="100"/>
 
-        <AutoCompleteTextView
-            android:id="@id/item_detail__category__edit"
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="@{item.category}"
-            tools:text="Chaussettes"/>
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/item_detail__category__edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/accessibility_edit_text_min_height"
+                android:hint="@string/item_detail__category__label"
+                android:text="@{item.category}"
+                android:inputType="text"
+                tools:text="Chaussettes"/>
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/item_detail__submit__button"
