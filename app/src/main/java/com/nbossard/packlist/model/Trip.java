@@ -394,9 +394,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     @Override
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
-        int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
-        return otherRemainingDays - curRemainingDays;
+        return (int) (parAnotherTrip.getRemainingDays() - getRemainingDays());
     }
 
     /**
@@ -415,8 +413,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for (Item item : getListOfItems()) {
-            clonedTrip.addItem(item.clone());
+
+        // using a "classic for" as this is supposed to be more
+        // efficient for arraylist according to greenspector
+        for (int i = 0; i < mListItem.size(); i++) {
+            clonedTrip.addItem(mListItem.get(i).clone());
         }
         return clonedTrip;
     }
