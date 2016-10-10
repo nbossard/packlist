@@ -186,9 +186,14 @@ public class Item implements Serializable, Cloneable {
      * @return the addition date of this item, will be used by default sorting mode
      */
     @SuppressWarnings("WeakerAccess")
+    @Nullable
     public final Date getAdditionDate() {
-        // Findbugs suggests cloning for security reasons
-        return (Date) mAdditionDate.clone();
+        Date res = null;
+        if (mAdditionDate != null) {
+            // Findbugs suggests cloning for security reasons
+            res = (Date) mAdditionDate.clone();
+        }
+        return res;
     }
 
     /**
