@@ -129,5 +129,8 @@
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
 
     <string name="to_remove">for testing crowdin integration</string>
+    <string name="pref_dark"/>
+    <string name="pref_dark_summ">Black theme for amoled screens</string>
+    <string name="action__settings"/>
 
 </resources>

@@ -21,7 +21,7 @@
 
 <!-- About page, containing activity -->
 <!---->
-<!-- Resources and Ids for this page must start with "about_act__" -->
+<!-- Resources and Ids for this page must start with "settings_act__" -->
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,7 +30,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".gui.AboutActivity">
+    tools:context=".gui.SettingsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/about_act__toolbar"
+            android:id="@+id/settings_act__toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -46,15 +46,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_about"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_settings"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/about_act__fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:contentDescription="@string/about_act__fab_go_to_website"
-        android:src="@android:drawable/ic_dialog_info"/>
 
 </android.support.design.widget.CoordinatorLayout>

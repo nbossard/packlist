@@ -123,5 +123,8 @@
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
+    <string name="pref_dark">Black theme</string>
+    <string name="pref_dark_summ">For night use or amoled screens</string>
+    <string name="action__settings">Configuration</string>
 
 </resources>

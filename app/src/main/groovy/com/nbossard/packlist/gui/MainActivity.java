@@ -241,8 +241,9 @@ public class MainActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-        if (id == R.id.action__whatsnew) {
+        if (id == R.id.action__settings) {
+            openSettingsActivity();
+        } else if (id == R.id.action__whatsnew) {
             openDialogFragment(new DialogStandardFrag());
         } else  if (id == R.id.action__about) {
             openAboutActivity();
@@ -459,6 +460,12 @@ public class MainActivity
     // ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
+
+    private void openSettingsActivity() {
+        Intent view = new Intent(this, SettingsActivity.class);
+        view.setAction(Intent.ACTION_VIEW);
+        startActivity(view);
+    }
 
     /**
      * Get the target fragment for new fragment to be opened, different on tablet.

@@ -68,7 +68,7 @@ class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        def toolbar = (Toolbar) findViewById(R.id.toolbar)
+        def toolbar = (Toolbar) findViewById(R.id.about_act__toolbar)
         setSupportActionBar(toolbar)
 
         def fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
