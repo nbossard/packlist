@@ -311,6 +311,25 @@ rem :  Your burst threshold should be no longer than 30000 (30s).
 
 bilan test : **La fonction de burst treshold provoque bien une coupure du signal radio, même si on obtient 10s de radio, suivi de 20 s de non radio.**
 
+### 12ème test (mercredi 12 octobre 2016) début 14:20 fin 14:36
+
+objectif rejouer le test amazon car Pierre Crepieux émet des doutes dessus
+
+- devices : nexus 5X, android 6
+- reboot
+- installé version avec amazon analytics
+- wifi éteint, carte sim présente, 4G activé
+- synchronisation des comptes désactivée
+- resetter battery historian
+> adb shell dumpsys batterystats --reset
+- Faire croire au système que la charge par USB n'est pas effective (https://stanfy.com/blog/android-shell-part-1-mocking-battery-status/)
+> adb shell dumpsys battery unplug
+- kiss launcher activé
+- vérification avec usage timelines
+- tuer toutes les apps dans l'historique'
+
+Bilan : peux de différences avec le premier run amazon
+
 # Bilan global
 
 Résumé des conditions de tests :
@@ -325,16 +344,34 @@ Résumé des conditions de tests :
 
 Résumé des consommations :
 
-| analytic      | CPU user time    | Mobile active time | Mobile active count | Mobile data |
-| --------------|------------------|--------------------|---------------------|-------------|
-| no            | 1mn 58s          | **0mn 6s**         | 1                   |   2ko       |
-| google        |                  | 2mn 34             | 15                  | 138ko       |
-| amazon        | 1mn51s           | 2mn 23s            | 15                  |  88ko       |
-| azure         | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |
-| azure + burst | 1mn 20s          | **5mn34s**         | 34                  |  75ko       |
+| analytic      | CPU user time    | Mobile active time | Mobile active count | Mobile data | APK size |
+| --------------|------------------|--------------------|---------------------|-------------|----------|
+| no            | 1mn 58s          | **0mn 6s**         | 1                   |   2ko       | **5.1mo**|
+| google        |                  | 2mn 34             | 15                  | 138ko       |          |
+| amazon        | 1mn51s           | 2mn 23s            | 15                  |  88ko       |    4.9mo |
+| amazon bis    | 1mn19s           | 2mn 51s            | 16                  |  94ko       |          |
+| azure         | 1mn 53s          | **12mn3s**         | 2                   | 261ko       |          |
+| azure + burst | 1mn 20s          | **5mn34s**         | 34                  |  75ko       |          |
 
 A noter :
 Dans battery historian les consos liées à google ne sont pas rattachées à l'appli mais aux play services.
+
+Tailles des APKS :
+
+La variation de taille des APKS liée aux analytics est négligeable.
+Ainsi par rapport à la version de base
+
+Amazon ajoute :
+- aws-android-sdk-core-2.2.22_d174bc4774a478635da3d243c0befc0a30de1182-classes.dex ==> 399ko (148ko compressé)
+- aws-android-sdk-mobileanalytics-2.2.22_c77befcdd8a3c13f3ce4b8301eaa12c289cfe814-classes.dex ==> 136ko (54ko compressé)
+
+Google ajoute :
+com.google.android.gms-play-services-analytics-9.0.0_4ad65377e042a81697cc9d8e14981016a12c305e-classes.dex ==>2ko
+com.google.android.gms-play-services-analytics-impl-9.0.0_132dfc215d622b13563dbd57938cf91e8c576127-classes.dex ==> 324 ko (123 ko compressé)
+
+Azme ajoute :
+mobile-engagement-4.2.2_8480968b931e2c18d472ebda290cf61043328def-classes.dex ==> 193ko (77ko compressé)
+
 
 Questions :
 - google, pics de 2 minutes mutualisées entre applis ? Faisons de même avec Orange et Moi pour mutualiser ?
