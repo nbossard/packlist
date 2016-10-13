@@ -19,7 +19,7 @@
 
 
 apply plugin: 'com.android.application'
-apply plugin: 'groovyx.grooid.groovy-android'
+apply plugin: 'groovyx.android'
 apply plugin: 'com.jakewharton.hugo'
 
 
