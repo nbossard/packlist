@@ -136,7 +136,7 @@ public class MainActivityForTest
 
 
         if (id == R.id.action__whatsnew) {
-            openDialogFragment(new DialogStandardFrag());
+            openDialogFragment(new ChangeLogDialog());
         } else  if (id == R.id.action__about) {
             openAboutActivity();
         }

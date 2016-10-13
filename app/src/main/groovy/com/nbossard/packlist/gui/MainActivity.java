@@ -64,7 +64,7 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
-    com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.ChangeLogDialog  <..  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.MassImportFragment <..  com.nbossard.packlist.gui.MainActivity : launch in\n container
 
     ' Moved to main file
@@ -243,7 +243,7 @@ public class MainActivity
 
 
         if (id == R.id.action__whatsnew) {
-            openDialogFragment(new DialogStandardFrag());
+            openDialogFragment(new ChangeLogDialog());
         } else  if (id == R.id.action__about) {
             openAboutActivity();
         } else if (id == R.id.action__send_logs) {
