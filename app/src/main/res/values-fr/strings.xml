@@ -116,8 +116,8 @@
     <string name="item_detail__category__label">Catégorie</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation_new_trip__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans un nouveau voyage. Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
-    <string name="mass_import__principle_explanation_with_name__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans le voyage \"%1$s\". Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
+    <string name="mass_import__principle_explanation_new_trip__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans un nouveau voyage. Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g).</string>
+    <string name="mass_import__principle_explanation_with_name__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans le voyage \"%1$s\". Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g).</string>
     <string name="mass_import__import__button">Importer</string>
     <string name="mass_import__items__hint">saisissez ou collez ici&#8230;</string>
 
