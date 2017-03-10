@@ -29,9 +29,10 @@ buildscript {
         // because got error : resources-release-stripped.ap_ does not exist
         // when generating signed APK
         // classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'com.android.tools.build:gradle:2.3.0'
 
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
 
         // Note NBO on 14th october 2016
         // tried to migrate to version 1.1.0 got error related to groovy and databinding :
@@ -40,7 +41,6 @@ buildscript {
         // https://code.google.com/p/android/issues/detail?id=188361
 
         // classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
-        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
 
 
         // NOTE: Do not place your application dependencies here; they belong
