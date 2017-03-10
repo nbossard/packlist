@@ -115,7 +115,8 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
-    compile 'com.google.code.gson:gson:2.4'
+    // For parsing json (used for saving data)
+    compile 'com.google.code.gson:gson:2.7'
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
