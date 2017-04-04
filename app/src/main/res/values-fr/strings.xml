@@ -37,6 +37,7 @@
 
     <!-- Menu items -->
     <string name="action__whatsnew">Quoi de neuf</string>
+    <string name="action__settings">Paramètres</string>
     <string name="action__send_logs">Envoyer un rapport</string>
     <string name="action__about">A propos</string>
     <string name="action_trip__sort">Trier</string>
@@ -124,4 +125,8 @@
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
+    <!-- For Settings -->
+    <string name="activity_settings__title">@string/action__settings</string>
+    <string name="pref_dates">Display dates</string>
+    <string name="pref_dates_sum">Display trip dates on dashboard</string>
 </resources>
