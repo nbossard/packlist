@@ -133,7 +133,7 @@
 
     <!-- For Settings -->
     <string name="activity_settings__title">@string/action__settings</string>
-    <string name="pref_dates">Display dates</string>
-    <string name="pref_dates_sum">Display trip dates on dashboard</string>
+    <string name="pref_display_dates">Display dates</string>
+    <string name="pref_display_dates_sum">Display trip dates on dashboard</string>
 
 </resources>

@@ -21,7 +21,7 @@ package com.nbossard.packlist;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Debug;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.nbossard.packlist.process.saving.ISavingModule;
@@ -87,7 +87,11 @@ public class PackListApp extends Application {
 
     /** Saving module singleton. */
     private ISavingModule mSavingModule;
-//
+
+    /**
+     * Application settings singleton.
+     */
+    private PacklistSharedPrefs mPreferences;
 
 // *********************** METHODS **************************************************************************
 
@@ -95,7 +99,11 @@ public class PackListApp extends Application {
     public final void onCreate() {
         Log.d(LOG_TAG, "onCreate(...)  Entering");
         super.onCreate();
+
+        // load saved settings
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
+
     @Override
     protected final void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
@@ -124,6 +132,16 @@ public class PackListApp extends Application {
             mSavingModule = SavingFactory.getNewSavingModule(this);
         }
         return mSavingModule;
+    }
+
+    /**
+     * @return application preferences singleton.
+     */
+    public final PacklistSharedPrefs getPreferences() {
+        if (mPreferences == null) {
+            mPreferences = new PacklistSharedPrefs(this);
+        }
+        return mPreferences;
     }
 //
 

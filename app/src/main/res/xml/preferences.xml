@@ -20,8 +20,8 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
-        android:key="pref_sync"
-        android:title="@string/pref_dates"
-        android:summary="@string/pref_dates_sum"
+        android:key="pref_display_dates"
+        android:title="@string/pref_display_dates"
+        android:summary="@string/pref_display_dates_sum"
         android:defaultValue="true"/>
 </PreferenceScreen>
