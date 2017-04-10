@@ -250,6 +250,8 @@ public class MainActivity
             PackListApp.sendUserDebugReport();
         } else if (id == android.R.id.home) {
             getSupportFragmentManager().popBackStack();
+        } else if (id == R.id.action__settings) {
+            openSettingsActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -478,7 +480,23 @@ public class MainActivity
     /** Open {@link AboutActivity} on top of this activity. */
     @DebugLog
     private void openAboutActivity() {
+
+        Log.d(TAG, "openAboutActivity() Entering");
+
         Intent view = new Intent(this, AboutActivity.class);
+        view.setAction(Intent.ACTION_VIEW);
+        startActivity(view);
+    }
+
+    /**
+     * Open {@link SettingsActivity} on top of this activity.
+     */
+    @DebugLog
+    private void openSettingsActivity() {
+
+        Log.d(TAG, "openSettingsActivity() Entering");
+
+        Intent view = new Intent(this, SettingsActivity.class);
         view.setAction(Intent.ACTION_VIEW);
         startActivity(view);
     }

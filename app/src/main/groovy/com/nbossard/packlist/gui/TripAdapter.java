@@ -29,6 +29,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
+import com.nbossard.packlist.PackListApp;
+import com.nbossard.packlist.PacklistSharedPrefs;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
@@ -56,6 +58,13 @@ class TripAdapter extends BaseAdapter {
      * Log tag.
      */
     private static final String TAG = TripAdapter.class.getName();
+
+    // *********************** FIELDS ***********************************************************************
+
+    /**
+     * Application preferences custom class.
+     */
+    private final PacklistSharedPrefs mPreferences;
 
     // *********************** INNER CLASS *****************************************************************
 
@@ -126,6 +135,9 @@ class TripAdapter extends BaseAdapter {
         super();
         mTripsList = parResList;
         mContext = parContext;
+
+        // Retrieve preferences
+        mPreferences = ((PackListApp) mContext.getApplicationContext()).getPreferences();
     }
 
 
@@ -179,15 +191,21 @@ class TripAdapter extends BaseAdapter {
         MaterialColor colorRetriever = new MaterialColor(mContext);
         vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColor(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());
-        if (oneTrip.getStartDate() != null) {
-            vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
-        }
-        vHolderRecycle.tvStartDate.setText(tripFormatter.getFormattedDate(oneTrip.getStartDate()));
-        vHolderRecycle.tvEndDate.setText(tripFormatter.getFormattedDate(oneTrip.getEndDate()));
-        if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {
-            vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
+
+        // user can choose, using settings, not to display dates in homepage
+        if (mPreferences.isDisplayDatesPref()) {
+            if (oneTrip.getStartDate() != null) {
+                vHolderRecycle.tvInXDays.setText(getFormattedRemainingDays(oneTrip.getRemainingDays()));
+            }
+            vHolderRecycle.tvStartDate.setText(tripFormatter.getFormattedDate(oneTrip.getStartDate()));
+            vHolderRecycle.tvEndDate.setText(tripFormatter.getFormattedDate(oneTrip.getEndDate()));
+            if ((oneTrip.getStartDate() == null) && (oneTrip.getEndDate() == null)) {
+                vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
+            } else {
+                vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);
+            }
         } else {
-            vHolderRecycle.arrowDate.setVisibility(View.VISIBLE);
+            vHolderRecycle.arrowDate.setVisibility(View.INVISIBLE);
         }
 
         parConvertView.setTag(vHolderRecycle);
