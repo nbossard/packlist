@@ -54,6 +54,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 - vector drawables, using asset studio
 - in-app indexing
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
+- constraint layouts (Work in progress)
 
 ### Licence
 Apache 2
