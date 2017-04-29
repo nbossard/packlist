@@ -24,9 +24,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 /*
 @startuml
@@ -89,25 +91,27 @@ public interface ISavingModule {
     void removeListener(ITripChangeListener parListener);
 
     /**
-     * Update an existing Item of a trip.
+     * Update an existing TripItem of a trip.
      * @param parItem item to be updated
      * @return true if update succeeded, false otherwise
      */
-    @CheckResult boolean updateItem(Item parItem);
+    @CheckResult
+    boolean updateItem(TripItem parItem);
 
     /**
      * Retrieve the list of previously created categories.
+     * It is a set (no duplicate).
      *
      * @return a list of categories
      */
-    String[] getListOfCategories();
+    Set<String> getAllCategories();
 
     /**
-     * Retrieve the list of previously created item names.
+     * Retrieve the list of previously created items.
      *
      * @return a list of categories
      */
-    String[] getListOfItemNames();
+    Set<Item> getAllPossibleItems();
 
     /**
      * @return a list of missing items names by decreasing order of probability.

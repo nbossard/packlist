@@ -24,7 +24,7 @@ import junit.framework.TestCase;
 import java.util.Date;
 
 /**
- * Test class for {@link Item} class.
+ * Test class for {@link TripItem} class.
  *
  * @author Created by nbossard on 24/01/16.
  */
@@ -33,14 +33,14 @@ public class ItemTest extends TestCase {
     private static final String ITEM_TEST_NAME = "ItemTestName";
     private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
     private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
-    private Item mTestItem;
+    private TripItem mTestItem;
     private Trip mTestTrip;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         mTestTrip = new Trip();
-        mTestItem = new Item(mTestTrip, ITEM_TEST_NAME);
+        mTestItem = new TripItem(mTestTrip, ITEM_TEST_NAME);
     }
 
     public void testGetName() throws Exception {
@@ -72,7 +72,7 @@ public class ItemTest extends TestCase {
     public void testCloneAndUUID() throws CloneNotSupportedException {
         // test that there is always an UUID
         assertNotNull(mTestItem.getUUID());
-        Item clonedItem = mTestItem.clone();
+        TripItem clonedItem = mTestItem.clone();
         assertNotNull(clonedItem.getUUID());
         assertNotSame(mTestItem.getUUID(), clonedItem.getUUID());
     }

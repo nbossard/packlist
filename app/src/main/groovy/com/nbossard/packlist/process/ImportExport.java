@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 
@@ -149,7 +149,7 @@ public class ImportExport {
             } else {
                 // normal case, it is an item to be added
 
-                Item newItem = parseOneItemLine(parTrip, oneLine);
+                TripItem newItem = parseOneItemLine(parTrip, oneLine);
                 parTrip.addItem(newItem);
             }
         }
@@ -192,7 +192,7 @@ public class ImportExport {
         res.append(exportHeader(parContext, parRetrievedTrip));
 
         res.append("\n");
-        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
+        for (TripItem oneItem : parRetrievedTrip.getListOfItems()) {
             exportOneItem(res, oneItem);
         }
         return res.toString();
@@ -207,13 +207,13 @@ public class ImportExport {
      */
     @NonNull
     @VisibleForTesting
-    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+    public final TripItem parseOneItemLine(final Trip parTrip, final String parOneLine) {
 
         String yetToBeParsed;
         boolean checked;
         String name;
         String weightStr;
-        Item newItem = new Item(parTrip, "");
+        TripItem newItem = new TripItem(parTrip, "");
 
 
         // splitting in packed and rest using a regex
@@ -314,7 +314,7 @@ public class ImportExport {
      * @param parRes     result to be appended
      * @param parOneItem item to be exported and appended to result
      */
-    private void exportOneItem(final StringBuilder parRes, final Item parOneItem) {
+    private void exportOneItem(final StringBuilder parRes, final TripItem parOneItem) {
         if (parOneItem.isPacked()) {
             parRes.append(CHECKED_CHAR); // checked
         } else {

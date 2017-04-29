@@ -95,7 +95,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     private String mNote;
 
     /** List of items to bring in this trip. */
-    private List<Item> mListItem;
+    private List<TripItem> mListItem;
 
     /** The total weight of all items in this trip. */
     private int mTotalWeight;
@@ -223,13 +223,25 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Add a new item in the list of items to bring with this trip.
+     *
+     * @param parItem new item
+     * @return UUID of newly created item
+     */
+    public final TripItem addItem(Item parItem) {
+        TripItem newTripItem = new TripItem(this, parItem);
+        mListItem.add(newTripItem);
+        return newTripItem;
+    }
+
+    /**
+     * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
      * @return UUID of newly created item
      */
-    public final Item addItem(final String parName) {
-        Item newItem = new Item(this, parName);
-        mListItem.add(newItem);
-        return newItem;
+    public final TripItem addItem(final String parName) {
+        TripItem newTripItem = new TripItem(this, parName);
+        mListItem.add(newTripItem);
+        return newTripItem;
     }
 
     /**
@@ -239,7 +251,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parItem new item
      */
     @SuppressWarnings("WeakerAccess")
-    public final void addItem(final Item parItem) {
+    public final void addItem(final TripItem parItem) {
         mListItem.add(parItem);
         setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
         setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
@@ -264,7 +276,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListOfItems() {
+    public final List<TripItem> getListOfItems() {
         return mListItem;
     }
 
@@ -277,8 +289,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
-        Item toDeleteItem = null;
-        for (Item oneItem : mListItem) {
+        TripItem toDeleteItem = null;
+        for (TripItem oneItem : mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
                 toDeleteItem = oneItem;
             }
@@ -294,7 +306,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * unpack all items of this trip. Update packing weight.
      */
     public final void unpackAll() {
-        for (Item oneItem : mListItem) {
+        for (TripItem oneItem : mListItem) {
             oneItem.setPacked(false);
         }
         packingChange();
@@ -328,7 +340,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      */
     public final boolean alreadyContainsItemOfName(final String parItemName) {
         boolean res = false;
-        for (Item oneItem : getListOfItems()) {
+        for (TripItem oneItem : getListOfItems()) {
             if (oneItem.getName().contentEquals(parItemName)) {
                 res = true;
                 break;
@@ -336,6 +348,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
         }
         return res;
     }
+
 
     /**
      * Updating of total weight.
@@ -446,7 +459,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      */
     private int recomputeTotalWeight(final boolean parPackedOnly) {
         int resTotalWeight = 0;
-        for (Item item : mListItem) {
+        for (TripItem item : mListItem) {
             //noinspection ConstantConditions
             if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
                 resTotalWeight += item.getWeight();

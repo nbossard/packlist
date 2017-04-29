@@ -30,15 +30,15 @@ public class ItemComparatorAlphabeticalTest extends TestCase {
 
     private static final String ITEM_TEST_NAME_A = "AItemTestName";
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
-    private Item mTestItemBefore;
-    private Item mTestItemAfter;
+    private TripItem mTestItemBefore;
+    private TripItem mTestItemAfter;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         Trip testTrip = new Trip();
-        mTestItemBefore = new Item(testTrip, ITEM_TEST_NAME_A);
-        mTestItemAfter = new Item(testTrip, ITEM_TEST_NAME_B);
+        mTestItemBefore = new TripItem(testTrip, ITEM_TEST_NAME_A);
+        mTestItemAfter = new TripItem(testTrip, ITEM_TEST_NAME_B);
     }
 
     public void testCompare() throws Exception {

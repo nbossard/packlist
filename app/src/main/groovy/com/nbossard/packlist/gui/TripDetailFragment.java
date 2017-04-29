@@ -54,6 +54,7 @@ import android.widget.Toast;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
@@ -61,6 +62,7 @@ import com.nbossard.packlist.process.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
+import java.util.Set;
 
 import hugo.weaving.DebugLog;
 /*
@@ -105,14 +107,16 @@ public class TripDetailFragment extends Fragment {
      */
     private ActionMode mActionMode;
 
-    /** List of {@link Item} view. */
+    /**
+     * List of {@link TripItem} view.
+     */
     private ListView mItemListView;
 
     /** Adapter for list view. */
     private ItemAdapter mListItemAdapter;
 
     /** Current hot item, the one to scroll to if list is refreshed. */
-    private Item mHotItem;
+    private TripItem mHotItem;
 
     /** Edit text. */
     private AppCompatAutoCompleteTextView mNewItemEditText;
@@ -152,7 +156,7 @@ public class TripDetailFragment extends Fragment {
                                 final View view,
                                 final int parPosition,
                                 final long id) {
-            Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+            TripItem selectedItem = (TripItem) mItemListView.getItemAtPosition(parPosition);
             selectedItem.setPacked(!selectedItem.isPacked());
             mRetrievedTrip.packingChange();
             mIHostingActivity.saveTrip(mRetrievedTrip);
@@ -311,10 +315,11 @@ public class TripDetailFragment extends Fragment {
         // TODO old style, improve this
         mNewItemEditText = (AppCompatAutoCompleteTextView) mRootView.findViewById(R.id.trip_detail__new_item__edit);
 
-        // pre-filling list of already existing categories that may match
-        String[] alreadyExistCat = mIHostingActivity.getListOfItemNames();
+        // pre-filling list of already existing items that may match
+        Set<Item> alreadyExistItemsSet = mIHostingActivity.getSetOfItems();
+        List<String> alreadyExistItemsList = PresentableItem.toList(alreadyExistItemsSet);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, alreadyExistCat);
+                android.R.layout.simple_dropdown_item_1line, alreadyExistItemsList);
         mNewItemEditText.setAdapter(adapter);
 
         mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
@@ -512,6 +517,7 @@ public class TripDetailFragment extends Fragment {
      */
     private void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString().trim();
+        PresentableItem parItem = new PresentableItem();
 
         // checking item not already in the trip list
         if (mRetrievedTrip.alreadyContainsItemOfName(tmpStr)) {
@@ -520,7 +526,7 @@ public class TripDetailFragment extends Fragment {
                     Toast.LENGTH_LONG).show();
         } else {
             //normal case, addition and refresh of display
-            Item newItem = mRetrievedTrip.addItem(tmpStr);
+            TripItem newItem = mRetrievedTrip.addItem(parItem.fromPresentableString(tmpStr));
             mIHostingActivity.saveTrip(mRetrievedTrip);
             mNewItemEditText.setText("");
             populateList();
@@ -536,7 +542,7 @@ public class TripDetailFragment extends Fragment {
     public final void onClickAddDetailedItem() {
         String tmpStr = mNewItemEditText.getText().toString();
         mNewItemEditText.setText("");
-        Item newItem = new Item(mRetrievedTrip, tmpStr);
+        TripItem newItem = new TripItem(mRetrievedTrip, tmpStr);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
         setHotItem(newItem);
     }
@@ -610,7 +616,7 @@ public class TripDetailFragment extends Fragment {
      */
     private int searchHotItemPos() {
         // searching for item position (various sorting can be used) so full scanning... sic
-        Item item;
+        TripItem item;
         int curPos;
         boolean found = false;
 
@@ -620,9 +626,8 @@ public class TripDetailFragment extends Fragment {
         } else
         {
             Log.d(TAG, "searchHotItemPos() Searching for item by UUID" + mHotItem);
-            for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++)
-            {
-                item = (Item) mListItemAdapter.getItem(curPos);
+            for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++) {
+                item = (TripItem) mListItemAdapter.getItem(curPos);
                 if (item.getUUID() == mHotItem.getUUID())
                 {
                     Log.d(TAG, "searchHotItemPos() Found item of same UUID at position : " + curPos);
@@ -634,9 +639,8 @@ public class TripDetailFragment extends Fragment {
             {
                 Log.d(TAG, "searchHotItemPos() Not found, searching for item by Name" + mHotItem);
                 // searching item with similar name
-                for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++)
-                {
-                    item = (Item) mListItemAdapter.getItem(curPos);
+                for (curPos = 0; curPos < mListItemAdapter.getCount(); curPos++) {
+                    item = (TripItem) mListItemAdapter.getItem(curPos);
                     if (item.getName().contentEquals(mHotItem.getName()))
                     {
                         Log.d(TAG, "searchHotItemPos() Found item of same name at position : " + curPos);
@@ -659,7 +663,7 @@ public class TripDetailFragment extends Fragment {
      * @param parPosition position in list of item to be deleted
      */
     private void deleteItemClicked(final int parPosition) {
-        Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        TripItem selectedItem = (TripItem) mItemListView.getItemAtPosition(parPosition);
         mRetrievedTrip.deleteItem(selectedItem.getUUID());
         mIHostingActivity.saveTrip(mRetrievedTrip);
         mActionMode.finish();
@@ -672,7 +676,7 @@ public class TripDetailFragment extends Fragment {
      * @param parPosition position in list of item to be edited
      */
     private void editItemClicked(final int parPosition) {
-        Item selectedItem = (Item) mItemListView.getItemAtPosition(parPosition);
+        TripItem selectedItem = (TripItem) mItemListView.getItemAtPosition(parPosition);
         setHotItem(selectedItem);
         mIHostingActivity.openItemDetailFragment(selectedItem);
         mActionMode.finish();
@@ -729,7 +733,7 @@ public class TripDetailFragment extends Fragment {
      * Mark the hot item, the one we want to keep visible in the list, such as when refreshed or reordered.
      * @param parHotItem
      */
-    private void setHotItem(Item parHotItem)
+    private void setHotItem(TripItem parHotItem)
     {
         mHotItem = parHotItem;
     }

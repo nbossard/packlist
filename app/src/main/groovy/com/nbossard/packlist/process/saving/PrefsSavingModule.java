@@ -28,6 +28,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
@@ -218,7 +219,7 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final boolean updateItem(final Item parItem) {
+    public final boolean updateItem(final TripItem parItem) {
         // retrieve trip of item
         Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
 
@@ -236,45 +237,39 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final String[] getListOfCategories() {
+    public final Set<String> getAllCategories() {
 
         Set<String> resSet = new HashSet<>();
 
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
-            for (Item oneItem : tripItems) {
+            List<TripItem> tripItems = oneTrip.getListOfItems();
+            for (TripItem oneItem : tripItems) {
                 if (oneItem.getCategory() != null && oneItem.getCategory().length() > 0) {
                     resSet.add(oneItem.getCategory());
                 }
             }
         }
 
-        // converting set to array
-        String[] resArray = new String[resSet.size()];
-        resSet.toArray(resArray);
-        return resArray;
+        return resSet;
     }
 
     @Override
-    public final String[] getListOfItemNames() {
+    public final Set<Item> getAllPossibleItems() {
 
-        Set<String> resSet = new HashSet<>();
+        Set<Item> resSet = new HashSet<>();
 
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
-            for (Item oneItem : tripItems) {
+            List<TripItem> tripItems = oneTrip.getListOfItems();
+            for (TripItem oneItem : tripItems) {
                 if (oneItem.getName() != null && oneItem.getName().length() > 0) {
-                    resSet.add(oneItem.getName());
+                    resSet.add(oneItem);
                 }
             }
         }
 
-        // converting set to array
-        String[] resArray = new String[resSet.size()];
-        resSet.toArray(resArray);
-        return resArray;
+        return resSet;
     }
 
     @Override
@@ -287,8 +282,8 @@ public class PrefsSavingModule implements ISavingModule {
         // simple version : score is the counting number of occurrences of each item name
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
-            for (Item oneItem : tripItems) {
+            List<TripItem> tripItems = oneTrip.getListOfItems();
+            for (TripItem oneItem : tripItems) {
                 if (oneItem.getName() != null && oneItem.getName().length() > 0) {
                     if (resMapNameScore.containsKey(oneItem.getName())) {
                         Integer value = resMapNameScore.get(oneItem.getName());
