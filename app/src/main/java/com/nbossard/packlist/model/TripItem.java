@@ -115,7 +115,7 @@ public class TripItem extends Item implements Serializable, Cloneable {
      * @param parTrip the {@link Trip} this item belongs to.
      * @param parItem item
      */
-    public TripItem(@NonNull Trip parTrip, Item parItem) {
+    public TripItem(@NonNull Trip parTrip, final Item parItem) {
         super(parItem);
         mUUID = UUID.randomUUID();
         setTripUUID(parTrip.getUUID());
@@ -210,6 +210,16 @@ public class TripItem extends Item implements Serializable, Cloneable {
         res.mUUID = UUID.randomUUID();
 
         return res;
+    }
+
+    @Override
+    public boolean equals(Object parO) {
+        return super.equals(parO);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")

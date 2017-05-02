@@ -41,6 +41,7 @@ import android.widget.Toast;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
@@ -311,7 +312,7 @@ public class MainActivity
     }
 
     @Override
-    public final List<String> getProbableItemsList() {
+    public final List<ScoredItem> getProbableItemsList() {
         return mSavingModule.getProbableItemsList();
     }
 

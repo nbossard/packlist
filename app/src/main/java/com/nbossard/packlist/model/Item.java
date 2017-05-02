@@ -19,6 +19,7 @@
 
 package com.nbossard.packlist.model;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /*
@@ -38,7 +39,7 @@ import android.support.annotation.Nullable;
  *
  */
 
-public class Item {
+public class Item implements Comparable<Item> {
 
 // *********************** FIELDS *************************************************************************
 
@@ -72,7 +73,9 @@ public class Item {
      * Getter for name.
      * @return i.e. : "Socks"
      */
-    public final String getName() {
+    public final
+    @NonNull
+    String getName() {
         return mName;
     }
 
@@ -109,22 +112,66 @@ public class Item {
 
     @SuppressWarnings("CheckStyle")
     @Override
-    public boolean equals(Object parO) {
-        if (this == parO) return true;
-        if (parO == null || getClass() != parO.getClass()) return false;
-
-        Item item = (Item) parO;
-
-        return getName() != null ? getName().equals(item.getName()) : item.getName() == null
-                && (getCategory() != null ? getCategory().equals(item.getCategory()) : item.getCategory() == null);
-
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Item{");
+        sb.append("mName='").append(mName).append('\'');
+        sb.append(", mCategory='").append(mCategory).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 
     @SuppressWarnings("CheckStyle")
+
+    @Override
+    public boolean equals(Object parO) {
+        boolean res;
+
+        if (this == parO) return true;
+        if (parO == null) {
+            res = false;
+        } else {
+
+            Item item = (Item) parO;
+
+            if (getCategory() == null && item.getCategory() != null) {
+                res = false;
+            } else if (getCategory() != null && item.getCategory() == null) {
+                res = false;
+            } else if (getCategory() == null && item.getCategory() == null) {
+                res = (getName().equals(item.getName()));
+            } else if (getCategory() != null && item.getCategory() != null) {
+                if (!getName().contentEquals(item.getName())) {
+                    res = false;
+                } else {
+                    res = (getCategory().contentEquals(item.getCategory()));
+                }
+            } else {
+                // never occur
+                res = false;
+            }
+        }
+        return res;
+
+    }
+
     @Override
     public int hashCode() {
         int result = getName() != null ? getName().hashCode() : 0;
         result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull final Item o) {
+        int res;
+        if (getCategory() == null || o.getCategory() == null) {
+            res = getName().compareTo(o.getName());
+        } else {
+            res = getCategory().compareTo(o.getCategory());
+            if (res == 0) {
+                res = getName().compareTo(o.getName());
+            }
+        }
+        return res;
     }
 }

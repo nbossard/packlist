@@ -59,11 +59,15 @@ public class PresentableItem extends Item {
         return res;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
     /**
      * @return a human readable Item : name followed by category
      */
-    public Item fromPresentableString(String parPresentableString) {
+    public static Item fromPresentableString(String parPresentableString) {
         Item res = new Item();
         String resName;
         String resCategory = null;

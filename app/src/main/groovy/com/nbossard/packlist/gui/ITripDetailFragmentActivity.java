@@ -31,6 +31,7 @@ package com.nbossard.packlist.gui;
 
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
@@ -63,5 +64,5 @@ interface ITripDetailFragmentActivity extends IMainActivity {
     /**
      * @return A list of missing items in this trip by decreasing order of probability.
      */
-    List<String> getProbableItemsList();
+    List<ScoredItem> getProbableItemsList();
 }

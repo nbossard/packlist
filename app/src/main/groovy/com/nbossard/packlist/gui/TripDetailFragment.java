@@ -54,6 +54,7 @@ import android.widget.Toast;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
@@ -137,7 +138,7 @@ public class TripDetailFragment extends Fragment {
     /**
      * List of items that may probably be added to this list, based on previous trips.
      */
-    private List<String> mProbableItemsList;
+    private List<ScoredItem> mProbableItemsList;
 
     /**
      * Index of last suggestion in {@link #mProbableItemsList}.
@@ -513,20 +514,20 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Handle click on "Add item" button.
-     * Will add a new item, if not already in the list
+     * Will add a new item, if not already in the list. Or inform user not possible.
      */
     private void onClickAddItem() {
         String tmpStr = mNewItemEditText.getText().toString().trim();
-        PresentableItem parItem = new PresentableItem();
+        Item item = PresentableItem.fromPresentableString(tmpStr);
 
         // checking item not already in the trip list
-        if (mRetrievedTrip.alreadyContainsItemOfName(tmpStr)) {
+        if (mRetrievedTrip.alreadyContainsItem(item)) {
             Toast.makeText(TripDetailFragment.this.getActivity(),
                     getString(R.string.trip_detail__already_existing_item),
                     Toast.LENGTH_LONG).show();
         } else {
             //normal case, addition and refresh of display
-            TripItem newItem = mRetrievedTrip.addItem(parItem.fromPresentableString(tmpStr));
+            TripItem newItem = mRetrievedTrip.addItem(item);
             mIHostingActivity.saveTrip(mRetrievedTrip);
             mNewItemEditText.setText("");
             populateList();
@@ -541,8 +542,12 @@ public class TripDetailFragment extends Fragment {
      */
     public final void onClickAddDetailedItem() {
         String tmpStr = mNewItemEditText.getText().toString();
+        // cleaning display for when coming back
         mNewItemEditText.setText("");
-        TripItem newItem = new TripItem(mRetrievedTrip, tmpStr);
+
+        //parse user provided String (search for optional category)
+        Item tmpItem = PresentableItem.fromPresentableString(tmpStr);
+        TripItem newItem = new TripItem(mRetrievedTrip, tmpItem);
         ((IMainActivity) getActivity()).openItemDetailFragment(newItem);
         setHotItem(newItem);
     }
@@ -560,12 +565,15 @@ public class TripDetailFragment extends Fragment {
 
         // skipping already added
         while (mSuggestionIndex < mProbableItemsList.size()
-                && mRetrievedTrip.alreadyContainsItemOfName(mProbableItemsList.get(mSuggestionIndex))) {
+                && mRetrievedTrip.alreadyContainsItem(mProbableItemsList.get(mSuggestionIndex))) {
             mSuggestionIndex++;
         }
 
         if (mSuggestionIndex < mProbableItemsList.size()) {
-            mNewItemEditText.setText(mProbableItemsList.get(mSuggestionIndex++));
+            Item suggestedItem = mProbableItemsList.get(mSuggestionIndex);
+            PresentableItem presSuggItem = new PresentableItem(suggestedItem);
+            mNewItemEditText.setText(presSuggItem.toPresentableString());
+            mSuggestionIndex++;
         } else {
             mNewItemEditText.setText("");
             Log.d(TAG, "No more suggestion");

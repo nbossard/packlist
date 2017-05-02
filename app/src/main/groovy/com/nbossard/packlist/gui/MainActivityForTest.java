@@ -38,6 +38,7 @@ import com.nbossard.packlist.R;
 import android.util.Log;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
@@ -312,7 +313,7 @@ public class MainActivityForTest
     }
 
     @Override
-    public List<String> getProbableItemsList() {
+    public List<ScoredItem> getProbableItemsList() {
         return null;
     }
 //

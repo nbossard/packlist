@@ -274,12 +274,18 @@ public class TripTest  {
 
     @Test
     public void testAlreadyContainsItemOfName() {
-        assertFalse(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
-        mTestTrip.addItem(NEW_ITEM_NAME);
-        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
-        mTestTrip.addItem(NEW_ITEM2_NAME);
-        mTestTrip.addItem(NEW_ITEM3_NAME);
-        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM3_NAME));
+        Item item1 = new Item();
+        Item item2 = new Item();
+        Item item3 = new Item();
+        item1.setName(NEW_ITEM_NAME);
+        item2.setName(NEW_ITEM2_NAME);
+        item3.setName(NEW_ITEM3_NAME);
+        assertFalse(mTestTrip.alreadyContainsItem(item1));
+        mTestTrip.addItem(item1);
+        assertTrue(mTestTrip.alreadyContainsItem(item1));
+        mTestTrip.addItem(item2);
+        mTestTrip.addItem(item3);
+        assertTrue(mTestTrip.alreadyContainsItem(item3));
     }
 
     @Test

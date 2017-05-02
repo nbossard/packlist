@@ -24,6 +24,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 
@@ -116,5 +117,5 @@ public interface ISavingModule {
     /**
      * @return a list of missing items names by decreasing order of probability.
      */
-    List<String> getProbableItemsList();
+    List<ScoredItem> getProbableItemsList();
 }
