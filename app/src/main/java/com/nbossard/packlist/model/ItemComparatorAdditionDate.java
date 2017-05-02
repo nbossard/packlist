@@ -39,7 +39,7 @@ public class ItemComparatorAdditionDate implements Comparator<TripItem> {
         int res;
         if (parItem.getAdditionDate() == null || parAnother.getAdditionDate() == null) {
             res = 0;
-        } else if (parItem.getAdditionDate() == parAnother.getAdditionDate()) {
+        } else if (parItem.getAdditionDate().equals(parAnother.getAdditionDate())) {
             res = 0;
         } else if (parItem.getAdditionDate().before(parAnother.getAdditionDate())) {
             res = -1;

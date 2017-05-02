@@ -231,6 +231,7 @@ public class TripItem extends Item implements Serializable, Cloneable {
         sb.append(", mName='").append(mName).append('\'');
         sb.append(", mWeight='").append(mWeight).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');
+        sb.append(", mAdditionDate='").append(mAdditionDate).append('\'');
         sb.append('}');
         return sb.toString();
     }
