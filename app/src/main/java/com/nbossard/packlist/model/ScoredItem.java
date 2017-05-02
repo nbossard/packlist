@@ -25,7 +25,7 @@ package com.nbossard.packlist.model;
         int mScore
     }
 
-    Item <|-- ScoredItem
+    com.nbossard.packlist.model.Item <|-- com.nbossard.packlist.model.ScoredItem
 @enduml
  */
 

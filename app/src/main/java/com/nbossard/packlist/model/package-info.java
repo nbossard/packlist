@@ -36,13 +36,15 @@ package com.nbossard.packlist.model;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.model #LightBlue {
-        !include TripItem.java
+        !include Item.java
         !include ItemComparatorAdditionDate.java
         !include ItemComparatorAlphabetical.java
         !include ItemComparatorCategoryAlphabetical.java
         !include ItemComparatorPacking.java
+        !include ScoredItem.java
         !include SortModes.java
         !include Trip.java
+        !include TripItem.java
         !include TripFormatter.java
 
         com.nbossard.packlist.model.TripItem "1" --* "*" com.nbossard.packlist.model.Trip
