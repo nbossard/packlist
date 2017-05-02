@@ -87,7 +87,6 @@ public class ImportExportTest extends InstrumentationTestCase {
     }
 
     /**
-     * @throws Exception
      * @see ImportExport#massImportItems(Trip, String)
      */
     public void testMassImportItems() throws Exception {
@@ -108,7 +107,6 @@ public class ImportExportTest extends InstrumentationTestCase {
     }
 
     /**
-     * @throws Exception
      * @see ImportExport#parseOneItemLine(Trip, String)
      */
     public void testParseOneItemLine() {
