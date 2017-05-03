@@ -25,8 +25,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xx aout 2016"
-        versionName="0.x">
+        changeDate="xx mai 2016"
+        versionName="0.11">
+        <changelogtext>NEW : Utilisation du TextInputLayout plus joli</changelogtext>
+        <changelogtext>NEW : ISS#45 Ajout d'un paramètre pour l'affichage des dates sur page accueil
+        </changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="3 aout 2016"

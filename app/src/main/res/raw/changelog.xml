@@ -25,9 +25,10 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xx august 2016"
+        changeDate="xx may 2017"
         versionName="0.11">
         <changelogtext>NEW : Using new nice looking TextInputLayout for edit texts</changelogtext>
+        <changelogtext>NEW : ISS#45 Adding a parameter for display of trip dates on homepage</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="3rd august 2016"
