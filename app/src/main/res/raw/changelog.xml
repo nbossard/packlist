@@ -25,7 +25,7 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="xx august 2016"
+        changeDate="xx may 2017"
         versionName="0.11">
         <changelogtext>NEW : Using new nice looking TextInputLayout for edit texts</changelogtext>
     </changelogversion>
