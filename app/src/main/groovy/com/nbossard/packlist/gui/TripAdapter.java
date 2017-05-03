@@ -138,6 +138,7 @@ class TripAdapter extends BaseAdapter {
 
         // Retrieve preferences
         mPreferences = ((PackListApp) mContext.getApplicationContext()).getPreferences();
+        Log.v(TAG, mPreferences.toString());
     }
 
 
