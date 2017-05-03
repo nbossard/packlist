@@ -139,6 +139,8 @@ dependencies {
     // cannot be smaller than version 18 declared in library
     // Suggestion: use tools:overrideLibrary="android.support.test.uiautomator.v18" to force usage
     // tools:overrideLibrary="android.support.test.uiautomator.v18"
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 // ----------------------- tool for getting build date --------
