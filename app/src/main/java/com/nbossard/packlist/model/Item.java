@@ -44,12 +44,12 @@ public class Item implements Comparable<Item> {
 // *********************** FIELDS *************************************************************************
 
     /** The item name. */
-    protected String mName;
+    private String mName;
 
     /**
      * The item category for grouping.
      */
-    protected String mCategory;
+    private String mCategory;
 
 // *********************** METHODS **************************************************************************
 
@@ -64,7 +64,7 @@ public class Item implements Comparable<Item> {
      * Constructor fully qualified.
      * @param parOneItem item to be used
      */
-    public Item(Item parOneItem) {
+    public Item(final Item parOneItem) {
         this.setName(parOneItem.getName());
         this.setCategory(parOneItem.getCategory());
     }

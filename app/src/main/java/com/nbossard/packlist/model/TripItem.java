@@ -227,8 +227,8 @@ public class TripItem extends Item implements Serializable, Cloneable {
     public final String toString() {
         final StringBuilder sb = new StringBuilder("TripItem{");
         sb.append("mUUID=").append(mUUID);
-        sb.append(", mCategory='").append(mCategory).append('\'');
-        sb.append(", mName='").append(mName).append('\'');
+        sb.append(", mCategory='").append(getCategory()).append('\'');
+        sb.append(", mName='").append(getName()).append('\'');
         sb.append(", mWeight='").append(mWeight).append('\'');
         sb.append(", mIsPacked='").append(mIsPacked).append('\'');
         sb.append(", mAdditionDate='").append(mAdditionDate).append('\'');

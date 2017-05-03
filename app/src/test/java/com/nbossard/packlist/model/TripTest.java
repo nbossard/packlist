@@ -294,4 +294,9 @@ public class TripTest  {
         mTestTrip.setSortMode(null);
         assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
     }
+
+    @Test
+    public void testEquals() {
+        assertFalse(mTestTrip.equals(mTestTrip2));
+    }
 }
