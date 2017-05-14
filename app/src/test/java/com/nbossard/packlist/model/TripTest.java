@@ -48,8 +48,10 @@ public class TripTest  {
     private static final String NEW_ITEM_NAME = "newItemName";
     private static final int NEW_ITEM_WEIGHT = 112;
     private static final String NEW_ITEM2_NAME = "newItemName2";
+    private static final String NEW_ITEM2_CAT = "newItemCat2";
     private static final int NEW_ITEM2_WEIGHT = 50;
     private static final String NEW_ITEM3_NAME = "newItemName3";
+    private static final String NEW_ITEM3_CAT = "newItemCat3";
     private static final String NEW_ITEM4_NAME = "newItemName4";
 
 
@@ -273,13 +275,15 @@ public class TripTest  {
     }
 
     @Test
-    public void testAlreadyContainsItemOfName() {
+    public void testAlreadyContainsItem() {
         Item item1 = new Item();
         Item item2 = new Item();
         Item item3 = new Item();
         item1.setName(NEW_ITEM_NAME);
         item2.setName(NEW_ITEM2_NAME);
+        item2.setCategory(NEW_ITEM2_CAT);
         item3.setName(NEW_ITEM3_NAME);
+        item2.setCategory(NEW_ITEM3_CAT);
         assertFalse(mTestTrip.alreadyContainsItem(item1));
         mTestTrip.addItem(item1);
         assertTrue(mTestTrip.alreadyContainsItem(item1));

@@ -49,6 +49,7 @@ public class Item implements Comparable<Item> {
     /**
      * The item category for grouping.
      */
+    @Nullable
     private String mCategory;
 
 // *********************** METHODS **************************************************************************
@@ -70,40 +71,48 @@ public class Item implements Comparable<Item> {
     }
 
     /**
-     * Getter for name.
+     * Getter for name. trimmed.
      * @return i.e. : "Socks"
      */
     public final
     @NonNull
     String getName() {
-        return mName;
+        return mName.trim();
     }
 
     /**
      * Setter for name/ destination of item.
-     * @param parName trip name, usually destination. i.e. : "Dublin"
+     * @param parName trip name, usually destination. i.e. : "Dublin", will be trimmed
      */
     @SuppressWarnings("WeakerAccess")
     public final void setName(final String parName) {
-        mName = parName;
+        if (parName != null) {
+            mName = parName.trim();
+        }
     }
 
     /**
      * Getter for category, an optional characteristic.
      *
-     * @return category or null if never set
+     * @return category or null if never set. trimmed.
      */
 
     @Nullable
     public final String getCategory() {
-        return mCategory;
+        String res = null;
+        if (mCategory != null) {
+            res = mCategory.trim();
+        }
+        return res;
     }
 
     /**
-     * @param parCategory new category name.
+     * @param parCategory new category name. Will be trimmed.
      */
     public final void setCategory(@Nullable final String parCategory) {
-        mCategory = parCategory;
+        if (parCategory != null) {
+            mCategory = parCategory.trim();
+        }
     }
 
 
@@ -122,6 +131,9 @@ public class Item implements Comparable<Item> {
 
     @SuppressWarnings("CheckStyle")
 
+    /**
+     * Content are equals if (trimmed) category and names are equals.
+     */
     @Override
     public boolean equals(Object parO) {
         boolean res;
