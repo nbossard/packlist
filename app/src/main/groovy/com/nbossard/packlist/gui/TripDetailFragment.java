@@ -557,6 +557,8 @@ public class TripDetailFragment extends Fragment {
      * Will fill item name field.
      */
     public final void onClickAddDMagicItem() {
+        Log.d(TAG, "onClickAddDMagicItem() ENTERING");
+
         // retrieving list of probable items
         if (mProbableItemsList == null) {
             mProbableItemsList = mIHostingActivity.getProbableItemsList();
