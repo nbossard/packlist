@@ -19,8 +19,6 @@
 
 package com.nbossard.packlist.model;
 
-import android.util.Log;
-
 
 import java.util.Comparator;
 
@@ -36,7 +34,7 @@ import java.util.Comparator;
  *
  * @author Created by nbossard on 02/05/16.
  */
-public class ItemComparatorCategoryAlphabetical implements Comparator<Item> {
+public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> {
 
     // ********************** CONSTANTS *********************************************************************
 
@@ -48,7 +46,7 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<Item> {
     // *********************** METHODS **********************************************************************
 
     @Override
-    public final int compare(final Item parItem, final Item parAnother) {
+    public final int compare(final TripItem parItem, final TripItem parAnother) {
         // Disabling log for unit test
         //Log.v(TAG, "Entering, parItem = " + parItem + ", parAnother = " + parAnother);
         int res;

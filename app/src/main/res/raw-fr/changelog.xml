@@ -30,6 +30,7 @@
         <changelogtext>NEW : Utilisation du TextInputLayout plus joli</changelogtext>
         <changelogtext>NEW : ISS#45 Ajout d'un paramètre pour l'affichage des dates sur page accueil
         </changelogtext>
+        <changelogtext>Amélioration des catégories dans la réutilisation</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="3 aout 2016"

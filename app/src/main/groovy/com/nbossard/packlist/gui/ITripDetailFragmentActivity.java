@@ -29,9 +29,13 @@ package com.nbossard.packlist.gui;
 @enduml
  */
 
+
+import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * The what {@link TripDetailFragment} expects from hosting activity.
@@ -53,12 +57,12 @@ interface ITripDetailFragmentActivity extends IMainActivity {
     void openMassImportFragment(Trip parTrip);
 
     /**
-     * @return retrieve all previously created item names.
+     * @return retrieve set of all previously created items.
      */
-    String[] getListOfItemNames();
+    Set<Item> getSetOfItems();
 
     /**
      * @return A list of missing items in this trip by decreasing order of probability.
      */
-    List<String> getProbableItemsList();
+    List<ScoredItem> getProbableItemsList();
 }

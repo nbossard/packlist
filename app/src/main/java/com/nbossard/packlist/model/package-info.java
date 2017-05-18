@@ -41,11 +41,13 @@ package com.nbossard.packlist.model;
         !include ItemComparatorAlphabetical.java
         !include ItemComparatorCategoryAlphabetical.java
         !include ItemComparatorPacking.java
+        !include ScoredItem.java
         !include SortModes.java
         !include Trip.java
+        !include TripItem.java
         !include TripFormatter.java
 
-        com.nbossard.packlist.model.Item "1" --* "*" com.nbossard.packlist.model.Trip
+        com.nbossard.packlist.model.TripItem "1" --* "*" com.nbossard.packlist.model.Trip
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking

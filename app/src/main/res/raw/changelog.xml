@@ -29,6 +29,7 @@
         versionName="0.11">
         <changelogtext>NEW : Using new nice looking TextInputLayout for edit texts</changelogtext>
         <changelogtext>NEW : ISS#45 Adding a parameter for display of trip dates on homepage</changelogtext>
+        <changelogtext>Improving category re-use in suggestions</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="3rd august 2016"

@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard and other contributors.
+ * Copyright (c) 2017 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,220 +19,171 @@
 
 package com.nbossard.packlist.model;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 /*
 @startuml
     class com.nbossard.packlist.model.Item {
-        UUID mUUID
         String mName
-        String mWeight
         String mCategory
-        boolean mIsPacked
     }
 @enduml
  */
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
-
 /**
- * An item to take in a trip.
- * @author Created by nbossard on 17/01/16.
+ * An item, generic info about it.
+ * @author Created by nbossard on 29/04/17.
+ * @see TripItem
+ * @see com.nbossard.packlist.gui.PresentableItem
+ *
  */
-public class Item implements Serializable, Cloneable {
 
-
-    // ********************** CONSTANTS *********************************************************************
-
-    // These constants are for better code readability
-    /**
-     * An unpacked item.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public static final boolean UNPACKED = false;
-    /**
-     * A packed item.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public static final boolean PACKED = true;
+public class Item implements Comparable<Item> {
 
 // *********************** FIELDS *************************************************************************
-
-    /** A unique identifier for this item. */
-    private UUID mUUID;
-
-    /** A unique identifier of the {@link Trip} this item belongs to. */
-    private UUID mTripUUID;
 
     /** The item name. */
     private String mName;
 
-    /** The item weight. */
-    private int mWeight;
-
     /**
      * The item category for grouping.
      */
+    @Nullable
     private String mCategory;
-
-    /** Has this item been packed already. true=yes, false=no. */
-    private boolean mIsPacked;
-
-    /**
-     * Date of addition of this item.
-     */
-    private Date mAdditionDate;
 
 // *********************** METHODS **************************************************************************
 
     /**
-     * No params constructor.
+     * Empty constructor. Required.
      */
-    private Item() {
-        mUUID = UUID.randomUUID();
+    public Item() {
+
     }
 
     /**
-     * Full params constructor.
-     *
-     * @param parTrip the {@link Trip} this item belongs to.
-     * @param parName new item name. i.e. : "socks"
+     * Constructor fully qualified.
+     * @param parOneItem item to be used
      */
-    public Item(@NonNull final Trip parTrip, final String parName) {
-        this();
-        setTripUUID(parTrip.getUUID());
-        setName(parName);
-        mAdditionDate = new Date();
+    public Item(final Item parOneItem) {
+        this.setName(parOneItem.getName());
+        this.setCategory(parOneItem.getCategory());
     }
 
     /**
-     * @return automatically set UUID (unique identifier)
-     */
-    public final @NonNull UUID getUUID() {
-        return mUUID;
-    }
-
-    /**
-     * Getter for name.
+     * Getter for name. trimmed.
      * @return i.e. : "Socks"
      */
-    public final String getName() {
-        return mName;
+    public final
+    @NonNull
+    String getName() {
+        return mName.trim();
     }
 
     /**
      * Setter for name/ destination of item.
-     * @param parName trip name, usually destination. i.e. : "Dublin"
+     * @param parName trip name, usually destination. i.e. : "Dublin", will be trimmed
      */
     @SuppressWarnings("WeakerAccess")
     public final void setName(final String parName) {
-        mName = parName;
-    }
-
-
-    /**
-     * Getter for weight.
-     * @return a weight in grams. 0 if never set. i.e. : "100" grammes
-     */
-    public final int getWeight() {
-        return mWeight;
-    }
-
-    /**
-     * Setter for weight.
-     * @param parWeight item weight in grammes.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public final void setWeight(final int parWeight) {
-        mWeight = parWeight;
-    }
-
-    /**
-     * Getter for boolean whether or not this item is packed.
-     * @return true=yes, default value is false=no.
-     */
-    public final boolean isPacked() {
-        return mIsPacked;
-    }
-
-    /**
-     * Setter for  whether or not this item is packed.
-     * @param parPacked true=yes, false=no.
-     */
-    public final void setPacked(final boolean parPacked) {
-        mIsPacked = parPacked;
-    }
-
-    /**
-     * @param parTripUUID The UUID of the {@link Trip} this item belongs to.
-     */
-    @SuppressWarnings("WeakerAccess")
-    public final void setTripUUID(final UUID parTripUUID) {
-        mTripUUID = parTripUUID;
-    }
-
-    /**
-     * @return The UUID of the {@link Trip} this item belongs to, can be null if loading old versions.
-     */
-    public final @Nullable UUID getTripUUID() {
-        return mTripUUID;
-    }
-
-    /**
-     * Getter for addition date of this item.
-     * @return the addition date of this item, will be used by default sorting mode
-     */
-    @SuppressWarnings("WeakerAccess")
-    @Nullable
-    public final Date getAdditionDate() {
-        Date res = null;
-        if (mAdditionDate != null) {
-            // Findbugs suggests cloning for security reasons
-            res = (Date) mAdditionDate.clone();
+        if (parName != null) {
+            mName = parName.trim();
         }
-        return res;
     }
 
     /**
      * Getter for category, an optional characteristic.
      *
-     * @return category or null if never set
+     * @return category or null if never set. trimmed.
      */
+
     @Nullable
     public final String getCategory() {
-        return mCategory;
-    }
-
-    /**
-     * @param parCategory new category name.
-     */
-    public final void setCategory(final String parCategory) {
-        mCategory = parCategory;
-    }
-
-    @Override
-    protected final Item clone() throws CloneNotSupportedException {
-        Item res = (Item) super.clone();
-
-        // setting another UUID for the clone
-        res.mUUID = UUID.randomUUID();
-
+        String res = null;
+        if (mCategory != null) {
+            res = mCategory.trim();
+        }
         return res;
     }
 
-    @SuppressWarnings("StringBufferReplaceableByString")
+    /**
+     * @param parCategory new category name. Will be trimmed.
+     */
+    public final void setCategory(@Nullable final String parCategory) {
+        if (parCategory != null) {
+            mCategory = parCategory.trim();
+        }
+    }
+
+
+// *********************** GENERATED METHODS ***********************************************************
+
+
+    @SuppressWarnings("CheckStyle")
     @Override
-    public final String toString() {
-        final StringBuilder sb = new StringBuilder("Item{");
-        sb.append("mUUID=").append(mUUID);
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Item{");
+        sb.append("mName='").append(mName).append('\'');
         sb.append(", mCategory='").append(mCategory).append('\'');
-        sb.append(", mName='").append(mName).append('\'');
-        sb.append(", mWeight='").append(mWeight).append('\'');
-        sb.append(", mIsPacked='").append(mIsPacked).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @SuppressWarnings("CheckStyle")
+
+    /**
+     * Content are equals if (trimmed) category and names are equals.
+     */
+    @Override
+    public boolean equals(Object parO) {
+        boolean res;
+
+        if (this == parO) return true;
+        if (parO == null) {
+            res = false;
+        } else {
+
+            Item item = (Item) parO;
+
+            if (getCategory() == null && item.getCategory() != null) {
+                res = false;
+            } else if (getCategory() != null && item.getCategory() == null) {
+                res = false;
+            } else if (getCategory() == null && item.getCategory() == null) {
+                res = (getName().equals(item.getName()));
+            } else if (getCategory() != null && item.getCategory() != null) {
+                if (!getName().contentEquals(item.getName())) {
+                    res = false;
+                } else {
+                    res = (getCategory().contentEquals(item.getCategory()));
+                }
+            } else {
+                // never occur
+                res = false;
+            }
+        }
+        return res;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull final Item o) {
+        int res;
+        if (getCategory() == null || o.getCategory() == null) {
+            res = getName().compareTo(o.getName());
+        } else {
+            res = getCategory().compareTo(o.getCategory());
+            if (res == 0) {
+                res = getName().compareTo(o.getName());
+            }
+        }
+        return res;
     }
 }

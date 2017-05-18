@@ -33,13 +33,13 @@ import java.util.Comparator;
  *
  * @author Created by nbossard on 02/05/16.
  */
-public class ItemComparatorAdditionDate implements Comparator<Item> {
+public class ItemComparatorAdditionDate implements Comparator<TripItem> {
     @Override
-    public final int compare(final Item parItem, final Item parAnother) {
+    public final int compare(final TripItem parItem, final TripItem parAnother) {
         int res;
         if (parItem.getAdditionDate() == null || parAnother.getAdditionDate() == null) {
             res = 0;
-        } else if (parItem.getAdditionDate() == parAnother.getAdditionDate()) {
+        } else if (parItem.getAdditionDate().equals(parAnother.getAdditionDate())) {
             res = 0;
         } else if (parItem.getAdditionDate().before(parAnother.getAdditionDate())) {
             res = -1;

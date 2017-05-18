@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
-import java.util.UUID;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -49,8 +48,10 @@ public class TripTest  {
     private static final String NEW_ITEM_NAME = "newItemName";
     private static final int NEW_ITEM_WEIGHT = 112;
     private static final String NEW_ITEM2_NAME = "newItemName2";
+    private static final String NEW_ITEM2_CAT = "newItemCat2";
     private static final int NEW_ITEM2_WEIGHT = 50;
     private static final String NEW_ITEM3_NAME = "newItemName3";
+    private static final String NEW_ITEM3_CAT = "newItemCat3";
     private static final String NEW_ITEM4_NAME = "newItemName4";
 
 
@@ -151,7 +152,7 @@ public class TripTest  {
     public void testDeleteItem() throws Exception {
 
         mTestTrip.addItem(NEW_ITEM_NAME);
-        Item delItem= mTestTrip.addItem(NEW_ITEM2_NAME);
+        TripItem delItem = mTestTrip.addItem(NEW_ITEM2_NAME);
         mTestTrip.addItem(NEW_ITEM3_NAME);
         mTestTrip.addItem(NEW_ITEM4_NAME);
 
@@ -213,18 +214,18 @@ public class TripTest  {
         assertEquals(0,mTestTrip.getTotalWeight());
 
         // adding an item with weight, checking total weight is updated
-        Item newItem = new Item(mTestTrip, NEW_ITEM_NAME);
+        TripItem newItem = new TripItem(mTestTrip, NEW_ITEM_NAME);
         newItem.setWeight(NEW_ITEM_WEIGHT);
         mTestTrip.addItem(newItem);
         assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
 
         // adding an item without weight, checking total weight is updated
-        Item newItem4 = new Item(mTestTrip, NEW_ITEM4_NAME);
+        TripItem newItem4 = new TripItem(mTestTrip, NEW_ITEM4_NAME);
         mTestTrip.addItem(newItem4);
         assertEquals(NEW_ITEM_WEIGHT, mTestTrip.getTotalWeight());
 
         // adding another item with weight, checking total weight is updated
-        Item newItem2 = new Item(mTestTrip, NEW_ITEM2_NAME);
+        TripItem newItem2 = new TripItem(mTestTrip, NEW_ITEM2_NAME);
         newItem2.setWeight(NEW_ITEM2_WEIGHT);
         mTestTrip.addItem(newItem2);
         assertEquals(NEW_ITEM_WEIGHT + NEW_ITEM2_WEIGHT, mTestTrip.getTotalWeight());
@@ -242,12 +243,12 @@ public class TripTest  {
         assertEquals(0, mTestTrip.getTotalWeight());
 
         // adding an item with weight, checking total weight is updated
-        Item newItem = new Item(mTestTrip, NEW_ITEM_NAME);
+        TripItem newItem = new TripItem(mTestTrip, NEW_ITEM_NAME);
         newItem.setWeight(NEW_ITEM_WEIGHT);
         mTestTrip.addItem(newItem);
 
         // adding another item with weight, checking total weight is updated
-        Item newItem2 = new Item(mTestTrip, NEW_ITEM2_NAME);
+        TripItem newItem2 = new TripItem(mTestTrip, NEW_ITEM2_NAME);
         newItem2.setWeight(NEW_ITEM2_WEIGHT);
         mTestTrip.addItem(newItem2);
 
@@ -274,13 +275,21 @@ public class TripTest  {
     }
 
     @Test
-    public void testAlreadyContainsItemOfName() {
-        assertFalse(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
-        mTestTrip.addItem(NEW_ITEM_NAME);
-        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM_NAME));
-        mTestTrip.addItem(NEW_ITEM2_NAME);
-        mTestTrip.addItem(NEW_ITEM3_NAME);
-        assertTrue(mTestTrip.alreadyContainsItemOfName(NEW_ITEM3_NAME));
+    public void testAlreadyContainsItem() {
+        Item item1 = new Item();
+        Item item2 = new Item();
+        Item item3 = new Item();
+        item1.setName(NEW_ITEM_NAME);
+        item2.setName(NEW_ITEM2_NAME);
+        item2.setCategory(NEW_ITEM2_CAT);
+        item3.setName(NEW_ITEM3_NAME);
+        item2.setCategory(NEW_ITEM3_CAT);
+        assertFalse(mTestTrip.alreadyContainsItem(item1));
+        mTestTrip.addItem(item1);
+        assertTrue(mTestTrip.alreadyContainsItem(item1));
+        mTestTrip.addItem(item2);
+        mTestTrip.addItem(item3);
+        assertTrue(mTestTrip.alreadyContainsItem(item3));
     }
 
     @Test
@@ -288,5 +297,10 @@ public class TripTest  {
         assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
         mTestTrip.setSortMode(null);
         assertEquals(SortModes.DEFAULT, mTestTrip.getSortMode());
+    }
+
+    @Test
+    public void testEquals() {
+        assertFalse(mTestTrip.equals(mTestTrip2));
     }
 }
