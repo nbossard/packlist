@@ -44,6 +44,7 @@ public class Item implements Comparable<Item> {
 // *********************** FIELDS *************************************************************************
 
     /** The item name. */
+    @Nullable
     private String mName;
 
     /**
@@ -75,9 +76,12 @@ public class Item implements Comparable<Item> {
      * @return i.e. : "Socks"
      */
     public final
-    @NonNull
     String getName() {
-        return mName.trim();
+        if (mName != null) {
+            return mName.trim();
+        } else {
+            return null;
+        }
     }
 
     /**
