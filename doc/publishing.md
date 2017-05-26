@@ -1,6 +1,7 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - save your app data as it might be lost (when running UI Automator tests)
  - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
  - run all tests
