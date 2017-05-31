@@ -83,7 +83,8 @@ public class uiAutomator {
     }
 
     @Test
-    public void testOpenMenu() throws UiObjectNotFoundException, InterruptedException {
+    public void testOpenMenuAndCheckContent() throws UiObjectNotFoundException, InterruptedException {
+        // The device has to be in english, however this test will fail
         UiObject menuButton = mDevice.findObject(new UiSelector().descriptionContains("More options"));
 
         // Simulate a user-click on the menu button, if found.
@@ -93,13 +94,31 @@ public class uiAutomator {
 
         mDevice.wait(Until.findObject(By.text("About")), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
+        UiObject menuSettings = mDevice.findObject(new UiSelector().text("Settings"));
         UiObject menuSendAReport = mDevice.findObject(new UiSelector().text("Send a report"));
         UiObject menuWhatsNew = mDevice.findObject(new UiSelector().text("What's new"));
         UiObject menuAbout = mDevice.findObject(new UiSelector().text("About"));
 
-        assertTrue(menuSendAReport.exists());
-        assertTrue(menuWhatsNew.exists());
-        assertTrue(menuAbout.exists());
+        assertTrue("Missing \"settings\" menu entry", menuSettings.exists());
+        assertTrue("Missing \"send a report\" menu entry", menuSendAReport.exists());
+        assertTrue("Missing \"what's new\" menu entry", menuWhatsNew.exists());
+        assertTrue("Missing \"about\" menu entry", menuAbout.exists());
+    }
+
+    @Test
+    public void testMenuSettings() throws InterruptedException, UiObjectNotFoundException {
+        testOpenMenuAndCheckContent();
+
+        UiObject menuSettings = mDevice.findObject(new UiSelector().text("Settings"));
+
+        if (menuSettings.exists() && menuSettings.isEnabled()) {
+            menuSettings.click();
+        }
+
+        // check displayed
+        UiObject menuSettingsDate = mDevice.findObject(new UiSelector().text("Display dates"));
+
+        assertTrue("Missing \"Display dates\" menu entry", menuSettingsDate.exists());
     }
 
     @Test
