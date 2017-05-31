@@ -122,6 +122,22 @@ public class uiAutomator {
     }
 
     @Test
+    public void testMenuSendReport() throws InterruptedException, UiObjectNotFoundException {
+        testOpenMenuAndCheckContent();
+
+        UiObject menuSendReport = mDevice.findObject(new UiSelector().text("Send a report"));
+
+        if (menuSendReport.exists() && menuSendReport.isEnabled()) {
+            menuSendReport.click();
+        }
+
+        // check displayed
+        UiObject menuSettingsDate = mDevice.findObject(new UiSelector().text("TODO"));
+
+        assertTrue("Missing \"TODO\" menu entry", menuSettingsDate.exists());
+    }
+
+    @Test
     public void testEmptyList() throws UiObjectNotFoundException, InterruptedException {
 
         deleteAllTrips();
