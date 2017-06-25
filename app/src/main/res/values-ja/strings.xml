@@ -38,6 +38,7 @@
     <string name="toast_update_failed_incompatible_format">更新に失敗しました。これはおそらく古い旅行と現在のフォーマットとの間に互換性がないためです。このアイテムまたは旅行を削除して再作成してください。</string>
     <!-- Menu items -->
     <string name="action__whatsnew">最新情報</string>
+    <string name="action__settings">設定</string>
     <string name="action__send_logs">レポートを送信</string>
     <string name="action__about">アプリについて</string>
     <string name="action_trip__sort">並べ替え</string>
@@ -60,8 +61,8 @@
     <plurals name="ta__x_days_ago">
         <item quantity="other">%d 日前。</item>
     </plurals>
-    <string name="trip_deletion_confirm__title">Sounds like a bad idea…</string>
-    <string name="trip_deletion_confirm__body">Old trips are used as a base of knowledge for suggesting you items and categories, you should keep them if possible.\n\nReally delete ?</string>
+    <string name="trip_deletion_confirm__title">悪い考えのように思います&#8230;</string>
+    <string name="trip_deletion_confirm__body">古い旅行は、あなたにアイテムとカテゴリーを示唆する知識の基礎として使用されます。可能であれば残しておく必要があります。\n\n削除してもよろしいですか?</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">旅行の名前</string>
     <string name="new_trip__start_date">開始日</string>
@@ -113,5 +114,7 @@
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">OK をクリックすると、アプリケーション ログを送信します。</string>
-
+    <!-- For Settings -->
+    <string name="pref_display_dates">日付を表示</string>
+    <string name="pref_display_dates_sum">旅行の日付をダッシュ ボードに表示します</string>
 </resources>
