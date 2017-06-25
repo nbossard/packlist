@@ -45,7 +45,7 @@
     <string name="action_trip__import">テキスト ファイルのインポート</string>
     <string name="action_trip__unpack_all">すべてのアイテムを荷物から出す</string>
     <!-- About page -->
-    <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">持ち物リスト %1$s.\n %2$s\nCopyright © 2015&#8211;2017\nNBossard and other contributors.\n Apache 2 Licensed.\n 支援は提案はこちらを参照してください \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">大変感謝します\n -naofum 日本語翻訳\n -Christophe Paccolat  ドイツ語翻訳</string>
     <string name="about__third_party__button">サードパーティ ライブラリー</string>
     <string name="about_act__fab_go_to_website">ウェブサイトを開く</string>
