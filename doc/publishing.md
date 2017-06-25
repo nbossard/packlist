@@ -1,6 +1,7 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - update translations with crowdin
  - save your app data as it might be lost (when running UI Automator tests)
  - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
@@ -24,7 +25,9 @@
  - git merge develop
  - change build Variants to release
  - rebuild project
- - menu "build/generate signed apk", dont forget updating path of generation to pub/res_pub folder vx.x
+ - menu "build/generate signed apk", 
+    - dont forget updating path of generation to pub/res_pub folder vx.x
+    - sign V1 and V2
  - quick test apk
     - check about page
     - check what's new
