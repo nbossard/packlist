@@ -66,6 +66,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.11 improving categories management
 - 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
 - 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)
 - 0.10 adding categories and item suggestions

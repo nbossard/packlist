@@ -15,9 +15,8 @@
  - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
  - update pub/res_pub/incoming/**/playstore_description.md files 
  - create or update whats_new.md based on changelog.xml contents
- - delete "latest" folder
- - duplicate "incoming" folder in pub/res_pub to "latest"
- - create or update multiple whats_new.md based on changelog.xml contents
+ - delete "latest" folder content in pub/res_pub (except .gitkeep)
+ - duplicate "incoming" folder content in pub/res_pub to "latest"
  - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
  - change to branch master
