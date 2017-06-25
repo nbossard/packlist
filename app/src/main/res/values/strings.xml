@@ -129,8 +129,6 @@
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
 
-    <string name="to_remove">for testing crowdin integration</string>
-
     <!-- For Settings -->
     <string name="activity_settings__title" translatable="false">@string/action__settings</string>
     <string name="pref_display_dates">Display dates</string>
