@@ -126,7 +126,6 @@
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
     <!-- For Settings -->
-    <string name="activity_settings__title">@string/action__settings</string>
     <string name="pref_display_dates">Afficher dates</string>
     <string name="pref_display_dates_sum">Afficher les dates sur la liste des voyages</string>
 </resources>
