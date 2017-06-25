@@ -204,7 +204,7 @@ public class MassImportFragment extends Fragment {
      *
      * @param parEnable false to disable, true to enable
      */
-    private void enableGUI(final boolean parEnable) {
+    private void enableGUI(@SuppressWarnings("SameParameterValue") final boolean parEnable) {
         mMassImportButton.setEnabled(parEnable);
     }
 }

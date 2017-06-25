@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/trip_detail__new_item__edit"
         android:minHeight="@dimen/accessibility_button_min_height"
+        android:minWidth="@dimen/accessibility_button_min_width"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:contentDescription="@string/trip_detail__new_item_magic___access"

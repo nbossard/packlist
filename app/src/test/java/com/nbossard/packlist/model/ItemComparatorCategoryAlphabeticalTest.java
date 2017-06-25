@@ -30,32 +30,29 @@ public class ItemComparatorCategoryAlphabeticalTest extends TestCase {
 
     private static final String ITEM_TEST_NAME_A = "AItemTestName";
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
-    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
-    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
     private static final String CAT_NAME_A = "Acat";
     private static final String CAT_NAME_B = "Bcat";
-    private Item mTestItemBefore;
-    private Item mTestItemAfter;
-    private Trip mTestTrip;
-    private Item mTestItemBeforeWithCatA;
-    private Item mTestItemBeforeWithCatB;
-    private Item mTestSameCatDiffNameBefore;
-    private Item mTestSameCatDiffNameAfter;
+    private TripItem mTestItemBefore;
+    private TripItem mTestItemAfter;
+    private TripItem mTestItemBeforeWithCatA;
+    private TripItem mTestItemBeforeWithCatB;
+    private TripItem mTestSameCatDiffNameBefore;
+    private TripItem mTestSameCatDiffNameAfter;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip = new Trip();
-        mTestItemBefore = new Item(mTestTrip, ITEM_TEST_NAME_A);
-        mTestItemBeforeWithCatA = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        Trip testTrip = new Trip();
+        mTestItemBefore = new TripItem(testTrip, ITEM_TEST_NAME_A);
+        mTestItemBeforeWithCatA = new TripItem(testTrip, ITEM_TEST_NAME_A);
         mTestItemBeforeWithCatA.setCategory(CAT_NAME_A);
-        mTestItemBeforeWithCatB = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        mTestItemBeforeWithCatB = new TripItem(testTrip, ITEM_TEST_NAME_A);
         mTestItemBeforeWithCatB.setCategory(CAT_NAME_B);
-        mTestItemAfter = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        mTestItemAfter = new TripItem(testTrip, ITEM_TEST_NAME_B);
 
-        mTestSameCatDiffNameBefore = new Item(mTestTrip, ITEM_TEST_NAME_A);
+        mTestSameCatDiffNameBefore = new TripItem(testTrip, ITEM_TEST_NAME_A);
         mTestSameCatDiffNameBefore.setCategory(CAT_NAME_A);
-        mTestSameCatDiffNameAfter = new Item(mTestTrip, ITEM_TEST_NAME_B);
+        mTestSameCatDiffNameAfter = new TripItem(testTrip, ITEM_TEST_NAME_B);
         mTestSameCatDiffNameBefore.setCategory(CAT_NAME_A);
     }
 

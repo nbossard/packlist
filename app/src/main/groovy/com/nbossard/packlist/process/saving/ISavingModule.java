@@ -24,9 +24,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 /*
 @startuml
@@ -83,28 +86,36 @@ public interface ISavingModule {
     void addListener(ITripChangeListener parListener);
 
     /**
-     * Update an existing Item of a trip.
+     * Listener wishing to be no more informed of Trip change.
+     * @param parListener listener to be added
+     */
+    void removeListener(ITripChangeListener parListener);
+
+    /**
+     * Update an existing TripItem of a trip.
      * @param parItem item to be updated
      * @return true if update succeeded, false otherwise
      */
-    @CheckResult boolean updateItem(Item parItem);
+    @CheckResult
+    boolean updateItem(TripItem parItem);
 
     /**
      * Retrieve the list of previously created categories.
+     * It is a set (no duplicate).
      *
      * @return a list of categories
      */
-    String[] getListOfCategories();
+    Set<String> getAllCategories();
 
     /**
-     * Retrieve the list of previously created item names.
+     * Retrieve the list of previously created items.
      *
      * @return a list of categories
      */
-    String[] getListOfItemNames();
+    Set<Item> getAllPossibleItems();
 
     /**
-     * Get a list of missing items names by decreasing order of probability.
+     * @return a list of missing items names by decreasing order of probability.
      */
-    List<String> getProbableItemsList();
+    List<ScoredItem> getProbableItemsList();
 }

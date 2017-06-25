@@ -37,6 +37,7 @@
 
     <!-- Menu items -->
     <string name="action__whatsnew">Quoi de neuf</string>
+    <string name="action__settings">Paramètres</string>
     <string name="action__send_logs">Envoyer un rapport</string>
     <string name="action__about">A propos</string>
     <string name="action_trip__sort">Trier</string>
@@ -66,7 +67,7 @@
     </plurals>
 
     <string name="trip_deletion_confirm__title">Opération déconseillée…</string>
-    <string name="trip_deletion_confirm__body">Les voyages passés servent de base de connaissance pour vous suggérer des items ou les catégorises, vous devriez les garder si possible. \\n\\nVoulez-vous vraiment le détruire ?</string>
+    <string name="trip_deletion_confirm__body">Les voyages passés servent de base de connaissance pour vous suggérer des items ou les catégorises, vous devriez les garder si possible. \n\nVoulez-vous vraiment le détruire ?</string>
 
     <!-- New trip fragment -->
     <string name="new_trip__name">Votre destination</string>
@@ -109,19 +110,23 @@
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib__mli__label">ft<b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
-    <!-- Item detail -->
+    <!-- TripItem detail -->
     <string name="item_detail__name__label">nom</string>
     <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">MODIFIER</string>
     <string name="item_detail__category__label">Catégorie</string>
 
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation_new_trip__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans un nouveau voyage. Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
-    <string name="mass_import__principle_explanation_with_name__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans le voyage \"%1$s\". Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g)</string>
+    <string name="mass_import__principle_explanation_new_trip__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans un nouveau voyage. Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g).</string>
+    <string name="mass_import__principle_explanation_with_name__label">La zone de saisie ci-dessous vous permet de copier coller vos objets à emmener pour un import en masse dans le voyage \"%1$s\". Un objet par ligne.\n\nExemple :\nDivers:Guide touristique (50g).</string>
     <string name="mass_import__import__button">Importer</string>
     <string name="mass_import__items__hint">saisissez ou collez ici&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
+    <!-- For Settings -->
+    <string name="activity_settings__title">@string/action__settings</string>
+    <string name="pref_display_dates">Afficher dates</string>
+    <string name="pref_display_dates_sum">Afficher les dates sur la liste des voyages</string>
 </resources>

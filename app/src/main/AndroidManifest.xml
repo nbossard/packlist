@@ -93,6 +93,16 @@
                 android:value=".gui.MainActivity"/>
         </activity>
 
+        <activity
+            android:name=".gui.SettingsActivity"
+            android:label="@string/activity_settings__title"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".gui.MainActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nbossard.packlist.gui.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

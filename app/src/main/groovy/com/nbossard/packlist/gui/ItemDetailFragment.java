@@ -34,7 +34,9 @@ import android.widget.EditText;
 
 import com.nbossard.packlist.databinding.FragmentItemDetailBinding;
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
+
+import java.util.Set;
 
 import hugo.weaving.DebugLog;
 
@@ -43,7 +45,7 @@ import static java.lang.Integer.parseInt;
 /*
  * @startuml
  * class com.nbossard.packlist.gui.ItemDetailFragment {
- *  +setItem(Item)
+ *  +setItem(TripItem)
  * }
  *
  * com.nbossard.packlist.gui.ItemDetailFragment --> com.nbossard.packlist.gui.IItemDetailFragmentActivity
@@ -51,7 +53,7 @@ import static java.lang.Integer.parseInt;
  */
 
 /**
- * Class for displaying details about an {@link Item}.
+ * Class for displaying details about an {@link TripItem}.
  * @author Created by nbossard on 17/03/16.
  */
 public class ItemDetailFragment extends Fragment {
@@ -91,8 +93,10 @@ public class ItemDetailFragment extends Fragment {
     /** The root view, will be used to findViewById. */
     private View mRootView;
 
-    /** Item object to be displayed and edited. */
-    private Item mItem;
+    /**
+     * TripItem object to be displayed and edited.
+     */
+    private TripItem mItem;
 
     /** Supporting activity, to save trip.*/
     private IItemDetailFragmentActivity mIHostingActivity;
@@ -119,7 +123,7 @@ public class ItemDetailFragment extends Fragment {
      * @return a new DetailFragment.
      */
     @DebugLog
-    public static ItemDetailFragment newInstance(final Item parItem) {
+    public static ItemDetailFragment newInstance(final TripItem parItem) {
         ItemDetailFragment f = new ItemDetailFragment();
         if (parItem != null) {
             Bundle b = new Bundle();
@@ -135,7 +139,7 @@ public class ItemDetailFragment extends Fragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            mItem = (Item) args.getSerializable(BUNDLE_PAR_ITEM);
+            mItem = (TripItem) args.getSerializable(BUNDLE_PAR_ITEM);
         }
     }
 
@@ -171,9 +175,11 @@ public class ItemDetailFragment extends Fragment {
         mCategoryEdit = (AutoCompleteTextView) mRootView.findViewById(R.id.item_detail__category__edit);
 
         // pre-filling list of already existing categories that may match
-        String[] alreadyExistCat = mIHostingActivity.getListOfCategories();
+        Set<String> alreadyExistCat = mIHostingActivity.getListOfCategories();
+        String[] alreadyExistCatArray = new String[alreadyExistCat.size()];
+        alreadyExistCat.toArray(alreadyExistCatArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, alreadyExistCat);
+                android.R.layout.simple_dropdown_item_1line, alreadyExistCatArray);
         mCategoryEdit.setAdapter(adapter);
 
         // Adding listeners
@@ -193,7 +199,7 @@ public class ItemDetailFragment extends Fragment {
      * @param parRetrievedItem item to be displayed
      */
     @DebugLog
-    public final void setItem(final Item parRetrievedItem) {
+    public final void setItem(final TripItem parRetrievedItem) {
         mItem = parRetrievedItem;
     }
 }

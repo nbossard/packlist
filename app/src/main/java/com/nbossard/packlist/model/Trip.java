@@ -55,6 +55,9 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Strongly suggested by interface Serializable. */
+    private static final long serialVersionUID = 1235897515L;
+
     /**
      * Log tag.
      */
@@ -92,7 +95,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     private String mNote;
 
     /** List of items to bring in this trip. */
-    private List<Item> mListItem;
+    private List<TripItem> mListItem;
 
     /** The total weight of all items in this trip. */
     private int mTotalWeight;
@@ -143,7 +146,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * setter for note.
-     * @param parNote new value for note. i.e. : "un chouette coin"
+     * @param parNote new value for note. i.e. : "a nice place to rest"
      */
     public final void setNote(final String parNote) {
         this.mNote = parNote;
@@ -151,7 +154,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Getter for note.
-     * @return i.e. : "un chouette coin"
+     * @return i.e. : "a nice place to rest"
      */
     public final String getNote() {
         return mNote;
@@ -220,13 +223,25 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     /**
      * Add a new item in the list of items to bring with this trip.
+     *
+     * @param parItem new item
+     * @return UUID of newly created item
+     */
+    public final TripItem addItem(Item parItem) {
+        TripItem newTripItem = new TripItem(this, parItem);
+        mListItem.add(newTripItem);
+        return newTripItem;
+    }
+
+    /**
+     * Add a new item in the list of items to bring with this trip.
      * @param parName name of new item
      * @return UUID of newly created item
      */
-    public final UUID addItem(final String parName) {
-        Item newItem = new Item(this, parName);
-        mListItem.add(newItem);
-        return newItem.getUUID();
+    public final TripItem addItem(final String parName) {
+        TripItem newTripItem = new TripItem(this, parName);
+        mListItem.add(newTripItem);
+        return newTripItem;
     }
 
     /**
@@ -236,7 +251,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parItem new item
      */
     @SuppressWarnings("WeakerAccess")
-    public final void addItem(final Item parItem) {
+    public final void addItem(final TripItem parItem) {
         mListItem.add(parItem);
         setTotalWeight(recomputeTotalWeight(ALL_ITEMS));
         setPackedWeight(recomputeTotalWeight(PACKED_ITEMS_ONLY));
@@ -261,7 +276,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @return a list of items.
      */
     @NonNull
-    public final List<Item> getListOfItems() {
+    public final List<TripItem> getListOfItems() {
         return mListItem;
     }
 
@@ -274,8 +289,8 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parUUID unique identifier of item to be deleted
      */
     public final void deleteItem(final UUID parUUID) {
-        Item toDeleteItem = null;
-        for (Item oneItem : mListItem) {
+        TripItem toDeleteItem = null;
+        for (TripItem oneItem : mListItem) {
             if (oneItem.getUUID().compareTo(parUUID) == 0) {
                 toDeleteItem = oneItem;
             }
@@ -291,7 +306,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * unpack all items of this trip. Update packing weight.
      */
     public final void unpackAll() {
-        for (Item oneItem : mListItem) {
+        for (TripItem oneItem : mListItem) {
             oneItem.setPacked(false);
         }
         packingChange();
@@ -318,21 +333,22 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
     }
 
     /**
-     * Check if an article of same name is already in the list.
+     * Check if an article of same name + category is already in the list.
      *
-     * @param parItemName name of new article
+     * @param parItem candidate item
      * @return true if an article of exactly same name is in the list
      */
-    public final boolean alreadyContainsItemOfName(final String parItemName) {
+    public final boolean alreadyContainsItem(final Item parItem) {
         boolean res = false;
         for (Item oneItem : getListOfItems()) {
-            if (oneItem.getName().contentEquals(parItemName)) {
+            if (oneItem.equals(parItem)) {
                 res = true;
                 break;
             }
         }
         return res;
     }
+
 
     /**
      * Updating of total weight.
@@ -394,9 +410,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
     @Override
     public final int compareTo(@NonNull final Trip parAnotherTrip) {
-        int curRemainingDays = ((Long) getRemainingDays()).intValue();
-        int otherRemainingDays = ((Long) parAnotherTrip.getRemainingDays()).intValue();
-        return otherRemainingDays - curRemainingDays;
+        return (int) (parAnotherTrip.getRemainingDays() - getRemainingDays());
     }
 
     /**
@@ -415,8 +429,11 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
 
         // cloning also trip list
         clonedTrip.mListItem = new ArrayList<>();
-        for (Item item : getListOfItems()) {
-            clonedTrip.addItem(item.clone());
+
+        // using a "classic for" as this is supposed to be more
+        // efficient for ArrayList according to greenspector
+        for (int i = 0; i < mListItem.size(); i++) {
+            clonedTrip.addItem(mListItem.get(i).clone());
         }
         return clonedTrip;
     }
@@ -442,7 +459,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      */
     private int recomputeTotalWeight(final boolean parPackedOnly) {
         int resTotalWeight = 0;
-        for (Item item : mListItem) {
+        for (TripItem item : mListItem) {
             //noinspection ConstantConditions
             if (!parPackedOnly || (parPackedOnly && item.isPacked())) {
                 resTotalWeight += item.getWeight();

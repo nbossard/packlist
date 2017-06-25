@@ -38,10 +38,14 @@ import com.nbossard.packlist.R;
 import android.util.Log;
 
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -136,7 +140,7 @@ public class MainActivityForTest
 
 
         if (id == R.id.action__whatsnew) {
-            openDialogFragment(new DialogStandardFrag());
+            openDialogFragment(new ChangeLogDialog());
         } else  if (id == R.id.action__about) {
             openAboutActivity();
         }
@@ -208,7 +212,7 @@ public class MainActivityForTest
     }
 
     @Override
-    public void openItemDetailFragment(final Item parItem) {
+    public void openItemDetailFragment(final TripItem parItem) {
         Log.d(TAG, "openItemDetailFragment(...) faked");
     }
 
@@ -304,12 +308,12 @@ public class MainActivityForTest
     }
 
     @Override
-    public String[] getListOfItemNames() {
-        return new String[0];
+    public Set<Item> getSetOfItems() {
+        return new HashSet<>();
     }
 
     @Override
-    public List<String> getProbableItemsList() {
+    public List<ScoredItem> getProbableItemsList() {
         return null;
     }
 //

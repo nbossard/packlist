@@ -32,9 +32,9 @@ import java.util.Comparator;
  *
  * @author Created by nbossard on 02/05/16.
  */
-public class ItemComparatorAlphabetical implements Comparator<Item> {
+public class ItemComparatorAlphabetical implements Comparator<TripItem> {
     @Override
-    public final int compare(final Item parItem, final Item parAnother) {
+    public final int compare(final TripItem parItem, final TripItem parAnother) {
         return parItem.getName().compareTo(parAnother.getName());
     }
 }

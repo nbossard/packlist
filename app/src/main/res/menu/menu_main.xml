@@ -28,7 +28,11 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".gui.MainActivity">
-
+    <item
+        android:id="@+id/action__settings"
+        android:orderInCategory="100"
+        android:title="@string/action__settings"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action__send_logs"
         android:orderInCategory="100"

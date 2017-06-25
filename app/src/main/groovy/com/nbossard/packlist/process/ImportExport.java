@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 
@@ -149,22 +149,34 @@ public class ImportExport {
             } else {
                 // normal case, it is an item to be added
 
-                Item newItem = parseOneItemLine(parTrip, oneLine);
+                TripItem newItem = parseOneItemLine(parTrip, oneLine);
                 parTrip.addItem(newItem);
             }
         }
     }
 
+    /**
+     * Parses provided content removes the marker it is a note and returns cleaned content.
+     *
+     * @param parOneLine string to be parsed. i.e. : "NOTE: With friends."
+     * @return the content of parOneline but with removed start corresponding to the marker that it is note.
+     * i.e. : "With friends"
+     */
     @NonNull
     private String parseTripNote(final String parOneLine) {
-        String res = parOneLine.substring(TRIPNOTE_SYMBOL.length());
-        return res;
+        return parOneLine.substring(TRIPNOTE_SYMBOL.length());
     }
 
+    /**
+     * Parses provided content removes the marker that it is the trip name and returns cleaned content.
+     *
+     * @param parOneLine string to be parsed. i.e. : "NAMEE: Business trip to London"
+     * @return the content of parOneline but with removed start corresponding to the marker that it is
+     * the trip name. i.e. : "Business trip to London"
+     */
     @NonNull
     private String parseTripNameLine(final String parOneLine) {
-        String res = parOneLine.substring(TRIPNAME_SYMBOL.length());
-        return res;
+        return parOneLine.substring(TRIPNAME_SYMBOL.length());
     }
 
     /**
@@ -180,7 +192,7 @@ public class ImportExport {
         res.append(exportHeader(parContext, parRetrievedTrip));
 
         res.append("\n");
-        for (Item oneItem : parRetrievedTrip.getListOfItems()) {
+        for (TripItem oneItem : parRetrievedTrip.getListOfItems()) {
             exportOneItem(res, oneItem);
         }
         return res.toString();
@@ -195,13 +207,13 @@ public class ImportExport {
      */
     @NonNull
     @VisibleForTesting
-    public final Item parseOneItemLine(final Trip parTrip, final String parOneLine) {
+    public final TripItem parseOneItemLine(final Trip parTrip, final String parOneLine) {
 
         String yetToBeParsed;
         boolean checked;
         String name;
         String weightStr;
-        Item newItem = new Item(parTrip, "");
+        TripItem newItem = new TripItem(parTrip, "");
 
 
         // splitting in packed and rest using a regex
@@ -252,10 +264,11 @@ public class ImportExport {
     // *********************** PRIVATE METHODS ***************************************************************
 
     /**
-     * export trip info as a human readable.
+     * Export trip info to a human-readable format, but that format can be parsed back later.
      *
      * @param parContext       will be used to create a trip formatter.
      * @param parRetrievedTrip trip to be exported and appended to result
+     * @return trip in a human readable text format ready to be shared.
      */
     @NonNull
     private String exportHeader(final Context parContext, final Trip parRetrievedTrip) {
@@ -301,7 +314,7 @@ public class ImportExport {
      * @param parRes     result to be appended
      * @param parOneItem item to be exported and appended to result
      */
-    private void exportOneItem(final StringBuilder parRes, final Item parOneItem) {
+    private void exportOneItem(final StringBuilder parRes, final TripItem parOneItem) {
         if (parOneItem.isPacked()) {
             parRes.append(CHECKED_CHAR); // checked
         } else {

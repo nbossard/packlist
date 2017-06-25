@@ -32,9 +32,9 @@ import java.util.Comparator;
  *
  * @author Created by nbossard on 02/05/16.
  */
-public class ItemComparatorPacking implements Comparator<Item> {
+public class ItemComparatorPacking implements Comparator<TripItem> {
     @Override
-    public final int compare(final Item parItem, final Item parAnother) {
+    public final int compare(final TripItem parItem, final TripItem parAnother) {
         int res = 0;
         if (!parItem.isPacked() && parAnother.isPacked()) {
             res = -1;
