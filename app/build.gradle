@@ -75,7 +75,7 @@ android {
             // setting minifyEnabled to false will disable proguard
             // and consequently allow easy crash report understanding
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             // Note : added in version 0.7.1 the date using versionNameSuffix
