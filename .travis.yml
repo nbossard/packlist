@@ -16,6 +16,7 @@ android:
     # tools should be first in order to prevent licence not accepted errors
     - tools
     - platform-tools
+    - tools
 
     # The BuildTools version used by your project
     - build-tools-23.0.3
