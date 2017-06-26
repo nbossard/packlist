@@ -12,11 +12,11 @@ cache:
 
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    - platform-tools
+    # to use the latest revision of Android SDK Tools
+    # tools should be first in order to prevent licence not accepted errors
     - tools
-
+    - platform-tools
+x
     # The BuildTools version used by your project
     - build-tools-23.0.3
 
