@@ -36,8 +36,9 @@ android {
     targetCompatibility = '1.7'
     sourceCompatibility = '1.7'
 
+    // Think to also update values in travis.yml
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.0'
 
     // Reminder
     // API level 14 ===> Android 4.0
