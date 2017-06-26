@@ -39,11 +39,17 @@ android:
     - sys-img-armeabi-v7a-android-21
 
   licenses:
+    - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
 
 env:
   global:
     - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+
+install :
+  # force acceptance of licence for constraint layout
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 
 # Emulator Management: Create, Start and Wait
 before_script:
