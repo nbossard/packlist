@@ -18,7 +18,7 @@
   ~ under the License.
   -->
 
-<!-- Item detailed characteristics input page -->
+<!-- TripItem detailed characteristics input page -->
 <!---->
 <!-- Resources and Ids for this page must start with "item_detail__" -->
 
@@ -29,7 +29,7 @@
 
         <variable
             name="item"
-            type="com.nbossard.packlist.model.Item"/>
+            type="com.nbossard.packlist.model.TripItem"/>
     </data>
 
     <LinearLayout

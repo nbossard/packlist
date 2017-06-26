@@ -41,6 +41,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -83,23 +84,60 @@ public class uiAutomator {
     }
 
     @Test
-    public void testOpenMenu() throws UiObjectNotFoundException, InterruptedException {
-        UiObject menuButton = mDevice.findObject(new UiSelector().descriptionContains("More options"));
+    public void testOpenMenuAndCheckContent() throws UiObjectNotFoundException, InterruptedException {
+        // The device has to be in english, however this test will fail
+        UiObject menuButton = mDevice.findObject(new UiSelector().descriptionMatches("More options|Plus d\'options"));
 
         // Simulate a user-click on the menu button, if found.
         if (menuButton.exists() && menuButton.isEnabled()) {
             menuButton.click();
+        } else {
+            fail("Failed clicking on menu button");
         }
 
         mDevice.wait(Until.findObject(By.text("About")), TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
-        UiObject menuSendAReport = mDevice.findObject(new UiSelector().text("Send a report"));
-        UiObject menuWhatsNew = mDevice.findObject(new UiSelector().text("What's new"));
-        UiObject menuAbout = mDevice.findObject(new UiSelector().text("About"));
+        UiObject menuSettings = mDevice.findObject(new UiSelector().textMatches("Settings|Paramètres"));
+        UiObject menuSendAReport = mDevice.findObject(new UiSelector().textMatches("Send a report|Envoyer un rapport"));
+        UiObject menuWhatsNew = mDevice.findObject(new UiSelector().textMatches("What's new|Quoi de neuf"));
+        UiObject menuAbout = mDevice.findObject(new UiSelector().textMatches("About|A propos"));
 
-        assertTrue(menuSendAReport.exists());
-        assertTrue(menuWhatsNew.exists());
-        assertTrue(menuAbout.exists());
+        assertTrue("Missing \"settings\" menu entry", menuSettings.exists());
+        assertTrue("Missing \"send a report\" menu entry", menuSendAReport.exists());
+        assertTrue("Missing \"what's new\" menu entry", menuWhatsNew.exists());
+        assertTrue("Missing \"about\" menu entry", menuAbout.exists());
+    }
+
+    @Test
+    public void testMenuSettings() throws InterruptedException, UiObjectNotFoundException {
+        testOpenMenuAndCheckContent();
+
+        UiObject menuSettings = mDevice.findObject(new UiSelector().textMatches("Settings|Paramètres"));
+
+        if (menuSettings.exists() && menuSettings.isEnabled()) {
+            menuSettings.click();
+        }
+
+        // check displayed
+        UiObject menuSettingsDate = mDevice.findObject(new UiSelector().text("Display dates|Afficher dates"));
+
+        assertTrue("Missing \"Display dates\" menu entry", menuSettingsDate.exists());
+    }
+
+    @Test
+    public void testMenuSendReport() throws InterruptedException, UiObjectNotFoundException {
+        testOpenMenuAndCheckContent();
+
+        UiObject menuSendReport = mDevice.findObject(new UiSelector().text("Send a report|Envoyer un rapport"));
+
+        if (menuSendReport.exists() && menuSendReport.isEnabled()) {
+            menuSendReport.click();
+        }
+
+        // check displayed
+        UiObject menuSettingsDate = mDevice.findObject(new UiSelector().text("TODO"));
+
+        assertTrue("Missing \"TODO\" menu entry", menuSettingsDate.exists());
     }
 
     @Test

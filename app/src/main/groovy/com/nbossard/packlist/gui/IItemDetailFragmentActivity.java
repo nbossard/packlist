@@ -30,7 +30,9 @@ package com.nbossard.packlist.gui;
 @enduml
  */
 
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
+
+import java.util.Set;
 
 /**
  * The what {@link ItemDetailFragment} expects from hosting activity.
@@ -43,11 +45,11 @@ interface IItemDetailFragmentActivity extends IMainActivity {
      *
      * @param parItem Trip to be updated
      */
-    void updateItem(Item parItem);
+    void updateItem(TripItem parItem);
 
     /**
      * @return retrieve all previously created item categories.
      */
-    String[] getListOfCategories();
+    Set<String> getListOfCategories();
 
 }

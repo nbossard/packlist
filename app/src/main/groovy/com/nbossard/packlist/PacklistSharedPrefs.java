@@ -63,9 +63,17 @@ public class PacklistSharedPrefs {
     public boolean isDisplayDatesPref() {
         // Retrieve preferences
         SharedPreferences mSharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
-        boolean displayDatesPref = mSharedPref.getBoolean("pref_sync", true);
+        boolean displayDatesPref = mSharedPref.getBoolean("pref_display_dates", true);
         Log.d(TAG, "isDisplayDatesPref: returning = " + displayDatesPref);
 
         return displayDatesPref;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PacklistSharedPrefs{");
+        sb.append("isDisplayDatesPref=").append(isDisplayDatesPref());
+        sb.append('}');
+        return sb.toString();
     }
 }

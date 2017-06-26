@@ -21,7 +21,7 @@ package com.nbossard.packlist.process;
 
 import android.test.InstrumentationTestCase;
 
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 
@@ -87,34 +87,32 @@ public class ImportExportTest extends InstrumentationTestCase {
     }
 
     /**
-     * @throws Exception
      * @see ImportExport#massImportItems(Trip, String)
      */
     public void testMassImportItems() throws Exception {
 
-        Item importedItem0 = mTestTrip.getListOfItems().get(0);
+        TripItem importedItem0 = mTestTrip.getListOfItems().get(0);
         assertEquals(FIRST_LINE_NAME, importedItem0.getName());
         assertEquals(DEFAULT_WEIGHT, importedItem0.getWeight());
 
         //with weight and spaces in the middle
-        Item importedItem1 = mTestTrip.getListOfItems().get(1);
+        TripItem importedItem1 = mTestTrip.getListOfItems().get(1);
         assertEquals(SECOND_LINE_NAME, importedItem1.getName());
         assertEquals(SECOND_LINE_WEIGHT, importedItem1.getWeight());
 
         //with weight and spaces in the middle and spaces before
-        Item importedItem2 = mTestTrip.getListOfItems().get(2);
+        TripItem importedItem2 = mTestTrip.getListOfItems().get(2);
         assertEquals(THIRD_LINE_NAME, importedItem2.getName());
         assertEquals(THIRD_LINE_WEIGHT, importedItem2.getWeight());
     }
 
     /**
-     * @throws Exception
      * @see ImportExport#parseOneItemLine(Trip, String)
      */
     public void testParseOneItemLine() {
 
         // stupid line
-        Item resItem = mTestPort.parseOneItemLine(mTestTrip, FIRST_LINE_NAME);
+        TripItem resItem = mTestPort.parseOneItemLine(mTestTrip, FIRST_LINE_NAME);
         assertFalse(resItem.isPacked());
         assertEquals(null, resItem.getCategory());
         assertEquals(FIRST_LINE_NAME, resItem.getName());

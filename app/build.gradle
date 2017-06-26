@@ -58,7 +58,7 @@ android {
     // 14 --> 0.10 (published 21st july 2016)
     // 15 --> 0.10.1 (published 23rd july 2016)
     // 16 --> 0.10.2 (published 3rd august 2016)
-    // 17 --> ??
+    // 17 --> 0.11 (published 25th june 2017)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
@@ -66,7 +66,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 17
-        versionName "0.x"
+        versionName "0.11"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -75,7 +75,7 @@ android {
             // setting minifyEnabled to false will disable proguard
             // and consequently allow easy crash report understanding
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             // Note : added in version 0.7.1 the date using versionNameSuffix

@@ -45,7 +45,7 @@
     <string name="action_trip__unpack_all">dépaqueter tous les items</string>
 
     <!-- About page -->
-    <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2017\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes</string>
     <string name="about__third_party__button">Librairies tierces</string>
     <string name="about_act__fab_go_to_website">Open website</string>
@@ -110,7 +110,7 @@
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib__mli__label">ft<b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
-    <!-- Item detail -->
+    <!-- TripItem detail -->
     <string name="item_detail__name__label">nom</string>
     <string name="item_detail__weight__label">poids (en grammes)</string>
     <string name="item_detail__submit">MODIFIER</string>
@@ -126,7 +126,6 @@
     <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
 
     <!-- For Settings -->
-    <string name="activity_settings__title">@string/action__settings</string>
     <string name="pref_display_dates">Afficher dates</string>
     <string name="pref_display_dates_sum">Afficher les dates sur la liste des voyages</string>
 </resources>

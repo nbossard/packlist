@@ -41,11 +41,14 @@ import android.widget.Toast;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -290,7 +293,7 @@ public class MainActivity
     // ----------- implementing interface IItemDetailFragmentActivity -------------------
 
     @Override
-    public final void updateItem(final Item parItem) {
+    public final void updateItem(final TripItem parItem) {
         boolean resUpdate = mSavingModule.updateItem(parItem);
         if (resUpdate) {
             Log.d(TAG, "updateItem(...) update of item succeded");
@@ -300,17 +303,16 @@ public class MainActivity
     }
 
     @Override
-    public final String[] getListOfCategories() {
-        return mSavingModule.getListOfCategories();
+    public final Set<String> getListOfCategories() {
+        return mSavingModule.getAllCategories();
+    }
+
+    public final Set<Item> getSetOfItems() {
+        return mSavingModule.getAllPossibleItems();
     }
 
     @Override
-    public final String[] getListOfItemNames() {
-        return mSavingModule.getListOfItemNames();
-    }
-
-    @Override
-    public final List<String> getProbableItemsList() {
+    public final List<ScoredItem> getProbableItemsList() {
         return mSavingModule.getProbableItemsList();
     }
 
@@ -439,7 +441,7 @@ public class MainActivity
     }
 
     @Override
-    public final void openItemDetailFragment(final Item parItem) {
+    public final void openItemDetailFragment(final TripItem parItem) {
 
         // Create fragment and give it an argument specifying the article it should show
         ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
