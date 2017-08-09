@@ -48,7 +48,6 @@ They are also available in [other languages](./pub/res_pub/latest/)
 
 
 ### BUT a place for experimentation of up-to-date technology
-- mix of Groovy and Java
 - material design
 - android studio 2.2 preview
 - vector drawables, using asset studio

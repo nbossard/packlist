@@ -36,7 +36,7 @@ package com.nbossard.packlist.gui;
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
     package com.nbossard.packlist.gui #LightGreen {
-        !include AboutActivity.groovy
+        !include AboutActivity.java
         !include ChangeLogDialog.java
         !include HelpThirdPartyActivity.java
         !include IItemDetailFragmentActivity.java

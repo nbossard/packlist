@@ -19,15 +19,6 @@
 
 
 apply plugin: 'com.android.application'
-
-// Note NBO on 14th october 2016
-// tried to migrate to version 1.1.0 got error related to groovy and databinding :
-// error: Could not write to com.nbossard.packlist.BR javax.annotation.processing.FilerException: Attempt to recreate a file for type .BR
-// https://github.com/groovy/groovy-android-gradle-plugin/issues/49#issuecomment-210369385
-// https://code.google.com/p/android/issues/detail?id=188361
-//
-// apply plugin: 'groovyx.android'
-apply plugin: 'groovyx.grooid.groovy-android'
 apply plugin: 'com.jakewharton.hugo'
 
 
@@ -102,15 +93,6 @@ android {
     }
 }
 
-androidGroovy {
-    options {
-        configure(groovyOptions) {
-            forkOptions.jvmArgs = ['-noverify']
-        }
-    }
-
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -121,7 +103,6 @@ dependencies {
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
-    compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
     compile 'ch.acra:acra:4.9.1'
     compile 'com.github.ivbaranov:materiallettericon:0.2.2'
 

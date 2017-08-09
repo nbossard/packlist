@@ -28,6 +28,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -48,47 +49,65 @@ import hugo.weaving.DebugLog;
 
 /**
  * About activity.
- * Groovy class.
  *
  * @author nicolas Bossard
  */
-class AboutActivity extends AppCompatActivity {
+class AboutActivity extends AppCompatActivity implements View.OnClickListener {
 
     // *********************** CONSTANTS**********************************************************************
 
     /** Log tag. */
     @SuppressWarnings("unused")
-    private static final def TAG = AboutActivity.class.getName()
+    private static final String TAG = AboutActivity.class.getName();
 
     // *********************** METHODS **********************************************************************
 
     @Override
     @DebugLog
     protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about);
 
-        def toolbar = (Toolbar) findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        def fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
-        fab.onClickListener = {openBrowser()} as View.OnClickListener
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                openBrowser();
+            }
+        });
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled true
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         // setting button listener
-        def mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
-        mButtonThirdParty.onClickListener = {openThirdPartyActivity()} as View.OnClickListener
+        Button mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
+        mButtonThirdParty.setOnClickListener(this);
 
         // updating version number
-        def mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
+        TextView mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
         mGeneralInfo.setText(
                 String.format(getString(R.string.about__main),
                             BuildConfig.VERSION_NAME,
-                            getString(R.string.about__additional__info)))
+                        getString(R.string.about__additional__info)));
 
     }
 
+
+    @Override
+    @DebugLog
+    public final void onClick(final View parClickedView) {
+
+        if (parClickedView.getId() == R.id.help__third_party__button) {
+            openThirdPartyActivity();
+        } else {
+            // what the fuck
+            Log.e(TAG, "onClick(...) unexpected clicked view");
+        }
+    }
 
 // *********************** PRIVATE METHODS ******************************************************************
 
@@ -97,10 +116,10 @@ class AboutActivity extends AppCompatActivity {
      */
     @DebugLog
     private void openBrowser() {
-        def url = "https://github.com/nbossard/packlist"
-        def i = new Intent(Intent.ACTION_VIEW)
-        i.setData(Uri.parse(url))
-        startActivity i
+        String url = "https://github.com/nbossard/packlist";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 
@@ -110,8 +129,8 @@ class AboutActivity extends AppCompatActivity {
     @DebugLog
     private void openThirdPartyActivity()
     {
-        def intent = new Intent(this, HelpThirdPartyActivity.class)
-        startActivity intent
+        Intent intent = new Intent(this, HelpThirdPartyActivity.class);
+        startActivity(intent);
     }
 //
 
