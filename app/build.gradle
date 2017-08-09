@@ -56,7 +56,7 @@ android {
         // 11 because of use of startActionMode in list selection
         // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 17
         versionName "0.11"
 
