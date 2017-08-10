@@ -75,8 +75,8 @@ public class Item implements Comparable<Item> {
      * Getter for name. trimmed.
      * @return i.e. : "Socks"
      */
-    public final
-    String getName() {
+    @Nullable
+    public final String getName() {
         if (mName != null) {
             return mName.trim();
         } else {
