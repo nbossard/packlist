@@ -49,7 +49,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 
 ### BUT a place for experimentation of up-to-date technology
 - material design
-- android studio 2.2 preview
+- android studio 3.0 alpha 9
 - vector drawables, using asset studio
 - in-app indexing
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
