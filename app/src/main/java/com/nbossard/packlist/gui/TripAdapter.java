@@ -190,7 +190,7 @@ class TripAdapter extends BaseAdapter {
         }
         vHolderRecycle.letterIcon.setLetter(firstLetter);
         MaterialColor colorRetriever = new MaterialColor(mContext);
-        vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColor(oneTrip.getName()));
+        vHolderRecycle.letterIcon.setShapeColor(colorRetriever.getMatColorForIcon(oneTrip.getName()));
         vHolderRecycle.tvName.setText(oneTrip.getName());
 
         // user can choose, using settings, not to display dates in homepage

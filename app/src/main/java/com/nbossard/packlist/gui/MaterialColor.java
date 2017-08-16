@@ -36,6 +36,8 @@ import android.util.Log;
  */
 /**
  * Utilitary class to compute a random material color.
+ * Colors are one of "material colors" listed in "arrays.xml"
+ * This is used for computing background color of round icons in trip list.
  *
  * @author Created by nbossard on 14/07/16.
  */
@@ -76,12 +78,13 @@ public class MaterialColor {
     /**
      * Return a material color number, kind of random but always the same for string parString.
      * It is one of arrays.xml.
+     * This is for round icons bgd, so the opacity is high to be readable with a white text.
      *
      * @param parString the string to retrieve corresponding color. Can be null, but this is stupid.
      * @return a color number
      */
     @SuppressWarnings("WeakerAccess")
-    public final int getMatColor(@Nullable final String parString) {
+    public final int getMatColorForIcon(@Nullable final String parString) {
         return getMatColor(parString, "500");
     }
 
@@ -103,15 +106,15 @@ public class MaterialColor {
                 getIdentifier(ressourceName, "array", mContext.getPackageName());
 
         if (arrayId != 0) {
-            TypedArray colors = mContext.getResources().obtainTypedArray(arrayId);
+            TypedArray resColorsArray = mContext.getResources().obtainTypedArray(arrayId);
             if (parString != null) {
-                int index = Math.abs((parString.hashCode() % colors.length()));
-                returnColor = colors.getColor(index, Color.BLACK);
+                int index = Math.abs((parString.hashCode() % resColorsArray.length()));
+                returnColor = resColorsArray.getColor(index, Color.BLACK);
             } else {
                 Log.w(TAG, "Null parString, this is a bad usage"
                         + ". Using fallback default color = " + DEFAULT_COLOR);
             }
-            colors.recycle();
+            resColorsArray.recycle();
         } else {
             Log.w(TAG, "Could not find array id of name = " + ressourceName
                     + ". Using fallback default color = " + DEFAULT_COLOR);
