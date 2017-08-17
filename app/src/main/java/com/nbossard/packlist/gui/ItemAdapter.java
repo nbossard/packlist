@@ -20,6 +20,9 @@
 package com.nbossard.packlist.gui;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -79,7 +82,7 @@ class ItemAdapter extends BaseAdapter {
         /**
          * The whole row.
          */
-        private View global;
+        private View globalRow;
         /**
          * Reference (result of findviewbyid) to the item category.
          */
@@ -176,7 +179,7 @@ class ItemAdapter extends BaseAdapter {
             parConvertView = inflater.inflate(R.layout.item_adapter, parParentView, false);
 
             // getting views
-            vHolderRecycle.global = parConvertView.findViewById(R.id.ia__global);
+            vHolderRecycle.globalRow = parConvertView.findViewById(R.id.ia__global);
             vHolderRecycle.tvCategory = (TextView) parConvertView.findViewById(R.id.ia__category);
             vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
             vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
@@ -189,9 +192,10 @@ class ItemAdapter extends BaseAdapter {
 
         // updating views
         if (curItem.getCategory() != null) {
-            vHolderRecycle.global.setBackgroundColor(curItem.getCategory().hashCode());
+            int bgColor = getBgColor(curItem.getCategory());
+            vHolderRecycle.globalRow.setBackgroundColor(bgColor);
         } else {
-            vHolderRecycle.global.setBackgroundColor(0);
+            vHolderRecycle.globalRow.setBackgroundColor(0);
         }
         String nameAndWeight = curItem.getName();
         if (curItem.getWeight() > 0) {
@@ -217,8 +221,62 @@ class ItemAdapter extends BaseAdapter {
      * @param parSortMode new sorting mode to use
      */
     @DebugLog
-    public void setSortMode(final SortModes parSortMode) {
+    void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
 
+    /**
+     * Get a color automatically, based on category name.
+     * BUT the color has to be so that text is readable by a human.
+     *
+     * @param parCategory item category for which we need a category background color
+     * @return a color as an int ready to be used for
+     */
+    private int getBgColor(String parCategory) {
+        @ColorInt int candidateColor = parCategory.hashCode();
+        while (luminance(candidateColor) < 0.5) {
+            // this color is too dark to be readable with a black text
+            candidateColor = increaseLuminance(candidateColor);
+        }
+        return candidateColor;
+
+    }
+
+    // *********************** PRIVATE METHODS ***************************************************************
+
+    /**
+     * Computes color luminance, either directly if android N+ or using approximation found on stackoverlow
+     *
+     * @param parColorToGetLuminance an integer representing a color
+     * @return a value between 0 (darkest black) and 1 (lightest white)
+     */
+    private double luminance(@ColorInt int parColorToGetLuminance) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Color.luminance(parColorToGetLuminance);
+        } else {
+            return (0.2126 * Color.red(parColorToGetLuminance)
+                    + 0.7152 * Color.green(parColorToGetLuminance)
+                    + 0.0722 * Color.blue(parColorToGetLuminance));
+        }
+    }
+
+    /**
+     * Increase luminance of provided color.
+     *
+     * @param colorIntValue a color integer with too low luminance
+     * @return a color integer with better luminance
+     */
+    private int increaseLuminance(@ColorInt int colorIntValue) {
+        float[] updatedColor = new float[3];
+        Color.colorToHSV(colorIntValue, updatedColor);
+
+        // decreasing Saturation and increasing Value will increase luminance
+        updatedColor[1] = updatedColor[1] / 2;
+        updatedColor[2] = updatedColor[2] * 2;
+        if (updatedColor[2] > 1) {
+            updatedColor[2] = 1;
+        }
+
+        return Color.HSVToColor(updatedColor);
+    }
 }
