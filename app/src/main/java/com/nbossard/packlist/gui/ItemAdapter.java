@@ -41,7 +41,9 @@ import com.nbossard.packlist.model.SortModes;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import hugo.weaving.DebugLog;
 
@@ -114,6 +116,11 @@ class ItemAdapter extends BaseAdapter {
      */
     private final Context mContext;
 
+    /**
+     * Cache for preventing recomputing colors for each line.
+     */
+    private final Map<String, Integer> mBgdColorsCache;
+
     // *********************** METHODS **********************************************************************
 
     /**
@@ -129,6 +136,8 @@ class ItemAdapter extends BaseAdapter {
         super();
         mItemList = parResList;
         mContext = parContext;
+
+        mBgdColorsCache = new HashMap<>();
     }
 
     // For applying sorting
@@ -232,14 +241,25 @@ class ItemAdapter extends BaseAdapter {
      * @param parCategory item category for which we need a category background color
      * @return a color as an int ready to be used for
      */
+    @DebugLog
     private int getBgColor(String parCategory) {
-        @ColorInt int candidateColor = parCategory.hashCode();
-        while (luminance(candidateColor) < 0.5) {
-            // this color is too dark to be readable with a black text
-            candidateColor = increaseLuminance(candidateColor);
+        @ColorInt int candidateColor;
+        // searching in cache
+        if (mBgdColorsCache.containsKey(parCategory)) {
+            candidateColor = mBgdColorsCache.get(parCategory);
+            Log.d(TAG, "Found color in cache");
+        } else {
+            // not in cache computing it
+            Log.d(TAG, "Did NOT Found color in cache, computing it");
+            candidateColor = parCategory.hashCode();
+            while (luminance(candidateColor) < 0.5) {
+                // this color is too dark to be readable with a black text
+                candidateColor = increaseLuminance(candidateColor);
+                Log.d(TAG, "Color is too dark, improving luminance");
+            }
+            mBgdColorsCache.put(parCategory, candidateColor);
         }
         return candidateColor;
-
     }
 
     // *********************** PRIVATE METHODS ***************************************************************
