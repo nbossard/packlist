@@ -347,7 +347,7 @@ public class TripDetailFragment extends Fragment {
         mAddMagicItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                onClickAddDMagicItem();
+                onClickAddMagicItem();
             }
         });
 
@@ -556,8 +556,8 @@ public class TripDetailFragment extends Fragment {
      * Handle click on "Add magic item" button.
      * Will fill item name field.
      */
-    public final void onClickAddDMagicItem() {
-        Log.d(TAG, "onClickAddDMagicItem() ENTERING");
+    public final void onClickAddMagicItem() {
+        Log.d(TAG, "onClickAddMagicItem() ENTERING");
 
         // retrieving list of probable items
         if (mProbableItemsList == null) {
@@ -572,13 +572,16 @@ public class TripDetailFragment extends Fragment {
         }
 
         if (mSuggestionIndex < mProbableItemsList.size()) {
+            Log.d(TAG, "There are still suggestions left");
             Item suggestedItem = mProbableItemsList.get(mSuggestionIndex);
             PresentableItem presSuggItem = new PresentableItem(suggestedItem);
             mNewItemEditText.setText(presSuggItem.toPresentableString());
             mSuggestionIndex++;
         } else {
-            mNewItemEditText.setText("");
             Log.d(TAG, "No more suggestion");
+            mNewItemEditText.setText("");
+            Toast.makeText(getContext(),
+                    R.string.trip_detail__no_more_items__toast, Toast.LENGTH_LONG).show();
         }
     }
 
