@@ -29,7 +29,7 @@ android {
 
     // Think to also update values in travis.yml
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    buildToolsVersion '26.0.2'
 
     // Reminder
     // API level 14 ===> Android 4.0

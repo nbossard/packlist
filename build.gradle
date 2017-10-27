@@ -23,13 +23,14 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        google()
     }
     dependencies {
         // Note NBO on 21st july 2016 : reverted to last stable : 2.1.2
         // because got error : resources-release-stripped.ap_ does not exist
         // when generating signed APK
         // classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
+        classpath 'com.android.tools.build:gradle:3.0.0'
 
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
 
