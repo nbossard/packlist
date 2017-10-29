@@ -106,6 +106,9 @@ public class Item implements Comparable<Item> {
         String res = null;
         if (mCategory != null) {
             res = mCategory.trim();
+            if (res.length() == 0) {
+                res = null;
+            }
         }
         return res;
     }
