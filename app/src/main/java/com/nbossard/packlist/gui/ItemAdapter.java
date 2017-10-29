@@ -58,7 +58,7 @@ import hugo.weaving.DebugLog;
 */
 
 /**
- * An adapter for displaying a trip {@link TripItem} in a ListView, see {@link TripDetailFragment}.
+ * An adapter for displaying an item {@link TripItem} in a ListView, see {@link TripDetailFragment}.
  *
  * @author Created by nbossard on 17/01/16.
  */
@@ -176,6 +176,7 @@ class ItemAdapter extends BaseAdapter {
     }
 
     @Override
+    @DebugLog
     public View getView(final int parPosition,
                         @SuppressWarnings("CheckStyle") View parConvertView,
                         final ViewGroup parParentView) {
@@ -255,7 +256,7 @@ class ItemAdapter extends BaseAdapter {
             while (luminance(candidateColor) < 0.5) {
                 // this color is too dark to be readable with a black text
                 candidateColor = increaseLuminance(candidateColor);
-                Log.d(TAG, "Color is too dark, improving luminance");
+                Log.d(TAG, "Color is too dark : " + candidateColor + ", improving luminance");
             }
             mBgdColorsCache.put(parCategory, candidateColor);
         }
