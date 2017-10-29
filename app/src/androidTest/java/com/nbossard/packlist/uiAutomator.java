@@ -23,6 +23,7 @@ package com.nbossard.packlist;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.test.filters.SdkSuppress;
 import android.support.test.runner.AndroidJUnit4;
@@ -134,7 +135,7 @@ public class uiAutomator {
             menuSendReport.click();
         }
 
-        // check displayed
+        // check displayed (does not work in debug mode as ACRA is not initialized)
         UiObject menuSettingsDate = mDevice.findObject(new UiSelector().text("TODO"));
 
         assertTrue("Missing \"TODO\" menu entry", menuSettingsDate.exists());
@@ -247,6 +248,29 @@ public class uiAutomator {
         addAnItem("Computer");
         addAnItem("Toothbrush");
         addAnItemWithWeight("A good book", "150");
+    }
+
+    @Test
+    public void goToBackgroundAndCheckResume() throws InterruptedException, UiObjectNotFoundException, RemoteException {
+
+        deleteAllTrips();
+        addTripTo("Rome", null);
+        openFirstTripInList();
+        addAnItem("Chapeau");
+        addAnItem("PC");
+        addAnItem("Brosse à dents");
+        addAnItemWithWeight("Un bon roman", "150");
+
+        // go to background
+        mDevice.pressHome();
+
+        // and come back to app
+        mDevice.pressRecentApps();
+        UiObject appBackground = new UiObject(new UiSelector().description("packlist(debug)"));
+        appBackground.click();
+
+        // one bug (serialization prb) made item not be back there : checking this
+        checkItem("Chapeau");
     }
 
     // *********************** PRIVATE METHODS **************************************************************
