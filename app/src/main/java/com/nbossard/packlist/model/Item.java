@@ -22,6 +22,8 @@ package com.nbossard.packlist.model;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
+
 /*
 @startuml
     class com.nbossard.packlist.model.Item {
@@ -39,7 +41,7 @@ import android.support.annotation.Nullable;
  *
  */
 
-public class Item implements Comparable<Item> {
+public class Item implements Serializable, Comparable<Item> {
 
 // *********************** FIELDS *************************************************************************
 

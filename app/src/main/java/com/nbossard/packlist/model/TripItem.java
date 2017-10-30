@@ -93,6 +93,7 @@ public class TripItem extends Item implements Serializable, Cloneable {
      * No params constructor.
      */
     private TripItem() {
+        super();
         mUUID = UUID.randomUUID();
     }
 

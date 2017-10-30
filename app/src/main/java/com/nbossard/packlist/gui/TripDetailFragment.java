@@ -275,16 +275,6 @@ public class TripDetailFragment extends Fragment {
         }
     }
 
-    @Override
-    public final void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() : Entering");
-
-        // Should normally be enough to do following in onattach...
-        // but when activity is resumed and has been killed by system, onattach is not called.
-        mIHostingActivity.showFABIfAccurate(false);
-    }
-
     /**
     * Create the view for this fragment, using the arguments given to it.
     */
@@ -374,7 +364,17 @@ public class TripDetailFragment extends Fragment {
         });
 
         populateList();
+    }
 
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() : Entering");
+
+        // Should normally be enough to do following in onattach...
+        // but when activity is resumed and has been killed by system, onattach is not called.
+        mIHostingActivity.showFABIfAccurate(false);
     }
 
     @DebugLog
@@ -728,6 +728,7 @@ public class TripDetailFragment extends Fragment {
     /**
      * Populate list with data in {@link ISavingModule}.
      */
+    @DebugLog
     private void populateList() {
         mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
