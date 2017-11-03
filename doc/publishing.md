@@ -1,7 +1,9 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
- - update translations with crowdin
+ - update translations from [crowdin project](https://crowdin.com/project/packlist), account "nbossard"
+    - update files to be translated (from english)
+    - build and download updated translations
  - save your app data as it might be lost (when running UI Automator tests)
  - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
