@@ -16,6 +16,9 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+#
+# This file is used by travis continuous integration visible at :
+# https://travis-ci.org/nbossard/packlist
 
 https://crowdin.com/project/packlistsudo: false
 language: android
@@ -79,7 +82,9 @@ install :
 
 # Emulator Management: Create, Start and Wait
 before_script:
-  - echo no | android create avd --force --name test --target android-21 --abi armeabi-v7a
+  # this will display targets for debugging following line
+  - android list targets
+  - echo no | android create avd --force --name test --target android-27 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim&
   - android-wait-for-emulator
   - adb devices
