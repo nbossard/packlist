@@ -94,6 +94,4 @@ script:
   # see : http://stackoverflow.com/questions/32952413/gradle-commands-fail-on-api-23-google-api-emulator-image-armeabi-v7a
   - ./gradlew clean
   - ./gradlew assembleDebug
-  - ./gradlew assembleDebugAndroidTest
-  - adb install app/build/outputs/apk/app-debug.apk
-  - adb install app/build/outputs/apk/app-debug-androidTest.apk
+  - ./gradlew assembleDebugUnitTest
