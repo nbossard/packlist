@@ -27,7 +27,7 @@ android {
     targetCompatibility = '1.8'
     sourceCompatibility = '1.8'
 
-    // Think to also update values in travis.yml
+    // WARNING : Think to also update values in travis.yml
     compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
@@ -101,7 +101,7 @@ dependencies {
     // For parsing json (used for saving data)
     compile 'com.google.code.gson:gson:2.8.0'
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
-    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
+    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
     compile 'ch.acra:acra:4.9.1'
     compile 'com.github.ivbaranov:materiallettericon:0.2.2'
