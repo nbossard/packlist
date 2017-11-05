@@ -20,7 +20,7 @@
 # This file is used by travis continuous integration visible at :
 # https://travis-ci.org/nbossard/packlist
 
-https://crowdin.com/project/packlistsudo: false
+sudo: false
 language: android
 # NBO : note that openjdk8 is not supported
 jdk: oraclejdk8
@@ -58,7 +58,7 @@ android:
     # - sys-img-x86-android-23
     # 23 does not work
     # - sys-img-armeabi-v7a-android-23
-    - sys-img-armeabi-v7a-android-27
+    - sys-img-armeabi-v7a-android-25
 
   licenses:
     - 'android-sdk-preview-license-.+'
@@ -84,7 +84,7 @@ install :
 before_script:
   # this will display targets for debugging following line
   - android list targets
-  - echo no | android create avd --force --name test --target android-27 --abi armeabi-v7a
+  - echo no | android create avd --force --name test --target android-25 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim&
   - android-wait-for-emulator
   - adb devices
