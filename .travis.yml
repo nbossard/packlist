@@ -44,8 +44,8 @@ android:
     # to use the latest revision of Android SDK Tools
     # tools should be first in order to prevent licence not accepted errors
     - tools
-    - tools
     - platform-tools
+    - tools #  the tools section appears twice on purpose as it’s required to get the newest Android SDK tools.
 
     # The BuildTools version used by your project
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
@@ -85,14 +85,7 @@ install :
   - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 
 # Emulator Management: Create, Start and Wait
-before_script:
-  # this will display targets for debugging following line
-  - android list targets
-  - echo no | android create avd --force --name test --target android-22 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim&
-  - android-wait-for-emulator
-  - adb devices
-  - adb shell input keyevent 82 &
+# Not supported well by Travis : leads to too many problems, removed it (november 2017)
 
 script:
   - echo $ADB_INSTALL_TIMEOUT
