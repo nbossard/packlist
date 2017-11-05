@@ -58,7 +58,7 @@ android:
     # - sys-img-x86-android-23
     # 23 does not work
     # - sys-img-armeabi-v7a-android-23
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-27
 
   licenses:
     - 'android-sdk-preview-license-.+'
