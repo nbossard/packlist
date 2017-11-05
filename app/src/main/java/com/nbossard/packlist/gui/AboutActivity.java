@@ -52,7 +52,7 @@ import hugo.weaving.DebugLog;
  *
  * @author nicolas Bossard
  */
-class AboutActivity extends AppCompatActivity implements View.OnClickListener {
+public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
 
     // *********************** CONSTANTS**********************************************************************
 
