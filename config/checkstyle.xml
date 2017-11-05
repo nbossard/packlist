@@ -31,12 +31,11 @@
 <module name="Checker">
     <property name="severity" value="warning"/>
     <module name="SuppressWarningsFilter"/>
-    <module name="SuppressionCommentFilter">
-        <property name="offCommentFormat" value="BEGIN GENERATED CODE"/>
-        <property name="onCommentFormat" value="END GENERATED CODE"/>
-    </module>
     <module name="TreeWalker">
-        <module name="FileContentsHolder"/>
+        <module name="SuppressionCommentFilter">
+            <property name="offCommentFormat" value="BEGIN GENERATED CODE"/>
+            <property name="onCommentFormat" value="END GENERATED CODE"/>
+        </module>
         <module name="JavadocMethod">
             <property name="suppressLoadErrors" value="true"/>
         </module>
