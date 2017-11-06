@@ -258,6 +258,7 @@ class ItemAdapter extends BaseAdapter {
                 candidateColor = increaseLuminance(candidateColor);
                 Log.d(TAG, "Color is too dark : " + candidateColor + ", improving luminance");
             }
+            Log.d(TAG, "Found color with accurate luminance");
             mBgdColorsCache.put(parCategory, candidateColor);
         }
         return candidateColor;
@@ -266,7 +267,7 @@ class ItemAdapter extends BaseAdapter {
     // *********************** PRIVATE METHODS ***************************************************************
 
     /**
-     * Computes color luminance, either directly if android N+ or using approximation found on stackoverlow
+     * Computes color luminance, either directly if android N+ or using approximation found on stackoverflow.
      *
      * @param parColorToGetLuminance an integer representing a color
      * @return a value between 0 (darkest black) and 1 (lightest white)
