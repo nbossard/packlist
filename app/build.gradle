@@ -51,14 +51,15 @@ android {
     // 15 --> 0.10.1 (published 23rd july 2016)
     // 16 --> 0.10.2 (published 3rd august 2016)
     // 17 --> 0.11 (published 25th june 2017)
+    // 18 --> 0.12 (published 7th november 2017)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 17
-        versionName "0.11"
+        versionCode 18
+        versionName "0.12"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
