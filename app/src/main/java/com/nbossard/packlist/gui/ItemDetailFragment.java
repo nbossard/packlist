@@ -63,30 +63,6 @@ public class ItemDetailFragment extends Fragment {
     /** Bundle parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_ITEM = "bundleParItem";
 
-    // *********************** LISTENERS ********************************************************************
-
-    /**
-     * Listener for when user clicks on "submit" button.
-     */
-    private final View.OnClickListener mSubmitListener = new View.OnClickListener() {
-        @DebugLog
-        @Override
-        public void onClick(final View v) {
-
-            // update item with values
-            mItem.setName(mNameEdit.getText().toString().trim());
-            mItem.setWeight(parseInt(mWeightEdit.getText().toString().trim()));
-            mItem.setCategory(mCategoryEdit.getText().toString().trim());
-
-            // asking supporting activity to update item
-            mIHostingActivity.updateItem(mItem);
-
-            // navigating back
-            FragmentManager fragMgr = getActivity().getSupportFragmentManager();
-            fragMgr.beginTransaction().remove(ItemDetailFragment.this).commit();
-            fragMgr.popBackStack();
-        }
-    };
 
     // *********************** FIELDS ***********************************************************************
 
@@ -114,6 +90,27 @@ public class ItemDetailFragment extends Fragment {
 
     /** Button to save and close. */
     private Button mSubmitButton;
+
+    // *********************** LISTENERS ********************************************************************
+
+    /**
+     * Listener for when user clicks on "submit" button.
+     */
+    private final View.OnClickListener mSubmitListener = (v -> {
+
+        // update item with values
+        mItem.setName(mNameEdit.getText().toString().trim());
+        mItem.setWeight(parseInt(mWeightEdit.getText().toString().trim()));
+        mItem.setCategory(mCategoryEdit.getText().toString().trim());
+
+        // asking supporting activity to update item
+        mIHostingActivity.updateItem(mItem);
+
+        // navigating back
+        FragmentManager fragMgr = getActivity().getSupportFragmentManager();
+        fragMgr.beginTransaction().remove(ItemDetailFragment.this).commit();
+        fragMgr.popBackStack();
+    });
 
     // *********************** METHODS **********************************************************************
 

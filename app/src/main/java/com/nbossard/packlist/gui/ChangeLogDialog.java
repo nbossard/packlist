@@ -71,13 +71,7 @@ public class ChangeLogDialog extends DialogFragment {
         return new AlertDialog.Builder(getActivity(), R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)
                 .setView(chgList)
-                .setPositiveButton(R.string.about_ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(final DialogInterface dialog, final int whichButton) {
-                                dialog.dismiss();
-                            }
-                        }
-                )
+                .setPositiveButton(R.string.about_ok, (dialog, whichButton) -> dialog.dismiss())
                 .create();
 
     }

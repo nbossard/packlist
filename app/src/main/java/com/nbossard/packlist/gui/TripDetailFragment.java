@@ -314,54 +314,30 @@ public class TripDetailFragment extends Fragment {
         mNewItemEditText.setAdapter(adapter);
 
         mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
-        mAddItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                onClickAddItem();
-            }
-        });
+        mAddItemButton.setOnClickListener(v -> onClickAddItem());
         mAddItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddItemButton);
 
         mAddDetailedItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item_detail__button);
-        mAddDetailedItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                onClickAddDetailedItem();
-            }
-        });
+        mAddDetailedItemButton.setOnClickListener(v -> onClickAddDetailedItem());
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
 
         mAddMagicItemButton = (AppCompatImageButton) mRootView.findViewById(R.id.trip_detail__new_item_magic__button);
-        mAddMagicItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                onClickAddMagicItem();
-            }
-        });
+        mAddMagicItemButton.setOnClickListener(v -> onClickAddMagicItem());
 
         // auto click on button if keyboard "enter" pressed
-        mNewItemEditText.setOnEditorActionListener(new AppCompatEditText.OnEditorActionListener() {
-            @DebugLog
-            @Override
-            public boolean onEditorAction(final TextView v, final int actionId, final KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_GO) {
-                    mAddItemButton.performClick();
-                    handled = true;
-                }
-                return handled;
+        mNewItemEditText.setOnEditorActionListener((v, actionId, event) -> {
+            boolean handled = false;
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                mAddItemButton.performClick();
+                handled = true;
             }
+            return handled;
         });
 
         final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                onClickEditTrip();
-            }
-        });
+        editButton.setOnClickListener(v -> onClickEditTrip());
 
         populateList();
     }
@@ -591,12 +567,9 @@ public class TripDetailFragment extends Fragment {
      * Asked by user snelltheta in issue https://github.com/nbossard/packlist/issues/16
      */
     private void scrollMyListViewToBottom() {
-        mItemListView.post(new Runnable() {
-            @Override
-            public void run() {
-                // Select the last row so it will scroll into view...
-                mItemListView.smoothScrollToPosition(mListItemAdapter.getCount());
-            }
+        mItemListView.post(() -> {
+            // Select the last row so it will scroll into view...
+            mItemListView.smoothScrollToPosition(mListItemAdapter.getCount());
         });
     }
 
@@ -610,14 +583,9 @@ public class TripDetailFragment extends Fragment {
             scrollMyListViewToBottom();
         } else
         {
-            mItemListView.post(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    int curPos = searchHotItemPos();
-                    mItemListView.smoothScrollToPosition(curPos);
-                }
+            mItemListView.post(() -> {
+                int curPos = searchHotItemPos();
+                mItemListView.smoothScrollToPosition(curPos);
             });
         }
     }

@@ -88,14 +88,9 @@ public class TripDeletionConfirmDialogFragment extends DialogFragment {
         alertDialogBuilder.setMessage(mContext.getString(R.string.trip_deletion_confirm__body));
         //null should be your on click listener
         alertDialogBuilder.setPositiveButton(mContext.getString(android.R.string.ok), mConfirmedListener);
-        alertDialogBuilder.setNegativeButton(mContext.getString(android.R.string.cancel),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int which) {
-                        dialog.dismiss();
-                    }
-                });
-
+        alertDialogBuilder.setNegativeButton(
+                mContext.getString(android.R.string.cancel),
+                (dialog, which) -> dialog.dismiss());
 
         return alertDialogBuilder.create();
     }

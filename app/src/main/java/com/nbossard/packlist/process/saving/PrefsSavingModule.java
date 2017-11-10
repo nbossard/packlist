@@ -312,19 +312,16 @@ public class PrefsSavingModule implements ISavingModule {
                 resList.add(scoredItem);
             }
         }
-        Collections.sort(resList, new Comparator<ScoredItem>() {
-            @Override
-            public int compare(final ScoredItem parA, final ScoredItem parB) {
-                int res;
-                if (parB.getScore() < parA.getScore()) {
-                    res = -1;
-                } else if (parB.getScore() > parA.getScore()) {
-                    res = +1;
-                } else {
-                    res = 0;
-                }
-                return res;
+        Collections.sort(resList, (parA, parB) -> {
+            int res;
+            if (parB.getScore() < parA.getScore()) {
+                res = -1;
+            } else if (parB.getScore() > parA.getScore()) {
+                res = +1;
+            } else {
+                res = 0;
             }
+            return res;
         });
         return resList;
     }
