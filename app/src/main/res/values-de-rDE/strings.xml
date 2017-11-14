@@ -86,6 +86,7 @@
     <string name="trip_detail__new_item__access">Name&#8230;</string>
     <string name="trip_detail__new_item_magic___access">Schaltfläche. Schlage einen Artikel vor</string>
     <string name="trip_detail__already_existing_item">Dieser Gegenstand ist bereits in der Reise vorhanden.</string>
+    <string name="trip_detail__no_more_items__toast">No more suggestion</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Bearbeiten</string>
     <string name="action_trip__share">Teilen</string>
