@@ -31,13 +31,15 @@
  - menu "build/generate signed apk", 
     - dont forget updating path of generation to pub/res_pub folder vx.x
     - sign V1 and V2
- - quick test apk
+ - quick test apk (drag and drop into an emulator or "adb install app_release.apk")
     - check about page
     - check what's new
     - add a new trip, add items, close and reopen
  - copy apk to latest folder
- - upload updated screenshots to android console    
- - updload APK to android console
+ - open Android Console
+    - create a new version 
+    - upload updated screenshots to [Google play console](https://play.google.com/apps/publish/)    
+    - updload APK to android console
  - add apk and screenshots to git / commit / push
  - commit and push master
  - draft new release in github
