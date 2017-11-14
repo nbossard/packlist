@@ -25,12 +25,12 @@ They are also available in [other languages](./pub/res_pub/latest/)
  * pre-filling of list through questions on what you are planning to do during your trip
  
 ### Objectives : 
- * free (in terms of free beer)
+ * free
  * open-source
  * high respect of user privacy: no usage tracker, no automatic crash report, no data uploaded, no permissions [see FAQ, "where is data stored"](doc/faq.md)
 
 ### Objectives in term of coding :
- - multi-developer (yes you are welcome to help)
+ - multi-developer (YES you are welcome to help)
  - GitFlow organisation
  - high quality code
    - very strict formatting rules
@@ -48,9 +48,8 @@ They are also available in [other languages](./pub/res_pub/latest/)
 
 
 ### BUT a place for experimentation of up-to-date technology
-- mix of Groovy and Java
 - material design
-- android studio 2.2 preview
+- android studio 3.0
 - vector drawables, using asset studio
 - in-app indexing
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
@@ -66,6 +65,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.12 improving categories colors, fixing crashes when coming from background
 - 0.11 improving categories management
 - 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
 - 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)

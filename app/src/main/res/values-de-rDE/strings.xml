@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~ Copyright (c) 2017 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@
     <string name="action_trip__import">Text-Datei importieren</string>
     <string name="action_trip__unpack_all">alle Gegenstände auspacken</string>
     <!-- About page -->
-    <string name="about__main">Liste %1$s.\n%2$s\nCopyright Verpackung © 2015-2017\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier Willkommen \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">Liste %1$s.\n%2$s\nCopyright Verpackung © 2015&#8211;2017\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier Willkommen \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Vielen Dank an\n -naofum, für die japanische Übersetzung\n - Christophe Paccolat für die deutsche Übersetzung</string>
     <string name="about__third_party__button">Bibliotheken von Drittanbietern</string>
     <string name="about_act__fab_go_to_website">Webseite öffnen</string>

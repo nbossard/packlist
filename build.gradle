@@ -23,25 +23,16 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        google()
     }
     dependencies {
         // Note NBO on 21st july 2016 : reverted to last stable : 2.1.2
         // because got error : resources-release-stripped.ap_ does not exist
         // when generating signed APK
         // classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.0'
 
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
-
-        // Note NBO on 14th october 2016
-        // tried to migrate to version 1.1.0 got error related to groovy and databinding :
-        // error: Could not write to com.nbossard.packlist.BR javax.annotation.processing.FilerException: Attempt to recreate a file for type .BR
-        // https://github.com/groovy/groovy-android-gradle-plugin/issues/49#issuecomment-210369385
-        // https://code.google.com/p/android/issues/detail?id=188361
-
-        // classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
-        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
-
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -52,6 +43,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://maven.google.com" }
     }
 }
 

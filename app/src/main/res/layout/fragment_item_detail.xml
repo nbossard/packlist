@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~ Copyright (c) 2017 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -44,10 +44,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/item_detail__name__label"
+            android:labelFor="@+id/item_detail__name__edit">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/item_detail__name__edit"
+                android:id="@id/item_detail__name__edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_edit_text_min_height"
@@ -61,10 +63,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/item_detail__weight__label"
+            android:labelFor="@+id/item_detail__weight__edit">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/item_detail__weight__edit"
+                android:id="@id/item_detail__weight__edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_edit_text_min_height"
@@ -78,10 +82,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/item_detail__category__label"
+            android:labelFor="@+id/item_detail__category__edit">
 
             <AutoCompleteTextView
-                android:id="@+id/item_detail__category__edit"
+                android:id="@id/item_detail__category__edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_edit_text_min_height"

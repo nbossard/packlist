@@ -19,25 +19,17 @@
 
 
 apply plugin: 'com.android.application'
-
-// Note NBO on 14th october 2016
-// tried to migrate to version 1.1.0 got error related to groovy and databinding :
-// error: Could not write to com.nbossard.packlist.BR javax.annotation.processing.FilerException: Attempt to recreate a file for type .BR
-// https://github.com/groovy/groovy-android-gradle-plugin/issues/49#issuecomment-210369385
-// https://code.google.com/p/android/issues/detail?id=188361
-//
-// apply plugin: 'groovyx.android'
-apply plugin: 'groovyx.grooid.groovy-android'
 apply plugin: 'com.jakewharton.hugo'
 
 
 android {
     // This is now required cause we are using a JDK8
-    targetCompatibility = '1.7'
-    sourceCompatibility = '1.7'
+    targetCompatibility = '1.8'
+    sourceCompatibility = '1.8'
 
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    // WARNING : Think to also update values in travis.yml
+    compileSdkVersion 27
+    buildToolsVersion '26.0.2'
 
     // Reminder
     // API level 14 ===> Android 4.0
@@ -59,14 +51,15 @@ android {
     // 15 --> 0.10.1 (published 23rd july 2016)
     // 16 --> 0.10.2 (published 3rd august 2016)
     // 17 --> 0.11 (published 25th june 2017)
+    // 18 --> 0.12 (published 7th november 2017)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
         // 14 (4.0) because of use of setTag in list
         minSdkVersion 14
-        targetSdkVersion 25
-        versionCode 17
-        versionName "0.11"
+        targetSdkVersion 27
+        versionCode 18
+        versionName "0.12"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -101,39 +94,31 @@ android {
     }
 }
 
-androidGroovy {
-    options {
-        configure(groovyOptions) {
-            forkOptions.jvmArgs = ['-noverify']
-        }
-    }
-
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:design:27.0.0'
     // For parsing json (used for saving data)
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.0'
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
-    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.0.1-SNAPSHOT'
+    compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
-    compile 'org.codehaus.groovy:groovy:2.4.5:grooid'
-    compile 'ch.acra:acra:4.8.5'
+    compile 'ch.acra:acra:4.9.1'
     compile 'com.github.ivbaranov:materiallettericon:0.2.2'
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.apache.commons:commons-lang3:3.6'
 
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.6.3'
 
     // added because of conflict with app and test app
-    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    androidTestCompile 'com.android.support:support-annotations:27.0.0'
     // added because uiautomator needs it
+    // NBO : TODO improve this, failed upgrading to 1.0 : failed to resolve com.android.support.test:runner
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
     // this addition of ui automator caused following build error :
     // java.lang.RuntimeException: Manifest merger failed : uses-sdk:minSdkVersion 14
     // cannot be smaller than version 18 declared in library

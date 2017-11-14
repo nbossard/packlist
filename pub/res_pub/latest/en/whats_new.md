@@ -1,3 +1,2 @@
-NEW : Using new nice looking TextInputLayout for edit texts
-NEW : ISS#45 Adding a parameter for display of trip dates on homepage
-Improving category re-use in suggestions
+BUGFIX: Fixing empty list when coming from background
+NEW: Improving category background colors readability

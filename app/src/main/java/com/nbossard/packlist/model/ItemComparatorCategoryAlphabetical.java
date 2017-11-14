@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard and other contributors.
+ * Copyright (c) 2017 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ import java.util.Comparator;
  */
 
 /**
- * Comparator to sort Items based on category and then alphabetical order.
+ * Comparator to sort Items based on category.
+ * Categories will appear first (by alphabetical order) and the rest without categories in alphabetical order.
  *
  * @author Created by nbossard on 02/05/16.
  */
@@ -43,6 +44,21 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> 
      */
     private static final String TAG = ItemComparatorCategoryAlphabetical.class.getName();
 
+    // Constants for better code readability
+
+    /**
+     * parItem before parAnother.
+     */
+    private static final int PAR_ANOTHER_ITEM_BEFORE_PAR_ITEM = 1;
+    /**
+     * parAnother before parItem.
+     */
+    private static final int PAR_ITEM_BEFORE_PAR_ANOTHER = -1;
+    /**
+     * We don't know who should be first.
+     */
+    private static final int PAR_EQUALS = 0;
+
     // *********************** METHODS **********************************************************************
 
     @Override
@@ -51,14 +67,14 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> 
         //Log.v(TAG, "Entering, parItem = " + parItem + ", parAnother = " + parAnother);
         int res;
         if (parItem.getCategory() == null && parAnother.getCategory() == null) {
-            // no category for both, comparing on names
-            res = parItem.getName().compareTo(parAnother.getName());
-
+            // no category for both, comparing on names...
+            // unless if null, null should not occur but if it goes last
+            res = compareOnNames(parItem, parAnother);
             // only one have category
         } else if (parItem.getCategory() == null && parAnother.getCategory() != null) {
-            res = 1;
+            res = PAR_ANOTHER_ITEM_BEFORE_PAR_ITEM;
         } else if (parAnother.getCategory() == null && parItem.getCategory() != null) {
-            res = -1;
+            res = PAR_ITEM_BEFORE_PAR_ANOTHER;
         } else {
             // both categories are non null
 
@@ -66,10 +82,26 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> 
                 res = parItem.getCategory().compareTo(parAnother.getCategory());
             } else {
                 // non null but the same category, comparing on names
-                res = parItem.getName().compareTo(parAnother.getName());
+                res = compareOnNames(parItem, parAnother);
             }
         }
         //Log.v(TAG, "returning = " + res);
+        return res;
+    }
+
+    // *********************** INTERNAL METHODS **************************************************************
+
+    private int compareOnNames(TripItem parItem, TripItem parAnother) {
+        int res;
+        if ((parItem.getName() == null) && (parAnother.getName() != null)) {
+            res = PAR_ITEM_BEFORE_PAR_ANOTHER;
+        } else if ((parAnother.getName() == null) && (parItem.getName() != null)) {
+            res = PAR_ANOTHER_ITEM_BEFORE_PAR_ITEM;
+        } else if ((parAnother.getName() == null) && (parItem.getName() == null)) {
+            res = PAR_EQUALS;
+        } else {
+            res = parItem.getName().compareTo(parAnother.getName());
+        }
         return res;
     }
 }

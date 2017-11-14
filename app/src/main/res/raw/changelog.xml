@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~ Copyright (c) 2017 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -25,7 +25,13 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="25 juin 2017"
+        changeDate="7th november 2017"
+        versionName="0.12">
+        <changelogtext>Fixing empty list when coming from background</changelogtext>
+        <changelogtext>Improving category background colors readability </changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="25 june 2017"
         versionName="0.11">
         <changelogtext>NEW : Using new nice looking TextInputLayout for edit texts</changelogtext>
         <changelogtext>NEW : ISS#45 Adding a parameter for display of trip dates on homepage</changelogtext>

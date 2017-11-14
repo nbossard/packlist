@@ -21,6 +21,10 @@ package com.nbossard.packlist.model;
 
 import junit.framework.TestCase;
 
+import org.apache.commons.lang3.SerializationUtils;
+
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -98,5 +102,15 @@ public class TripItemTest extends TestCase {
     public void testToString() throws Exception {
         assertNotNull(mTestItem.toString());
         assertTrue(mTestItem.toString().contains(ITEM_TEST_NAME));
+    }
+
+    public void testSerialize() throws IOException {
+        mTestItem.setWeight(50);
+        mTestItem.setPacked(true);
+        mTestItem.setCategory("clothes");
+
+        // testing serialization deserialization using apache commons lang
+        Serializable copy = SerializationUtils.clone(mTestItem);
+        assertEquals(mTestItem, copy);
     }
 }

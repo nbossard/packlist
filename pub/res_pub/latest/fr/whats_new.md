@@ -1,3 +1,2 @@
-NEW : Utilisation du TextInputLayout plus joli
-NEW : ISS#45 Ajout d'un paramètre pour l'affichage des dates sur page accueil
-Amélioration des catégories dans la réutilisation
+BUGFIX: Correction de la liste vide au retour du background
+NOUVEAU: Amélioration de la lisibilité des couleurs d'arrière plan

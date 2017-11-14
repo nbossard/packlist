@@ -2,7 +2,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~ Copyright (c) 2017 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -93,6 +93,7 @@
     <string name="trip_detail__new_item__access">name&#8230;</string>
     <string name="trip_detail__new_item_magic___access">Button. Suggest an item</string>
     <string name="trip_detail__already_existing_item">This item already exists in the trip.</string>
+    <string name="trip_detail__no_more_items__toast">No more suggestion</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Edit</string>
     <string name="action_trip__share">Share</string>

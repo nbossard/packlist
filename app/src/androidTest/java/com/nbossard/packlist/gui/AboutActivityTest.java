@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard and other contributors.
+ * Copyright (c) 2017 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,12 +85,12 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     }
 
     /**
-     * Test that the string that should always appear are displayed.
+     * Test that the home as up button works.
      *
      * @throws Exception
      *             if a test has failed.
      */
-    public final void testClickOnActionButton() throws Exception
+    public final void testClickOnHomeAsUpButton() throws Exception
     {
         mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
 
@@ -98,6 +98,25 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
         // Default timeout is 20 seconds.
         // "HomeActivity" is github app
         mSolo.waitForActivity("HomeActivity");
+        // let human see the screen
+
+        mSolo.sleep(Common.HUMAN_TIME_FOR_READING);
+    }
+
+    /**
+     * Test that the "third party libraries" button works.
+     *
+     * @throws Exception
+     *             if a test has failed.
+     */
+    public final void testClickOnThirdPartyLibButton() throws Exception
+    {
+        mSolo.sleep(TestValues.LET_UI_THREAD_UPDATE_DISPLAY);
+
+        mSolo.clickOnButton(0);
+        // Default timeout is 20 seconds.
+        // "HomeActivity" is github app
+        mSolo.waitForActivity("HelpThirdPartyActivity");
         // let human see the screen
 
         mSolo.sleep(Common.HUMAN_TIME_FOR_READING);

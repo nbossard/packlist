@@ -1,3 +1,25 @@
+#
+# PackList is an open-source packing-list for Android
+#
+# Copyright (c) 2016 Nicolas Bossard and other contributors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+#
+# This file is used by travis continuous integration visible at :
+# https://travis-ci.org/nbossard/packlist
+
 sudo: false
 language: android
 # NBO : note that openjdk8 is not supported
@@ -10,18 +32,26 @@ cache:
     - node_modules
     - $HOME/.gradle/caches/
 
+env:
+  global:
+    - ANDROID_API_LEVEL=27
+    - ANDROID_BUILD_TOOLS_VERSION=26.0.2
+    - ANDROID_ABI=armeabi-v7a
+    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    - platform-tools
+    # to use the latest revision of Android SDK Tools
+    # tools should be first in order to prevent licence not accepted errors
     - tools
+    - platform-tools
+    - tools #  the tools section appears twice on purpose as it’s required to get the newest Android SDK tools.
 
     # The BuildTools version used by your project
-    - build-tools-23.0.3
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
 
     # The SDK version used to compile your project
-    - android-24
+    - android-$ANDROID_API_LEVEL
 
     # Additional components
     # - extra-android-support
@@ -35,22 +65,27 @@ android:
     # - sys-img-x86-android-23
     # 23 does not work
     # - sys-img-armeabi-v7a-android-23
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-25
 
   licenses:
+    - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
+    - '.+'                              # accept all licences
 
-env:
-  global:
-    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+
+before_install:
+  # force acceptance of licence for constraint layout
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+
+install :
+  # force acceptance of licence for constraint layout
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+  - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 
 # Emulator Management: Create, Start and Wait
-before_script:
-  - echo no | android create avd --force --name test --target android-21 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim&
-  - android-wait-for-emulator
-  - adb devices
-  - adb shell input keyevent 82 &
+# Not supported well by Travis : leads to too many problems, removed it (november 2017)
 
 script:
   - echo $ADB_INSTALL_TIMEOUT
@@ -59,6 +94,4 @@ script:
   # see : http://stackoverflow.com/questions/32952413/gradle-commands-fail-on-api-23-google-api-emulator-image-armeabi-v7a
   - ./gradlew clean
   - ./gradlew assembleDebug
-  - ./gradlew assembleDebugAndroidTest
-  - adb install app/build/outputs/apk/app-debug.apk
-  - adb install app/build/outputs/apk/app-debug-androidTest.apk
+  - ./gradlew assembleDebugUnitTest

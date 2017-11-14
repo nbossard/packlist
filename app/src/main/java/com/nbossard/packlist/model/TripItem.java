@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard and other contributors.
+ * Copyright (c) 2017 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,6 +93,7 @@ public class TripItem extends Item implements Serializable, Cloneable {
      * No params constructor.
      */
     private TripItem() {
+        super();
         mUUID = UUID.randomUUID();
     }
 

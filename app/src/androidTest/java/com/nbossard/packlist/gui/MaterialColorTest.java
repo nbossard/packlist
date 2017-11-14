@@ -1,7 +1,7 @@
 /*
  * PackList is an open-source packing-list for Android
  *
- * Copyright (c) 2016 Nicolas Bossard and other contributors.
+ * Copyright (c) 2017 Nicolas Bossard and other contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,23 +40,23 @@ public class MaterialColorTest extends InstrumentationTestCase {
     /**
      * Testing getMaterialColor, version with one parameter
      *
-     * @throws Exception
+     * @throws Exception if test fails
      */
     public void testGetMatColor() throws Exception {
         // Testing normal case, checking it is constant
-        int resColor = mMaterialColorTested.getMatColor("test");
-        int resColor2 = mMaterialColorTested.getMatColor("test");
+        int resColor = mMaterialColorTested.getMatColor("test", "500");
+        int resColor2 = mMaterialColorTested.getMatColor("test", "500");
         assertEquals(resColor, resColor2);
 
         // testing special values : empty or null strings
-        mMaterialColorTested.getMatColor("");
-        assertEquals(MaterialColor.DEFAULT_COLOR, mMaterialColorTested.getMatColor(null));
+        mMaterialColorTested.getMatColor("", "");
+        assertEquals(MaterialColor.DEFAULT_COLOR, mMaterialColorTested.getMatColor(null, null));
     }
 
     /**
      * Testing getMaterialColor, version with two parameters
      *
-     * @throws Exception
+     * @throws Exception if test fails
      */
     public void testGetMatColor1() throws Exception {
         // Testing normal case, checking it is constant

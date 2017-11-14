@@ -70,6 +70,13 @@ public class ItemTest extends TestCase {
         // now they have different category ==> false
         assertFalse(testItem.equals(testItem2));
 
+        // testing category behaviour : should be trimmed, and return null if zero length
+        testItem.setCategory("clothes");
+        testItem2.setCategory("  clothes  ");
+        assertEquals(testItem.getCategory(), testItem2.getCategory());
+
+        testItem.setCategory("   ");
+        assertNull(testItem.getCategory());
     }
 
 }

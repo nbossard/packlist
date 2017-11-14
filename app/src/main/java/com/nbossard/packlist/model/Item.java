@@ -22,6 +22,8 @@ package com.nbossard.packlist.model;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
+
 /*
 @startuml
     class com.nbossard.packlist.model.Item {
@@ -39,7 +41,7 @@ import android.support.annotation.Nullable;
  *
  */
 
-public class Item implements Comparable<Item> {
+public class Item implements Serializable, Comparable<Item> {
 
 // *********************** FIELDS *************************************************************************
 
@@ -75,8 +77,8 @@ public class Item implements Comparable<Item> {
      * Getter for name. trimmed.
      * @return i.e. : "Socks"
      */
-    public final
-    String getName() {
+    @Nullable
+    public final String getName() {
         if (mName != null) {
             return mName.trim();
         } else {
@@ -106,6 +108,9 @@ public class Item implements Comparable<Item> {
         String res = null;
         if (mCategory != null) {
             res = mCategory.trim();
+            if (res.length() == 0) {
+                res = null;
+            }
         }
         return res;
     }

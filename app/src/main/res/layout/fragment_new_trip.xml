@@ -3,7 +3,7 @@
 <!--
   ~ PackList is an open-source packing-list for Android
   ~
-  ~ Copyright (c) 2016 Nicolas Bossard and other contributors.
+  ~ Copyright (c) 2017 Nicolas Bossard and other contributors.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -48,10 +48,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/new_trip__name"
+            android:labelFor="@+id/new_trip__name__edit">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/new_trip__name__edit"
+                android:id="@id/new_trip__name__edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_edit_text_min_height"
@@ -80,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_button_min_height"
+                android:minWidth="@dimen/accessibility_button_min_width"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_date_range_black_24dp"
@@ -114,6 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_button_min_height"
+                android:minWidth="@dimen/accessibility_button_min_width"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_date_range_black_24dp"
@@ -134,10 +138,12 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/new_trip__note__edit"
+            android:contentDescription="@string/new_trip__note">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/new_trip__note__edit"
+                android:id="@id/new_trip__note__edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/accessibility_edit_text_min_height"
