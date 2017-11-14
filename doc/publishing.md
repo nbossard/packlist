@@ -1,6 +1,11 @@
 # Process for publishing packlist
  
  - ensure you are on branch develop
+ - update translations from [crowdin project](https://crowdin.com/project/packlist), account "nbossard"
+    - update files to be translated (from english)
+    - ensure all languages are fully translated
+    - build and download updated translations
+ - save your app data as it might be lost (when running UI Automator tests)
  - run app [accessibility scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor&hl=fr)
  - update plantuml global schema
  - run all tests
@@ -10,13 +15,12 @@
  - ensure that versionCode is increased in build.gradle
  - ensure that versionName is increased in build.gradle
  - close date in all changelog.xml
- - update readme.md
+ - update README.md
  - update screenshots in pub/res_pub/incoming, see [screenshots doc](screenshots.md)
- - update pub/res_pub/incoming/**/playstore_description.md files
+ - update pub/res_pub/incoming/**/playstore_description.md files 
  - create or update whats_new.md based on changelog.xml contents
- - delete "latest" folder
- - duplicate "incoming" folder in pub/res_pub to "latest"
- - create or update multiple whats_new.md based on changelog.xml contents
+ - delete "latest" folder content in pub/res_pub (except .gitkeep)
+ - duplicate "incoming" folder content in pub/res_pub to "latest"
  - duplicate "latest" folder in pub/res_pub to "vx.x"
  - commit and push
  - change to branch master
@@ -24,7 +28,9 @@
  - git merge develop
  - change build Variants to release
  - rebuild project
- - menu "build/generate signed apk", dont forget updating path of generation to pub/res_pub folder vx.x
+ - menu "build/generate signed apk", 
+    - dont forget updating path of generation to pub/res_pub folder vx.x
+    - sign V1 and V2
  - quick test apk
     - check about page
     - check what's new
