@@ -19,33 +19,45 @@
 
 package com.nbossard.packlist.process.saving;
 
+import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 import android.test.InstrumentationTestCase;
 
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Test class for ISavingModule.
  *
  * @author Created by nbossard on 01/01/16.
  */
-public class ISavingModuleTest extends InstrumentationTestCase {
+
+@RunWith(AndroidJUnit4.class)
+public class ISavingModuleTest {
 
 // *********************** FIELDS *************************************************************************
+
     private ISavingModule mTestedSavingModule;
     private Trip mTestTrip1;
     private Trip mTestTrip2;
     private Trip mTestTrip3;
 
-//
 
 // *********************** METHODS **************************************************************************
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
+
         mTestTrip1 =
                 new Trip("Rennes",
                         new GregorianCalendar(2015,12,12),
@@ -64,10 +76,11 @@ public class ISavingModuleTest extends InstrumentationTestCase {
                         new GregorianCalendar(2015,6,9),
                         "beurk",
                         SortModes.DEFAULT);
-        mTestedSavingModule = SavingFactory.getNewSavingModule(getInstrumentation().getTargetContext());
+        mTestedSavingModule = SavingFactory.getNewSavingModule(InstrumentationRegistry.getInstrumentation().getTargetContext());
         mTestedSavingModule.deleteAllTrips();
     }
 
+    @Test
     public void testLoadSavedTrips() throws Exception {
         mTestedSavingModule.deleteAllTrips();
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
@@ -83,6 +96,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
         assertTrue(loadedTrips.get(1).getUUID().compareTo(mTestTrip2.getUUID()) == 0);
     }
 
+    @Test
     public void testDeleteTrip() {
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip2);
@@ -98,6 +112,7 @@ public class ISavingModuleTest extends InstrumentationTestCase {
     }
 
     @SuppressWarnings("ConstantConditions")
+    @Test
     public void testAddOrUpdateTrip() throws Exception {
         mTestedSavingModule.addOrUpdateTrip(mTestTrip1);
         mTestedSavingModule.addOrUpdateTrip(mTestTrip2);

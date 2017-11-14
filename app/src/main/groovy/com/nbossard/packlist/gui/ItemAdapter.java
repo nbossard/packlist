@@ -29,7 +29,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.nbossard.packlist.R;
-import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.ItemComparatorAdditionDate;
 import com.nbossard.packlist.model.ItemComparatorAlphabetical;
 import com.nbossard.packlist.model.ItemComparatorCategoryAlphabetical;
@@ -53,7 +53,7 @@ import hugo.weaving.DebugLog;
 */
 
 /**
- * An adapter for displaying a trip {@link Item} in a ListView, see {@link TripDetailFragment}.
+ * An adapter for displaying a trip {@link TripItem} in a ListView, see {@link TripDetailFragment}.
  *
  * @author Created by nbossard on 17/01/16.
  */
@@ -104,7 +104,7 @@ class ItemAdapter extends BaseAdapter {
     /**
      * Items to be displayed in the list.
      */
-    private final List<Item> mItemList;
+    private final List<TripItem> mItemList;
 
     /**
      * Provided context.
@@ -121,7 +121,7 @@ class ItemAdapter extends BaseAdapter {
      * @param parContext
      *            context sic
      */
-    ItemAdapter(final List<Item> parResList, final Context parContext)
+    ItemAdapter(final List<TripItem> parResList, final Context parContext)
     {
         super();
         mItemList = parResList;
@@ -132,7 +132,7 @@ class ItemAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
 
-        Comparator<? super Item> itemComparator = null;
+        Comparator<? super TripItem> itemComparator = null;
         if (mSortMode == SortModes.DEFAULT) {
             itemComparator = new ItemComparatorAdditionDate();
         } else if (mSortMode == SortModes.UNPACKED_FIRST) {
@@ -185,7 +185,7 @@ class ItemAdapter extends BaseAdapter {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
 
-        final Item curItem = mItemList.get(parPosition);
+        final TripItem curItem = mItemList.get(parPosition);
 
         // updating views
         if (curItem.getCategory() != null) {

@@ -40,6 +40,7 @@
 
     <!-- Menu items -->
     <string name="action__whatsnew">What\'s new</string>
+    <string name="action__settings">Settings</string>
     <string name="action__send_logs">Send a report</string>
     <string name="action__about">About</string>
     <string name="action_trip__sort">Sort</string>
@@ -47,7 +48,7 @@
     <string name="action_trip__unpack_all">unpack all items</string>
 
     <!-- About page -->
-    <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
+    <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2017\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
     <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations</string>
     <string name="about__third_party__button">third party libraries</string>
     <string name="about_act__fab_go_to_website">Open website</string>
@@ -127,5 +128,10 @@
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__dialog__title" translatable="false">@string/app_name</string>
     <string name="acra__crash_report_dialog__label">Click OK to send application logs.</string>
+
+    <!-- For Settings -->
+    <string name="activity_settings__title" translatable="false">@string/action__settings</string>
+    <string name="pref_display_dates">Display dates</string>
+    <string name="pref_display_dates_sum">Display trip dates on dashboard</string>
 
 </resources>

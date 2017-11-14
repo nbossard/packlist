@@ -35,7 +35,7 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
 
 /*
 @startuml
-    class com.nbossard.packlist.gui.DialogStandardFrag {
+    class com.nbossard.packlist.gui.ChangeLogDialog {
     }
 @enduml
  */
@@ -45,12 +45,12 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
  *
  * @author Created by naub7473 on 19/01/2016.
  */
-public class DialogStandardFrag extends DialogFragment {
+public class ChangeLogDialog extends DialogFragment {
 
     /**
      * Standard empty constructor.
      */
-    public DialogStandardFrag() {
+    public ChangeLogDialog() {
         super();
     }
 
@@ -66,7 +66,7 @@ public class DialogStandardFrag extends DialogFragment {
         LayoutInflater layoutInflater =  getActivity().getLayoutInflater();
         ChangeLogRecyclerView chgList =
                 (ChangeLogRecyclerView) layoutInflater.inflate(
-                        R.layout.demo_changelog_fragment_dialogstandard, rootView, false);
+                        R.layout.changelog_fragment_dialogstandard, rootView, false);
 
         return new AlertDialog.Builder(getActivity(), R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)

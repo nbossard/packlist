@@ -31,19 +31,16 @@ import static java.lang.Thread.sleep;
 public class ItemComparatorAdditionDateTest extends TestCase {
 
     private static final String ITEM_TEST_NAME = "ItemTestName";
-    private static final String ITEM_TEST_CATEGORY = "ItemTestCat";
-    private static final String UPDATED_ITEM_TEST_NAME = "UpdatedItemTestName";
-    private Item mTestItemBefore;
-    private Item mTestItemAfter;
-    private Trip mTestTrip;
+    private TripItem mTestItemBefore;
+    private TripItem mTestItemAfter;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        mTestTrip = new Trip();
-        mTestItemBefore = new Item(mTestTrip, ITEM_TEST_NAME);
+        Trip testTrip = new Trip();
+        mTestItemBefore = new TripItem(testTrip, ITEM_TEST_NAME);
         sleep(10);
-        mTestItemAfter = new Item(mTestTrip, ITEM_TEST_NAME);
+        mTestItemAfter = new TripItem(testTrip, ITEM_TEST_NAME);
     }
 
     public void testCompare() throws Exception {

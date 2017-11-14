@@ -41,11 +41,14 @@ import android.widget.Toast;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import hugo.weaving.DebugLog;
@@ -64,7 +67,7 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.NewTripFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.TripListFragment <.. com.nbossard.packlist.gui.MainActivity : launch in\n container
     com.nbossard.packlist.gui.AboutActivity <..  com.nbossard.packlist.gui.MainActivity : start through intent
-    com.nbossard.packlist.gui.DialogStandardFrag  <..  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.gui.ChangeLogDialog  <..  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.gui.MassImportFragment <..  com.nbossard.packlist.gui.MainActivity : launch in\n container
 
     ' Moved to main file
@@ -177,9 +180,14 @@ public class MainActivity
     @Override
     protected final void onStart() {
         super.onStart();
-        if (mCurFragment == null) {
-            Log.d(TAG, "no previous fragment, displaying default");
+        // activity is launched first time
+        if ((mCurFragment == null)) {
+            Log.d(TAG, "onStart() : no previous fragment, displaying default");
             mTripListFragment = openMainActivityFragment();
+        } else if (mTripListFragment  == null) {
+            // activity is returned
+            mTripListFragment = (TripListFragment) getSupportFragmentManager().findFragmentByTag(TripListFragment.class.getSimpleName());
+            Log.d(TAG, "onStart() : found a fragment by tag : " + mTripListFragment);
         }
     }
 
@@ -193,6 +201,13 @@ public class MainActivity
     public final void onConfigurationChanged(final Configuration newConfig) {
         Log.d(TAG, "onConfigurationChanged() called with: " + "newConfig = [" + newConfig + "]");
         super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mSavingModule.removeListener(this);
     }
 
     /**
@@ -231,13 +246,15 @@ public class MainActivity
 
 
         if (id == R.id.action__whatsnew) {
-            openDialogFragment(new DialogStandardFrag());
+            openDialogFragment(new ChangeLogDialog());
         } else  if (id == R.id.action__about) {
             openAboutActivity();
         } else if (id == R.id.action__send_logs) {
             PackListApp.sendUserDebugReport();
         } else if (id == android.R.id.home) {
             getSupportFragmentManager().popBackStack();
+        } else if (id == R.id.action__settings) {
+            openSettingsActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -276,7 +293,7 @@ public class MainActivity
     // ----------- implementing interface IItemDetailFragmentActivity -------------------
 
     @Override
-    public final void updateItem(final Item parItem) {
+    public final void updateItem(final TripItem parItem) {
         boolean resUpdate = mSavingModule.updateItem(parItem);
         if (resUpdate) {
             Log.d(TAG, "updateItem(...) update of item succeded");
@@ -286,17 +303,16 @@ public class MainActivity
     }
 
     @Override
-    public final String[] getListOfCategories() {
-        return mSavingModule.getListOfCategories();
+    public final Set<String> getListOfCategories() {
+        return mSavingModule.getAllCategories();
+    }
+
+    public final Set<Item> getSetOfItems() {
+        return mSavingModule.getAllPossibleItems();
     }
 
     @Override
-    public final String[] getListOfItemNames() {
-        return mSavingModule.getListOfItemNames();
-    }
-
-    @Override
-    public final List<String> getProbableItemsList() {
+    public final List<ScoredItem> getProbableItemsList() {
         return mSavingModule.getProbableItemsList();
     }
 
@@ -342,9 +358,10 @@ public class MainActivity
      * Characteristics.
      * @param parTrip unique
      */
-    @DebugLog
     @Override
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
+
+        Log.d(TAG, "openTripDetailFragment(...) Entering");
 
         // ensure we are not adding on top of not empty backstack
         FragmentManager fm = getSupportFragmentManager();
@@ -424,7 +441,7 @@ public class MainActivity
     }
 
     @Override
-    public final void openItemDetailFragment(final Item parItem) {
+    public final void openItemDetailFragment(final TripItem parItem) {
 
         // Create fragment and give it an argument specifying the article it should show
         ItemDetailFragment newFragment = ItemDetailFragment.newInstance(parItem);
@@ -465,7 +482,23 @@ public class MainActivity
     /** Open {@link AboutActivity} on top of this activity. */
     @DebugLog
     private void openAboutActivity() {
+
+        Log.d(TAG, "openAboutActivity() Entering");
+
         Intent view = new Intent(this, AboutActivity.class);
+        view.setAction(Intent.ACTION_VIEW);
+        startActivity(view);
+    }
+
+    /**
+     * Open {@link SettingsActivity} on top of this activity.
+     */
+    @DebugLog
+    private void openSettingsActivity() {
+
+        Log.d(TAG, "openSettingsActivity() Entering");
+
+        Intent view = new Intent(this, SettingsActivity.class);
         view.setAction(Intent.ACTION_VIEW);
         startActivity(view);
     }
@@ -477,13 +510,15 @@ public class MainActivity
     @DebugLog
     private TripListFragment openMainActivityFragment() {
 
+        Log.d(TAG, "openMainActivityFragment() Entering");
+
         // Create fragment and give it an argument specifying the article it should show
         TripListFragment newFragment = new TripListFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.mainactcont__fragment, newFragment);
+        transaction.replace(R.id.mainactcont__fragment, newFragment, newFragment.getClass().getSimpleName());
         // NO add to back stack, this is lowest level fragment
 
         // Commit the transaction

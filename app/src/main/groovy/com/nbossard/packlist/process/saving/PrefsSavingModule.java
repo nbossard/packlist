@@ -28,6 +28,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.nbossard.packlist.model.Item;
+import com.nbossard.packlist.model.ScoredItem;
+import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
 
 import java.util.ArrayList;
@@ -213,7 +215,12 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final boolean updateItem(final Item parItem) {
+    public final void removeListener(final ITripChangeListener parListener) {
+        mChangeListeners.remove(parListener);
+    }
+
+    @Override
+    public final boolean updateItem(final TripItem parItem) {
         // retrieve trip of item
         Trip prevSavedTrips = loadSavedTrip(parItem.getTripUUID());
 
@@ -231,101 +238,95 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    public final String[] getListOfCategories() {
+    public final Set<String> getAllCategories() {
 
         Set<String> resSet = new HashSet<>();
 
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
-            for (Item oneItem : tripItems) {
+            List<TripItem> tripItems = oneTrip.getListOfItems();
+            for (TripItem oneItem : tripItems) {
                 if (oneItem.getCategory() != null && oneItem.getCategory().length() > 0) {
                     resSet.add(oneItem.getCategory());
                 }
             }
         }
 
-        // converting set to array
-        String[] resArray = new String[resSet.size()];
-        resSet.toArray(resArray);
-        return resArray;
+        return resSet;
     }
 
     @Override
-    public final String[] getListOfItemNames() {
+    public final Set<Item> getAllPossibleItems() {
 
-        Set<String> resSet = new HashSet<>();
+        Set<Item> resSet = new HashSet<>();
 
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
-            for (Item oneItem : tripItems) {
+            List<TripItem> tripItems = oneTrip.getListOfItems();
+            for (TripItem oneItem : tripItems) {
                 if (oneItem.getName() != null && oneItem.getName().length() > 0) {
-                    resSet.add(oneItem.getName());
+                    resSet.add(oneItem);
                 }
             }
         }
 
-        // converting set to array
-        String[] resArray = new String[resSet.size()];
-        resSet.toArray(resArray);
-        return resArray;
+        return resSet;
     }
 
+
     @Override
-    public final List<String> getProbableItemsList() {
+    public final List<ScoredItem> getProbableItemsList() {
 
-        Map<String, Integer> resMap = new TreeMap<>();
-        ValueComparator bvc = new ValueComparator(resMap);
-        Map<String, Integer> resMapSorted = new TreeMap<>(bvc);
-        List<String> resList = new ArrayList<>();
+        // Assigning a score to each previously seen item
+        Map<Item, Integer> resMapNameScore = new TreeMap<>();
+        List<ScoredItem> resList = new ArrayList<>();
 
-        // simple version : counting number of occurences of each item name
+        // simple version : score is the counting number of occurrences of each item name
         List<Trip> tripList = loadSavedTrips();
         for (Trip oneTrip : tripList) {
-            List<Item> tripItems = oneTrip.getListOfItems();
+            List<TripItem> tripItems = oneTrip.getListOfItems();
             for (Item oneItem : tripItems) {
                 if (oneItem.getName() != null && oneItem.getName().length() > 0) {
-                    if (resMap.containsKey(oneItem.getName())) {
-                        Integer value = resMap.get(oneItem.getName());
-                        resMap.put(oneItem.getName(), value + 1);
+                    if (resMapNameScore.containsKey(oneItem)) {
+                        Integer value = resMapNameScore.get(oneItem);
+                        resMapNameScore.put(oneItem, value + 1);
                     } else {
-                        resMap.put(oneItem.getName(), 1);
+                        resMapNameScore.put(oneItem, 1);
                     }
                 }
             }
         }
-        // sorting by number of occurences
-        resMapSorted.putAll(resMap);
 
-        // converting to (ordered) list
-
-        for (String oneEntry : resMapSorted.keySet()) {
-
-            resList.add(oneEntry);
-        }
-        return resList;
-    }
-
-    /**
-     * Comparator used to sort the probable item lists. See {@link #getProbableItemsList()}.
-     */
-    class ValueComparator implements Comparator<String> {
-        Map<String, Integer> base;
-
-        public ValueComparator(Map<String, Integer> base) {
-            this.base = base;
-        }
-
-        // Note: this comparator imposes orderings that are inconsistent with
-        // equals.
-        public int compare(String a, String b) {
-            if (base.get(a) >= base.get(b)) {
-                return -1;
+        // sorting according to score assigned to each item
+        /*
+        ValueComparator bvc = new ValueComparator(resMapNameScore);
+        TreeMap resMapSorted = new TreeMap<>(bvc);
+        resMapSorted.putAll(resMapNameScore);
+           */
+        // converting to expected result type, a (ordered) list
+        for (Item oneItem : resMapNameScore.keySet()) {
+            if (resMapNameScore.get(oneItem) == null) {
+                Log.e(TAG, "WTF I can't get in this fucking map");
             } else {
-                return 1;
-            } // returning 0 would merge keys
+                ScoredItem scoredItem = new ScoredItem(oneItem, resMapNameScore.get(oneItem));
+                resList.add(scoredItem);
+            }
         }
+        Collections.sort(resList, new Comparator<ScoredItem>() {
+            @Override
+            public int compare(final ScoredItem parA, final ScoredItem parB) {
+                int res;
+                if (parB.getScore() < parA.getScore()) {
+                    res = -1;
+                } else if (parB.getScore() > parA.getScore()) {
+                    res = +1;
+                } else {
+                    res = 0;
+                }
+                return res;
+            }
+        });
+        return resList;
     }
 
     // *********************** PRIVATE METHODS **************************************************************
