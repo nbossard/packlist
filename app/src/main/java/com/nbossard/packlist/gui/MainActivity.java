@@ -123,23 +123,19 @@ public class MainActivity
     /**
      * Listener on back stack in order to set back title bar when back stack is empty.
      */
-    private FragmentManager.OnBackStackChangedListener mOnBackStackChangeListener =
-            new FragmentManager.OnBackStackChangedListener() {
-                @Override
-                public void onBackStackChanged() {
-                    ActionBar supActionBar = getSupportActionBar();
-                    if (supActionBar != null) {
-                        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                            supActionBar.setTitle(getString(R.string.app_name));
-                            supActionBar.setDisplayHomeAsUpEnabled(false);
-                            supActionBar.setHomeButtonEnabled(false);
-                        } else {
-                            supActionBar.setDisplayHomeAsUpEnabled(true);
-                            supActionBar.setHomeButtonEnabled(true);
-                        }
+    private FragmentManager.OnBackStackChangedListener mOnBackStackChangeListener = () -> {
+                ActionBar supActionBar = getSupportActionBar();
+                if (supActionBar != null) {
+                    if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                        supActionBar.setTitle(getString(R.string.app_name));
+                        supActionBar.setDisplayHomeAsUpEnabled(false);
+                        supActionBar.setHomeButtonEnabled(false);
                     } else {
-                        Log.w(TAG, "onBackStackChanged: can't retrieve action bar, VERY STRANGE");
+                        supActionBar.setDisplayHomeAsUpEnabled(true);
+                        supActionBar.setHomeButtonEnabled(true);
                     }
+                } else {
+                    Log.w(TAG, "onBackStackChanged: can't retrieve action bar, VERY STRANGE");
                 }
             };
 
@@ -527,12 +523,7 @@ public class MainActivity
 
         // updating FAB action
         mFab.show();
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                openNewTripFragment(null);
-            }
-        });
+        mFab.setOnClickListener(view -> openNewTripFragment(null));
         return newFragment;
     }
 //
