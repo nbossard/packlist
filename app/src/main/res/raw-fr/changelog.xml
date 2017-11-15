@@ -25,7 +25,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="7 novembre 2017"
+        changeDate="??th novembre 2017"
+        versionName="0.13">
+    </changelogversion>
+    <changelogversion
+        changeDate="15 novembre 2017"
         versionName="0.12">
         <changelogtext>BUGFIX : liste vide d'items quand on revient du background</changelogtext>
         <changelogtext>Amélioration des couleurs des catégories, plus lisibles</changelogtext>
