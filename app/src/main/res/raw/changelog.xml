@@ -25,6 +25,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate=""
+        versionName="0.13">
+        <changelogtext>NEW : adding support of traditional and modern chinese</changelogtext>
+    </changelogversion>
+    <changelogversion
         changeDate="7th november 2017"
         versionName="0.12">
         <changelogtext>Fixing empty list when coming from background</changelogtext>

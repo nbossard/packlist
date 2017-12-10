@@ -25,6 +25,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate=""
+        versionName="0.13">
+        <changelogtext>NEW : ajout support du chinois moderne et traditionel</changelogtext>
+    </changelogversion>
+    <changelogversion
         changeDate="7 novembre 2017"
         versionName="0.12">
         <changelogtext>BUGFIX : liste vide d'items quand on revient du background</changelogtext>
