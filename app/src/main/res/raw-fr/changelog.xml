@@ -28,6 +28,7 @@
         changeDate=""
         versionName="0.13">
         <changelogtext>NEW : ajout support du chinois moderne et traditionel</changelogtext>
+        <changelogtext>NEW : ajout support de la langue turque</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="7 novembre 2017"

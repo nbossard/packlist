@@ -28,6 +28,7 @@
         changeDate=""
         versionName="0.13">
         <changelogtext>NEW : adding support of traditional and modern chinese</changelogtext>
+        <changelogtext>NEW : adding support of turkish language</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="7th november 2017"
