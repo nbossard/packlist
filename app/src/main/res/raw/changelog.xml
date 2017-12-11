@@ -27,6 +27,9 @@
     <changelogversion
         changeDate="??th november 2017"
         versionName="0.13">
+        <changelogtext>NEW : adding support of traditional and modern chinese</changelogtext>
+        <changelogtext>NEW : adding support of turkish language</changelogtext>
+        <changelogtext>BUGFIX : impproving dutch tranlations</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="15th november 2017"

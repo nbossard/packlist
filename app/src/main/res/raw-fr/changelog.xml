@@ -25,8 +25,11 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="??th novembre 2017"
+        changeDate="??th decembre 2017"
         versionName="0.13">
+        <changelogtext>NEW : ajout support du chinois moderne et traditionel</changelogtext>
+        <changelogtext>NEW : ajout support de la langue turque</changelogtext>
+        <changelogtext>BUGFIX : amélioration du support du nééerlandais</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="15 novembre 2017"
