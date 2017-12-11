@@ -27,7 +27,7 @@
     <changelogversion
         changeDate="??th decembre 2017"
         versionName="0.13">
-        <changelogtext>NEW : ajout support du chinois moderne et traditionel</changelogtext>
+        <changelogtext>NEW : ajout support du chinois moderne et traditionel, merci à "myjourney"</changelogtext>
         <changelogtext>NEW : ajout support de la langue turque</changelogtext>
         <changelogtext>BUGFIX : amélioration du support du nééerlandais</changelogtext>
     </changelogversion>

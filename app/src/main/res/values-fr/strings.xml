@@ -47,7 +47,7 @@
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2017\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes</string>
+    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes\n - Myjourney pour les traductions chinoises</string>
     <string name="about__third_party__button">Librairies tierces</string>
     <string name="about_act__fab_go_to_website">Open website</string>
 

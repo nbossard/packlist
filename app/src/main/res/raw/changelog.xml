@@ -27,7 +27,7 @@
     <changelogversion
         changeDate="??th november 2017"
         versionName="0.13">
-        <changelogtext>NEW : adding support of traditional and modern chinese</changelogtext>
+        <changelogtext>NEW : adding support of traditional and modern chinese thanks to "myjourney"</changelogtext>
         <changelogtext>NEW : adding support of turkish language</changelogtext>
         <changelogtext>BUGFIX : impproving dutch tranlations</changelogtext>
     </changelogversion>
