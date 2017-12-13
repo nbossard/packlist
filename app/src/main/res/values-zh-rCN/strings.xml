@@ -48,10 +48,9 @@
     <string name="action_trip__import">导入文字档</string>
     <string name="action_trip__unpack_all">解包所有项目</string>
     <!-- About page -->
-    <string name="about__main">包装清单％1 $ s。\ n％2 $ s \ n版权所有©2015-2017 \ nNBossard和其他贡献者-2016。\ n Apache 2授权。\
-        n请在\ n https://github.com提供帮助和建议。/ nbossard/ packlist
+    <string name="about__main">包装清单％1 $ s。\n％2 $ s \n版权所有©2015-2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com提供帮助和建议。/ nbossard/ packlist
     </string>
-    <string name="about__many_thanks_to_contributors">非常感谢\ n -naofum，为日文翻译\ n -
+    <string name="about__many_thanks_to_contributors">非常感谢\n -naofum，为日文翻译\n -
         为德文翻译而设的Paccolat
     </string>
     <string name="about__third_party__button">第三方库</string>
@@ -107,16 +106,15 @@
         <u>第三者资料档案</u>
     </string>
     <string name="help_legal__third_party_lib_hugo__label">
-        <b>Hugo</ b>
-        \ nCopyright©2013 Jake Wharton，\ n（<a href="https://github.com/JakeWharton/hugo">
-        https://github.com/JakeWharton/hugo</a>）\ n Hugo使用Apache许可证2.0版本（<a
+        <b>Hugo</b>
+        \nCopyright©2013 Jake Wharton，\n（<a href="https://github.com/JakeWharton/hugo">
+        https://github.com/JakeWharton/hugo</a>）\n Hugo使用Apache许可证2.0版本（<a
         href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org
         /licenses/LICENSE-2.0.html</a>）
     </string>
     <string name="help_legal__third_party_lib_gson__label">
-        <b>Gson</ b>
-        \ n（<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>）\
-        n版权所有©2004 Google \ nGson根据Apache许可证版本2.0获得许可\ n（<a
+        <b>Gson</b>
+        \n（<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>）\n版权所有©2004 Google \nGson根据Apache许可证版本2.0获得许可\n（<a
         href="http://www.apache.org/licenses/LICENSE-2.0.html">http：
         //www.apache.org/licenses/LICENSE-2.0.html</a>）
     </string>
@@ -128,17 +126,17 @@
         </a> )
     </string>
     <string name="help_legal__third_party_lib_datetimepicker__label">
-        <b>DateTimePicker</ b>
-        \ n（<a href="https://github.com/flavienlaurent/datetimepicker">
-        https://github.com/flavienlaurent/datetimepicker</a>）\ n版权所有©2015 Flavien Laurent \ n /
+        <b>DateTimePicker</b>
+        \n（<a href="https://github.com/flavienlaurent/datetimepicker">
+        https://github.com/flavienlaurent/datetimepicker</a>）\n版权所有©2015 Flavien Laurent \n /
         changeloglib已获得Apache许可证2.0版本的许可（<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
         http://www.apache.org /licenses/LICENSE-2.0.html</a>）
     </string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label">
-        <b>有趣语言支持Android</ b>
-        \ n（<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-
-        android-gradle-plugin</a>）\ n版权所有©2016原作者或作者\ n / groovy-android-gradle-plugin是根据Apache许可证2.0版授权的。
-        /www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html
+        <b>有趣语言支持Android</b>
+        \n（<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-
+        android-gradle-plugin</a>）\n版权所有©2016原作者或作者\n / groovy-android-gradle-plugin是根据Apache许可证2.0版授权的。
+        （<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html
     </a>
     ）
 </string>
@@ -158,10 +156,10 @@ under the Apache License, Version 2.0\n(<a href="http://www.apache.org/ licenses
 <string name="item_detail__category__label">类别</string>
     <!-- Mass import -->
 <string name="mass_import__principle_explanation_new_trip__label">这个对话框是为了帮助大量导入项目到一个新的旅程中，粘贴下面的项目的现有列表。
-每行一个项目。\ n \ ni.e。：\ nVarious：指导书（100g）。
+每行一个项目。\n \ni.e。：\nVarious：指导书（100g）。
 </string>
 <string name="mass_import__principle_explanation_with_name__label">此对话框用于帮助将物品批量导入行程“％1 $ s”，粘贴您现有的物品清单。
-每行一个项目。\ n \ ni.e。：\ nVarious：指导书（100g）。
+每行一个项目。\n \ni.e。：\nVarious：指导书（100g）。
 </string>
 <string name="mass_import__import__button">引进</string>
 <string name="mass_import__items__hint">在这打字或黏贴</string>
