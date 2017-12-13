@@ -7,4 +7,5 @@ screenshots:
  * [In French](./fr)
  * [In German](./de)
  * [In Japanese](./ja)
+ * [In Indonesian](./id)
 
