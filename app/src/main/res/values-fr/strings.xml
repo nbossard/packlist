@@ -47,13 +47,13 @@
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2017\nNBossard et autres contributeurs.\n Apache 2 Licensed.\n Votre aide et vos suggestions sont les bienvenues sur \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes\n - Myjourney pour les traductions chinoises</string>
+    <string name="about__many_thanks_to_contributors">Merci à\n -naofum, pour les traductions japonaises\n - Christophe Paccolat pour les traductions allemandes\n - Myjourney pour les traductions chinoises - "isaideureka" and "fafarsdq" for indonesian translations</string>
     <string name="about__third_party__button">Librairies tierces</string>
-    <string name="about_act__fab_go_to_website">Open website</string>
+  <string name="about_act__fab_go_to_website">Ouvrir le site Internet</string>
 
     <!-- Main page -->
     <string name="main__welcome">Voici la liste de vos voyages prévus, cliquez sur un pour voir son détail</string>
-    <string name="main__no_trip_yet__label">Pas de voyage prévu… encore,\ncliquez sur le bouton "+" pour ajouter un voyage.</string>
+  <string name="main__no_trip_yet__label">Pas de voyage prévu… encore,\ncliquez sur le bouton \"+\" pour ajouter un voyage.</string>
     <string name="action_main_cab__clone">Dupliquer</string>
     <string name="action_main_cab__delete">Supprimer</string>
     <string name="mainact__fab_add_a_trip">Ajouter un nouveau voyage</string>
@@ -110,7 +110,7 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 l\'auteur d\'origine\n/groovy-android-gradle-plugin est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
-    <string name="help_legal__third_party_lib__mli__label">ft<b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
 
     <!-- TripItem detail -->
     <string name="item_detail__name__label">nom</string>

@@ -30,6 +30,7 @@
         <changelogtext>NEW : ajout support du chinois moderne et traditionel, merci à "myjourney"</changelogtext>
         <changelogtext>NEW : ajout support de la langue turque</changelogtext>
         <changelogtext>BUGFIX : amélioration du support du nééerlandais</changelogtext>
+        <changelogtext>NEW : ajout support de l'indonésien, merci à "isaideureka" et "fafarsdq"</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="15 novembre 2017"
