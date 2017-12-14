@@ -36,10 +36,7 @@
     <string name="demo_changelog_title_standarddialog">Değişiklik günlüğü</string>
     <string name="about_ok">Tamam</string>
     <string name="title_activity_about">Etkinlik Hakkında</string>
-    <string name="toast_update_failed_incompatible_format">Muhtemelen eski bir gezi ile geçerli biçim
-        arasındaki uyuşmazlıktan dolayı güncelleme başarısız oldu, bu öğeyi veya bu geziyi silip yeniden
-        oluşturmayı deneyin.
-    </string>
+    <string name="toast_update_failed_incompatible_format">Muhtemelen eski bir gezi ile geçerli biçim arasındaki uyuşmazlıktan dolayı güncelleme başarısız oldu, bu öğeyi veya bu geziyi silip yeniden oluşturmayı deneyin.</string>
     <!-- Menu items -->
     <string name="action__whatsnew">Yenilikler</string>
     <string name="action__settings">Ayarlar</string>
@@ -49,20 +46,13 @@
     <string name="action_trip__import">Metin dosyası al</string>
     <string name="action_trip__unpack_all">tüm öğeleri çıkar</string>
     <!-- About page -->
-    <string name="about__main">Paketleme listesi %1$s. \n%2$s\nCopyright © 2015–2017\nBossard ve diğer katkı
-        sağlayanlar–2016.\nApache 2 Lisanslı.\n Lütfen yardım ve önerileriniz için \n
-        https://github.com/nbossard/packlist adresine gidin
-    </string>
-    <string name="about__many_thanks_to_contributors">Japonca çeviri için \n-naofum\'a, Almanca çeviri için\n
-        -Christophe Paccolat\'a çok teşekkür ederiz
-    </string>
+    <string name="about__main">Paketleme listesi %1$s. \n%2$s\nCopyright © 2015–2017\nBossard ve diğer katkı sağlayanlar–2016.\nApache 2 Lisanslı.\n Lütfen yardım ve önerileriniz için \n https://github.com/nbossard/packlist adresine gidin</string>
+    <string name="about__many_thanks_to_contributors">Japonca çeviri için \n-naofum\'a, Almanca çeviri için\n-Christophe Paccolat\'a çok teşekkür ederiz</string>
     <string name="about__third_party__button">üçüncü parti kütüphaneleri</string>
     <string name="about_act__fab_go_to_website">Açık website</string>
     <!-- Main page -->
     <string name="main__welcome">İşte seyahatlerinizin listesi, lütfen detaylar için birine tıklayın</string>
-    <string name="main__no_trip_yet__label">Henüz seyahat planlanmadı,\nyeni bir seyahat eklemek için +
-        butonuna tıklayın
-    </string>
+    <string name="main__no_trip_yet__label">Henüz seyahat planlanmadı,\nyeni bir seyahat eklemek için + butonuna tıklayın</string>
     <string name="action_main_cab__clone">Klonla</string>
     <string name="action_main_cab__delete">Sil</string>
     <string name="mainact__fab_add_a_trip">Yeni seyahat ekle</string>
@@ -75,9 +65,7 @@
         <item quantity="other">%d gün önce.</item>
     </plurals>
     <string name="trip_deletion_confirm__title">Kötü bir fikir gibi geliyor&#8230;</string>
-    <string name="trip_deletion_confirm__body">Eski seyahatler, öğeleri ve kategorileri önermek için bir bilgi
-        tabanı olarak kullanılır, mümkünse bunları saklamanız gerekir.\n\nGerçekten silinsin mi?
-    </string>
+    <string name="trip_deletion_confirm__body">Eski seyahatler, öğeleri ve kategorileri önermek için bir bilgi tabanı olarak kullanılır, mümkünse bunları saklamanız gerekir.\n\nGerçekten silinsin mi?</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">gezi adı</string>
     <string name="new_trip__start_date">başlangıç tarihi</string>
@@ -94,8 +82,7 @@
     <string name="trip_detail__add_item_detail___button">Dahası</string>
     <string name="trip_detail__no_item_yet__label">Henüz öğe yok, aşağıdaki ekle alanını kullanın</string>
     <string name="trip_detail__edit_trip">seyahat düzenle</string>
-    <string name="trip_detail__before_weight__label">çanta ağırlığı: %1$d g\'dan fazla (%2$dg paketlendi).
-    </string>
+    <string name="trip_detail__before_weight__label">çanta ağırlığı: %1$d g\'dan fazla (%2$dg paketlendi).</string>
     <string name="trip_detail__new_item__access">isim&#8230;</string>
     <string name="trip_detail__new_item_magic___access">Buton. Bir öğe öner</string>
     <string name="trip_detail__already_existing_item">Bu öğe zaten seyahatte var.</string>
@@ -110,76 +97,26 @@
     <string name="sorting_mode_category">kategori</string>
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">üçüncü parti kütüphaneleri</string>
-    <string name="help_legal__third_party__label">
-        <u>üçüncü parti kütüphaneleri</u>
-    </string>
-    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nTelif hakkı © 2013 Jake Wharton,\n(<a
-        href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\nHugo, Apache
-        Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
-    <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a
-        href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nTelif hakkı
-        © 2004 Google\nGson, Apache Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
-    <string name="help_legal__third_party_lib_changelog__label"><b>Değişiklikler</b>\n(<a
-        href="https://github.com/gabrielemariotti/changeloglib">
-        https://github.com/gabrielemariotti/changeloglib</a>)\nTelif Hakkı © 2004 gabriele mariotti \n/
-        changeloglib, Apache Lisansı, Version 2.0\'da lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
-    <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a
-        href="https://github.com/flavienlaurent/datetimepicker">
-        https://github.com/flavienlaurent/datetimepicker</a>)\nTelif hakkı © 2015 Flavien
-        Laurent\n/changeloglib, Apache Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
-    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy Android için dil
-        desteği</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">
-        https://github.com/groovy/groovy-android-gradle-plugin</a>)\nTelif hakkı © 2016 orijinal yazar veya
-        yazarlar\n/groovy-android-gradle-plugin Apache License, Version 2.0 altında lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
-    <string name="help_legal__third_party_lib__acra__label"><b>Android için Uygulama Çökme Raporu</b>\nTelif
-        hakkı © 2013 Kevin Gaudin\nAndroid için Uygulama Çökme Raporlaması, Apache Lisansı, Sürüm 2.0 altında
-        lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html</a>)
-    </string>
-    <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016
-        IvBaranov\nMaterial Letter Icon Apache License, Version 2.0 altında lisanslanmıştır\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html</a>)
-    </string>
+    <string name="help_legal__third_party__label"><u>üçüncü parti kütüphaneleri</u></string>
+    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nTelif hakkı © 2013 Jake Wharton,\n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\nHugo, ApacheLisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nTelif hakkı© 2004 Google\nGson, Apache Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_changelog__label"><b>Değişiklikler</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nTelif Hakkı © 2004 gabriele mariotti \n/changeloglib, Apache Lisansı, Version 2.0\'da lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nTelif hakkı © 2015 FlavienLaurent\n/changeloglib, Apache Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy Android için dil desteği</b>\n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nTelif hakkı © 2016 orijinal yazar veyayazarlar\n/groovy-android-gradle-plugin Apache License, Version 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
+    <string name="help_legal__third_party_lib__acra__label"><b>Android için Uygulama Çökme Raporu</b>\nTelifhakkı © 2013 Kevin Gaudin\nAndroid için Uygulama Çökme Raporlaması, Apache Lisansı, Sürüm 2.0 altındalisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon Apache License, Version 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html"> http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <!-- Detail of item -->
     <string name="item_detail__name__label">öğe adı</string>
     <string name="item_detail__weight__label">ağırlık (gram olarak)</string>
     <string name="item_detail__submit">GÜNCELLE</string>
     <string name="item_detail__category__label">Kategori</string>
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation_new_trip__label">Bu iletişim kutusu, öğelerin yeni bir
-        geziye toplu şekilde aktarılması için varolan öğe listesini yapıştırmanıza yardımcı olur. Her satıra
-        bir öğe.\n\nörn.:\nÇeşitli:Rehber kitap (100g).
-    </string>
-    <string name="mass_import__principle_explanation_with_name__label">Bu diyalog, öğelerin \"%1$s\" gezisine
-        toplu olarak aktarılmasına yardımcı olmak için mevcut öğe listesini yapıştırmanıza yardımcı olur. Her
-        satıra bir öğe.\n\nörn.:\nÇeşitli:Rehber kitap (100g).
-    </string>
+    <string name="mass_import__principle_explanation_new_trip__label">Bu iletişim kutusu, öğelerin yeni bir geziye toplu şekilde aktarılması için varolan öğe listesini yapıştırmanıza yardımcı olur. Her satıra bir öğe.\n\nörn.:\nÇeşitli:Rehber kitap (100g).</string>
+    <string name="mass_import__principle_explanation_with_name__label">Bu diyalog, öğelerin \"%1$s\" gezisine toplu olarak aktarılmasına yardımcı olmak için mevcut öğe listesini yapıştırmanıza yardımcı olur. Her satıra bir öğe.\n\nörn.:\nÇeşitli:Rehber kitap (100g).</string>
     <string name="mass_import__import__button">İçe aktar</string>
     <string name="mass_import__items__hint">buraya yazın veya yapıştırın&#8230;</string>
     <!-- for ACRA (Application CRash Reports) reports -->
-    <string name="acra__crash_report_dialog__label">Uygulama günlüklerini göndermek için Tamam\'ı tıklayın.
-    </string>
+    <string name="acra__crash_report_dialog__label">Uygulama günlüklerini göndermek için Tamam\'ı tıklayın.</string>
     <!-- For Settings -->
     <string name="pref_display_dates">Tarihleri göster</string>
     <string name="pref_display_dates_sum">Gösterge tablosundaki seyahat tarihlerini göster</string>
