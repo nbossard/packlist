@@ -46,8 +46,8 @@
   <string name="action_trip__import">Importeer tekst bestand</string>
   <string name="action_trip__unpack_all">uitpakken van alle items</string>
   <!-- About page -->
-  <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015-2016\nNBossard en andere leverden - 2016.\n Apache 2 licentie. \n Voor hulp en suggesties ga naar https://github.com/nbossard/packlist \n</string>
-  <string name="about__many_thanks_to_contributors">Vele dank aan - naofum voor Japanse translation\n - Christophe Paccolat voor Duitse vertalingen</string>
+  <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2016\nNBossard en andere leverden - 2016.\n Apache 2 licentie. \n Voor hulp en suggesties ga naar https://github.com/nbossard/packlist \n</string>
+  <string name="about__many_thanks_to_contributors">Vele dank aan\n-naofum voor Japanse translation\n -Christophe Paccolat voor Duitse vertalingen</string>
   <string name="about__third_party__button">derde partij bibliotheken</string>
   <string name="about_act__fab_go_to_website">Open website</string>
   <!-- Main page -->
@@ -82,7 +82,7 @@
   <string name="trip_detail__add_item_detail___button">Meer</string>
   <string name="trip_detail__no_item_yet__label">Nog geen artikel, gebruik het onderstaande vak</string>
   <string name="trip_detail__edit_trip">reis bewerken</string>
-  <string name="trip_detail__before_weight__label">Bagage gewicht: meer dan %1$dg(verpakt%2$dg)</string>
+  <string name="trip_detail__before_weight__label">bagage gewicht: meer dan %1$dg(verpakt %2$dg).</string>
   <string name="trip_detail__new_item__access">naam&#8230;</string>
   <string name="trip_detail__new_item_magic___access">Knop. Stel een item voor</string>
   <string name="trip_detail__already_existing_item">Dit artikel staat al in de reis.</string>
