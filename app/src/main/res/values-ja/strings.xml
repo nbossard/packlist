@@ -51,7 +51,7 @@
     <string name="about_act__fab_go_to_website">ウェブサイトを開く</string>
     <!-- Main page -->
     <string name="main__welcome">これは旅行のリストです。詳細はクリックしてください</string>
-    <string name="main__no_trip_yet__label">まだ旅行を計画していません。 + ボタンをクリックして、新しい旅行を追加してください</string>
+  <string name="main__no_trip_yet__label">まだ旅行を計画していません。\n + ボタンをクリックして、新しい旅行を追加してください</string>
     <string name="action_main_cab__clone">複製</string>
     <string name="action_main_cab__delete">削除</string>
     <string name="mainact__fab_add_a_trip">新しい旅行を追加</string>
