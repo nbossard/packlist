@@ -31,6 +31,7 @@
         <changelogtext>NEW : ajout support de la langue turque</changelogtext>
         <changelogtext>BUGFIX : amélioration du support du nééerlandais</changelogtext>
         <changelogtext>NEW : ajout support de l'indonésien, merci à "isaideureka" et "fafarsdq"</changelogtext>
+        <changelogtext>NEW : ajout support de l'espagnol, merci à "Andrés Ignacio Torres"</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="15 novembre 2017"

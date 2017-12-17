@@ -21,7 +21,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 ![One tab screenshot](./pub/res_pub/latest/en/tab/trip_detail.png)
 
 ### Objectives in term of functionality : 
- * multi-language (currently English , Japanese, Dutch, Chinese, Indonesian, Turkish and French but please help for others)
+ * multi-language (currently English , Japanese, Dutch, Chinese, Indonesian, Turkish, spanish and French but please help for others)
  * pre-filling of list through questions on what you are planning to do during your trip
  
 ### Objectives : 
