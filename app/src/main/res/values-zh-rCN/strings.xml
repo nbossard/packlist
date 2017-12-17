@@ -48,11 +48,8 @@
     <string name="action_trip__import">导入文字档</string>
     <string name="action_trip__unpack_all">解包所有项目</string>
     <!-- About page -->
-    <string name="about__main">包装清单％1 $ s。\n％2 $ s \n版权所有©2015-2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com提供帮助和建议。/ nbossard/ packlist
-    </string>
-    <string name="about__many_thanks_to_contributors">非常感谢\n -naofum，为日文翻译\n -
-        为德文翻译而设的Paccolat
-    </string>
+  <string name="about__main">包装清单%1$s。\n%2$s\n版权所有©2015-2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com/nbossard/packlist</string>
+  <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations - \"isaideureka\" and \"fafarsdq\" for indonesian translations</string>
     <string name="about__third_party__button">第三方库</string>
     <string name="about_act__fab_go_to_website">打开网站</string>
     <!-- Main page -->
@@ -70,7 +67,7 @@
         <item quantity="other">%d 天之前.</item>
     </plurals>
     <string name="trip_deletion_confirm__title">这个建议不是太好...</string>
-    <string name="trip_deletion_confirm__body">旧旅行被用作建议你的项目和类别的知识基础，你应该保留它们，如果可能的话。\n\m真的删除？</string>
+  <string name="trip_deletion_confirm__body">旧旅行被用作建议你的项目和类别的知识基础，你应该保留它们，如果可能的话。\n\n真的删除？</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">行程名</string>
     <string name="new_trip__start_date">出发日期</string>
@@ -80,14 +77,14 @@
     <string name="new_trip__note">注意</string>
     <string name="new_trip__submit">出发...</string>
     <!-- Detail of trip -->
-    <string name="trip_detail__main__titlebar">列出％1s</string>
+    <string name="trip_detail__main__titlebar">列出%1s</string>
     <string name="trip_detail__end_date__label">到</string>
     <string name="trip_detail__start_date__label">从</string>
     <string name="trip_detail__add_item___button">添加专案</string>
     <string name="trip_detail__add_item_detail___button">更多</string>
     <string name="trip_detail__no_item_yet__label">没有项目，请用下面的 “add field\"</string>
     <string name="trip_detail__edit_trip">更改行程</string>
-    <string name="trip_detail__before_weight__label">包包的重量： 多过 %1$d 克 （整理完%2$d 克）</string>
+  <string name="trip_detail__before_weight__label">包包的重量： 多过 %1$d 克 (整理完%2$d 克)</string>
     <string name="trip_detail__new_item__access">名称...</string>
     <string name="trip_detail__new_item_magic___access">按钮. 建议一项项目</string>
     <string name="trip_detail__already_existing_item">此项目已存在此专案。</string>
@@ -156,11 +153,9 @@ under the Apache License, Version 2.0\n(<a href="http://www.apache.org/ licenses
 <string name="item_detail__category__label">类别</string>
     <!-- Mass import -->
 <string name="mass_import__principle_explanation_new_trip__label">这个对话框是为了帮助大量导入项目到一个新的旅程中，粘贴下面的项目的现有列表。
-每行一个项目。\n \ni.e。：\nVarious：指导书（100g）。
-</string>
-<string name="mass_import__principle_explanation_with_name__label">此对话框用于帮助将物品批量导入行程“％1 $ s”，粘贴您现有的物品清单。
-每行一个项目。\n \ni.e。：\nVarious：指导书（100g）。
-</string>
+每行一个项目。\n\ni.e。：\nVarious：指导书(100g)。</string>
+  <string name="mass_import__principle_explanation_with_name__label">此对话框用于帮助将物品批量导入行程“%1$s”，粘贴您现有的物品清单。 
+每行一个项目。\n\ni.e。：\nVarious：指导书(100g)。</string>
 <string name="mass_import__import__button">引进</string>
 <string name="mass_import__items__hint">在这打字或黏贴</string>
     <!-- for ACRA (Application CRash Reports) reports -->
