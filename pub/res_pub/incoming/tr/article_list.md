@@ -1,5 +1,5 @@
-# İSİM: Mağaza ekran görüntüleri için deneme gezintisi
-# TARİH: 13/12/2017 → 23/12/2017
+#NAME: Mağaza ekran görüntüleri için deneme gezintisi
+#DATE: 13/12/2017→23/12/2017
 
 ☐ Tuvalet işi: Diş Fırçası 
 ☐ Tuvalet işi: Duş Sabunu 
