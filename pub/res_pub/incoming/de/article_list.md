@@ -1,5 +1,9 @@
-# NAME: Demoliste für Bildschirmspeicher
+#NAME: Demoliste für Bildschirmspeicher
+#DATE: 13/12/2017 → 23/12/2017
 
-# DATUM: 13.12.2017 → 23.12.2017
-
-Toilettenartikel: Zahnbürste Toilettenartikel: Duschgel Toilettenartikel: Kamm Freizeit: Buch Freizeit: Ladegerät für Laptop Ausweispapiere: Reisepass
+☐ Toilettenartikel: Zahnbürste
+☐ Toilettenartikel: Duschgel
+☐ Toilettenartikel: Kamm
+☐ Freizeit: Buch
+☐ Freizeit: Ladegerät für Laptop
+☐ Ausweispapiere: Reisepass
