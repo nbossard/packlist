@@ -1,8 +1,8 @@
-**korte beschrijving**
+**short description**
 
 Beheer een lijst van spullen die u wilt meenemen op uw aanstaande reis.
 
-**lange beschrijving**
+**long description**
 
 Deze toepassing zal u helpen bij het maken van inpaklijst (een lijst van goederen om mee te nemen op uw aanstaande reis).
 
