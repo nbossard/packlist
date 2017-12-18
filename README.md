@@ -36,7 +36,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
    - very strict formatting rules
    - mandatory usage of quality plugins : checkstyle, findbugs
    - exhaustive javadoc
-   - unit testing and and Robotium testing and UI automator
+   - unit testing and Robotium testing and UI automator
    - continuous integration using Travis (https://travis-ci.org/nbossard/packlist)
  - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation ([see project plantuml doc](doc/plantuml.md))
@@ -51,9 +51,9 @@ They are also available in [other languages](./pub/res_pub/latest/)
 - material design
 - android studio 3.0
 - vector drawables, using asset studio
-- in-app indexing
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
 - constraint layouts (Work in progress)
+- java 8 code formatting
 
 ### Licence
 Apache 2
@@ -65,6 +65,7 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
+- 0.13 adding support of 5 new languages
 - 0.12 improving categories colors, fixing crashes when coming from background
 - 0.11 improving categories management
 - 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor

@@ -52,7 +52,7 @@ android {
     // 16 --> 0.10.2 (published 3rd august 2016)
     // 17 --> 0.11 (published 25th june 2017)
     // 18 --> 0.12 (published 15th november 2017)
-    // 19 --> WIP
+    // 19 --> 0.13 (published 18th november 2017)
     defaultConfig {
         applicationId "com.nbossard.packlist"
         // 11 because of use of startActionMode in list selection
