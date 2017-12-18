@@ -1,2 +1,6 @@
-BUGFIX: Correction de la liste vide au retour du background
-NOUVEAU: Amélioration de la lisibilité des couleurs d'arrière plan
+Support de nouveaux languages : 
+Chinois traditionel et simplifié à l'aide de "myjourney",  
+turque, 
+néerlandais, 
+indonésien grâce à "isaideureka" et "fafarsdq", 
+espagnol grâce à "Andrés Ignacio Torres".

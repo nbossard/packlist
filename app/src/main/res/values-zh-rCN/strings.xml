@@ -129,14 +129,6 @@
         changeloglib已获得Apache许可证2.0版本的许可（<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
         http://www.apache.org /licenses/LICENSE-2.0.html</a>）
     </string>
-    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label">
-        <b>有趣语言支持Android</b>
-        \n（<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-
-        android-gradle-plugin</a>）\n版权所有©2016原作者或作者\n / groovy-android-gradle-plugin是根据Apache许可证2.0版授权的。
-        （<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html
-    </a>
-    ）
-</string>
 <string name="help_legal__third_party_lib__acra__label"><b>报告应用错误Android</b>\n 版权© 2013 Kevin
 Gaudin\n报告应用错误Android is licensed under the Apache License, Version 2.0\n(<a
     href="http://www.apache.org /licenses/LICENSE-2.0.html">

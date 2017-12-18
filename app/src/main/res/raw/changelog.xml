@@ -25,7 +25,7 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="??th november 2017"
+        changeDate="18th december 2017"
         versionName="0.13">
         <changelogtext>NEW : adding support of traditional and modern chinese thanks to "myjourney"</changelogtext>
         <changelogtext>NEW : adding support of turkish language</changelogtext>
