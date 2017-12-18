@@ -25,6 +25,10 @@
 
 <changelog bulletedList="true">
     <changelogversion
+        changeDate="xxth december 2017"
+        versionName="0.14">
+    </changelogversion>
+    <changelogversion
         changeDate="18th december 2017"
         versionName="0.13">
         <changelogtext>NEW : adding support of traditional and modern chinese thanks to "myjourney"</changelogtext>
