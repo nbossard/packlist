@@ -49,7 +49,7 @@
 
     <!-- About page -->
     <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015&#8211;2017\nNBossard and other contributors&#8211;2016.\n Apache 2 Licensed.\n Please provide help and suggestions at \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations - "isaideureka" and "fafarsdq" for indonesian translations - "Andrés Ignacio Torres" for spanish translations</string>
+    <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations\n -"isaideureka" and "fafarsdq" for indonesian translations\n -"Andrés Ignacio Torres" for spanish translations</string>
     <string name="about__third_party__button">third party libraries</string>
     <string name="about_act__fab_go_to_website">Open website</string>
 
