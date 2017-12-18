@@ -119,8 +119,6 @@
         是Apache License許可的 , 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
             http://www.apache.org/licenses/LICENSE-2.0.html
         </a> )
-
-        Context | Request Context
     </string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>選擇日期時間</b>\n(<a
         href="https://github.com/flavienlaurent/datetimepicker">
@@ -128,16 +126,6 @@
         是Apache License許可的, 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
             http://www.apache.org/licenses/LICENSE-2.0.html
         </a> )
-    </string>
-    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>有趣語言支持 Android</b>\n(<a
-        href="https://github.com/groovy/groovy-android-gradle-plugin">
-        https://github.com/groovy/groovy-android-gradle-plugin</a>)\n 版權 © 2016 the original author or
-        authors\n/groovy-android-gradle-plugin is licensed under the Apache License, Version 2.0\n(<a
-            href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-
-        Context | Request Context
     </string>
     <string name="help_legal__third_party_lib__acra__label"><b>報告應用錯誤 Android</b>\n 版權 © 2013 Kevin
         Gaudin\n報告應用錯誤 Android is licensed under the Apache License, Version 2.0\n(<a
