@@ -178,12 +178,7 @@ public class MassImportFragment extends Fragment {
         }
 
         // adding listeners
-        mMassImportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                onClickMassImport();
-            }
-        });
+        mMassImportButton.setOnClickListener(v -> onClickMassImport());
     }
 
     @DebugLog

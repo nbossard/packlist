@@ -262,12 +262,7 @@ public class TripListFragment extends Fragment {
         // make user confirm, as this is not a good idea to delete old trip :
         // they serve as a database for new trips
         TripDeletionConfirmDialogFragment dialogFragment = new TripDeletionConfirmDialogFragment();
-        dialogFragment.setConfirmedListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface parDialogInterface, final int parI) {
-                effectivelyDeleteTrip(parPosition);
-            }
-        });
+        dialogFragment.setConfirmedListener((parDialogInterface, parI) -> effectivelyDeleteTrip(parPosition));
         dialogFragment.show(getActivity().getSupportFragmentManager(), DialogFragment.class.getSimpleName());
     }
 

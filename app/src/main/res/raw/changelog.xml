@@ -25,7 +25,16 @@
 
 <changelog bulletedList="true">
     <changelogversion
-        changeDate="7th november 2017"
+        changeDate="??th november 2017"
+        versionName="0.13">
+        <changelogtext>NEW : adding support of traditional and modern chinese thanks to "myjourney"</changelogtext>
+        <changelogtext>NEW : adding support of turkish language</changelogtext>
+        <changelogtext>BUGFIX : impproving dutch tranlations</changelogtext>
+        <changelogtext>NEW : adding support of indonesian language, thanks to "isaideureka" and "fafarsdq"</changelogtext>
+        <changelogtext>NEW : adding support of spanish language, thanks to "Andrés Ignacio Torres"</changelogtext>
+    </changelogversion>
+    <changelogversion
+        changeDate="15th november 2017"
         versionName="0.12">
         <changelogtext>Fixing empty list when coming from background</changelogtext>
         <changelogtext>Improving category background colors readability </changelogtext>

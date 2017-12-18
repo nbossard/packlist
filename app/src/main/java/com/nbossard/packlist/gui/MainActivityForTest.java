@@ -253,12 +253,7 @@ public class MainActivityForTest
 
         // updating FAB action
         mFab.show();
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                openNewTripFragment();
-            }
-        });
+        mFab.setOnClickListener(view -> openNewTripFragment());
     }
 
     /**

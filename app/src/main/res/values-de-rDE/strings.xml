@@ -86,7 +86,7 @@
     <string name="trip_detail__new_item__access">Name&#8230;</string>
     <string name="trip_detail__new_item_magic___access">Schaltfläche. Schlage einen Artikel vor</string>
     <string name="trip_detail__already_existing_item">Dieser Gegenstand ist bereits in der Reise vorhanden.</string>
-    <string name="trip_detail__no_more_items__toast">No more suggestion</string>
+  <string name="trip_detail__no_more_items__toast">Keine weiteren Vorschläge</string>
     <string name="action_trip_cab__delete">@string/action_main_cab__delete</string>
     <string name="action_trip_cab__edit">Bearbeiten</string>
     <string name="action_trip__share">Teilen</string>
@@ -102,7 +102,6 @@
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b> \n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b> \n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 Gabriele Mariotti\n/Changeloglib ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b> \n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/Changeloglib ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
-    <string name="help_legal__third_party_lib__groovy_android_gradle_plugin__label"><b>Groovy language support for Android</b> \n(<a href="https://github.com/groovy/groovy-android-gradle-plugin">https://github.com/groovy/groovy-android-gradle-plugin</a>)\nCopyright © 2016 den ursprünglichen Autor oder Authors\n/groovy-Android-Gradle-Plugin unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>) lizenziert ist</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b> \nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <!-- Detail of item -->
@@ -111,13 +110,13 @@
     <string name="item_detail__submit">Anpassen</string>
     <string name="item_detail__category__label">Kategorie</string>
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation_new_trip__label">This dialog is for help of mass import of items into a new trip, paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
-    <string name="mass_import__principle_explanation_with_name__label">This dialog is for help of mass import of items into trip \"%1$s\", paste your existing list of items below. One item per line.\n\ni.e.:\nVarious:Guide book (100g).</string>
+  <string name="mass_import__principle_explanation_new_trip__label">Dieser Dialog hilft dir beim mehrfachen Import von Dingen in eine Packliste und hängt sie an eine existierende Liste an, jeweils ein Ding pro Zeile. \n\ni.e.:\nVerschiedenes: Reiseführer (100g).</string>
+  <string name="mass_import__principle_explanation_with_name__label">Dieser Dialog hilft dir beim mehrfachen Import von Dingen in die Packliste \"%1$s\" und hängt sie an eine existierende Liste an, jeweils ein Ding pro Zeile. \n\ni.e.:\nVerschiedenes: Reiseführer (100g).</string>
     <string name="mass_import__import__button">Importieren</string>
     <string name="mass_import__items__hint">hier eingeben oder einfügen&#8230;</string>
     <!-- for ACRA (Application CRash Reports) reports -->
     <string name="acra__crash_report_dialog__label">Klicken Sie auf OK, um die Anwendungsprotokolle zu senden.</string>
     <!-- For Settings -->
     <string name="pref_display_dates">Termine anzeigen</string>
-    <string name="pref_display_dates_sum">Display-Reise geht es dashboard</string>
+  <string name="pref_display_dates_sum">Zeige Reisedaten auf dem Dashboard</string>
 </resources>
