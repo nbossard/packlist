@@ -46,13 +46,13 @@ interface IMainActivity {
      *
      * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
      */
-    void openNewTripFragment(@Nullable final UUID parTripId);
+    void openNewTripFragment(@Nullable UUID parTripId);
 
     /**
      * Display provided TripItem to allow editing of details.
      * @param parItem item to be edited
      */
-    void openItemDetailFragment(final TripItem parItem);
+    void openItemDetailFragment(TripItem parItem);
 
     /**
      * Hide or show FAB, depending on fragment.

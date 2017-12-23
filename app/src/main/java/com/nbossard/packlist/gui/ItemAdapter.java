@@ -243,7 +243,7 @@ class ItemAdapter extends BaseAdapter {
      * @return a color as an int ready to be used for
      */
     @DebugLog
-    private int getBgColor(String parCategory) {
+    private int getBgColor(final String parCategory) {
         @ColorInt int candidateColor;
         // searching in cache
         if (mBgdColorsCache.containsKey(parCategory)) {
@@ -288,7 +288,7 @@ class ItemAdapter extends BaseAdapter {
      * @param colorIntValue a color integer with too low luminance
      * @return a color integer with better luminance
      */
-    private int increaseLuminance(@ColorInt int colorIntValue) {
+    private int increaseLuminance(@ColorInt final int colorIntValue) {
         float[] updatedColor = new float[3];
         Color.colorToHSV(colorIntValue, updatedColor);
 
