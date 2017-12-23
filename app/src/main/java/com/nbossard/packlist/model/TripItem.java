@@ -213,16 +213,6 @@ public class TripItem extends Item implements Serializable, Cloneable {
         return res;
     }
 
-    @Override
-    public boolean equals(Object parO) {
-        return super.equals(parO);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     @SuppressWarnings("StringBufferReplaceableByString")
     @Override
     public final String toString() {

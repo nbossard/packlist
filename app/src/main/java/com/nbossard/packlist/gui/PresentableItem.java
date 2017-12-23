@@ -59,11 +59,6 @@ public class PresentableItem extends Item {
         return res;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
     /**
      * @return a human readable Item : name followed by category
      */

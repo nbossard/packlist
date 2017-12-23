@@ -126,11 +126,6 @@ public class PackListApp extends Application {
         ACRA.getErrorReporter().handleException(new Exception("User report"));
     }
 
-    @Override
-    public void registerOnProvideAssistDataListener(final OnProvideAssistDataListener callback) {
-        super.registerOnProvideAssistDataListener(callback);
-    }
-
     /** @return saving module singleton. */
     public final ISavingModule getSavingModule() {
         if (mSavingModule == null) {
