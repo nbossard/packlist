@@ -128,10 +128,10 @@ public class Item implements Serializable, Comparable<Item> {
 // *********************** GENERATED METHODS ***********************************************************
 
 
-    @SuppressWarnings("CheckStyle")
+    @SuppressWarnings("StringBufferReplaceableByString")
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Item{");
+        final StringBuilder sb = new StringBuilder("Item{");
         sb.append("mName='").append(mName).append('\'');
         sb.append(", mCategory='").append(mCategory).append('\'');
         sb.append('}');

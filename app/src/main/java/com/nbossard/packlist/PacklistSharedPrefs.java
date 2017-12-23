@@ -69,6 +69,7 @@ public class PacklistSharedPrefs {
         return displayDatesPref;
     }
 
+    @SuppressWarnings("StringBufferReplaceableByString")
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PacklistSharedPrefs{");

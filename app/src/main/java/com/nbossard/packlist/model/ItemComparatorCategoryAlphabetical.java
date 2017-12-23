@@ -42,6 +42,7 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> 
     /**
      * Log tag.
      */
+    @SuppressWarnings("unused")
     private static final String TAG = ItemComparatorCategoryAlphabetical.class.getName();
 
     // Constants for better code readability
@@ -91,7 +92,7 @@ public class ItemComparatorCategoryAlphabetical implements Comparator<TripItem> 
 
     // *********************** INTERNAL METHODS **************************************************************
 
-    private int compareOnNames(TripItem parItem, TripItem parAnother) {
+    private int compareOnNames(final TripItem parItem, final TripItem parAnother) {
         int res;
         if ((parItem.getName() == null) && (parAnother.getName() != null)) {
             res = PAR_ITEM_BEFORE_PAR_ANOTHER;

@@ -169,6 +169,7 @@ public class TripTest  {
     }
 
 
+    @SuppressWarnings("EqualsWithItself")
     @Test
     public void testCompareTo() throws Exception {
         assertTrue(mTestTrip.compareTo(mTestTrip2) > 0);
