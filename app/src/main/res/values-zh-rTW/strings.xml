@@ -65,7 +65,7 @@
     <plurals name="ta__x_days_ago">
         <item quantity="other">%d 天之前</item>
     </plurals>
-    <string name="trip_deletion_confirm__title">這個建議不是太好...</string>
+    <string name="trip_deletion_confirm__title">這個建議不是太好&#8230;</string>
     <string name="trip_deletion_confirm__body">舊的旅程可以提供一些提議和類別，你最好保留它。\n\n真是要刪除</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">行程名</string>
@@ -74,7 +74,7 @@
     <string name="new_trip__end_date">結束日期</string>
     <string name="new_trip__end_date_access__button">更改結束日期</string>
     <string name="new_trip__note">注意</string>
-    <string name="new_trip__submit">出發...</string>
+    <string name="new_trip__submit">出發&#8230;</string>
     <!-- Detail of trip -->
     <string name="trip_detail__main__titlebar">%1s 清單</string>
     <string name="trip_detail__end_date__label">到</string>
@@ -84,7 +84,7 @@
     <string name="trip_detail__no_item_yet__label">沒有項目，請用下面的 “add field\"</string>
     <string name="trip_detail__edit_trip">更改行程</string>
     <string name="trip_detail__before_weight__label">包包的重量： 多過 %1$d 克 （整理完%2$d 克）</string>
-    <string name="trip_detail__new_item__access">名稱...</string>
+    <string name="trip_detail__new_item__access">名稱&#8230;</string>
     <string name="trip_detail__new_item_magic___access">按鈕. 建議一項項目</string>
     <string name="trip_detail__already_existing_item">此項目已存在此專案。</string>
     <string name="trip_detail__no_more_items__toast">沒有其他提議</string>

@@ -48,7 +48,7 @@
     <string name="action_trip__import">导入文字档</string>
     <string name="action_trip__unpack_all">解包所有项目</string>
     <!-- About page -->
-  <string name="about__main">包装清单%1$s。\n%2$s\n版权所有©2015-2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com/nbossard/packlist</string>
+  <string name="about__main">包装清单%1$s。\n%2$s\n版权所有©2015&#8211;2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com/nbossard/packlist</string>
   <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations - \"isaideureka\" and \"fafarsdq\" for indonesian translations</string>
     <string name="about__third_party__button">第三方库</string>
     <string name="about_act__fab_go_to_website">打开网站</string>
@@ -66,7 +66,7 @@
     <plurals name="ta__x_days_ago">
         <item quantity="other">%d 天之前.</item>
     </plurals>
-    <string name="trip_deletion_confirm__title">这个建议不是太好...</string>
+    <string name="trip_deletion_confirm__title">这个建议不是太好&#8230;</string>
   <string name="trip_deletion_confirm__body">旧旅行被用作建议你的项目和类别的知识基础，你应该保留它们，如果可能的话。\n\n真的删除？</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">行程名</string>
@@ -75,7 +75,7 @@
     <string name="new_trip__end_date">结束日期</string>
     <string name="new_trip__end_date_access__button">更改结束日期</string>
     <string name="new_trip__note">注意</string>
-    <string name="new_trip__submit">出发...</string>
+    <string name="new_trip__submit">出发&#8230;</string>
     <!-- Detail of trip -->
     <string name="trip_detail__main__titlebar">列出%1s</string>
     <string name="trip_detail__end_date__label">到</string>
@@ -85,7 +85,7 @@
     <string name="trip_detail__no_item_yet__label">没有项目，请用下面的 “add field\"</string>
     <string name="trip_detail__edit_trip">更改行程</string>
   <string name="trip_detail__before_weight__label">包包的重量： 多过 %1$d 克 (整理完%2$d 克)</string>
-    <string name="trip_detail__new_item__access">名称...</string>
+    <string name="trip_detail__new_item__access">名称&#8230;</string>
     <string name="trip_detail__new_item_magic___access">按钮. 建议一项项目</string>
     <string name="trip_detail__already_existing_item">此项目已存在此专案。</string>
     <string name="trip_detail__no_more_items__toast">没有其他提议</string>
