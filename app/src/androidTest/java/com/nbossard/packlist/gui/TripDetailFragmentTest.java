@@ -73,6 +73,7 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
      * @throws Exception if a test has failed.
      */
     public final void setUp() throws Exception {
+        super.setUp();
         mSolo = new Solo(getInstrumentation(), getActivity());
 
         testNonEmptyItemSetTrip.addItem(TEST_ITEM_NAME);

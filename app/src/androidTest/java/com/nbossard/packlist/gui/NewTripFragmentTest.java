@@ -55,6 +55,7 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
      */
     public final void setUp() throws Exception
     {
+        super.setUp();
         mSolo = new Solo(getInstrumentation(), getActivity());
         getActivity().openNewTripFragment();
     }
@@ -160,6 +161,7 @@ public class NewTripFragmentTest extends ActivityInstrumentationTestCase2<MainAc
      */
     @Override
     public void tearDown() throws Exception {
+        super.tearDown();
         mSolo.finishOpenedActivities();
     }
 
