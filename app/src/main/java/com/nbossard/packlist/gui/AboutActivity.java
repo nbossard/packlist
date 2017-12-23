@@ -119,7 +119,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
 
 
     /**
-     * Open the activity to display third party softwares licences.
+     * Open the activity to display third party software licences.
      */
     @DebugLog
     private void openThirdPartyActivity()
