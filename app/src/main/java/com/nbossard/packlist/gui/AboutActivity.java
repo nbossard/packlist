@@ -107,7 +107,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
 // *********************** PRIVATE METHODS ******************************************************************
 
     /**
-     * Open the browser with project sources on Github.
+     * Open the browser with project sources on GitHub.
      */
     @DebugLog
     private void openBrowser() {
