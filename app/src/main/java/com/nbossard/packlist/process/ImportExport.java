@@ -220,7 +220,7 @@ public class ImportExport {
         // This regex has been tested using : https://regex101.com/
         // and test lists in androidTest folder
         yetToBeParsed = parOneLine;
-        Pattern p0 = Pattern.compile("(" + UNCHECKED_CHAR + "|" + CHECKED_CHAR + ")(.*)");
+        Pattern p0 = Pattern.compile("([" + UNCHECKED_CHAR + CHECKED_CHAR + "])(.*)");
         Matcher m0 = p0.matcher(yetToBeParsed);
         if (m0.find()) {
             String checkbox = m0.group(1).trim();
