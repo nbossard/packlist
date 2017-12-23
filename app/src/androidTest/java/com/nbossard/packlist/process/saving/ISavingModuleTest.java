@@ -21,7 +21,6 @@ package com.nbossard.packlist.process.saving;
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.InstrumentationTestCase;
 
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
