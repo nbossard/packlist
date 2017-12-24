@@ -5,8 +5,7 @@
 Why another packing-list... because existing are incomplete, out-of-date or expensive and anyway not open-source.
 Which is very disappointing when you wish to save your lists and keep your phone out of always running tracking apps.
 
-You can download APK on releases page  : https://github.com/nbossard/packlist/releases
-or get it from them:
+You can download APK on [releases](https://github.com/nbossard/packlist/releases/) page or get it from them:
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=com.nbossard.packlist">
