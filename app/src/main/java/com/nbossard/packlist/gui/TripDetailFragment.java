@@ -596,7 +596,7 @@ public class TripDetailFragment extends Fragment {
     }
 
     /**
-     * Search position of item in current dispalyed list.
+     * Search position of item in current displayed list.
      *
      * @return found position or size-1 if not found.
      */
@@ -718,9 +718,9 @@ public class TripDetailFragment extends Fragment {
 
     /**
      * Mark the hot item, the one we want to keep visible in the list, such as when refreshed or reordered.
-     * @param parHotItem
+     * @param parHotItem TripItem to be marked as hot
      */
-    private void setHotItem(TripItem parHotItem)
+    private void setHotItem(final TripItem parHotItem)
     {
         mHotItem = parHotItem;
     }
