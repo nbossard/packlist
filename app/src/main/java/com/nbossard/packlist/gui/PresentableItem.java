@@ -62,7 +62,7 @@ public class PresentableItem extends Item {
     /**
      * @return a human readable Item : name followed by category
      */
-    public static Item fromPresentableString(String parPresentableString) {
+    public static Item fromPresentableString(final String parPresentableString) {
         Item res = new Item();
         String resName;
         String resCategory = null;
@@ -81,7 +81,7 @@ public class PresentableItem extends Item {
         return res;
     }
 
-    public static List<String> toList(Set<Item> parItemSet) {
+    public static List<String> toList(final Set<Item> parItemSet) {
         List<String> resList = new ArrayList<>();
         for (Item oneItem : parItemSet) {
             PresentableItem pres = new PresentableItem(oneItem);
