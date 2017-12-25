@@ -65,6 +65,7 @@ public class ImportExportTest extends InstrumentationTestCase {
      * @throws Exception if a test has failed.
      */
     public final void setUp() throws Exception {
+        super.setUp();
         mTestTrip = new Trip(TRIP_NAME,
                 new GregorianCalendar(START_DATE_YEAR, START_DATE_MONTH, START_DATE_DAY),
                 new GregorianCalendar(END_DATE_YEAR, END_DATE_MONTH, END_DATE_DAY),

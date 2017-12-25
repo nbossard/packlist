@@ -131,6 +131,7 @@ public class TripDetailFragmentTest extends ActivityInstrumentationTestCase2<Mai
      */
     @Override
     public void tearDown() throws Exception {
+        super.tearDown();
         mSolo.finishOpenedActivities();
     }
 

@@ -68,6 +68,7 @@ public class MassImportFragmentTest  extends ActivityInstrumentationTestCase2<Ma
      */
     public final void setUp() throws Exception
     {
+        super.setUp();
         mSolo = new Solo(getInstrumentation(), getActivity());
         getActivity().openMassImportFragment(testEmptyItemSetTrip);
     }

@@ -59,6 +59,7 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
      */
     public final void setUp() throws Exception
     {
+        super.setUp();
         mSolo = new Solo(getInstrumentation(), getActivity());
     }
 
@@ -125,6 +126,7 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     @Override
     public final void tearDown() throws Exception
     {
+        super.tearDown();
         mSolo.finishOpenedActivities();
     }
 }
