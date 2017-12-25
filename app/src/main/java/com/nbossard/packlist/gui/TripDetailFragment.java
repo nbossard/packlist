@@ -254,7 +254,11 @@ public class TripDetailFragment extends Fragment {
 
         // Management of FAB, forcing hiding of FAB, see also onDetach
         mIHostingActivity = (ITripDetailFragmentActivity) getActivity();
-        mIHostingActivity.showFABIfAccurate(false);
+        if (mIHostingActivity != null) {
+            mIHostingActivity.showFABIfAccurate(false);
+        } else {
+            Log.w(TAG, "Failed hiding FAB cause failed retrieving fragment hosting activity");
+        }
     }
 
     /**
