@@ -1,17 +1,27 @@
 # packlist
-
+[![Build Status](https://travis-ci.org/nbossard/packlist.svg?branch=master)](https://travis-ci.org/nbossard/packlist)
+[![Github All Releases](https://img.shields.io/github/downloads/nbossard/packlist/total.svg)]()
 ## An open-source packing list for Android
 
 Why another packing-list... because existing are incomplete, out-of-date or expensive and anyway not open-source.
 Which is very disappointing when you wish to save your lists and keep your phone out of always running tracking apps.
 
-You can download APK on releases page  : https://github.com/nbossard/packlist/releases
-or 
-[![Get it on F-Droid](get_it_on_f-droid.png?raw=true)](https://f-droid.org/repository/browse/?fdid=com.nbossard.packlist)
-or
-[![Get it on Play Store](play_store_logo.png?raw=true)](https://play.google.com/store/apps/details?id=com.nbossard.packlist)
+You can download APK on [releases](https://github.com/nbossard/packlist/releases/) page or get it from them:
 
-Tech note : GitHub and Play Store releases use same certificate. F-droid use their own certificate.
+<p align="left">
+<a href="https://play.google.com/store/apps/details?id=com.nbossard.packlist">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+</a>  
+<a href="https://f-droid.org/repository/browse/?fdid=com.nbossard.packlist">
+    <img alt="Get it on F-Droid"
+        height="80"
+        src="https://f-droid.org/badge/get-it-on.png" />
+        </a>
+        </p>
+
+Tech note : GitHub and Play Store releases use same certificate. F-Droid uses their own certificate.
 
 ### Screenshots
 
