@@ -486,7 +486,11 @@ public class TripDetailFragment extends Fragment {
      * Handle click on edit trip button.
      */
     private void onClickEditTrip() {
-        ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
+        if (getActivity() != null) {
+            ((IMainActivity) getActivity()).openNewTripFragment(mRetrievedTrip.getUUID());
+        } else {
+            Log.w(TAG, "Failed handling click on edit trip, as activity is null");
+        }
     }
 
     /**
