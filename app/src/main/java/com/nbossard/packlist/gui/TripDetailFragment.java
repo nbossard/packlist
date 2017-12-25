@@ -280,9 +280,9 @@ public class TripDetailFragment extends Fragment {
     * Create the view for this fragment, using the arguments given to it.
     */
     @Override
-    public final View onCreateView(final LayoutInflater inflater,
-                                       final ViewGroup container,
-                                       final Bundle savedInstanceState) {
+    public final View onCreateView(@NonNull final LayoutInflater inflater,
+                                   final ViewGroup container,
+                                   final Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView() : Entering");
 
         mRootView = inflater.inflate(R.layout.fragment_trip_detail, container, false);
@@ -297,7 +297,7 @@ public class TripDetailFragment extends Fragment {
 
     @DebugLog
     @Override
-    public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+    public final void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onViewCreated() : Entering");
 
