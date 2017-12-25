@@ -25,6 +25,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
+/*
+@startuml
+    class com.nbossard.packlist.gui.PresentableItem {
+    }
+
+    com.nbossard.packlist.model.Item <|.. com.nbossard.packlist.gui.PresentableItem
+@enduml
+ */
+
 /**
  * Class for adding presentation methods to Item.
  *
@@ -33,15 +43,22 @@ import java.util.Set;
 
 public class PresentableItem extends Item {
 
+
+    // ********************** CONSTANTS *********************************************************************
+
     private static final String CATEGORY_BEFORE = "(";
     private static final String CATEGORY_AFTER = ")";
+
+    // *********************** METHODS **********************************************************************
+
 
     public PresentableItem(final Item parOneItem) {
         super(parOneItem);
     }
 
+
     /**
-     * mpty required constructor.
+     * Empty required constructor.
      */
     public PresentableItem() {
         super();

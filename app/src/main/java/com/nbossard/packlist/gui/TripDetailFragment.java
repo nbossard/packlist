@@ -69,6 +69,7 @@ import hugo.weaving.DebugLog;
     }
     com.nbossard.packlist.gui.ItemAdapter <-- com.nbossard.packlist.gui.TripDetailFragment
     com.nbossard.packlist.gui.TripDetailFragment --> com.nbossard.packlist.gui.ITripDetailFragmentActivity
+    com.nbossard.packlist.gui.PresentableItem <.. com.nbossard.packlist.gui.TripDetailFragment
 
 @enduml
  */
