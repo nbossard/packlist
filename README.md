@@ -75,23 +75,23 @@ Basic functionality are fresh but working, advanced functionality are being adde
 
 [See detailed changelog in "changelog.xml"](app/src/main/res/raw/changelog.xml)
 
-- 0.13 adding support of 5 new languages
-- 0.12 improving categories colors, fixing crashes when coming from background
-- 0.11 improving categories management
-- 0.10.2 fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
-- 0.10.1 fixing bug encountered in 0.10 (crash at start on empty trip name)
-- 0.10 adding categories and item suggestions
-- 0.9 adding export, improved sorting, unpacking all, improved accessibility
-- 0.8.1 26th april 2016, adding crash reports, bug fixing and minor changes  
-- 0.8   9th april 2016, mass import and total weight
-- 0.7.1 22th march 2016,  bug-fixing
-- 0.7   19th march 2016,  bug-fixing
-- 0.6   14th march 2016
-- 0.5   18th february 2016
-- 0.4   8th february 2016
+- 0.13   (18th december 2017) adding support of 5 new languages
+- 0.12   (15th november 2017) improving categories colors, fixing crashes when coming from background
+- 0.11   (25th june     2017) improving categories management
+- 0.10.2 ( 3rd august   2016) fixing again bug encountered in 0.10 (crash at start on empty trip name), in class MaterialColor
+- 0.10.1 (23rd july     2016) fixing bug encountered in 0.10 (crash at start on empty trip name)
+- 0.10   (21st july     2016) adding categories and item suggestions
+- 0.9    (26th may      2016) adding export, improved sorting, unpacking all, improved accessibility
+- 0.8.1  (26th april    2016) adding crash reports, bug fixing and minor changes  
+- 0.8    ( 9th april    2016) mass import and total weight
+- 0.7.1  (22th march    2016)  bug-fixing
+- 0.7    (19th march    2016)  bug-fixing
+- 0.6    (14th march    2016)
+- 0.5    (18th february 2016)
+- 0.4    ( 8th february 2016)
 - 0.3 alpha 
-- 0.2 alpha 24th january 2016
-- 0.1 alpha 6th january 2016
+- 0.2 alpha (24th january 2016)
+- 0.1 alpha ( 6th january 2016)
 
 ### Want to know more ?
 
