@@ -52,7 +52,7 @@ import java.util.UUID;
 
 import hugo.weaving.DebugLog;
 
-//CHECKSTYLE:OFF: LineLength
+//CHECKSTYLE : BEGIN GENERATED CODE
 /*
 @startuml
     class com.nbossard.packlist.gui.MainActivity {
@@ -74,7 +74,7 @@ import hugo.weaving.DebugLog;
     ' com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
  */
-//CHECKSTYLE:ON: LineLength
+//CHECKSTYLE : END GENERATED CODE
 
 /**
  * Main activity, supports most fragments.
@@ -122,7 +122,7 @@ public class MainActivity
     /**
      * Listener on back stack in order to set back title bar when back stack is empty.
      */
-    private FragmentManager.OnBackStackChangedListener mOnBackStackChangeListener = () -> {
+    private final FragmentManager.OnBackStackChangedListener mOnBackStackChangeListener = () -> {
                 ActionBar supActionBar = getSupportActionBar();
                 if (supActionBar != null) {
                     if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
@@ -146,10 +146,10 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFab = (FloatingActionButton) findViewById(R.id.mainact__fab);
+        mFab = findViewById(R.id.mainact__fab);
 
         getSupportFragmentManager().addOnBackStackChangedListener(mOnBackStackChangeListener);
 
@@ -181,7 +181,8 @@ public class MainActivity
             mTripListFragment = openMainActivityFragment();
         } else if (mTripListFragment  == null) {
             // activity is returned
-            mTripListFragment = (TripListFragment) getSupportFragmentManager().findFragmentByTag(TripListFragment.class.getSimpleName());
+            mTripListFragment = (TripListFragment) getSupportFragmentManager()
+                    .findFragmentByTag(TripListFragment.class.getSimpleName());
             Log.d(TAG, "onStart() : found a fragment by tag : " + mTripListFragment);
         }
     }
@@ -270,7 +271,7 @@ public class MainActivity
         }
     }
 
-// ----------- implementing interface ITripChangeListener -------------------
+    // ----------- implementing interface ITripChangeListener -------------------
 
 
     @Override
@@ -278,10 +279,12 @@ public class MainActivity
         mTripListFragment.populateList();
 
         //update detail trip fragment
-        if (mTripDetailFragment != null) {
+        if (mTripDetailFragment != null && mTripDetailFragment.getCurrentTrip() != null) {
             UUID curTripUUID = mTripDetailFragment.getCurrentTrip().getUUID();
             Trip loadedTrip = mSavingModule.loadSavedTrip(curTripUUID);
             mTripDetailFragment.displayTrip(loadedTrip);
+        } else {
+            Log.w(TAG, "Failed updating TripDetailFrgment cause Trip is null");
         }
     }
 
@@ -302,6 +305,7 @@ public class MainActivity
         return mSavingModule.getAllCategories();
     }
 
+    @Override
     public final Set<Item> getSetOfItems() {
         return mSavingModule.getAllPossibleItems();
     }
