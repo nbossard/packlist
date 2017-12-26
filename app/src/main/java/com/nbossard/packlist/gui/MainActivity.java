@@ -158,11 +158,11 @@ public class MainActivity
 
         // retrieving from saved instance state currently displayed fragment
         if (savedInstanceState != null) {
-            Log.d(TAG, "non null savedinstancestate");
+            Log.d(TAG, "non null savedInstanceState");
             mCurFragment = savedInstanceState.getString(CUR_FRAGMENT_KEY);
-            Log.d(TAG, "mcurFragment = " + mCurFragment);
+            Log.d(TAG, "mCurFragment = " + mCurFragment);
         } else {
-            Log.d(TAG, "null savedinstancestate");
+            Log.d(TAG, "null savedInstanceState");
         }
 
         // Moved from onStart, however mSavingModule is null when fragments need it for restore
@@ -199,6 +199,9 @@ public class MainActivity
         super.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Activity destroyed, removes listening for changes on trip change.
+     */
     @Override
     protected void onDestroy()
     {
@@ -284,7 +287,7 @@ public class MainActivity
             Trip loadedTrip = mSavingModule.loadSavedTrip(curTripUUID);
             mTripDetailFragment.displayTrip(loadedTrip);
         } else {
-            Log.w(TAG, "Failed updating TripDetailFrgment cause Trip is null");
+            Log.w(TAG, "Failed updating TripDetailFragment cause Trip is null");
         }
     }
 
@@ -294,7 +297,7 @@ public class MainActivity
     public final void updateItem(final TripItem parItem) {
         boolean resUpdate = mSavingModule.updateItem(parItem);
         if (resUpdate) {
-            Log.d(TAG, "updateItem(...) update of item succeded");
+            Log.d(TAG, "updateItem(...) update of item succeeded");
         } else {
             Toast.makeText(this, R.string.toast_update_failed_incompatible_format, Toast.LENGTH_LONG).show();
         }
@@ -362,7 +365,7 @@ public class MainActivity
 
         Log.d(TAG, "openTripDetailFragment(...) Entering");
 
-        // ensure we are not adding on top of not empty backstack
+        // ensure we are not adding on top of not empty back-stack
         FragmentManager fm = getSupportFragmentManager();
         while (fm.getBackStackEntryCount() > 0) {
             fm.popBackStackImmediate();
