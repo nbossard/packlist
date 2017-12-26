@@ -26,12 +26,16 @@ package com.nbossard.packlist.model;
         String mStartDate
         String mEndDate
         String mNote
-        String mSortMode
+        int mTotalWeight
+        int mPackedWeight
 
         addItem()
         deleteItem(UUID)
         unpackAll()
     }
+
+        com.nbossard.packlist.model.TripItem "1" --* "*" com.nbossard.packlist.model.Trip : mListItem
+        com.nbossard.packlist.model.SortModes --* com.nbossard.packlist.model.Trip : mSortModes
 @enduml
  */
 
@@ -227,7 +231,7 @@ public class Trip implements Serializable, Comparable<Trip>, Cloneable {
      * @param parItem new item
      * @return UUID of newly created item
      */
-    public final TripItem addItem(Item parItem) {
+    public final TripItem addItem(final Item parItem) {
         TripItem newTripItem = new TripItem(this, parItem);
         mListItem.add(newTripItem);
         return newTripItem;

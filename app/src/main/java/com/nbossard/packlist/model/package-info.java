@@ -47,7 +47,6 @@ package com.nbossard.packlist.model;
         !include TripItem.java
         !include TripFormatter.java
 
-        com.nbossard.packlist.model.TripItem "1" --* "*" com.nbossard.packlist.model.Trip
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAdditionDate
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorAlphabetical
         Comparator <|.. com.nbossard.packlist.model.ItemComparatorPacking

@@ -25,6 +25,7 @@ package com.nbossard.packlist.model;
         DEFAULT
         UNPACKED_FIRST
         ALPHABETICAL
+        CATEGORY
         next()
     }
 @enduml
