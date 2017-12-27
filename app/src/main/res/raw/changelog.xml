@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xxth december 2017"
         versionName="0.14">
+        <changelogtext>NEW : ISS#66 adding an app-rating pop-up</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18th december 2017"

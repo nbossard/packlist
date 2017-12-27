@@ -27,6 +27,7 @@
     <changelogversion
         changeDate="xx décembre 2017"
         versionName="0.14">
+        <changelogtext>NEW : ISS#66 ajout d'une pop-up pour inciter à noter l'application</changelogtext>
     </changelogversion>
     <changelogversion
         changeDate="18 décembre 2017"
