@@ -104,6 +104,7 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nTelif hakkı © 2015 FlavienLaurent\n/changeloglib, Apache Lisansı, Sürüm 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Android için Uygulama Çökme Raporu</b>\nTelifhakkı © 2013 Kevin Gaudin\nAndroid için Uygulama Çökme Raporlaması, Apache Lisansı, Sürüm 2.0 altındalisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon Apache License, Version 2.0 altında lisanslanmıştır\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html"> http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__rate__label"><b>Android Rate</b>\nCopyright © 2015 Shintaro Katafuchi\nAndroid Rate MIT License (MIT)\n(<a href="https://github.com/hotchemi/Android-Rate/blob/master/LICENSE">https://github.com/hotchemi/Android-Rate/blob/master/LICENSE</a>)</string>
     <!-- Detail of item -->
     <string name="item_detail__name__label">öğe adı</string>
     <string name="item_detail__weight__label">ağırlık (gram olarak)</string>

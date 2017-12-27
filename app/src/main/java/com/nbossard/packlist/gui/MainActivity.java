@@ -50,6 +50,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import hotchemi.android.rate.AppRate;
 import hugo.weaving.DebugLog;
 
 //CHECKSTYLE : BEGIN GENERATED CODE
@@ -98,6 +99,17 @@ public class MainActivity
      * The key used to save currently displayed fragment name in saved instance state.
      */
     private static final String CUR_FRAGMENT_KEY = "CUR_FRAGMENT_KEY";
+
+    // Constants for configuring library : https://github.com/hotchemi/Android-Rate
+
+    /** Minimal number of days after installation before showing app-rate dialog. */
+    public static final int NBR_DAYS_AFTER_INSTALL_DATE = 6;
+    /** Minimal number of launch times before showing app-rate dialog. */
+    public static final int MINIMAL_LAUNCH_TIMES = 4;
+    /** Minimal number of days after click on "remind me later" before showing again app-rate dialog. */
+    public static final int NBR_DAYS_BEFORE_REDISPLAY = 3;
+    /** Show or not "remind me later" button on app-rate dialog. */
+    public static final boolean SHOW_NEUTRAL_BUTTON = true;
 
 // *********************** FIELDS ***************************************************************************
 
@@ -168,8 +180,10 @@ public class MainActivity
         // Moved from onStart, however mSavingModule is null when fragments need it for restore
         mSavingModule = ((PackListApp) getApplication()).getSavingModule();
         mSavingModule.addListener(this);
-    }
 
+        // suggest user to rate the app, with a conditional pop-up
+        suggestionToRateApp();
+    }
 
     @DebugLog
     @Override
@@ -186,6 +200,7 @@ public class MainActivity
             Log.d(TAG, "onStart() : found a fragment by tag : " + mTripListFragment);
         }
     }
+
 
     @Override
     protected final void onSaveInstanceState(final Bundle outState) {
@@ -276,7 +291,6 @@ public class MainActivity
 
     // ----------- implementing interface ITripChangeListener -------------------
 
-
     @Override
     public final void onTripChange() {
         mTripListFragment.populateList();
@@ -290,6 +304,7 @@ public class MainActivity
             Log.w(TAG, "Failed updating TripDetailFragment cause Trip is null");
         }
     }
+
 
     // ----------- implementing interface IItemDetailFragmentActivity -------------------
 
@@ -354,7 +369,6 @@ public class MainActivity
 
     // ----------- implementing interface IMainActivity -------------------
 
-
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
@@ -407,6 +421,7 @@ public class MainActivity
             Log.w(TAG, "mFab is null, this is very strange");
         }
     }
+
 
     @Override
     public final void updateTitleBar(final String parNewTitleInTitleBar) {
@@ -465,6 +480,26 @@ public class MainActivity
     // ----------- end of implementing interface IMainActivity ------------
 
 // *********************** PRIVATE METHODS ******************************************************************
+
+    /**
+     * Test for conditions whether or not display a pop-up suggesting user to rate the app.
+     * Based on library : https://github.com/hotchemi/Android-Rate
+     */
+    private void suggestionToRateApp() {
+        // incite user to rate the app
+        // callback listener.
+        AppRate.with(this)
+                .setInstallDays(NBR_DAYS_AFTER_INSTALL_DATE) // default 10, 0 means install day.
+                .setLaunchTimes(MINIMAL_LAUNCH_TIMES) // default 10
+                .setRemindInterval(NBR_DAYS_BEFORE_REDISPLAY) // default 1
+                .setShowLaterButton(SHOW_NEUTRAL_BUTTON) // default true
+                .setDebug(false) // to always show, default false
+                .setOnClickButtonListener(parWhich -> Log.d(TAG, Integer.toString(parWhich)))
+                .monitor();
+
+        // Show a dialog if meets conditions
+        AppRate.showRateDialogIfMeetsConditions(this);
+    }
 
     /**
      * Get the target fragment for new fragment to be opened, different on tablet.

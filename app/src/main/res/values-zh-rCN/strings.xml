@@ -138,6 +138,7 @@ Gaudin\n报告应用错误Android is licensed under the Apache License, Version 
 under the Apache License, Version 2.0\n(<a href="http://www.apache.org/ licenses/LICENSE-2.0.html">
     http://www.apache.org/licenses/LICENSE-2.0.html</a>)
 </string>
+    <string name="help_legal__third_party_lib__rate__label"><b>Android Rate</b>\nCopyright © 2015 Shintaro Katafuchi\nAndroid Rate is licensed under the MIT License (MIT)\n(<a href="https://github.com/hotchemi/Android-Rate/blob/master/LICENSE">https://github.com/hotchemi/Android-Rate/blob/master/LICENSE</a>)</string>
     <!-- Detail of item -->
 <string name="item_detail__name__label">项目名称</string>
 <string name="item_detail__weight__label">重量 (克)</string>

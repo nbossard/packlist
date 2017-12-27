@@ -115,6 +115,9 @@ dependencies {
     compile 'ch.acra:acra:4.9.1'
     compile 'com.github.ivbaranov:materiallettericon:0.2.2'
 
+    // see https://github.com/hotchemi/Android-Rate
+    compile 'com.github.hotchemi:android-rate:1.0.1'
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.commons:commons-lang3:3.6'
 

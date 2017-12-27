@@ -110,6 +110,7 @@
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/DateTimePicker est distribuée sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
     <string name="help_legal__third_party_lib__acra__label"><b>Application Crash Reporting for Android</b>\nCopyright © 2013 Kevin Gaudin\nApplication Crash Reporting for Android est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib__mli__label"><b>Material Letter Icon</b>\nCopyright © 2016 IvBaranov\nMaterial Letter Icon est distribué sous la licence Apache, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
+    <string name="help_legal__third_party_lib__rate__label"><b>Android Rate</b>\nCopyright © 2015 Shintaro Katafuchi\nAndroid Rate est distribué sous la licence MIT (MIT)\n(<a href="https://github.com/hotchemi/Android-Rate/blob/master/LICENSE">https://github.com/hotchemi/Android-Rate/blob/master/LICENSE</a>)</string>
 
     <!-- TripItem detail -->
     <string name="item_detail__name__label">nom</string>
