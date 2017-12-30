@@ -103,13 +103,13 @@ public class MainActivity
     // Constants for configuring library : https://github.com/hotchemi/Android-Rate
 
     /** Minimal number of days after installation before showing app-rate dialog. */
-    public static final int NBR_DAYS_AFTER_INSTALL_DATE = 6;
+    private static final int NBR_DAYS_AFTER_INSTALL_DATE = 6;
     /** Minimal number of launch times before showing app-rate dialog. */
-    public static final int MINIMAL_LAUNCH_TIMES = 4;
+    private static final int MINIMAL_LAUNCH_TIMES = 4;
     /** Minimal number of days after click on "remind me later" before showing again app-rate dialog. */
-    public static final int NBR_DAYS_BEFORE_REDISPLAY = 3;
+    private static final int NBR_DAYS_BEFORE_REDISPLAY = 3;
     /** Show or not "remind me later" button on app-rate dialog. */
-    public static final boolean SHOW_NEUTRAL_BUTTON = true;
+    private static final boolean SHOW_NEUTRAL_BUTTON = true;
 
 // *********************** FIELDS ***************************************************************************
 
