@@ -37,7 +37,7 @@ import com.nbossard.packlist.R;
 
 import hugo.weaving.DebugLog;
 
-//CHECKSTYLE:OFF: LineLength
+//CHECKSTYLE : BEGIN GENERATED CODE
 /*
 @startuml
     class com.nbossard.packlist.gui.AboutActivity {
@@ -45,7 +45,7 @@ import hugo.weaving.DebugLog;
     com.nbossard.packlist.gui.HelpThirdPartyActivity <.. com.nbossard.packlist.gui.AboutActivity : start through intent
 @enduml
  */
-//CHECKSTYLE:ON: LineLength
+//CHECKSTYLE : END GENERATED CODE
 
 /**
  * About activity.
@@ -71,7 +71,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.about_act__fab);
+        FloatingActionButton fab = findViewById(R.id.about_act__fab);
         fab.setOnClickListener(view -> openBrowser());
 
         if (getSupportActionBar() != null) {
@@ -79,11 +79,11 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         }
 
         // setting button listener
-        Button mButtonThirdParty = (Button) findViewById(R.id.help__third_party__button);
+        Button mButtonThirdParty = findViewById(R.id.help__third_party__button);
         mButtonThirdParty.setOnClickListener(this);
 
         // updating version number
-        TextView mGeneralInfo = (TextView) findViewById(R.id.help__general_info__label);
+        TextView mGeneralInfo = findViewById(R.id.help__general_info__label);
         mGeneralInfo.setText(
                 String.format(getString(R.string.about__main),
                             BuildConfig.VERSION_NAME,
