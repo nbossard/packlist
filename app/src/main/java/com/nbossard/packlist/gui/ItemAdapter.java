@@ -71,6 +71,9 @@ class ItemAdapter extends BaseAdapter {
      */
     private static final String TAG = ItemAdapter.class.getName();
 
+    /** Minimal luminance for background, below would be too hard to read with a black text. */
+    private static final double MINIMAL_LUMINANCE = 0.5;
+
     // *********************** INNER CLASS *****************************************************************
 
     /**
@@ -253,7 +256,7 @@ class ItemAdapter extends BaseAdapter {
             // not in cache computing it
             Log.d(TAG, "Did NOT Found color in cache, computing it");
             candidateColor = parCategory.hashCode();
-            while (luminance(candidateColor) < 0.5) {
+            while (luminance(candidateColor) < MINIMAL_LUMINANCE) {
                 // this color is too dark to be readable with a black text
                 candidateColor = increaseLuminance(candidateColor);
                 Log.d(TAG, "Color is too dark : " + candidateColor + ", improving luminance");
@@ -272,7 +275,7 @@ class ItemAdapter extends BaseAdapter {
      * @param parColorToGetLuminance an integer representing a color
      * @return a value between 0 (darkest black) and 1 (lightest white)
      */
-    private double luminance(@ColorInt int parColorToGetLuminance) {
+    private double luminance(@ColorInt final int parColorToGetLuminance) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return Color.luminance(parColorToGetLuminance);
         } else {
