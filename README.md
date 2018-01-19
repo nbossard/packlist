@@ -1,7 +1,7 @@
 # packlist
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/nbossard/packlist.svg?branch=master)](https://travis-ci.org/nbossard/packlist)
-[![Github All Releases](https://img.shields.io/github/downloads/nbossard/packlist/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/nbossard/packlist/total.svg)](https://github.com/nbossard/packlist/releases)
 ## An open-source packing list for Android
 
 Why another packing-list... because existing are incomplete, out-of-date or expensive and anyway not open-source.
