@@ -18,3 +18,6 @@ app.iml
 .idea/
 packlist.iml
 .directory
+
+#VIM files
+*.swp
