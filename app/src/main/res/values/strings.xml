@@ -102,6 +102,7 @@
     <string name="sorting_mode_unpacked_first">unpacked first</string>
     <string name="sorting_mode_alphabetical">alphabetical order</string>
     <string name="sorting_mode_category">category</string>
+    <string name="trip_detail__selected">Selected</string>
 
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">third party libraries</string>

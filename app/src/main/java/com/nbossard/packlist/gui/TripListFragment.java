@@ -121,7 +121,7 @@ public class TripListFragment extends Fragment {
             mActionMode = getActivity().startActionMode(new ActionMode.Callback() {
                 @Override
                 public boolean onCreateActionMode(final ActionMode mode, final Menu menu) {
-                    mode.setTitle("Selected");
+                    mode.setTitle(getString(R.string.trip_detail__selected));
 
                     MenuInflater inflater = mode.getMenuInflater();
                     inflater.inflate(R.menu.menu_main_cab, menu);
