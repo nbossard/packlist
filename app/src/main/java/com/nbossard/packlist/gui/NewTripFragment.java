@@ -25,12 +25,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatImageButton;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -124,9 +124,6 @@ public class NewTripFragment extends Fragment {
     /** Button to open dialog to pick a end date. */
     private AppCompatImageButton mEndDateButton;
 
-    /** Button to save and close. */
-    private Button mSubmitButton;
-
     /** Value provided when instantiating this fragment, unique identifier of trip. */
     @SuppressWarnings("FieldCanBeLocal")
     private UUID mTripId;
@@ -140,25 +137,6 @@ public class NewTripFragment extends Fragment {
 
     // *********************** LISTENERS ********************************************************************
 
-    /**
-     * Listener for when user clicks on "submit" button.
-     */
-    private final View.OnClickListener mSubmitListener = (v -> {
-
-        // update trip
-        mTrip.setName(mNameTV.getText().toString());
-        mTrip.setStartDate(mStartDate);
-        mTrip.setEndDate(mEndDate);
-        mTrip.setNote(mNoteTV.getText().toString());
-
-        // asking supporting activity to launch creation of new trip
-        mHostingActivity.saveTrip(mTrip);
-
-        // navigating back
-        FragmentManager fragMgr = getActivity().getSupportFragmentManager();
-        fragMgr.beginTransaction().remove(NewTripFragment.this).commit();
-        fragMgr.popBackStack();
-    });
 
     /**
      * Listener for when user has selected a start date.
@@ -190,7 +168,6 @@ public class NewTripFragment extends Fragment {
             };
 
     // *********************** METHODS **********************************************************************
-
     /**
      * Create a new instance of MyFragment that will be initialized
      * with the given arguments.
@@ -227,6 +204,7 @@ public class NewTripFragment extends Fragment {
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
         mIHostingActivity = (INewTripFragmentActivity) getActivity();
@@ -265,6 +243,12 @@ public class NewTripFragment extends Fragment {
         return mRootView;
     }
 
+    @Override
+    public final void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_trip_save, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
     @DebugLog
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
@@ -279,7 +263,6 @@ public class NewTripFragment extends Fragment {
         mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
         mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
         mNoteTV = (EditText) mRootView.findViewById(R.id.new_trip__note__edit);
-        mSubmitButton = (Button) mRootView.findViewById(R.id.new_trip__submit__button);
 
 
         // Adding listeners
@@ -287,9 +270,6 @@ public class NewTripFragment extends Fragment {
         addListenerOnStartDateButton();
         addListenerOnEndDateTextView();
         addListenerOnEndDateButton();
-        addListenerOnSubmitButton();
-
-        disableSubmitButtonIfEmptyText();
     }
 
     @DebugLog
@@ -305,12 +285,39 @@ public class NewTripFragment extends Fragment {
         mIHostingActivity.showFABIfAccurate(true);
     }
 
-    /**
-     * Add a listener on "submit" button.
-     */
-    private void addListenerOnSubmitButton() {
-        mSubmitButton.setOnClickListener(mSubmitListener);
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem parItem) {
+        int id = parItem.getItemId();
+        if (id == R.id.save) {
+            saveTrip();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(parItem);
     }
+
+
+    /**
+     * actions to be done when user clicks on "submit" button.
+     */
+    private void saveTrip() {
+
+        // update trip
+        mTrip.setName(mNameTV.getText().toString());
+        mTrip.setStartDate(mStartDate);
+        mTrip.setEndDate(mEndDate);
+        mTrip.setNote(mNoteTV.getText().toString());
+
+        // asking supporting activity to launch creation of new trip
+        mHostingActivity.saveTrip(mTrip);
+
+        // navigating back
+        FragmentManager fragMgr = getActivity().getSupportFragmentManager();
+        fragMgr.beginTransaction().remove(NewTripFragment.this).commit();
+        fragMgr.popBackStack();
+    }
+
+    ;
 
     /**
      * Add a listener on "trip start date" text field.
@@ -344,36 +351,6 @@ public class NewTripFragment extends Fragment {
                 v -> dateEndPickerDialog.show(getFragmentManager(), DATE_PICKER_END_TAG));
     }
 
-    /**
-     * Disable the "Add item" button if item text is empty.
-     */
-    private void disableSubmitButtonIfEmptyText() {
-
-        mSubmitButton.setEnabled(mNameTV.length() > 0);
-
-        mNameTV.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(final CharSequence s,
-                                          final int start,
-                                          final int count,
-                                          final int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence s,
-                                      final int start,
-                                      final int before,
-                                      final int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(final Editable s) {
-                mSubmitButton.setEnabled(s.length() > 0);
-            }
-        });
-    }
 
 
 }
