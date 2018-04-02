@@ -107,7 +107,8 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.android.support:design:27.1.0'
     // For parsing json (used for saving data)
-    implementation 'com.google.code.gson:gson:2.8.2'
+    // TODO : improve version, tried 2.8.2 but got immutable jar errors
+    implementation 'com.google.code.gson:gson:2.8.0'
     // See https://oss.sonatype.org/content/repositories/snapshots/com/github/gabrielemariotti/changeloglib/changelog/2.0.1-SNAPSHOT/
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
     implementation 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
