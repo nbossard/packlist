@@ -125,7 +125,7 @@
     <string name="mass_import__items__hint">saisissez ou collez ici&#8230;</string>
 
     <!-- for ACRA (Application CRash Reports) reports -->
-    <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application </string>
+    <string name="acra__crash_report_dialog__label">Cliquer sur OK pour envoyer les logs de l\'application.</string>
 
     <!-- For Settings -->
     <string name="pref_display_dates">Afficher dates</string>
