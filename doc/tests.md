@@ -1,6 +1,6 @@
 # Docs about automated testing
 
-##UI Automator
+## UI Automator
 
 This is black box testing.
 
