@@ -83,10 +83,10 @@ public class MainActivityForTest
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFab = (FloatingActionButton) findViewById(R.id.mainact__fab);
+        mFab = findViewById(R.id.mainact__fab);
 
         // Handle deep-app indexing
         onNewIntent(getIntent());

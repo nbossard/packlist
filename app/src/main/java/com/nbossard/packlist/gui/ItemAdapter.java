@@ -193,9 +193,9 @@ class ItemAdapter extends BaseAdapter {
 
             // getting views
             vHolderRecycle.globalRow = parConvertView.findViewById(R.id.ia__global);
-            vHolderRecycle.tvCategory = (TextView) parConvertView.findViewById(R.id.ia__category);
-            vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ia__name);
-            vHolderRecycle.tvIsPacked = (AppCompatCheckBox) parConvertView.findViewById(R.id.ia__packed);
+            vHolderRecycle.tvCategory = parConvertView.findViewById(R.id.ia__category);
+            vHolderRecycle.tvName = parConvertView.findViewById(R.id.ia__name);
+            vHolderRecycle.tvIsPacked = parConvertView.findViewById(R.id.ia__packed);
         } else
         {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();

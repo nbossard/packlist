@@ -257,12 +257,12 @@ public class NewTripFragment extends Fragment {
         mHostingActivity = (INewTripFragmentActivity) getActivity();
 
         // Getting views
-        mNameTV = (EditText) mRootView.findViewById(R.id.new_trip__name__edit);
-        mStartDateTV = (TextView) mRootView.findViewById(R.id.new_trip__start_date__edit);
-        mStartDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__start_date__button);
-        mEndDateButton = (AppCompatImageButton) mRootView.findViewById(R.id.new_trip__end_date__button);
-        mEndDateTV = (TextView) mRootView.findViewById(R.id.new_trip__end_date__edit);
-        mNoteTV = (EditText) mRootView.findViewById(R.id.new_trip__note__edit);
+        mNameTV = mRootView.findViewById(R.id.new_trip__name__edit);
+        mStartDateTV = mRootView.findViewById(R.id.new_trip__start_date__edit);
+        mStartDateButton = mRootView.findViewById(R.id.new_trip__start_date__button);
+        mEndDateButton = mRootView.findViewById(R.id.new_trip__end_date__button);
+        mEndDateTV = mRootView.findViewById(R.id.new_trip__end_date__edit);
+        mNoteTV = mRootView.findViewById(R.id.new_trip__note__edit);
 
 
         // Adding listeners
