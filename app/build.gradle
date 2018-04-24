@@ -19,6 +19,7 @@
 
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.jakewharton.hugo'
 
 
@@ -137,6 +138,10 @@ dependencies {
     // tools:overrideLibrary="android.support.test.uiautomator.v18"
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
 
 // ----------------------- tool for getting build date --------
