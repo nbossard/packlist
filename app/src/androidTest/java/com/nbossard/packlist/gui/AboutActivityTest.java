@@ -126,7 +126,8 @@ public class AboutActivityTest extends ActivityInstrumentationTestCase2<AboutAct
     @Override
     public final void tearDown() throws Exception
     {
-        super.tearDown();
+        // NBO Removed call to super, cause made a null pointer exception
+        // super.tearDown();
         mSolo.finishOpenedActivities();
     }
 }
