@@ -168,9 +168,9 @@ public class MassImportFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Getting views
-        mItemsExplainText = (TextView) mRootView.findViewById(R.id.mass_import__principle_explanation__label);
-        mItemsEditText = (EditText) mRootView.findViewById(R.id.mass_import__items__edit);
-        mMassImportButton = (Button) mRootView.findViewById(R.id.mass_import__import__button);
+        mItemsExplainText = mRootView.findViewById(R.id.mass_import__principle_explanation__label);
+        mItemsEditText = mRootView.findViewById(R.id.mass_import__items__edit);
+        mMassImportButton = mRootView.findViewById(R.id.mass_import__import__button);
 
         // updating display
         if (mTrip.getName() != null) {

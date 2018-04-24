@@ -166,10 +166,10 @@ public class ItemDetailFragment extends Fragment {
 
 
         // Getting views
-        mNameEdit = (EditText) mRootView.findViewById(R.id.item_detail__name__edit);
-        mWeightEdit = (EditText) mRootView.findViewById(R.id.item_detail__weight__edit);
-        mSubmitButton = (Button) mRootView.findViewById(R.id.item_detail__submit__button);
-        mCategoryEdit = (AutoCompleteTextView) mRootView.findViewById(R.id.item_detail__category__edit);
+        mNameEdit = mRootView.findViewById(R.id.item_detail__name__edit);
+        mWeightEdit = mRootView.findViewById(R.id.item_detail__weight__edit);
+        mSubmitButton = mRootView.findViewById(R.id.item_detail__submit__button);
+        mCategoryEdit = mRootView.findViewById(R.id.item_detail__category__edit);
 
         // pre-filling list of already existing categories that may match
         Set<String> alreadyExistCat = mIHostingActivity.getListOfCategories();

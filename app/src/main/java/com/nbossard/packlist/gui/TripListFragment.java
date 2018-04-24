@@ -234,7 +234,7 @@ public class TripListFragment extends Fragment {
         {
             Log.d(TAG, "populateList() : getView() not null, updating");
 
-            mTripListView = (ListView) getView().findViewById(R.id.main__trip_list);
+            mTripListView = getView().findViewById(R.id.main__trip_list);
             List<Trip> tripList;
 
             tripList = mSavingModule.loadSavedTrips();

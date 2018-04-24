@@ -306,7 +306,7 @@ public class TripDetailFragment extends Fragment {
         setHasOptionsMenu(true);
 
         // TODO old style, improve this
-        mNewItemEditText = (AppCompatAutoCompleteTextView) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        mNewItemEditText = mRootView.findViewById(R.id.trip_detail__new_item__edit);
 
         // pre-filling list of already existing items that may match
         Set<Item> alreadyExistItemsSet = mIHostingActivity.getSetOfItems();
@@ -315,17 +315,17 @@ public class TripDetailFragment extends Fragment {
                 android.R.layout.simple_dropdown_item_1line, alreadyExistItemsList);
         mNewItemEditText.setAdapter(adapter);
 
-        mAddItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item__button);
+        mAddItemButton = mRootView.findViewById(R.id.trip_detail__new_item__button);
         mAddItemButton.setOnClickListener(v -> onClickAddItem());
         mAddItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddItemButton);
 
-        mAddDetailedItemButton = (Button) mRootView.findViewById(R.id.trip_detail__new_item_detail__button);
+        mAddDetailedItemButton = mRootView.findViewById(R.id.trip_detail__new_item_detail__button);
         mAddDetailedItemButton.setOnClickListener(v -> onClickAddDetailedItem());
         mAddDetailedItemButton.setEnabled(false);
         disableButtonIfEmptyText(mAddDetailedItemButton);
 
-        mAddMagicItemButton = (AppCompatImageButton) mRootView.findViewById(R.id.trip_detail__new_item_magic__button);
+        mAddMagicItemButton = mRootView.findViewById(R.id.trip_detail__new_item_magic__button);
         mAddMagicItemButton.setOnClickListener(v -> onClickAddMagicItem());
 
         // auto click on button if keyboard "enter" pressed
@@ -338,7 +338,7 @@ public class TripDetailFragment extends Fragment {
             return handled;
         });
 
-        final Button editButton = (Button) mRootView.findViewById(R.id.trip_detail__edit_button);
+        final Button editButton = mRootView.findViewById(R.id.trip_detail__edit_button);
         editButton.setOnClickListener(v -> onClickEditTrip());
 
         populateList();
@@ -674,7 +674,7 @@ public class TripDetailFragment extends Fragment {
      * @param parMButton button to be disabled
      */
     private void disableButtonIfEmptyText(final Button parMButton) {
-        EditText newItem = (EditText) mRootView.findViewById(R.id.trip_detail__new_item__edit);
+        EditText newItem = mRootView.findViewById(R.id.trip_detail__new_item__edit);
         newItem.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(final CharSequence s,
@@ -704,7 +704,7 @@ public class TripDetailFragment extends Fragment {
      */
     @DebugLog
     private void populateList() {
-        mItemListView = (ListView) mRootView.findViewById(R.id.trip_detail__list);
+        mItemListView = mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));
         mListItemAdapter = new ItemAdapter(mRetrievedTrip.getListOfItems(), this.getActivity());
         mListItemAdapter.setSortMode(mRetrievedTrip.getSortMode());

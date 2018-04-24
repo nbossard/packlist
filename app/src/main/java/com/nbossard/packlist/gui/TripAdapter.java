@@ -174,12 +174,12 @@ class TripAdapter extends BaseAdapter {
             vHolderRecycle = (InnerMyViewHolder) parConvertView.getTag();
         }
         // getting views
-        vHolderRecycle.letterIcon = (MaterialLetterIcon) parConvertView.findViewById(R.id.ta__lettericon);
-        vHolderRecycle.tvName = (TextView) parConvertView.findViewById(R.id.ta__name);
-        vHolderRecycle.tvInXDays = (TextView) parConvertView.findViewById(R.id.ta__in_x_days);
-        vHolderRecycle.tvStartDate = (TextView) parConvertView.findViewById(R.id.ta__start_date);
-        vHolderRecycle.arrowDate = (ImageView) parConvertView.findViewById(R.id.ta__arrow_date);
-        vHolderRecycle.tvEndDate = (TextView) parConvertView.findViewById(R.id.ta__end_date);
+        vHolderRecycle.letterIcon = parConvertView.findViewById(R.id.ta__lettericon);
+        vHolderRecycle.tvName = parConvertView.findViewById(R.id.ta__name);
+        vHolderRecycle.tvInXDays = parConvertView.findViewById(R.id.ta__in_x_days);
+        vHolderRecycle.tvStartDate = parConvertView.findViewById(R.id.ta__start_date);
+        vHolderRecycle.arrowDate = parConvertView.findViewById(R.id.ta__arrow_date);
+        vHolderRecycle.tvEndDate = parConvertView.findViewById(R.id.ta__end_date);
 
         final Trip oneTrip = mTripsList.get(parPosition);
 
