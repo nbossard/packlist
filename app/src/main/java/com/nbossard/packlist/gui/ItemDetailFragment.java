@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,9 +61,11 @@ public class ItemDetailFragment extends Fragment {
 
     // ********************** CONSTANTS *********************************************************************
 
+    /** Log tag. */
+    private static final String TAG = MainActivity.class.getName();
+
     /** Bundle parameter when instantiating this fragment. */
     private static final String BUNDLE_PAR_ITEM = "bundleParItem";
-
 
     // *********************** FIELDS ***********************************************************************
 
@@ -152,8 +155,14 @@ public class ItemDetailFragment extends Fragment {
         // Do not use this syntax, it will overwrite activity (we are in a fragment)
         //mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_trip_detail);
         FragmentItemDetailBinding mBinding = DataBindingUtil.bind(mRootView);
-        mBinding.setItem(mItem);
-        mBinding.executePendingBindings();
+        if (mBinding != null) {
+            mBinding.setItem(mItem);
+            mBinding.executePendingBindings();
+        }
+        else
+        {
+            Log.w(TAG, "Failed binding data to view, got null binding object.");
+        }
 
         return mRootView;
     }
