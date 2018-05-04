@@ -17,12 +17,13 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.gui
 
-import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.os.Bundle
+import android.preference.PreferenceFragment
 
-import com.nbossard.packlist.R;
+import com.nbossard.packlist.R
+
 /*
 @startuml
     class com.nbossard.packlist.gui.SettingsFragment {
@@ -37,13 +38,12 @@ import com.nbossard.packlist.R;
  * @author Created by nbossard on 03/04/17.
  */
 
-public class SettingsFragment extends PreferenceFragment {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+class SettingsFragment : PreferenceFragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.preferences)
     }
 
 }
