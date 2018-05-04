@@ -17,12 +17,12 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.gui
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 
-import com.nbossard.packlist.R;
+import com.nbossard.packlist.R
 
 //CHECKSTYLE:OFF: LineLength
 /*
@@ -38,20 +38,18 @@ import com.nbossard.packlist.R;
 /**
  * An activity acting as a container for SettingsFragment.
  */
-public class SettingsActivity extends AppCompatActivity {
+class SettingsActivity : AppCompatActivity() {
 
-// *********************** METHODS **************************************************************************
+    // *********************** METHODS **************************************************************************
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
 
         // Display the fragment as the main content.
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        fragmentManager.beginTransaction()
+                .replace(android.R.id.content, SettingsFragment())
+                .commit()
 
     }
-//
 }

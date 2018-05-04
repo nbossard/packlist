@@ -52,8 +52,8 @@ package com.nbossard.packlist.gui;
         !include MaterialColor.java
         !include NewTripFragment.java
         !include PresentableItem.java
-        !include SettingsActivity.java
-        !include SettingsFragment.java
+        !include SettingsActivity.kt
+        !include SettingsFragment.kt
         !include TripDeletionConfirmDialogFragment.java
         !include TripDetailFragment.java
         !include TripAdapter.java
