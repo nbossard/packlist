@@ -17,14 +17,14 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.gui
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
-import com.nbossard.packlist.R;
+import com.nbossard.packlist.R
 
-import hugo.weaving.DebugLog;
+import hugo.weaving.DebugLog
 
 /*
 @startuml
@@ -37,12 +37,10 @@ import hugo.weaving.DebugLog;
  * Activity displaying third party libraries and their licences.
  *
  * Accessed from About page.
- * 
+ *
  * @author Nicolas BOSSARD (naub7473)
- * 
  */
-public class HelpThirdPartyActivity extends AppCompatActivity
-{
+class HelpThirdPartyActivity : AppCompatActivity() {
 
     // ********************** CONSTANTS *********************************************************************
 
@@ -53,10 +51,8 @@ public class HelpThirdPartyActivity extends AppCompatActivity
     // ********************** METHODS ***********************************************************************
 
     @DebugLog
-    @Override
-    protected final void onCreate(final Bundle savedInstState)
-    {
-        super.onCreate(savedInstState);
-        setContentView(R.layout.activity_help_thirdparty);
+    override fun onCreate(savedInstState: Bundle?) {
+        super.onCreate(savedInstState)
+        setContentView(R.layout.activity_help_thirdparty)
     }
 }

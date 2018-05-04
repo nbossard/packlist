@@ -38,7 +38,7 @@ package com.nbossard.packlist.gui;
     package com.nbossard.packlist.gui #LightGreen {
         !include AboutActivity.java
         !include ChangeLogDialog.java
-        !include HelpThirdPartyActivity.java
+        !include HelpThirdPartyActivity.kt
         !include IItemDetailFragmentActivity.java
         !include IMainActivity.java
         !include IMassImportFragmentActivity.java
