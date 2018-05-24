@@ -12,3 +12,5 @@ Application icon, if changed or updated needs to be :
 
 Documentation : 
 https://developer.android.com/guide/practices/ui_guidelines/icon_design_adaptive.html
+
+all done
