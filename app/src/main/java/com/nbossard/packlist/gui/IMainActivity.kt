@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.gui
 
 /*
 @startuml
@@ -29,36 +29,34 @@ package com.nbossard.packlist.gui;
 @enduml
  */
 
-import android.support.annotation.Nullable;
+import com.nbossard.packlist.model.TripItem
 
-import com.nbossard.packlist.model.TripItem;
-
-import java.util.UUID;
+import java.util.UUID
 
 /**
  * The what fragments expects from main hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface IMainActivity {
+internal interface IMainActivity {
 
     /**
      * Ask Main activity to open new trip fragment to display Trip of provided UUID.
      *
      * @param parTripId a trip unique identifier (UUID) if editing, null otherwise.
      */
-    void openNewTripFragment(@Nullable UUID parTripId);
+    fun openNewTripFragment(parTripId: UUID?)
 
     /**
      * Display provided TripItem to allow editing of details.
      * @param parItem item to be edited
      */
-    void openItemDetailFragment(TripItem parItem);
+    fun openItemDetailFragment(parItem: TripItem)
 
     /**
      * Hide or show FAB, depending on fragment.
      * @param parShow true to show, false to hide
      */
-    void showFABIfAccurate(boolean parShow);
+    fun showFABIfAccurate(parShow: Boolean)
 
     /**
      * Ask activity to update title bar with provided new title.
@@ -66,5 +64,5 @@ interface IMainActivity {
      *
      * @param parNewTitleInTitleBar new title to be displayed in title bar
      */
-    void updateTitleBar(String parNewTitleInTitleBar);
+    fun updateTitleBar(parNewTitleInTitleBar: String)
 }
