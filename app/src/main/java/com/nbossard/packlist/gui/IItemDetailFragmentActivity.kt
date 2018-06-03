@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.nbossard.packlist.gui;
+package com.nbossard.packlist.gui
 
 /*
 @startuml
@@ -30,26 +30,24 @@ package com.nbossard.packlist.gui;
 @enduml
  */
 
-import com.nbossard.packlist.model.TripItem;
-
-import java.util.Set;
+import com.nbossard.packlist.model.TripItem
 
 /**
- * The what {@link ItemDetailFragment} expects from hosting activity.
+ * The what [ItemDetailFragment] expects from hosting activity.
  * @author Created by nbossard on 01/01/16.
  */
-interface IItemDetailFragmentActivity extends IMainActivity {
+internal interface IItemDetailFragmentActivity : IMainActivity {
+
+    /**
+     * @return retrieve all previously created item categories.
+     */
+    val listOfCategories: Set<String>
 
     /**
      * Called when an item has been updated and needs to be saved and its displays to be updated.
      *
      * @param parItem Trip to be updated
      */
-    void updateItem(TripItem parItem);
-
-    /**
-     * @return retrieve all previously created item categories.
-     */
-    Set<String> getListOfCategories();
+    fun updateItem(parItem: TripItem)
 
 }
