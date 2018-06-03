@@ -35,10 +35,9 @@
     <string name="app_name">packlist</string>
     <string name="demo_changelog_title_standarddialog">更改日志</string>
     <string name="about_ok">确定</string>
-    <string name="title_activity_about">关于活动</string>
+  <string name="title_activity_about">关于</string>
     <string name="toast_update_failed_incompatible_format">更新失败，这可能是由于旧旅程和当前格式不兼容，
-        请尝试删除并重新创建此项目或此行。
-    </string>
+请尝试删除并重新创建此项目或此行。</string>
     <!-- Menu items -->
     <string name="action__whatsnew">新增内容</string>
     <string name="action__settings">设置</string>
@@ -48,15 +47,14 @@
     <string name="action_trip__import">导入文字档</string>
     <string name="action_trip__unpack_all">解包所有项目</string>
     <!-- About page -->
-  <string name="about__main">包装清单%1$s。\n%2$s\n版权所有©2015&#8211;2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com/nbossard/packlist</string>
-  <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations - \"isaideureka\" and \"fafarsdq\" for indonesian translations</string>
+  <string name="about__main">包装清单%1$s。\n%2$s\n版权所有©2015-2017 \nNBossard和其他贡献者-2016。\n Apache 2授权。\n请在\n https://github.com/nbossard/packlist</string>
+  <string name="about__many_thanks_to_contributors">许多感谢\n naofum 为日语翻译\n Paccolat 为德语翻译\n Myjourney 为中文翻译-\"isaideureka\" 和 \"fafarsdq\" 为印度尼西亚语翻译</string>
     <string name="about__third_party__button">第三方库</string>
     <string name="about_act__fab_go_to_website">打开网站</string>
     <!-- Main page -->
     <string name="main__welcome">这是您的行程清单, 请点击才详细资讯</string>
     <string name="main__no_trip_yet__label">没有计划的旅行，
-        \n点击下面的按钮添加一个新的旅程
-    </string>
+\n点击下面的按钮添加一个新的旅程</string>
     <string name="action_main_cab__clone">复制</string>
     <string name="action_main_cab__delete">删除</string>
     <string name="mainact__fab_add_a_trip">添加新行程</string>

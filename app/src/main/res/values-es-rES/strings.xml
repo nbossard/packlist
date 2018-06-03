@@ -46,7 +46,7 @@
   <string name="action_trip__unpack_all">desempacar todos los objetos</string>
   <!-- About page -->
   <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015–2017\nNBossard y otros contribuyentes -2016.\n Licenciado con Apache 2.\n Por favor, envíanos ayuda y sugerencias en\n https://github.com/nbossard/packlist</string>
-  <string name="about__many_thanks_to_contributors">Many thanks to\n -naofum, for Japanese translation\n  -Christophe Paccolat for German translations\n  -Myjourney for Chinese translations\n -\"isaideureka\" and \"fafarsdq\" for indonesian translations\n -\"Andrés Ignacio Torres\" for spanish translations</string>
+  <string name="about__many_thanks_to_contributors">Muchas gracias a\n -naofum, por la traducción al Japonés\n -Christophe Paccolat, por la traducción al alemán\n -Myjourney por la traducción al Chino - \"isaideureka\" y \"fafarsdq\" por la traducción al Indonesio</string>
   <string name="about__third_party__button">librerías de terceros</string>
   <string name="about_act__fab_go_to_website">Abrir sitio web</string>
   <!-- Main page -->
