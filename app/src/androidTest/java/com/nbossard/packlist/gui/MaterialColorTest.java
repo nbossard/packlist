@@ -50,7 +50,7 @@ public class MaterialColorTest extends InstrumentationTestCase {
 
         // testing special values : empty or null strings
         mMaterialColorTested.getMatColor("", "");
-        assertEquals(MaterialColor.DEFAULT_COLOR, mMaterialColorTested.getMatColor(null, null));
+        assertEquals(MaterialColor.Companion.getDEFAULT_COLOR(), mMaterialColorTested.getMatColor(null, null));
     }
 
     /**
@@ -66,8 +66,8 @@ public class MaterialColorTest extends InstrumentationTestCase {
 
         // testing special values : empty or null strings
         mMaterialColorTested.getMatColor("test", "");
-        assertEquals(MaterialColor.DEFAULT_COLOR, mMaterialColorTested.getMatColor("test", "invalid"));
-        assertEquals(MaterialColor.DEFAULT_COLOR, mMaterialColorTested.getMatColor("test", null));
+        assertEquals(MaterialColor.Companion.getDEFAULT_COLOR(), mMaterialColorTested.getMatColor("test", "invalid"));
+        assertEquals(MaterialColor.Companion.getDEFAULT_COLOR(), mMaterialColorTested.getMatColor("test", null));
     }
 
 }
