@@ -52,7 +52,6 @@ public class HelpThirdPartyActivity extends AppCompatActivity
 
     // ********************** METHODS ***********************************************************************
 
-    @DebugLog
     @Override
     protected final void onCreate(final Bundle savedInstState)
     {

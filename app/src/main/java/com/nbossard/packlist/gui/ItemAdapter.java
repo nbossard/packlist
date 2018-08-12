@@ -179,7 +179,6 @@ class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    @DebugLog
     public View getView(final int parPosition,
                         @SuppressWarnings("CheckStyle") View parConvertView,
                         final ViewGroup parParentView) {
@@ -233,7 +232,6 @@ class ItemAdapter extends BaseAdapter {
      *
      * @param parSortMode new sorting mode to use
      */
-    @DebugLog
     void setSortMode(final SortModes parSortMode) {
         mSortMode = parSortMode;
     }
@@ -245,7 +243,6 @@ class ItemAdapter extends BaseAdapter {
      * @param parCategory item category for which we need a category background color
      * @return a color as an int ready to be used for
      */
-    @DebugLog
     private int getBgColor(final String parCategory) {
         @ColorInt int candidateColor;
         // searching in cache

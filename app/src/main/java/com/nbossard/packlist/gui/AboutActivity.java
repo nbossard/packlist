@@ -63,7 +63,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     // *********************** METHODS **********************************************************************
 
     @Override
-    @DebugLog
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
@@ -93,7 +92,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
 
 
     @Override
-    @DebugLog
     public final void onClick(final View parClickedView) {
 
         if (parClickedView.getId() == R.id.help__third_party__button) {
@@ -109,7 +107,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     /**
      * Open the browser with project sources on GitHub.
      */
-    @DebugLog
     private void openBrowser() {
         String url = "https://github.com/nbossard/packlist";
         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -121,7 +118,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     /**
      * Open the activity to display third party software licences.
      */
-    @DebugLog
     private void openThirdPartyActivity()
     {
         Intent intent = new Intent(this, HelpThirdPartyActivity.class);

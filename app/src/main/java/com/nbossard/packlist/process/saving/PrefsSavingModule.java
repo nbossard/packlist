@@ -119,7 +119,6 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    @DebugLog
     public final Trip loadSavedTrip(@Nullable final UUID parUUID) {
         Trip res = null;
 

@@ -54,7 +54,6 @@ public class ChangeLogDialog extends DialogFragment {
     }
 
     @NonNull
-    @DebugLog
     @Override
     public final Dialog onCreateDialog(final Bundle savedInstanceState) {
 

@@ -77,7 +77,6 @@ public class MainActivityForTest
 
 // *********************** METHODS **************************************************************************
 
-    @DebugLog
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +91,6 @@ public class MainActivityForTest
         onNewIntent(getIntent());
     }
 
-    @DebugLog
     @Override
     protected final void onStart() {
         super.onStart();
@@ -108,7 +106,6 @@ public class MainActivityForTest
      *
      * @param parDialogStandardFragment fragment to be opened
      */
-    @DebugLog
     private void openDialogFragment(final DialogFragment parDialogStandardFragment) {
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
@@ -121,7 +118,6 @@ public class MainActivityForTest
         }
     }
 
-    @DebugLog
     @Override
     public final boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -129,7 +125,6 @@ public class MainActivityForTest
         return true;
     }
 
-    @DebugLog
     @Override
     public final boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -148,7 +143,6 @@ public class MainActivityForTest
     }
 
     /** Open {@link AboutActivity} on top of this activity. */
-    @DebugLog
     private void openAboutActivity() {
         Intent view = new Intent(this, AboutActivity.class);
         view.setAction(Intent.ACTION_VIEW);
@@ -159,7 +153,6 @@ public class MainActivityForTest
      * For deep-app indexing.
      * @param intent sic
      */
-    @DebugLog
     protected final void onNewIntent(final Intent intent) {
         String action = intent.getAction();
         String data = intent.getDataString();
@@ -173,7 +166,6 @@ public class MainActivityForTest
 // ----------- implementing interface IMainActivity -------------------
 
     @Override
-    @DebugLog
     public final void saveTrip(final Trip parTrip) {
        Log.d(TAG, "saveTrip() faked");
     }
@@ -183,7 +175,6 @@ public class MainActivityForTest
      * Characteristics.
      * @param parTrip trip object to be displayed
      */
-    @DebugLog
     @Override
     public final TripDetailFragment openTripDetailFragment(final Trip parTrip) {
 
@@ -235,7 +226,6 @@ public class MainActivityForTest
     /**
      * Open a new fragment allowing him to view trip list.
      */
-    @DebugLog
     private void openMainActivityFragment() {
 
         // Create fragment and give it an argument specifying the article it should show
@@ -260,7 +250,6 @@ public class MainActivityForTest
      * Characteristics.
      */
     @SuppressWarnings("WeakerAccess")
-    @DebugLog
     @VisibleForTesting
     protected void openNewTripFragment() {
 
