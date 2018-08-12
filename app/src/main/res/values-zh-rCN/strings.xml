@@ -100,13 +100,6 @@
     <string name="help_legal__third_party__label">
         <u>第三者资料档案</u>
     </string>
-    <string name="help_legal__third_party_lib_hugo__label">
-        <b>Hugo</b>
-        \nCopyright©2013 Jake Wharton，\n（<a href="https://github.com/JakeWharton/hugo">
-        https://github.com/JakeWharton/hugo</a>）\n Hugo使用Apache许可证2.0版本（<a
-        href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org
-        /licenses/LICENSE-2.0.html</a>）
-    </string>
     <string name="help_legal__third_party_lib_gson__label">
         <b>Gson</b>
         \n（<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>）\n版权所有©2004 Google \nGson根据Apache许可证版本2.0获得许可\n（<a

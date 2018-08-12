@@ -103,14 +103,6 @@
     <string name="help_legal__third_party__label">
         <u>third party libraries</u>
     </string>
-    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nCopyright © 2013 Jake Wharton,\n(<a
-        href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo is licensed
-        under the Apache License, Version 2.0\n(
-        <a href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a>
-        )
-    </string>
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a
         href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright ©
         2004 Google\nGson is licensed under the Apache License, Version 2.0\n(

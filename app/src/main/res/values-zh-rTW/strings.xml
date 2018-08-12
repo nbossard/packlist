@@ -98,12 +98,6 @@
     <string name="help_legal__third_party__label">
         <u>第三者資料檔案</u>
     </string>
-    <string name="help_legal__third_party_lib_hugo__label"><b>Gson</b>\n(<a
-        href="https://github.com/JakeWharton/hugo">https://code.google.com/p/google-gson/</a>)\n 版權 © 2013
-        Google\n Hugo 是Apache License許可的 , 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a
         href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\n 版權 © 2004
         Google\nGson 是Apache License許可的 , 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
