@@ -45,8 +45,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.gui.ItemAdapter {

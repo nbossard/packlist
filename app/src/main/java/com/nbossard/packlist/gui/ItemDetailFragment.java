@@ -39,8 +39,6 @@ import com.nbossard.packlist.model.TripItem;
 
 import java.util.Set;
 
-import hugo.weaving.DebugLog;
-
 import static java.lang.Integer.parseInt;
 
 /*

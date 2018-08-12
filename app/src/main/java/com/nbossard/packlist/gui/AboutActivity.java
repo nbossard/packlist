@@ -35,8 +35,6 @@ import android.widget.TextView;
 import com.nbossard.packlist.BuildConfig;
 import com.nbossard.packlist.R;
 
-import hugo.weaving.DebugLog;
-
 //CHECKSTYLE : BEGIN GENERATED CODE
 /*
 @startuml

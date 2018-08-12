@@ -29,7 +29,6 @@ import android.view.ViewGroup;
 
 import com.nbossard.packlist.R;
 
-import hugo.weaving.DebugLog;
 import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
 
 /*

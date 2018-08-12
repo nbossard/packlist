@@ -24,8 +24,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.nbossard.packlist.R;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.gui.HelpThirdPartyActivity {

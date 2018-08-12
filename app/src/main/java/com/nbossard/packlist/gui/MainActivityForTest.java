@@ -47,8 +47,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import hugo.weaving.DebugLog;
-
 
 /**
  * Main activity for robotium tests.

@@ -32,8 +32,6 @@ import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.PackListApp {

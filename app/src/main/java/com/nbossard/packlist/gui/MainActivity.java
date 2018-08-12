@@ -51,7 +51,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import hotchemi.android.rate.AppRate;
-import hugo.weaving.DebugLog;
 
 //CHECKSTYLE : BEGIN GENERATED CODE
 /*

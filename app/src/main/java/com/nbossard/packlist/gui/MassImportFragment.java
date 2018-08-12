@@ -35,8 +35,6 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.ImportExport;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.gui.MassImportFragment {
