@@ -136,7 +136,7 @@ dependencies {
     // Suggestion: use tools:overrideLibrary="android.support.test.uiautomator.v18" to force usage
     // tools:overrideLibrary="android.support.test.uiautomator.v18"
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 }
 
 // ----------------------- tool for getting build date --------
