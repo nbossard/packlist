@@ -49,7 +49,6 @@ They are also available in [other languages](./pub/res_pub/latest/)
    - exhaustive javadoc
    - unit testing and Robotium testing and UI automator
    - continuous integration using Travis (https://travis-ci.org/nbossard/packlist)
- - rich yet light logging (usage of https://github.com/JakeWharton/hugo)
  - large usage of plantuml for documentation ([see project plantuml doc](doc/plantuml.md))
  - re-use of external libraries on GitHub
    - changelog : https://github.com/gabrielemariotti/changeloglib
