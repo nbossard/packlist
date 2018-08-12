@@ -28,7 +28,7 @@ import java.util.Comparator;
  */
 
 /**
- * Comparator to sort Items based on unpacked first.
+ * Comparator to sort Items based on unpacked first, then use alphabetical order.
  *
  * @author Created by nbossard on 02/05/16.
  */
@@ -37,9 +37,15 @@ public class ItemComparatorPacking implements Comparator<TripItem> {
     public final int compare(final TripItem parItem, final TripItem parAnother) {
         int res = 0;
         if (!parItem.isPacked() && parAnother.isPacked()) {
-            res = -1;
+            res = -2;
         } else if (parItem.isPacked() && !parAnother.isPacked()) {
-            res = 1;
+            res = 2;
+        } else if ((!parItem.isPacked() && !parAnother.isPacked())
+                    || (parItem.isPacked() && parAnother.isPacked())) {
+            // both are unpacked, or both are pacekd, then using alphabetical order
+            if ((parItem.getName() != null) && (parAnother.getName() != null)) {
+                res = parItem.getName().compareTo(parAnother.getName());
+            }
         }
         return res;
     }
