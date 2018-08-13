@@ -42,8 +42,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
 
-import hugo.weaving.DebugLog;
-
 //CHECKSTYLE:OFF: LineLength
 /*
 @startuml
@@ -119,7 +117,6 @@ public class PrefsSavingModule implements ISavingModule {
     }
 
     @Override
-    @DebugLog
     public final Trip loadSavedTrip(@Nullable final UUID parUUID) {
         Trip res = null;
 

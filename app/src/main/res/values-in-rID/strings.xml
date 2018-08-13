@@ -35,7 +35,7 @@
   <string name="demo_changelog_title_standarddialog">Ubah log</string>
   <string name="about_ok">Oke</string>
   <string name="title_activity_about">Tentang</string>
-  <string name="toast_update_failed_incompatible_format">Pembaruan gagal, mungkin terjadi karena perbedaan versi. Coba hapus kemudian buat ulang barang atau perjalanan ini.</string>
+  <string name="toast_update_failed_incompatible_format">Pembaruan gagal, mungkin terjadi karena versi versi. Coba hapus lalu buat ulang barang atau perjalanan ini.</string>
   <!-- Menu items -->
   <string name="action__whatsnew">Apa yang baru</string>
   <string name="action__settings">Pengaturan</string>
@@ -46,7 +46,7 @@
   <string name="action_trip__unpack_all">bongkar semua barang</string>
   <!-- About page -->
   <string name="about__main">Packing list %1$s.\n%2$s\nCopyright © 2015–2017\nNBossard dan kontributor lainnya–2016.\n Apache 2 Licensed.\n Silakan memberikan bantuan dan saran di \n https://github.com/nbossard/packlist</string>
-  <string name="about__many_thanks_to_contributors">Terima kasih banyak\n -noufum, untuk terjemahan bahasa Jepang\n -Christophe Paccolat untuk terjemahan bahasa Jerman</string>
+  <string name="about__many_thanks_to_contributors">Banyak terima kasih kepada \ n -naofum, untuk terjemahan bahasa Jepang \ n -Christophe Paccolat untuk terjemahan bahasa Jerman \ n -Jamur untuk terjemahan bahasa Mandarin - \"isaideureka\" dan \"fafarsdq\" untuk terjemahan bahasa indonesia</string>
   <string name="about__third_party__button">pustaka pihak ketiga</string>
   <string name="about_act__fab_go_to_website">Buka situs web</string>
   <!-- Main page -->
@@ -95,7 +95,6 @@
   <!-- Third party software licences -->
   <string name="help_legal__third_party__title">pustaka pihak ketiga</string>
   <string name="help_legal__third_party__label"><u>pustaka pihak ketiga</u></string>
-  <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b>\nCopyright © 2013 Jake Wharton,\n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo didistribusikan di bawah Lisensi Apache, Versi 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
   <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson didistribusikan di bawah Lisensi Apache, Versi 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
   <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b>\n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 gabriele mariotti\n/changeloglib didistribusikan di bawah Lisensi Apache, Versi 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>
   <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b>\n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/changeloglib didistribusikan di bawah Lisensi Apache, Versi 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a> )</string>

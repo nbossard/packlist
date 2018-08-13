@@ -35,9 +35,8 @@
     <string name="app_name">要帶東西的清單</string>
     <string name="demo_changelog_title_standarddialog">更改日誌</string>
     <string name="about_ok">確認</string>
-    <string name="title_activity_about">關於我們</string>
-    <string name="toast_update_failed_incompatible_format">更新失敗, 這可能是由於年份與當前格式之間的不一樣, 請嘗試刪除並重新創建檔案或行程。
-    </string>
+  <string name="title_activity_about">關於</string>
+  <string name="toast_update_failed_incompatible_format">更新失敗, 這可能是由於年份與當前格式之間的不一樣, 請嘗試刪除並重新創建檔案或行程。</string>
     <!-- Menu items -->
     <string name="action__whatsnew">新訊息</string>
     <string name="action__settings">設定</string>
@@ -47,10 +46,8 @@
     <string name="action_trip__import">導入文字檔</string>
     <string name="action_trip__unpack_all">先整理所以東西</string>
     <!-- About page -->
-    <string name="about__main">要帶東西的清單%1$s.\n%2$s\版權 © 2015–2017\nNBossard 和其他供稿人–2016.\n Apache 2 Licensed.\n
-        請提供提議 at \n https://github.com/nbossard/packlist
-    </string>
-    <string name="about__many_thanks_to_contributors">感謝 naofum 日語翻譯 \n Christophe Paccolat 德國翻譯</string>
+  <string name="about__main">要帶東西的清單%1$s.\n%2$s\版權 © 2015–2017\nNBossard 和其他供稿人–2016.\n Apache 2 Licensed.\n 請提供提議 at \n https://github.com/nbossard/packlist</string>
+  <string name="about__many_thanks_to_contributors">許多感謝 \n naofum 為日語翻譯 \n Paccolat 為德語翻譯 \n Myjourney 為中文翻譯-\"isaideureka\" 和 \"fafarsdq\" 為印尼語翻譯</string>
     <string name="about__third_party__button">第三者資料檔案</string>
     <string name="about_act__fab_go_to_website">打開網站</string>
     <!-- Main page -->
@@ -101,12 +98,6 @@
     <string name="help_legal__third_party__label">
         <u>第三者資料檔案</u>
     </string>
-    <string name="help_legal__third_party_lib_hugo__label"><b>Gson</b>\n(<a
-        href="https://github.com/JakeWharton/hugo">https://code.google.com/p/google-gson/</a>)\n 版權 © 2013
-        Google\n Hugo 是Apache License許可的 , 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
-            http://www.apache.org/licenses/LICENSE-2.0.html
-        </a> )
-    </string>
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b>\n(<a
         href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\n 版權 © 2004
         Google\nGson 是Apache License許可的 , 版本 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">
@@ -144,12 +135,8 @@
     <string name="item_detail__submit">更新</string>
     <string name="item_detail__category__label">類別</string>
     <!-- Mass import -->
-    <string name="mass_import__principle_explanation_new_trip__label">
-        這句對話是來幫助大量輸入到新行程，張存在的清單加上。一行一項目\n比如.:\nVarious:Guide book (100g).
-    </string>
-    <string name="mass_import__principle_explanation_with_name__label">
-        這句對話是來幫助大量輸入到新行程，張存在的清單加上到\"%1$s\",。一行一項目\n比如.:\nVarious:Guide book (100g).
-    </string>
+  <string name="mass_import__principle_explanation_new_trip__label">這句對話是來幫助大量輸入到新行程，張存在的清單加上。一行一項目\n\n比如.:\nVarious:Guide book (100g).</string>
+  <string name="mass_import__principle_explanation_with_name__label">這句對話是來幫助大量輸入到新行程，張存在的清單加上到\"%1$s\",。一行一項目\n\n比如.:\nVarious:Guide book (100g).</string>
     <string name="mass_import__import__button">導入</string>
     <string name="mass_import__items__hint">在這打字或黏貼</string>
     <!-- for ACRA (Application CRash Reports) reports -->

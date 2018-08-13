@@ -36,23 +36,23 @@
     <string name="demo_changelog_title_standarddialog">Änderungsprotokoll</string>
     <string name="about_ok">OK</string>
     <string name="title_activity_about">Über</string>
-    <string name="toast_update_failed_incompatible_format">Die Aktualisierung wurde fehlgeschlagen. Dies ist wahrscheinlich aufgrund einer Version-Inkompatibilität. Bitte löschen sie die Reise oder den Gegenstand und versuchen sie es erneut.</string>
+  <string name="toast_update_failed_incompatible_format">Die Aktualisierung ist fehlgeschlagen. Dies ist wahrscheinlich aufgrund einer Version-Inkompatibilität. Bitte lösche die Reise oder den Gegenstand und versuche es erneut.</string>
     <!-- Menu items -->
-    <string name="action__whatsnew">Was gibt es neues</string>
+  <string name="action__whatsnew">Neues</string>
     <string name="action__settings">Einstellungen</string>
-    <string name="action__send_logs">Ein Bericht senden</string>
+  <string name="action__send_logs">Einen Bericht senden</string>
     <string name="action__about">Über</string>
     <string name="action_trip__sort">Sortieren</string>
     <string name="action_trip__import">Text-Datei importieren</string>
     <string name="action_trip__unpack_all">alle Gegenstände auspacken</string>
     <!-- About page -->
-    <string name="about__main">Liste %1$s.\n%2$s\nCopyright Verpackung © 2015&#8211;2017\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier Willkommen \n https://github.com/nbossard/packlist</string>
-    <string name="about__many_thanks_to_contributors">Vielen Dank an\n -naofum, für die japanische Übersetzung\n - Christophe Paccolat für die deutsche Übersetzung</string>
+  <string name="about__main">Packliste %1$s.\n%2$s\nCopyright © 2015-2017\nNBossard und andere Beitragende - 2016.\n Apache 2 lizenziert. \n Hilfe und Vorschlägen sind hier willkommen \n https://github.com/nbossard/packlist</string>
+  <string name="about__many_thanks_to_contributors">Vielen Dank an\n -naofum für die Übersetzung ins Japanische, \n  -Christophe Paccolat für Übersetzung ins Deutsche, \n  -Myjourney für Übersetzung ins Chinesische,  - \"isaideureka\" und \"fafarsdq\" für die Übersetzung ins Indonesische.</string>
     <string name="about__third_party__button">Bibliotheken von Drittanbietern</string>
     <string name="about_act__fab_go_to_website">Webseite öffnen</string>
     <!-- Main page -->
-    <string name="main__welcome">Hier ist die Liste Ihrer Reisen, wählen Sie bitte eine aus für Details</string>
-    <string name="main__no_trip_yet__label">Noch keine Reise geplant,\nklicken Sie den + Knopf um eine neue Reise hinzufügen</string>
+  <string name="main__welcome">Hier ist die Liste deiner Reisen, wähle eine für Details aus</string>
+  <string name="main__no_trip_yet__label">Noch keine Reise geplant,\nklicke den + Knopf um eine neue Reise hinzufügen</string>
     <string name="action_main_cab__clone">Duplizieren</string>
     <string name="action_main_cab__delete">Entfernen</string>
     <string name="mainact__fab_add_a_trip">Neue Reise hinzufügen</string>
@@ -64,8 +64,8 @@
         <item quantity="one">Vor %d Tag.</item>
         <item quantity="other">Vor %d Tagen.</item>
     </plurals>
-    <string name="trip_deletion_confirm__title">Klingt wie eine schlechte Idee…</string>
-    <string name="trip_deletion_confirm__body">Dienen alte Reisen als Grundlage der Knowdlege für die Annahme, Sie Artikel und Kategorien, sollten Sie sie behalten, wenn possible.\n\nReally löschen?</string>
+  <string name="trip_deletion_confirm__title">Klingt wie eine schlechte Idee&#8230;</string>
+  <string name="trip_deletion_confirm__body">Vorhergehende Reisen werden als Grundlage dafür genommen um Artikel und Kategorien vorzuschlagen. Du solltest sie beibehalten, wenn möglich.\n\nWirklich löschen?</string>
     <!-- New trip fragment -->
     <string name="new_trip__name">Name der Reise</string>
     <string name="new_trip__start_date">Startdatum</string>
@@ -73,16 +73,16 @@
     <string name="new_trip__end_date">Enddatum</string>
     <string name="new_trip__end_date_access__button">Enddatum ändern</string>
     <string name="new_trip__note">Notiz</string>
-    <string name="new_trip__submit">Auf geht es&#8230;</string>
+  <string name="new_trip__submit">es geht los&#8230;</string>
     <!-- Detail of trip -->
     <string name="trip_detail__main__titlebar">Liste für %1s</string>
     <string name="trip_detail__end_date__label">nach</string>
     <string name="trip_detail__start_date__label">von</string>
-    <string name="trip_detail__add_item___button">Gegenstand hinzufügen</string>
+  <string name="trip_detail__add_item___button">Hinzufügen</string>
     <string name="trip_detail__add_item_detail___button">Mehr</string>
-    <string name="trip_detail__no_item_yet__label">Noch kein Gegenstand, verwenden Sie das Feld hierunter</string>
+  <string name="trip_detail__no_item_yet__label">Die Liste ist leer. Zufügen mit Schaltfläche unten.</string>
     <string name="trip_detail__edit_trip">Reise bearbeiten</string>
-    <string name="trip_detail__before_weight__label">Gewicht der Tasche: mehr als %1$dg (%2$dg verpackt).</string>
+  <string name="trip_detail__before_weight__label">Gewicht der Tasche: mehr als %1$dg (%2$dg eingepackt).</string>
     <string name="trip_detail__new_item__access">Name&#8230;</string>
     <string name="trip_detail__new_item_magic___access">Schaltfläche. Schlage einen Artikel vor</string>
     <string name="trip_detail__already_existing_item">Dieser Gegenstand ist bereits in der Reise vorhanden.</string>
@@ -92,13 +92,12 @@
     <string name="action_trip__share">Teilen</string>
     <string name="sorting_mode">Sortier-Modus ist nun %s.</string>
     <string name="sorting_mode_default">Default-Wert</string>
-    <string name="sorting_mode_unpacked_first">noch nicht verpackt zuerst</string>
-    <string name="sorting_mode_alphabetical">alphabetischer Reihenfolge</string>
+  <string name="sorting_mode_unpacked_first">noch nicht eingepackt zuerst</string>
+  <string name="sorting_mode_alphabetical">alphabetische Reihenfolge</string>
     <string name="sorting_mode_category">Kategorie</string>
     <!-- Third party software licences -->
     <string name="help_legal__third_party__title">Bibliotheken von Drittanbietern</string>
     <string name="help_legal__third_party__label"><u>Bibliotheken von Drittanbietern</u></string>
-    <string name="help_legal__third_party_lib_hugo__label"><b>Hugo</b> \nCopyright © 2013 Jake Wharton, \n(<a href="https://github.com/JakeWharton/hugo">https://github.com/JakeWharton/hugo</a>)\n Hugo ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib_gson__label"><b>Gson</b> \n(<a href="https://code.google.com/p/google-gson/">https://code.google.com/p/google-gson/</a>)\nCopyright © 2004 Google\nGson ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib_changelog__label"><b>Changelog</b> \n(<a href="https://github.com/gabrielemariotti/changeloglib">https://github.com/gabrielemariotti/changeloglib</a>)\nCopyright © 2004 Gabriele Mariotti\n/Changeloglib ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
     <string name="help_legal__third_party_lib_datetimepicker__label"><b>DateTimePicker</b> \n(<a href="https://github.com/flavienlaurent/datetimepicker">https://github.com/flavienlaurent/datetimepicker</a>)\nCopyright © 2015 Flavien Laurent\n/Changeloglib ist lizenziert unter der Apache License, Version 2.0\n(<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>)</string>
@@ -116,7 +115,7 @@
     <string name="mass_import__import__button">Importieren</string>
     <string name="mass_import__items__hint">hier eingeben oder einfügen&#8230;</string>
     <!-- for ACRA (Application CRash Reports) reports -->
-    <string name="acra__crash_report_dialog__label">Klicken Sie auf OK, um die Anwendungsprotokolle zu senden.</string>
+  <string name="acra__crash_report_dialog__label">Klicke auf OK, um die Anwendungsprotokolle zu senden.</string>
     <!-- For Settings -->
     <string name="pref_display_dates">Termine anzeigen</string>
   <string name="pref_display_dates_sum">Zeige Reisedaten auf dem Dashboard</string>

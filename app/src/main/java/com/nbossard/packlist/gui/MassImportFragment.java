@@ -35,8 +35,6 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.ImportExport;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.gui.MassImportFragment {
@@ -92,7 +90,6 @@ public class MassImportFragment extends Fragment {
     /**
      * Listener for click on mass import button.
      */
-    @DebugLog
     private void onClickMassImport() {
 
         enableGUI(false);
@@ -154,7 +151,6 @@ public class MassImportFragment extends Fragment {
         }
     }
 
-    @DebugLog
     @Override
     public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                                    final Bundle savedInstanceState) {
@@ -181,7 +177,6 @@ public class MassImportFragment extends Fragment {
         mMassImportButton.setOnClickListener(v -> onClickMassImport());
     }
 
-    @DebugLog
     @Override
     public final void onResume() {
         super.onResume();

@@ -39,8 +39,6 @@ import com.nbossard.packlist.model.TripItem;
 
 import java.util.Set;
 
-import hugo.weaving.DebugLog;
-
 import static java.lang.Integer.parseInt;
 
 /*
@@ -122,7 +120,6 @@ public class ItemDetailFragment extends Fragment {
      * @param parItem item to be displayed
      * @return a new DetailFragment.
      */
-    @DebugLog
     public static ItemDetailFragment newInstance(final TripItem parItem) {
         ItemDetailFragment f = new ItemDetailFragment();
         if (parItem != null) {
@@ -204,7 +201,6 @@ public class ItemDetailFragment extends Fragment {
      *
      * @param parRetrievedItem item to be displayed
      */
-    @DebugLog
     public final void setItem(final TripItem parRetrievedItem) {
         mItem = parRetrievedItem;
     }

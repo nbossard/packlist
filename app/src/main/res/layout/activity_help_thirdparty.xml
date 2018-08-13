@@ -47,13 +47,6 @@
             android:layout_marginBottom="20dip"
             android:text="@string/help_legal__third_party__label"
             android:autoLink="web"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/help_legal__third_party_lib_hugo__label"
-            android:autoLink="web"/>
         
         <TextView
             android:layout_width="wrap_content"

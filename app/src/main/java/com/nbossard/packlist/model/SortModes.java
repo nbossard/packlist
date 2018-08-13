@@ -42,15 +42,15 @@ public enum SortModes {
      */
     DEFAULT,
     /**
-     * first all unpacked then all packed items.
+     * First all unpacked then all packed items.
      */
     UNPACKED_FIRST,
     /**
-     * first all unpacked then all packed items.
+     * By alphabetical order.
      */
     ALPHABETICAL,
     /**
-     * by category.
+     * By category.
      */
     CATEGORY;
 

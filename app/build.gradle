@@ -20,8 +20,6 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.jakewharton.hugo'
-
 
 android {
     // This is now required cause we are using a JDK8
@@ -137,7 +135,7 @@ dependencies {
     // Suggestion: use tools:overrideLibrary="android.support.test.uiautomator.v18" to force usage
     // tools:overrideLibrary="android.support.test.uiautomator.v18"
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {

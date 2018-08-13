@@ -27,13 +27,8 @@ buildscript {
         google()
     }
     dependencies {
-        // Note NBO on 21st july 2016 : reverted to last stable : 2.1.2
-        // because got error : resources-release-stripped.ap_ does not exist
-        // when generating signed APK
-        // classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
 
-        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -46,6 +41,7 @@ allprojects {
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://maven.google.com" }
+        google()
     }
 }
 

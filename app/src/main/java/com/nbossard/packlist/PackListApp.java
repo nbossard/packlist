@@ -32,8 +32,6 @@ import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.PackListApp {
@@ -121,7 +119,6 @@ public class PackListApp extends Application {
     /**
      * Send a report using ACRA (user action).
      */
-    @DebugLog
     public static void sendUserDebugReport() {
         ACRA.getErrorReporter().handleException(new Exception("User report"));
     }

@@ -62,7 +62,6 @@ import com.nbossard.packlist.process.saving.ISavingModule;
 import java.util.List;
 import java.util.Set;
 
-import hugo.weaving.DebugLog;
 /*
 @startuml
     class com.nbossard.packlist.gui.TripDetailFragment {
@@ -150,7 +149,6 @@ public class TripDetailFragment extends Fragment {
      */
     private final AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        @DebugLog
         public void onItemClick(final AdapterView<?> parent,
                                 final View view,
                                 final int parPosition,
@@ -169,7 +167,6 @@ public class TripDetailFragment extends Fragment {
     @NonNull
     private final AdapterView.OnItemLongClickListener mLongClickListener =
             new AdapterView.OnItemLongClickListener() {
-        @DebugLog
         @Override
         public boolean onItemLongClick(final AdapterView<?> arg0, final View arg1,
                                        final int pos, final long id) {
@@ -296,7 +293,6 @@ public class TripDetailFragment extends Fragment {
     }
 
 
-    @DebugLog
     @Override
     public final void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -355,7 +351,6 @@ public class TripDetailFragment extends Fragment {
         mIHostingActivity.showFABIfAccurate(false);
     }
 
-    @DebugLog
     @Override
     public final void onDetach() {
         super.onDetach();
@@ -423,7 +418,6 @@ public class TripDetailFragment extends Fragment {
      *
      * @param parTrip trip to be displayed
      */
-    @DebugLog
     public final void displayTrip(final Trip parTrip) {
 
         mRetrievedTrip = parTrip;
@@ -444,7 +438,6 @@ public class TripDetailFragment extends Fragment {
     /**
      * Update display of current trip.
      */
-    @DebugLog
     private void displayTrip() {
 
         // Magic of binding
@@ -702,7 +695,6 @@ public class TripDetailFragment extends Fragment {
     /**
      * Populate list with data in {@link ISavingModule}.
      */
-    @DebugLog
     private void populateList() {
         mItemListView = mRootView.findViewById(R.id.trip_detail__list);
         mItemListView.setEmptyView(mRootView.findViewById(R.id.trip_detail__list_empty));

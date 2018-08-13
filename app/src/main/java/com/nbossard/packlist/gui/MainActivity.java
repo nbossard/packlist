@@ -51,7 +51,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import hotchemi.android.rate.AppRate;
-import hugo.weaving.DebugLog;
 
 //CHECKSTYLE : BEGIN GENERATED CODE
 /*
@@ -152,7 +151,6 @@ public class MainActivity
 
 // *********************** METHODS **************************************************************************
 
-    @DebugLog
     @Override
     protected final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,7 +183,6 @@ public class MainActivity
         suggestionToRateApp();
     }
 
-    @DebugLog
     @Override
     protected final void onStart() {
         super.onStart();
@@ -229,7 +226,6 @@ public class MainActivity
      *
      * @param parDialogStandardFragment fragment to be opened
      */
-    @DebugLog
     private void openDialogFragment(final DialogFragment parDialogStandardFragment) {
         if (parDialogStandardFragment != null) {
             FragmentManager fm = getSupportFragmentManager();
@@ -242,7 +238,6 @@ public class MainActivity
         }
     }
 
-    @DebugLog
     @Override
     public final boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -250,7 +245,6 @@ public class MainActivity
         return true;
     }
 
-    @DebugLog
     @Override
     public final boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -278,7 +272,6 @@ public class MainActivity
      * For deep-app indexing.
      * @param intent sic
      */
-    @DebugLog
     protected final void onNewIntent(final Intent intent) {
         String action = intent.getAction();
         String data = intent.getDataString();
@@ -356,7 +349,6 @@ public class MainActivity
     }
 
     @Override
-    @DebugLog
     public final void saveTrip(final Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
 
@@ -436,7 +428,6 @@ public class MainActivity
      * Characteristics.
      * @param parTripUUID unique identifier of Trip
      */
-    @DebugLog
     @Override
     public final void openNewTripFragment(@Nullable final UUID parTripUUID) {
 
@@ -517,7 +508,6 @@ public class MainActivity
     }
 
     /** Open {@link AboutActivity} on top of this activity. */
-    @DebugLog
     private void openAboutActivity() {
 
         Log.d(TAG, "openAboutActivity() Entering");
@@ -530,7 +520,6 @@ public class MainActivity
     /**
      * Open {@link SettingsActivity} on top of this activity.
      */
-    @DebugLog
     private void openSettingsActivity() {
 
         Log.d(TAG, "openSettingsActivity() Entering");
@@ -544,7 +533,6 @@ public class MainActivity
      * Open a new fragment allowing him to view trip list.
      * @return the newly created and displayed TripListFragment
      */
-    @DebugLog
     private TripListFragment openMainActivityFragment() {
 
         Log.d(TAG, "openMainActivityFragment() Entering");

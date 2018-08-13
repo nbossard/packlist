@@ -47,8 +47,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
-import hugo.weaving.DebugLog;
-
 /*
 @startuml
     class com.nbossard.packlist.gui.NewTripFragment {
@@ -223,7 +221,6 @@ public class NewTripFragment extends Fragment {
         }
     }
 
-    @DebugLog
     @Override
     public final View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -249,7 +246,6 @@ public class NewTripFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @DebugLog
     @Override
     public final void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -272,7 +268,6 @@ public class NewTripFragment extends Fragment {
         addListenerOnEndDateButton();
     }
 
-    @DebugLog
     @Override
     public final void onResume() {
         super.onResume();
