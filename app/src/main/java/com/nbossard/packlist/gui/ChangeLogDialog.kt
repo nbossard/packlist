@@ -29,7 +29,6 @@ import android.view.ViewGroup
 
 import com.nbossard.packlist.R
 
-import hugo.weaving.DebugLog
 import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView
 
 /*
@@ -49,7 +48,6 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView
  */
 class ChangeLogDialog : DialogFragment() {
 
-    @DebugLog
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         // Try to get a root view for inflater
@@ -63,7 +61,7 @@ class ChangeLogDialog : DialogFragment() {
         return AlertDialog.Builder(activity!!, R.style.AppTheme)
                 .setTitle(R.string.demo_changelog_title_standarddialog)
                 .setView(chgList)
-                .setPositiveButton(R.string.about_ok) { dialog, whichButton -> dialog.dismiss() }
+                .setPositiveButton(R.string.about_ok) { dialog, _ -> dialog.dismiss() }
                 .create()
 
     }

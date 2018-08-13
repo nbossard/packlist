@@ -35,8 +35,6 @@ import android.widget.TextView
 import com.nbossard.packlist.BuildConfig
 import com.nbossard.packlist.R
 
-import hugo.weaving.DebugLog
-
 //CHECKSTYLE : BEGIN GENERATED CODE
 /*
 @startuml
@@ -56,7 +54,6 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     // *********************** METHODS **********************************************************************
 
-    @DebugLog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -84,7 +81,6 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    @DebugLog
     override fun onClick(parClickedView: View) {
 
         if (parClickedView.id == R.id.help__third_party__button) {
@@ -100,7 +96,6 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * Open the browser with project sources on GitHub.
      */
-    @DebugLog
     private fun openBrowser() {
         val url = "https://github.com/nbossard/packlist"
         val i = Intent(Intent.ACTION_VIEW)
@@ -112,7 +107,6 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * Open the activity to display third party software licences.
      */
-    @DebugLog
     private fun openThirdPartyActivity() {
         val intent = Intent(this, HelpThirdPartyActivity::class.java)
         startActivity(intent)
