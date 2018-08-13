@@ -65,6 +65,7 @@ They are also available in [other languages](./pub/res_pub/latest/)
 - constraint layouts (Work in progress)
 - kotlin (Work in progress)
 - java 8 code formatting
+- kotlin language
 
 ### Licence
 Apache 2
