@@ -25,6 +25,7 @@ package com.nbossard.packlist.gui
         + openTripDetailFragment(...)
         + openNewTripFragment(...)
         + showFABIfAccurate(boolean)
+        + updateTitleBar(String)
     }
 @enduml
  */
