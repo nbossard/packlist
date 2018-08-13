@@ -32,45 +32,56 @@ public class ItemComparatorPackingTest extends TestCase {
     private static final String ITEM_TEST_NAME_B = "BItemTestName";
     private static final String ITEM_TEST_NAME_C = "CItemTestName";
     private static final String ITEM_TEST_NAME_D = "DItemTestName";
-    private TripItem mTestItemBeforeUnpackedNameA;
-    private TripItem mTestItemBeforeUnpackedNameB;
-    private TripItem mTestItemAfterPackedNameC;
-    private TripItem mTestItemAfterPackedNameD;
+
+    private static final String ITEM_TEST_CATP = "catP";
+    private static final String ITEM_TEST_CATQ = "catQ";
+
+    private TripItem mTestItemUnpackedNameA;
+    private TripItem mTestItemUnpackedNameB;
+    private TripItem mTestItemPackedNameCCatP;
+    private TripItem mTestItemPackedNameDCatP;
+    private TripItem mTestItemPackedNameACatQ;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         Trip testTrip = new Trip();
-        mTestItemBeforeUnpackedNameA = new TripItem(testTrip, ITEM_TEST_NAME_A);
-        mTestItemBeforeUnpackedNameA.setPacked(TripItem.UNPACKED);
-        mTestItemBeforeUnpackedNameB = new TripItem(testTrip, ITEM_TEST_NAME_B);
-        mTestItemBeforeUnpackedNameB.setPacked(TripItem.UNPACKED);
-        mTestItemAfterPackedNameC = new TripItem(testTrip, ITEM_TEST_NAME_C);
-        mTestItemAfterPackedNameC.setPacked(TripItem.PACKED);
-        mTestItemAfterPackedNameD = new TripItem(testTrip, ITEM_TEST_NAME_D);
-        mTestItemAfterPackedNameD.setPacked(TripItem.PACKED);
+        mTestItemUnpackedNameA = new TripItem(testTrip, ITEM_TEST_NAME_A);
+        mTestItemUnpackedNameA.setPacked(TripItem.UNPACKED);
+        mTestItemUnpackedNameB = new TripItem(testTrip, ITEM_TEST_NAME_B);
+        mTestItemUnpackedNameB.setPacked(TripItem.UNPACKED);
+        mTestItemPackedNameCCatP = new TripItem(testTrip, ITEM_TEST_NAME_C);
+        mTestItemPackedNameCCatP.setPacked(TripItem.PACKED);
+        mTestItemPackedNameCCatP.setCategory(ITEM_TEST_CATP);
+        mTestItemPackedNameDCatP = new TripItem(testTrip, ITEM_TEST_NAME_D);
+        mTestItemPackedNameDCatP.setPacked(TripItem.PACKED);
+        mTestItemPackedNameDCatP.setCategory(ITEM_TEST_CATP);
+        mTestItemPackedNameACatQ = new TripItem(testTrip, ITEM_TEST_NAME_A);
+        mTestItemPackedNameACatQ.setPacked(TripItem.PACKED);
+        mTestItemPackedNameACatQ.setCategory(ITEM_TEST_CATQ);
     }
 
     public void testCompare() {
         ItemComparatorPacking comparator = new ItemComparatorPacking();
         // An unpacked is before a packed
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameA, mTestItemAfterPackedNameC) < 0);
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameA, mTestItemAfterPackedNameD) < 0);
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameB, mTestItemAfterPackedNameC) < 0);
+        assertTrue(comparator.compare(mTestItemUnpackedNameA, mTestItemPackedNameCCatP) < 0);
+        assertTrue(comparator.compare(mTestItemUnpackedNameA, mTestItemPackedNameDCatP) < 0);
+        assertTrue(comparator.compare(mTestItemUnpackedNameB, mTestItemPackedNameCCatP) < 0);
 
         // comparing with myself gives 0
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameA, mTestItemBeforeUnpackedNameA) == 0);
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameB, mTestItemBeforeUnpackedNameB) == 0);
-        assertTrue(comparator.compare(mTestItemAfterPackedNameD, mTestItemAfterPackedNameD) == 0);
+        assertTrue(comparator.compare(mTestItemUnpackedNameA, mTestItemUnpackedNameA) == 0);
+        assertTrue(comparator.compare(mTestItemUnpackedNameB, mTestItemUnpackedNameB) == 0);
+        assertTrue(comparator.compare(mTestItemPackedNameDCatP, mTestItemPackedNameDCatP) == 0);
 
-        // a packed is always after an unpacked
-        assertTrue(comparator.compare(mTestItemAfterPackedNameC, mTestItemBeforeUnpackedNameA) > 0);
+        // a packed item  is always after an unpacked item
+        assertTrue(comparator.compare(mTestItemPackedNameCCatP, mTestItemUnpackedNameA) > 0);
 
-        // two packed are sorted alphabetical order
-        assertTrue(comparator.compare(mTestItemBeforeUnpackedNameA, mTestItemBeforeUnpackedNameB) < 0);
+        // two unpacked items are sorted category alphabetical order then name alphabetical order
+        assertTrue(comparator.compare(mTestItemUnpackedNameA, mTestItemUnpackedNameB) < 0);
 
-        // two unpacked are sorted alphabetical order
-        assertTrue(comparator.compare(mTestItemAfterPackedNameC, mTestItemAfterPackedNameD) < 0);
+        // two packed items are sorted category alphabetical order then name alphabetical order
+        assertTrue(comparator.compare(mTestItemPackedNameCCatP, mTestItemPackedNameDCatP) < 0);
+        assertTrue(comparator.compare(mTestItemPackedNameDCatP, mTestItemPackedNameACatQ) < 0);
     }
 
 }

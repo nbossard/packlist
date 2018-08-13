@@ -37,14 +37,16 @@ public class ItemComparatorPacking implements Comparator<TripItem> {
     public final int compare(final TripItem parItem, final TripItem parAnother) {
         int res = 0;
         if (!parItem.isPacked() && parAnother.isPacked()) {
+            //noinspection CheckStyle
             res = -2;
         } else if (parItem.isPacked() && !parAnother.isPacked()) {
             res = 2;
         } else if ((!parItem.isPacked() && !parAnother.isPacked())
                     || (parItem.isPacked() && parAnother.isPacked())) {
-            // both are unpacked, or both are pacekd, then using alphabetical order
+            // both are unpacked, or both are packed, then using alphabetical order
             if ((parItem.getName() != null) && (parAnother.getName() != null)) {
-                res = parItem.getName().compareTo(parAnother.getName());
+                ItemComparatorCategoryAlphabetical tmp = new ItemComparatorCategoryAlphabetical();
+                res = tmp.compare(parItem, parAnother);
             }
         }
         return res;
