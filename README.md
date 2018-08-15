@@ -59,13 +59,13 @@ They are also available in [other languages](./pub/res_pub/latest/)
 
 ### BUT a place for experimentation of up-to-date technology
 - material design
-- android studio 3.0
+- android studio 3.1
 - vector drawables, using asset studio
 - android data-binding (http://developer.android.com/tools/data-binding/guide.html)
-- constraint layouts (Work in progress)
-- kotlin (Work in progress)
+- constraint layouts (Work in progress, not yet for all layouts)
+- kotlin (Work in progress, not yet for all files)
 - java 8 code formatting
-- kotlin language
+- Dagger 2 injection (Work in progress, not yet for all modules)
 
 ### Licence
 Apache 2
