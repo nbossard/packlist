@@ -24,6 +24,8 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.nbossard.packlist.process.importexport.DaggerImportExportComponent;
+import com.nbossard.packlist.process.importexport.ImportExportComponent;
 import com.nbossard.packlist.process.saving.ISavingModule;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
@@ -86,6 +88,9 @@ public class PackListApp extends Application {
     /** Saving module singleton. */
     private ISavingModule mSavingModule;
 
+    /** Import export component. */
+    private ImportExportComponent mImportExportComponent;
+
     /**
      * Application settings singleton.
      */
@@ -97,6 +102,9 @@ public class PackListApp extends Application {
     public final void onCreate() {
         Log.d(LOG_TAG, "onCreate(...)  Entering");
         super.onCreate();
+
+        // creating modules
+        mImportExportComponent = DaggerImportExportComponent.builder().build();
 
         // load saved settings
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -121,6 +129,11 @@ public class PackListApp extends Application {
      */
     public static void sendUserDebugReport() {
         ACRA.getErrorReporter().handleException(new Exception("User report"));
+    }
+
+    /** @return import/export module singleton component for injection. */
+    public ImportExportComponent getImportExportComponent() {
+        return mImportExportComponent;
     }
 
     /** @return saving module singleton. */

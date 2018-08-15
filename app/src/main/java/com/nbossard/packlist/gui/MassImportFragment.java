@@ -31,10 +31,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.process.importexport.IImportExport;
-import com.nbossard.packlist.process.importexport.ImportExport;
+
+import javax.inject.Inject;
 
 /*
 @startuml
@@ -86,6 +88,16 @@ public class MassImportFragment extends Fragment {
     /** Trip onto which mass import items. */
     private Trip mTrip;
 
+    // *********************** INJECTED FIELDS **************************************************************
+
+    /**
+     * The singleton with methods in charge of importing, exporting text representation of trips.
+     * Note : protected because Dagger 2 cannot inject into private members.
+     */
+    @SuppressWarnings("CheckStyle")
+    @Inject
+    protected IImportExport mImporter;
+
     // *********************** LISTENERS ********************************************************************
 
     /**
@@ -96,8 +108,7 @@ public class MassImportFragment extends Fragment {
         enableGUI(false);
 
         String textToImport = mItemsEditText.getText().toString();
-        IImportExport importer = new ImportExport();
-        importer.massImportItems(mTrip, textToImport);
+        mImporter.massImportItems(mTrip, textToImport);
         mIHostingActivity.saveTrip(mTrip);
 
         // navigating back
@@ -137,6 +148,11 @@ public class MassImportFragment extends Fragment {
     @Override
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ((PackListApp) getActivity().getApplication())
+                .getImportExportComponent()
+                .inject(MassImportFragment.this);
+
         mIHostingActivity = (IMassImportFragmentActivity) getActivity();
 
         Bundle args = getArguments();

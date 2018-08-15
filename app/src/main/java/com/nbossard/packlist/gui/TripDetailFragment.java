@@ -48,6 +48,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentTripDetailBinding;
 import com.nbossard.packlist.model.Item;
@@ -57,11 +58,12 @@ import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.importexport.IImportExport;
-import com.nbossard.packlist.process.importexport.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
 import java.util.Set;
+
+import javax.inject.Inject;
 
 /*
 @startuml
@@ -142,6 +144,15 @@ public class TripDetailFragment extends Fragment {
      * Index of last suggestion in {@link #mProbableItemsList}.
      */
     private int mSuggestionIndex;
+
+    // *********************** INJECTED FIELDS **************************************************************
+
+    /**
+     * The singleton with methods in charge of importing, exporting text representation of trips.
+     * Note : protected because Dagger 2 cannot inject into private members.
+     */
+    @Inject
+    protected IImportExport mPort;
 
     // *********************** LISTENERS ********************************************************************
     /**
@@ -269,6 +280,10 @@ public class TripDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate() : Entering");
 
+        ((PackListApp) getActivity().getApplication())
+                .getImportExportComponent()
+                .inject(TripDetailFragment.this);
+
         Bundle args = getArguments();
         if (args != null) {
             mRetrievedTrip = (Trip) args.getSerializable(BUNDLE_PAR_TRIP_ID);
@@ -378,10 +393,9 @@ public class TripDetailFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_trip__share:
-                IImportExport port = new ImportExport();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText(port.toSharableString(getActivity(), mRetrievedTrip))
+                        .setText(mPort.toSharableString(getActivity(), mRetrievedTrip))
                         .getIntent();
                 // Avoid ActivityNotFoundException
                 if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null) {

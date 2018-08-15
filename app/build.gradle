@@ -117,6 +117,10 @@ dependencies {
     // see https://github.com/hotchemi/Android-Rate
     implementation 'com.github.hotchemi:android-rate:1.0.1'
 
+    // For using Dagger 2 Dependency injection
+    implementation  'com.google.dagger:dagger:2.17'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.17'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.apache.commons:commons-lang3:3.6'
 
