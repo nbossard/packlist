@@ -24,6 +24,7 @@ import android.test.InstrumentationTestCase;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
+import com.nbossard.packlist.process.importexport.ImportExport;
 
 import java.util.GregorianCalendar;
 

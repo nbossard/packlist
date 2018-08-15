@@ -33,7 +33,8 @@ import android.widget.TextView;
 
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.ImportExport;
+import com.nbossard.packlist.process.importexport.IImportExport;
+import com.nbossard.packlist.process.importexport.ImportExport;
 
 /*
 @startuml
@@ -95,7 +96,7 @@ public class MassImportFragment extends Fragment {
         enableGUI(false);
 
         String textToImport = mItemsEditText.getText().toString();
-        ImportExport importer = new ImportExport();
+        IImportExport importer = new ImportExport();
         importer.massImportItems(mTrip, textToImport);
         mIHostingActivity.saveTrip(mTrip);
 

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.nbossard.packlist.process;
+package com.nbossard.packlist.process.importexport;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -36,10 +36,12 @@ import static java.lang.Integer.parseInt;
 //CHECKSTYLE:OFF: LineLength
 /*
 @startuml
-    class com.nbossard.packlist.process.ImportExport {
+    class com.nbossard.packlist.process.importexport.ImportExport {
         + massImportItems(...)
         + toSharableString(...)
     }
+
+    com.nbossard.packlist.process.importexport.IImportExport <|.. com.nbossard.packlist.process.importexport.ImportExport
 @enduml
  */
 //CHECKSTYLE:ON: LineLength
@@ -49,7 +51,7 @@ import static java.lang.Integer.parseInt;
  *
  * @author Created by nbossard on 01/05/16.
  */
-public class ImportExport {
+public class ImportExport implements IImportExport {
 
     // ********************** CONSTANTS *********************************************************************
 
@@ -108,6 +110,7 @@ public class ImportExport {
      * @param parTrip         trip in which to be added items
      * @param parTextToImport a multiple lines text (a list ot items) to be added to parTrip
      */
+    @Override
     public final void massImportItems(final Trip parTrip, final String parTextToImport) {
         String[] lines = parTextToImport.split("\n");
 
@@ -156,6 +159,28 @@ public class ImportExport {
     }
 
     /**
+     * Make a pretty plaintext presentation of trip so we can share it.
+     *
+     * @param parContext       will be provided to {@link TripFormatter}
+     * @param parRetrievedTrip trip to be shared
+     * @return trip as a human readable string
+     */
+    @Override
+    public final String toSharableString(final Context parContext, final Trip parRetrievedTrip) {
+        StringBuilder res = new StringBuilder();
+
+        res.append(exportHeader(parContext, parRetrievedTrip));
+
+        res.append("\n");
+        for (TripItem oneItem : parRetrievedTrip.getListOfItems()) {
+            exportOneItem(res, oneItem);
+        }
+        return res.toString();
+    }
+
+
+    // *********************** PRIVATE METHODS ***************************************************************
+    /**
      * Parses provided content removes the marker it is a note and returns cleaned content.
      *
      * @param parOneLine string to be parsed. i.e. : "NOTE: With friends."
@@ -177,25 +202,6 @@ public class ImportExport {
     @NonNull
     private String parseTripNameLine(final String parOneLine) {
         return parOneLine.substring(TRIPNAME_SYMBOL.length());
-    }
-
-    /**
-     * Make a pretty plaintext presentation of trip so we can share it.
-     *
-     * @param parContext       will be provided to {@link TripFormatter}
-     * @param parRetrievedTrip trip to be shared
-     * @return trip as a human readable string
-     */
-    public final String toSharableString(final Context parContext, final Trip parRetrievedTrip) {
-        StringBuilder res = new StringBuilder();
-
-        res.append(exportHeader(parContext, parRetrievedTrip));
-
-        res.append("\n");
-        for (TripItem oneItem : parRetrievedTrip.getListOfItems()) {
-            exportOneItem(res, oneItem);
-        }
-        return res.toString();
     }
 
     /**
@@ -260,8 +266,6 @@ public class ImportExport {
         newItem.setWeight(parseInt(weightStr));
         return newItem;
     }
-
-    // *********************** PRIVATE METHODS ***************************************************************
 
     /**
      * Export trip info to a human-readable format, but that format can be parsed back later.

@@ -56,7 +56,8 @@ import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
-import com.nbossard.packlist.process.ImportExport;
+import com.nbossard.packlist.process.importexport.IImportExport;
+import com.nbossard.packlist.process.importexport.ImportExport;
 import com.nbossard.packlist.process.saving.ISavingModule;
 
 import java.util.List;
@@ -377,7 +378,7 @@ public class TripDetailFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.action_trip__share:
-                ImportExport port = new ImportExport();
+                IImportExport port = new ImportExport();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
                         .setText(port.toSharableString(getActivity(), mRetrievedTrip))

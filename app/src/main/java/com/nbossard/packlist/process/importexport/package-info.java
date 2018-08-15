@@ -19,11 +19,11 @@
  */
 
 /**
- * Process related classes.
+ * Saving data related classes for PackList.
  *
- * @author Nicolas BOSSARD
+ * @author Nicolas BOSSARD january 2016
  */
-package com.nbossard.packlist.process;
+package com.nbossard.packlist.process.importexport;
 
 /*
 
@@ -35,10 +35,11 @@ package com.nbossard.packlist.process;
 //     http://plantuml.sourceforge.net/classes.html
 //     http://www.linux-france.org/prj/edu/archinet/DA/fiche-uml-relations/fiche-uml-relations.html
 @startuml
-    package com.nbossard.packlist.process {
-        !include saving/package-info.java
-        !include importexport/package-info.java
+    package com.nbossard.packlist.process.importexport #LightPink{
+        !include IImportExport.java
+        !include ImportExport.java
     }
+
 @enduml
 
 */
