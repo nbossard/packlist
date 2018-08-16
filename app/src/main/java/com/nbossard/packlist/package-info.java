@@ -37,7 +37,7 @@ package com.nbossard.packlist;
 @startuml
     package com.nbossard.packlist {
         !include gui/package-info.java
-        !include ../../../../java/com/nbossard/packlist/model/package-info.java
+        !include model/package-info.java
         !include process/package-info.java
 
         !include PackListApp.java

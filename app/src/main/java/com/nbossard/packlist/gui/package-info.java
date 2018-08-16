@@ -39,8 +39,8 @@ package com.nbossard.packlist.gui;
         !include AboutActivity.kt
         !include ChangeLogDialog.kt
         !include HelpThirdPartyActivity.kt
-        !include IItemDetailFragmentActivity.java
-        !include IMainActivity.java
+        !include IItemDetailFragmentActivity.kt
+        !include IMainActivity.kt
         !include IMassImportFragmentActivity.java
         !include INewTripFragmentActivity.java
         !include ITripListFragmentActivity.java
@@ -49,7 +49,7 @@ package com.nbossard.packlist.gui;
         !include ITripDetailFragmentActivity.java
         !include MainActivity.java
         !include MassImportFragment.java
-        !include MaterialColor.java
+        !include MaterialColor.kt
         !include NewTripFragment.java
         !include PresentableItem.java
         !include SettingsActivity.kt
