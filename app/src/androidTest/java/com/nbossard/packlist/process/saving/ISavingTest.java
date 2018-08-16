@@ -36,17 +36,18 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Test class for ISavingModule.
+ * Test class for ISaving.
  *
  * @author Created by nbossard on 01/01/16.
  */
 
 @RunWith(AndroidJUnit4.class)
-public class ISavingModuleTest {
+public class ISavingTest
+{
 
 // *********************** FIELDS *************************************************************************
 
-    private ISavingModule mTestedSavingModule;
+    private ISaving mTestedSavingModule;
     private Trip mTestTrip1;
     private Trip mTestTrip2;
     private Trip mTestTrip3;

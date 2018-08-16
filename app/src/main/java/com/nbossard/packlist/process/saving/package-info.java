@@ -37,9 +37,9 @@ package com.nbossard.packlist.process.saving;
 @startuml
     package com.nbossard.packlist.process.saving #LightPink{
         !include SavingFactory.java
-        !include ISavingModule.java
+        !include ISaving.java
         !include ITripChangeListener.java
-        !include PrefsSavingModule.java
+        !include PrefsSaving.java
     }
 
 @enduml

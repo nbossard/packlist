@@ -40,7 +40,7 @@ import com.nbossard.packlist.R;
 import com.nbossard.packlist.databinding.FragmentNewTripBinding;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -128,7 +128,7 @@ public class NewTripFragment extends Fragment {
 
     /** The saving module to retrieve and update data (trips).*/
     @SuppressWarnings("FieldCanBeLocal")
-    private ISavingModule mSavingModule;
+    private ISaving mSavingModule;
 
     /** Trip object to be displayed and added item. */
     private Trip mTrip;

@@ -26,7 +26,7 @@ import android.util.Log;
 
 import com.nbossard.packlist.process.importexport.DaggerImportExportComponent;
 import com.nbossard.packlist.process.importexport.ImportExportComponent;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 import com.nbossard.packlist.process.saving.SavingFactory;
 
 import org.acra.ACRA;
@@ -86,7 +86,7 @@ public class PackListApp extends Application {
 // *********************** FIELDS *************************************************************************
 
     /** Saving module singleton. */
-    private ISavingModule mSavingModule;
+    private ISaving mSavingModule;
 
     /** Import export component. */
     private ImportExportComponent mImportExportComponent;
@@ -137,7 +137,7 @@ public class PackListApp extends Application {
     }
 
     /** @return saving module singleton. */
-    public final ISavingModule getSavingModule() {
+    public final ISaving getSavingModule() {
         if (mSavingModule == null) {
             mSavingModule = SavingFactory.getNewSavingModule(this);
         }

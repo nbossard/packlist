@@ -33,7 +33,7 @@ import java.util.Set;
 import java.util.UUID;
 /*
 @startuml
-    interface com.nbossard.packlist.process.saving.ISavingModule {
+    interface com.nbossard.packlist.process.saving.ISaving {
         +loadSavedTrips(...)
         +addOrUpdateTrip()
         +deleteAllTrips()
@@ -45,11 +45,12 @@ import java.util.UUID;
  */
 
 /**
- * Interface for all possible implementations of  saving modules.
+ * Interface for all possible implementations of saving modules.
  *
  * @author Created by nbossard on 31/12/15.
  */
-public interface ISavingModule {
+public interface ISaving
+{
 
     /** Retrieve an ordered list of saved trips, ordered by departure date.
      * @return a list filled with the current trips or an empty list if was never saved. */

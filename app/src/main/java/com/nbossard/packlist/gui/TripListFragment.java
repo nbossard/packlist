@@ -39,7 +39,7 @@ import android.widget.ListView;
 import com.nbossard.packlist.PackListApp;
 import com.nbossard.packlist.R;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 
 import java.util.List;
 
@@ -72,7 +72,7 @@ public class TripListFragment extends Fragment {
     /**
      * The saving module to retrieve and update data (trips).
      */
-    private ISavingModule mSavingModule;
+    private ISaving mSavingModule;
     /**
      * The trip list view.
      */
@@ -226,7 +226,7 @@ public class TripListFragment extends Fragment {
     // *********************** PRIVATE METHODS **************************************************************
 
     /**
-     * Populate list with data in {@link ISavingModule}.
+     * Populate list with data in {@link ISaving}.
      */
     @SuppressWarnings("WeakerAccess")
     public final void populateList() {

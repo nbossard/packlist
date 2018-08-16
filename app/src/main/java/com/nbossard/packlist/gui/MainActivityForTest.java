@@ -40,7 +40,7 @@ import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 
 import java.util.HashSet;
 import java.util.List;
@@ -71,7 +71,7 @@ public class MainActivityForTest
     private FloatingActionButton mFab;
 
     /** Saving module to retrieve Trip. */
-    private ISavingModule mSavingModule;
+    private ISaving mSavingModule;
 
 // *********************** METHODS **************************************************************************
 

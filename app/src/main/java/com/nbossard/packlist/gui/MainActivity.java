@@ -43,7 +43,7 @@ import com.nbossard.packlist.model.Item;
 import com.nbossard.packlist.model.ScoredItem;
 import com.nbossard.packlist.model.TripItem;
 import com.nbossard.packlist.model.Trip;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 import com.nbossard.packlist.process.saving.ITripChangeListener;
 
 import java.util.List;
@@ -70,7 +70,7 @@ import hotchemi.android.rate.AppRate;
     com.nbossard.packlist.gui.MassImportFragment <..  com.nbossard.packlist.gui.MainActivity : launch in\n container
 
     ' Moved to main file
-    ' ISavingModule <-- com.nbossard.packlist.gui.MainActivity
+    ' ISaving <-- com.nbossard.packlist.gui.MainActivity
     ' com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
 @enduml
  */
@@ -113,7 +113,7 @@ public class MainActivity
 // *********************** FIELDS ***************************************************************************
 
     /** The saving module to retrieve and update data (trips).*/
-    private ISavingModule mSavingModule;
+    private ISaving mSavingModule;
 
     /** The Floating Action Button. */
     private FloatingActionButton mFab;

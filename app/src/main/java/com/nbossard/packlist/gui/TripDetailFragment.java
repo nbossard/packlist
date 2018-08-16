@@ -58,7 +58,7 @@ import com.nbossard.packlist.model.SortModes;
 import com.nbossard.packlist.model.Trip;
 import com.nbossard.packlist.model.TripFormatter;
 import com.nbossard.packlist.process.importexport.IImportExport;
-import com.nbossard.packlist.process.saving.ISavingModule;
+import com.nbossard.packlist.process.saving.ISaving;
 
 import java.util.List;
 import java.util.Set;
@@ -708,7 +708,7 @@ public class TripDetailFragment extends Fragment {
     }
 
     /**
-     * Populate list with data in {@link ISavingModule}.
+     * Populate list with data in {@link ISaving}.
      */
     private void populateList() {
         mItemListView = mRootView.findViewById(R.id.trip_detail__list);

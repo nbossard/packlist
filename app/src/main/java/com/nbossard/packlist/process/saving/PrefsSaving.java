@@ -45,27 +45,28 @@ import java.util.UUID;
 //CHECKSTYLE:OFF: LineLength
 /*
 @startuml
-    class com.nbossard.packlist.process.saving.PrefsSavingModule {
+    class com.nbossard.packlist.process.saving.PrefsSaving {
     }
-    com.nbossard.packlist.process.saving.ISavingModule <|.. com.nbossard.packlist.process.saving.PrefsSavingModule
-    com.nbossard.packlist.process.saving.ITripChangeListener "one or many" <.. com.nbossard.packlist.process.saving.PrefsSavingModule
+    com.nbossard.packlist.process.saving.ISaving <|.. com.nbossard.packlist.process.saving.PrefsSaving
+    com.nbossard.packlist.process.saving.ITripChangeListener "one or many" <.. com.nbossard.packlist.process.saving.PrefsSaving
 @enduml
  */
 //CHECKSTYLE:ON: LineLength
 
 /**
- * An implementation of {@link ISavingModule} based on shared preferences
+ * An implementation of {@link ISaving} based on shared preferences
  * and json serialisation / deserialization.
  *
  * @author Created by nbossard on 31/12/15.
  */
-public class PrefsSavingModule implements ISavingModule {
+public class PrefsSaving implements ISaving
+{
 
 
 // *********************** CONSTANTS**********************************************************************
 
     /** Log tag. */
-    private static final String TAG = PrefsSavingModule.class.getName();
+    private static final String TAG = PrefsSaving.class.getName();
 
     /** The key for saving in preferences the list of {@link Trip}. */
     private static final String LIST_TRIPS_KEY = "LIST_TRIPS";
@@ -90,7 +91,7 @@ public class PrefsSavingModule implements ISavingModule {
      * Standard constructor.
      * @param parContext context for loading shared preferences.
      */
-    PrefsSavingModule(final Context parContext) {
+    PrefsSaving(final Context parContext) {
         mSharedPreferences = parContext.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE);
         mGson = new Gson();
     }

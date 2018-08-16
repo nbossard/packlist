@@ -43,7 +43,7 @@ package com.nbossard.packlist;
         !include PackListApp.java
     }
 
-    com.nbossard.packlist.process.saving.ISavingModule <--  com.nbossard.packlist.gui.MainActivity
+    com.nbossard.packlist.process.saving.ISaving <--  com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.process.saving.ITripChangeListener <|.. com.nbossard.packlist.gui.MainActivity
     com.nbossard.packlist.process.importexport.ImportExport <-- com.nbossard.packlist.gui.MassImportFragment
     com.nbossard.packlist.process.importexport.ImportExport <-- com.nbossard.packlist.gui.TripDetailFragment
@@ -55,7 +55,7 @@ package com.nbossard.packlist;
 
     com.nbossard.packlist.gui.TripAdapter --> "*" com.nbossard.packlist.model.Trip
 
-    com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISavingModule
+    com.nbossard.packlist.PackListApp *-- com.nbossard.packlist.process.saving.ISaving
     com.nbossard.packlist.PackListApp ..> com.nbossard.packlist.process.saving.SavingFactory
 
     com.nbossard.packlist.model.SortModes <-- com.nbossard.packlist.gui.ItemAdapter

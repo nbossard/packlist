@@ -30,7 +30,7 @@ import android.content.Context;
 */
 
 /**
- * Factory for generating a new best {@link ISavingModule}.
+ * Factory for generating a new best {@link ISaving}.
  * @author Created by nbossard on 01/01/16.
  */
 public final class SavingFactory {
@@ -47,7 +47,7 @@ public final class SavingFactory {
      * @param parContext context to be provided to saving module.
      * @return the best saving module.
      */
-    public static ISavingModule getNewSavingModule(final Context parContext) {
-        return new PrefsSavingModule(parContext);
+    public static ISaving getNewSavingModule(final Context parContext) {
+        return new PrefsSaving(parContext);
     }
 }
