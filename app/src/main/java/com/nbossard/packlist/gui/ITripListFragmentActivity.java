@@ -21,10 +21,16 @@ package com.nbossard.packlist.gui;
 
 import com.nbossard.packlist.model.Trip;
 
+import java.util.List;
+import java.util.UUID;
+
 /*
 @startuml
     interface com.nbossard.packlist.gui.ITripListFragmentActivity {
         + openNewTripFragment(...)
+        + loadSavedTrips()
+        + cloneTrip(UUID)
+        + deleteTrip(UUID)
     }
 
     com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.ITripListFragmentActivity
@@ -55,4 +61,21 @@ interface ITripListFragmentActivity extends IMainActivity {
      */
     TripDetailFragment openTripDetailFragment(final Trip parTrip);
 
+    /**
+     * Ask main activity to return the list of trips to be displayed.
+     * @return a fulfilled list of trips
+     */
+    List<Trip> loadSavedTrips();
+
+    /**
+     * Ask main activity to clone the trip of provided id.
+     * @param parUUID the id of the trip to be cloned
+     */
+    void cloneTrip(UUID parUUID);
+
+    /**
+     * Ask main activity to delete the trip of provided id.
+     * @param parUUID the id of the trip to be deleted.
+     */
+    void deleteTrip(UUID parUUID);
 }

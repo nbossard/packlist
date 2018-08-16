@@ -84,12 +84,6 @@ public class TripListFragment extends Fragment {
      */
     private ITripListFragmentActivity mIHostingActivity;
 
-    // *********************** iINJECTED FIELDS *************************************************************
-
-    /** The saving module to retrieve and update data (trips).*/
-    @Inject
-    protected ISaving mSavingModule;
-
     // *********************** LISTENERS ********************************************************************
 
     /**
@@ -181,11 +175,6 @@ public class TripListFragment extends Fragment {
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Injection boiler plate code
-        ((PackListApp) getActivity().getApplication())
-                .getSavingComponent()
-                .inject(TripListFragment.this);
-
         mIHostingActivity = (ITripListFragmentActivity) getActivity();
 
     }
@@ -233,8 +222,6 @@ public class TripListFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    // *********************** PRIVATE METHODS **************************************************************
-
     /**
      * Populate list with data in {@link ISaving}.
      */
@@ -247,7 +234,7 @@ public class TripListFragment extends Fragment {
             mTripListView = getView().findViewById(R.id.main__trip_list);
             List<Trip> tripList;
 
-            tripList = mSavingModule.loadSavedTrips();
+            tripList = mIHostingActivity.loadSavedTrips();
 
             TripAdapter tripAdapter = new TripAdapter(tripList, this.getActivity());
             mTripListView.setEmptyView(getView().findViewById(R.id.main__trip_list_empty));
@@ -260,6 +247,8 @@ public class TripListFragment extends Fragment {
             Log.d(TAG, "populateList() : getView() returned null, probably the fragment is not attached");
         }
     }
+
+    // *********************** PRIVATE METHODS **************************************************************
 
 
     /**
@@ -282,7 +271,7 @@ public class TripListFragment extends Fragment {
      */
     private void effectivelyDeleteTrip(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
-        mSavingModule.deleteTrip(selectedTrip.getUUID());
+        mIHostingActivity.deleteTrip(selectedTrip.getUUID());
         mActionMode.finish();
         populateList();
     }
@@ -294,7 +283,7 @@ public class TripListFragment extends Fragment {
      */
     private void cloneTripClicked(final int parPosition) {
         Trip selectedTrip = (Trip) mTripListView.getItemAtPosition(parPosition);
-        mSavingModule.cloneTrip(selectedTrip.getUUID());
+        mIHostingActivity.cloneTrip(selectedTrip.getUUID());
         mActionMode.finish();
         populateList();
     }

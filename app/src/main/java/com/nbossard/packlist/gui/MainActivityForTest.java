@@ -171,6 +171,12 @@ public class MainActivityForTest
        Log.d(TAG, "saveTrip() faked");
     }
 
+    @Override
+    public Trip loadSavedTrip(final UUID parTripId)
+    {
+        return null;
+    }
+
     /**
      * Handle user click on one line and open a new fragment allowing him to see trip
      * Characteristics.
@@ -300,5 +306,22 @@ public class MainActivityForTest
     public List<ScoredItem> getProbableItemsList() {
         return null;
     }
-//
+
+    // ----------- implementing interface ITripListFragmentActivity -------------------
+
+    @Override
+    public List<Trip> loadSavedTrips()
+    {
+        return null;
+    }
+
+    @Override
+    public void cloneTrip(final UUID parUUID)
+    {
+    }
+
+    @Override
+    public void deleteTrip(final UUID parUUID)
+    {
+    }
 }

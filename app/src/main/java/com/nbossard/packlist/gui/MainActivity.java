@@ -358,6 +358,7 @@ public class MainActivity
         mFab.hide();
     }
 
+    /** {@inheritDoc} */
     @Override
     public final void saveTrip(final Trip parTrip) {
         mSavingModule.addOrUpdateTrip(parTrip);
@@ -367,6 +368,36 @@ public class MainActivity
         if (mTripDetailFragment != null) {
             mTripDetailFragment.displayTrip(parTrip);
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Trip loadSavedTrip(final UUID parTripId)
+    {
+        return mSavingModule.loadSavedTrip(parTripId);
+    }
+
+    // ----------- implementing interface ITripListFragmentActivity -------------------
+
+    /** {@inheritDoc} */
+    @Override
+    public List<Trip> loadSavedTrips()
+    {
+        return mSavingModule.loadSavedTrips();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void cloneTrip(final UUID parUUID)
+    {
+        mSavingModule.cloneTrip(parUUID);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void deleteTrip(final UUID parUUID)
+    {
+        mSavingModule.deleteTrip(parUUID);
     }
 
     // ----------- implementing interface IMainActivity -------------------

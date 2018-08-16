@@ -44,6 +44,4 @@ public interface SavingComponent {
 
     void inject(MainActivity parMainActivity);
     void inject(MainActivityForTest mainActivityForTest);
-    void inject(NewTripFragment parNewTripFragment);
-    void inject(TripListFragment tripListFragment);
 }

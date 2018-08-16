@@ -131,12 +131,6 @@ public class NewTripFragment extends Fragment {
     /** Trip object to be displayed and added item. */
     private Trip mTrip;
 
-    // *********************** iINJECTED FIELDS *************************************************************
-
-    /** The saving module to retrieve and update data (trips).*/
-    @Inject
-    protected ISaving mSavingModule;
-
     // *********************** LISTENERS ********************************************************************
 
 
@@ -208,11 +202,6 @@ public class NewTripFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        // Injection boiler plate code
-        ((PackListApp) getActivity().getApplication())
-                .getSavingComponent()
-                .inject(NewTripFragment.this);
-
         mIHostingActivity = (INewTripFragmentActivity) getActivity();
 
         Bundle args = getArguments();
@@ -220,7 +209,7 @@ public class NewTripFragment extends Fragment {
         if (args != null) {
             mTripId = UUID.fromString(args.getString(BUNDLE_PAR_TRIP_ID, ""));
             if (mTripId != null) {
-                mTrip = mSavingModule.loadSavedTrip(mTripId);
+                mTrip = mIHostingActivity.loadSavedTrip(mTripId);
             } else {
                 mTrip = new Trip();
             }

@@ -21,10 +21,13 @@ package com.nbossard.packlist.gui;
 
 import com.nbossard.packlist.model.Trip;
 
+import java.util.UUID;
+
 /*
 @startuml
     interface com.nbossard.packlist.gui.INewTripFragmentActivity {
-        + saveTrip(...)
+        + saveTrip(Trip)
+        + loadSavedTrip(UUID)
     }
 
     com.nbossard.packlist.gui.IMainActivity <|-- com.nbossard.packlist.gui.INewTripFragmentActivity
@@ -46,4 +49,10 @@ interface INewTripFragmentActivity extends IMainActivity {
      */
     void saveTrip(Trip parTrip);
 
+    /**
+     * Loading of an existing trip.
+     * @param parTripId Trip to be loaded
+     * @return
+     */
+    Trip loadSavedTrip(UUID parTripId);
 }
