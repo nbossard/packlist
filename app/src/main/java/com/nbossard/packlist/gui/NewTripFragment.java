@@ -47,6 +47,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
+import javax.inject.Inject;
+
 /*
 @startuml
     class com.nbossard.packlist.gui.NewTripFragment {
@@ -126,12 +128,14 @@ public class NewTripFragment extends Fragment {
     @SuppressWarnings("FieldCanBeLocal")
     private UUID mTripId;
 
-    /** The saving module to retrieve and update data (trips).*/
-    @SuppressWarnings("FieldCanBeLocal")
-    private ISaving mSavingModule;
-
     /** Trip object to be displayed and added item. */
     private Trip mTrip;
+
+    // *********************** iINJECTED FIELDS *************************************************************
+
+    /** The saving module to retrieve and update data (trips).*/
+    @Inject
+    protected ISaving mSavingModule;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -204,7 +208,11 @@ public class NewTripFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
+        // Injection boiler plate code
+        ((PackListApp) getActivity().getApplication())
+                .getSavingComponent()
+                .inject(NewTripFragment.this);
+
         mIHostingActivity = (INewTripFragmentActivity) getActivity();
 
         Bundle args = getArguments();

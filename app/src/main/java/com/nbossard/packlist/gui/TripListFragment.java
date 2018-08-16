@@ -43,6 +43,8 @@ import com.nbossard.packlist.process.saving.ISaving;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /*
 @startuml
     class com.nbossard.packlist.gui.TripListFragment {
@@ -70,10 +72,6 @@ public class TripListFragment extends Fragment {
     // *********************** FIELDS ***********************************************************************
 
     /**
-     * The saving module to retrieve and update data (trips).
-     */
-    private ISaving mSavingModule;
-    /**
      * The trip list view.
      */
     private ListView mTripListView;
@@ -85,6 +83,12 @@ public class TripListFragment extends Fragment {
      * Hosting activity interface.
      */
     private ITripListFragmentActivity mIHostingActivity;
+
+    // *********************** iINJECTED FIELDS *************************************************************
+
+    /** The saving module to retrieve and update data (trips).*/
+    @Inject
+    protected ISaving mSavingModule;
 
     // *********************** LISTENERS ********************************************************************
 
@@ -176,8 +180,14 @@ public class TripListFragment extends Fragment {
     @Override
     public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Injection boiler plate code
+        ((PackListApp) getActivity().getApplication())
+                .getSavingComponent()
+                .inject(TripListFragment.this);
+
         mIHostingActivity = (ITripListFragmentActivity) getActivity();
-        mSavingModule = ((PackListApp) getActivity().getApplication()).getSavingModule();
+
     }
 
     @Override

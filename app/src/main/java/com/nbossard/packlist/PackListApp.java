@@ -26,8 +26,9 @@ import android.util.Log;
 
 import com.nbossard.packlist.process.importexport.DaggerImportExportComponent;
 import com.nbossard.packlist.process.importexport.ImportExportComponent;
-import com.nbossard.packlist.process.saving.ISaving;
-import com.nbossard.packlist.process.saving.SavingFactory;
+import com.nbossard.packlist.process.saving.DaggerSavingComponent;
+import com.nbossard.packlist.process.saving.SavingComponent;
+import com.nbossard.packlist.process.saving.SavingModule;
 
 import org.acra.ACRA;
 import org.acra.ReportField;
@@ -86,7 +87,7 @@ public class PackListApp extends Application {
 // *********************** FIELDS *************************************************************************
 
     /** Saving module singleton. */
-    private ISaving mSavingModule;
+    private SavingComponent mSavingComponent;
 
     /** Import export component. */
     private ImportExportComponent mImportExportComponent;
@@ -105,6 +106,8 @@ public class PackListApp extends Application {
 
         // creating modules
         mImportExportComponent = DaggerImportExportComponent.builder().build();
+        mSavingComponent = DaggerSavingComponent.builder()
+                                    .savingModule(new SavingModule(getApplicationContext())).build();
 
         // load saved settings
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -136,12 +139,9 @@ public class PackListApp extends Application {
         return mImportExportComponent;
     }
 
-    /** @return saving module singleton. */
-    public final ISaving getSavingModule() {
-        if (mSavingModule == null) {
-            mSavingModule = SavingFactory.getNewSavingModule(this);
-        }
-        return mSavingModule;
+    /** @return saving module singleton component for injection. */
+    public final SavingComponent getSavingComponent() {
+        return mSavingComponent;
     }
 
     /**

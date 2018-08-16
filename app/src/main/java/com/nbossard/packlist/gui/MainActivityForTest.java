@@ -78,6 +78,12 @@ public class MainActivityForTest
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Injection boiler plate code
+        ((PackListApp) getApplication())
+                .getSavingComponent()
+                .inject(MainActivityForTest.this);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -92,9 +98,6 @@ public class MainActivityForTest
     @Override
     protected final void onStart() {
         super.onStart();
-
-        /* The saving module to retrieve and update data (trips).*/
-        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
 
         openMainActivityFragment();
     }

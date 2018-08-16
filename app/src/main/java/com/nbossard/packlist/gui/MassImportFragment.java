@@ -149,11 +149,13 @@ public class MassImportFragment extends Fragment {
     public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mIHostingActivity = (IMassImportFragmentActivity) getActivity();
+
+        // Injection boiler plate code
         ((PackListApp) getActivity().getApplication())
                 .getImportExportComponent()
                 .inject(MassImportFragment.this);
 
-        mIHostingActivity = (IMassImportFragmentActivity) getActivity();
 
         Bundle args = getArguments();
         mTrip = null;

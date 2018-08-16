@@ -185,7 +185,7 @@ class TripAdapter extends BaseAdapter {
 
         // updating views
         String firstLetter = " ";
-        if (oneTrip.getName() != null) {
+        if (oneTrip.getName() != null && oneTrip.getName().length()>0) {
             firstLetter = oneTrip.getName().substring(0, 1);
         }
         vHolderRecycle.letterIcon.setLetter(firstLetter);

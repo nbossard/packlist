@@ -50,6 +50,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.inject.Inject;
+
 import hotchemi.android.rate.AppRate;
 
 //CHECKSTYLE : BEGIN GENERATED CODE
@@ -112,9 +114,6 @@ public class MainActivity
 
 // *********************** FIELDS ***************************************************************************
 
-    /** The saving module to retrieve and update data (trips).*/
-    private ISaving mSavingModule;
-
     /** The Floating Action Button. */
     private FloatingActionButton mFab;
 
@@ -128,6 +127,12 @@ public class MainActivity
      * The currently displayed fragment class name.
      */
     private String mCurFragment;
+
+// *********************** iINJECTED FIELDS *****************************************************************
+
+    /** The saving module to retrieve and update data (trips).*/
+    @Inject
+    protected ISaving mSavingModule;
 
 // *********************** LISTENERS**************************************************************************
     /**
@@ -154,6 +159,12 @@ public class MainActivity
     @Override
     protected final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Injection boiler plate code
+        ((PackListApp) getApplication())
+                .getSavingComponent()
+                .inject(MainActivity.this);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -176,7 +187,6 @@ public class MainActivity
         }
 
         // Moved from onStart, however mSavingModule is null when fragments need it for restore
-        mSavingModule = ((PackListApp) getApplication()).getSavingModule();
         mSavingModule.addListener(this);
 
         // suggest user to rate the app, with a conditional pop-up
